@@ -18,7 +18,7 @@ before_script:
   - unzip chromedriver_linux64.zip
   - sudo mv chromedriver /usr/local/bin
 script:
-  - pybot test.robot
+  - make test
 notifications:
   email:
     - stollenwerk@kitconcept.com

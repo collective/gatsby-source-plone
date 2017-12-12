@@ -13,7 +13,9 @@ addons:
       - google-chrome-stable
 install:
   - sudo pip install -r requirements.txt
-  - npm install gatsby -g
+  - npm install -g gatsby
+  - npm install -g babel-cli
+  - npm install -g cross-env
 before_script:
   - wget "http://chromedriver.storage.googleapis.com/2.33/chromedriver_linux64.zip"
   - unzip chromedriver_linux64.zip

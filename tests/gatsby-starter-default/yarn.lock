@@ -3080,8 +3080,9 @@ gatsby-react-router-scroll@^1.0.6:
     scroll-behavior "^0.9.1"
     warning "^3.0.0"
 
-"gatsby-source-plone@file:../../":
+"gatsby-source-plone@git+https://github.com/collective/gatsby-source-plone.git#add_source_dependency":
   version "0.1.0"
+  resolved "git+https://github.com/collective/gatsby-source-plone.git#cd09ecba032f1f8398f77d451baec1942931da50"
   dependencies:
     axios "^0.16.1"
     babel-runtime "^6.26.0"

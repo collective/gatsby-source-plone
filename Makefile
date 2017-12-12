@@ -15,4 +15,4 @@ build:
 test:
 	@echo "Run Tests"
 	(cd tests/gatsby-starter-default && yarn install)
-	.py27/bin/pybot test.robot
+	pybot test.robot

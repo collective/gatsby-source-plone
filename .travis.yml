@@ -26,6 +26,8 @@ before_script:
   - docker run -d -p 8080:8080 plone/plone.restapi
   - while ! nc -z localhost 8080; do sleep 10; done
   - docker ps -a
+  - yarn link
+  - (cd tests/gatsby-starter-default && yarn link gatsby-source-plone)
 script:
   - make test
 notifications:

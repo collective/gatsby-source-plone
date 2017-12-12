@@ -9,14 +9,25 @@ clean:
 
 build:
 	@echo "Build"
+	make build-backend
+	make build-test
+
+build-backend:
+	@echo "Build"
 	(cd api && virtualenv-2.7 . || virtualenv .)
 	(cd api && bin/pip install -r requirements.txt)
 	(cd api && bin/buildout)
 
-test:
-	@echo "Run Tests"
+build-frontend:
 	yarn install
 	(cd tests/gatsby-starter-default && yarn install)
+
+build-test:
+	virtualenv-2.7 . || virtualenv .
+	bin/pip install -r requirements.txt
+
+test:
+	@echo "Run Tests"
 	(cd tests/gatsby-starter-default && gatsby develop &)
 	sleep 10
 	pybot test.robot

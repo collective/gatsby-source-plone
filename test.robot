@@ -9,9 +9,9 @@ Test Teardown   Close Browser
 *** Test Cases ***
 
 Scenario: Open Headless Browser
-  Go To  https://kitconcept.com
-  Wait until page contains  kitconcept
-  Page should contain  kitconcept
+  Go To  http://localhost:8000/
+  Wait until page contains  Gatsby
+  Page should contain  Gatsby
 
 
 *** Keywords ***

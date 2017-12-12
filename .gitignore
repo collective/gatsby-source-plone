@@ -6,6 +6,9 @@ api/develop-eggs
 api/parts
 api/var
 
+# tests
+tests/gatsby-starter-default/node_modules
+
 packages/*/yarn.lock
 packages/*/package-lock.json
 

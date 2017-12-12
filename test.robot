@@ -11,7 +11,7 @@ Test Teardown   Close Browser
 Scenario: Open Headless Browser
   Go To  http://localhost:8000
   Wait until page contains  Gatsby
-  Page should contain  Gatsby
+  Page should contain  Welcome to Plone
 
 
 *** Keywords ***

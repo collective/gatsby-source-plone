@@ -14,6 +14,7 @@ build:
 
 test:
 	@echo "Run Tests"
+	yarn install
 	(cd tests/gatsby-starter-default && yarn install)
 	(cd tests/gatsby-starter-default && gatsby develop &)
 	sleep 10

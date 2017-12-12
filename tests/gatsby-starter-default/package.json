@@ -6,7 +6,8 @@
   "dependencies": {
     "gatsby": "^1.9.127",
     "gatsby-link": "^1.6.30",
-    "gatsby-plugin-react-helmet": "^1.0.8"
+    "gatsby-plugin-react-helmet": "^1.0.8",
+    "gatsby-source-plone": "git+https://github.com/collective/gatsby-source-plone.git#add_source_dependency"
   },
   "keywords": [
     "gatsby"

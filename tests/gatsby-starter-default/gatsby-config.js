@@ -3,9 +3,9 @@ module.exports = {
     title: `Gatsby Default Starter`
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     {
       resolve: 'gatsby-source-plone'
-    }
+    },
+    `gatsby-plugin-react-helmet`
   ]
 };

@@ -44,16 +44,20 @@ exports.sourceNodes = function () {
                         node = _extends({}, item, {
                           internal: {
                             type: item["@type"].replace(" ", ""),
-                            contentDigest: crypto.createHash("md5").update(JSON.stringify(item)).digest("hex")
+                            contentDigest: crypto.createHash("md5").update(JSON.stringify(item)).digest("hex"),
+                            mediaType: "text/html"
                           }
                         });
 
                         node.id = item["@id"];
                         node.parent = null;
                         node.children = [];
+                        console.log(JSON.stringify(node));
+                        // console.log(JSON.stringify(data.data.items));
                         createNode(node);
+                        return _context.abrupt("return");
 
-                      case 5:
+                      case 7:
                       case "end":
                         return _context.stop();
                     }

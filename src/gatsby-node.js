@@ -23,13 +23,17 @@ exports.sourceNodes = async(
         contentDigest: crypto
           .createHash(`md5`)
           .update(JSON.stringify(item))
-          .digest(`hex`)
+          .digest(`hex`),
+        mediaType: "text/html"
       }
     };
     node.id = item["@id"];
     node.parent = null;
     node.children = [];
-    createNode(node);
+  console.log(JSON.stringify(node));
+  // console.log(JSON.stringify(data.data.items));
+  createNode(node);
+  return;
   });
 
   // const data = await axios.get("http://localhost:8080/Plone/news/aggregator", {

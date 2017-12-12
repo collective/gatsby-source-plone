@@ -5,12 +5,13 @@ all: clean build test
 
 clean:
 	@echo "Clean"
-	rm -rf .py27
+	rm -rf api/bin api/lib
 
 build:
 	@echo "Build"
-	virtualenv-2.7 .py27 || virtualenv .py27
-	.py27/bin/pip install -r requirements.txt
+	(cd api && virtualenv-2.7 . || virtualenv .)
+	(cd api && bin/pip install -r requirements.txt)
+	(cd api && bin/buildout)
 
 test:
 	@echo "Run Tests"

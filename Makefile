@@ -15,4 +15,6 @@ build:
 test:
 	@echo "Run Tests"
 	(cd tests/gatsby-starter-default && yarn install)
+	(cd tests/gatsby-starter-default && gatsby develop &)
+	sleep 10
 	pybot test.robot

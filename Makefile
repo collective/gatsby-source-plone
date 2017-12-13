@@ -18,11 +18,11 @@ build-backend:
 	(cd api && virtualenv-2.7 . || virtualenv .)
 	(cd api && bin/pip install -r requirements.txt)
 	(cd api && bin/buildout)
+	(cd api && bin/instance fg &)
 
 build-frontend:
 	yarn install
 	(cd tests/gatsby-starter-default && yarn install)
-	(cd tests/gatsby-starter-default && gatsby build)
 
 build-test:
 	virtualenv-2.7 . || virtualenv .
@@ -30,6 +30,7 @@ build-test:
 
 test:
 	@echo "Run Tests"
+	(cd tests/gatsby-starter-default && gatsby build)
 	(cd tests/gatsby-starter-default && gatsby serve &)
 	sleep 10
 	pybot test.robot

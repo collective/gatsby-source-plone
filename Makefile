@@ -10,6 +10,7 @@ clean:
 build:
 	@echo "Build"
 	make build-backend
+	make build-frontend
 	make build-test
 
 build-backend:

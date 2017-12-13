@@ -1,6 +1,7 @@
 *** Settings ***
 
 Library         Selenium2Library  timeout=10  implicit_wait=0
+Library         DebugLibrary
 
 Test Setup      Open Headless Browser
 Test Teardown   Close Browser
@@ -9,9 +10,9 @@ Test Teardown   Close Browser
 *** Test Cases ***
 
 Scenario: Open Headless Browser
-  Go To  http://localhost:8000
+  Go To  http://localhost:9000
   Wait until page contains  Gatsby
-  Page should contain  Gatsby
+  Page should contain  Welcome to Plone
 
 
 *** Keywords ***

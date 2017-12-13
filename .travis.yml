@@ -13,7 +13,6 @@ addons:
     packages:
       - google-chrome-stable
 install:
-  - python --version
   - sudo pip install -r requirements.txt
   - npm install -g gatsby
   - npm install -g babel-cli

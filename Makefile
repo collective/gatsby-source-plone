@@ -21,6 +21,7 @@ build-backend:
 build-frontend:
 	yarn install
 	(cd tests/gatsby-starter-default && yarn install)
+	(cd tests/gatsby-starter-default && gatsby build)
 
 build-test:
 	virtualenv-2.7 . || virtualenv .
@@ -28,6 +29,6 @@ build-test:
 
 test:
 	@echo "Run Tests"
-	(cd tests/gatsby-starter-default && gatsby develop &)
+	(cd tests/gatsby-starter-default && gatsby serve &)
 	sleep 10
 	pybot test.robot

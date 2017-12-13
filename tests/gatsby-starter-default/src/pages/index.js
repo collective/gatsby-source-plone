@@ -6,6 +6,7 @@ const IndexPage = ({ data }) => (
     {data.allDocument.edges.map(({ node }) => (
       <div>
         <h3>{node.title}</h3>
+        <h4>{node.description}</h4>
       </div>
     ))}
   </div>

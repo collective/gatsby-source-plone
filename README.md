@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/collective/gatsby-source-plone.svg?branch=add_source_dependency)](https://travis-ci.org/collective/gatsby-source-plone)
+
 # gatsby-source-plone
 
 Source plugin for pulling data into Gatsby from Plone sites.
@@ -64,6 +66,26 @@ Build project:
 make build
 ```
 
+### Dev Environment
+
+Start Plone backend API server:
+
+```bash
+cd api
+bin/instance fg
+```
+
+Build Gatsby:
+
+```bash
+(cd tests/gatsby-starter-default && gatsby build)
+```
+
+Start Gatsby:
+```bash
+(cd tests/gatsby-starter-default && gatsby serve)
+```
+
 ### Tests
 
 Run acceptance tests:
@@ -71,3 +93,5 @@ Run acceptance tests:
 ```bash:
 make test
 ```
+
+This command will automatically fire up the Plone backend, build and start Gatsby and the execute the selenium-based acceptance tests.

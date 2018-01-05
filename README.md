@@ -37,3 +37,37 @@ You can query nodes created from Plone like the following:
   }
 }
 ```
+
+## Development
+
+### Code Checkout
+
+Checkout sources from github:
+
+```bash:
+git clone git@github.com:collective/gatsby-source-plone.git
+```
+
+### Set up Node
+
+Make sure you use the latest NodeJS LTS version (currently 8.9.4). We recommend to use [http://nvm.sh/]nvm for local development.
+
+### Set up Python
+
+Make sure you have Python 2.7 and [https://virtualenv.pypa.io](virtualenv) installed.
+
+### Build
+
+Build project:
+
+```bash:
+make build
+```
+
+### Tests
+
+Run acceptance tests:
+
+```bash:
+make test
+```

@@ -79,7 +79,7 @@ Gatsby Development Mode:
 
 ```bash
 (cd tests/gatsby-starter-default && gatsby develop)
-``
+```
 
 Build Gatsby:
 

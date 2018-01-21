@@ -75,6 +75,12 @@ cd api
 bin/instance fg
 ```
 
+Gatsby Development Mode:
+
+```bash
+(cd tests/gatsby-starter-default && gatsby develop)
+``
+
 Build Gatsby:
 
 ```bash

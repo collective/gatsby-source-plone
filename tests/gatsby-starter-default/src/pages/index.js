@@ -22,6 +22,7 @@ query IndexPageQuery {
         node {
           id
           title
+          description
         }
       }
     }

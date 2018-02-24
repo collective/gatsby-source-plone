@@ -4,7 +4,8 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: 'gatsby-source-plone'
+      resolve: `gatsby-source-plone`,
+      options: { baseUrl: `http://localhost:8080/Plone/` },
     },
     `gatsby-plugin-react-helmet`
   ]

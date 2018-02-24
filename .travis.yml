@@ -2,6 +2,7 @@ language: node_js
 node_js:
 - 6.12.3
 - 8.9.4
+python: 2.7.13
 cache:
   directories:
     - node_modules
@@ -14,6 +15,7 @@ addons:
     packages:
       - google-chrome-stable
 install:
+  - python --version 
   - sudo pip install -r requirements.txt
   - npm install -g gatsby
   - npm install -g babel-cli

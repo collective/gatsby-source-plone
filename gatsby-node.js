@@ -22,7 +22,7 @@ exports.sourceNodes = function () {
           case 0:
             createNode = boundActionCreators.createNode;
             _context2.next = 3;
-            return axios.get("http://localhost:8080/Plone/@search", {
+            return axios.get(baseUrl + "/@search", {
               params: {
                 metadata_fields: "_all"
               },

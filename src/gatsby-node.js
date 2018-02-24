@@ -7,7 +7,7 @@ exports.sourceNodes = async(
 ) => {
   const { createNode } = boundActionCreators;
 
-  const data = await axios.get("http://localhost:8080/Plone/@search", {
+  const data = await axios.get(`${baseUrl}/@search`, {
     params: {
       metadata_fields: "_all"
     },

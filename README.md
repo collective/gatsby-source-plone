@@ -54,16 +54,21 @@ git clone git@github.com:collective/gatsby-source-plone.git
 
 Make sure you use the latest NodeJS LTS version (currently 8.9.4). We recommend to use [http://nvm.sh/]nvm for local development.
 
-### Set up Python
+### Set up Docker
 
-Make sure you have Python 2.7 and [https://virtualenv.pypa.io](virtualenv) installed.
+We use Docker for handling the backend plone.restapi, and so it's required to have [docker-compose](https://docs.docker.com/compose/install/) installed.
 
 ### Build
 
-Build project:
+Build project frontend:
 
 ```bash:
 make build
+```
+
+Setup Plone backend API server with Docker:
+```bash:
+docker-compose up
 ```
 
 ### Dev Environment
@@ -71,8 +76,7 @@ make build
 Start Plone backend API server:
 
 ```bash
-cd api
-bin/instance fg
+docker-compose up
 ```
 
 Gatsby Development Mode:

@@ -6,7 +6,6 @@ all: build test
 build:
 	@echo "Build"
 	make build-frontend
-	make build-test
 
 build-frontend:
 	yarn install

@@ -66,14 +66,9 @@ Build project frontend:
 make build
 ```
 
-Setup Plone backend API server with Docker:
-```bash:
-docker-compose up
-```
-
 ### Dev Environment
 
-Start Plone backend API server:
+Setup and start Plone backend API server:
 
 ```bash
 docker-compose up

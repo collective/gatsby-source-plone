@@ -5,7 +5,7 @@ export PATH := node_modules/.bin:$(PATH)
 all: test
 
 .PHONY: test
-build: node_modules
+test: node_modules
 	make -C tests/gatsby-starter-default
 
 .PHONY: prettier

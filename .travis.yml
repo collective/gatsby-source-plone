@@ -12,6 +12,8 @@ addons:
       - python3
 services:
   - docker
+before_script:
+  - touch package.json tests/*/package.json
 script:
   - make test
 notifications:

@@ -92,6 +92,12 @@ Stop Plone API server (started by any of the above):
 make stop
 ```
 
+Clean everything and reset the environment:
+
+```bash
+make purge
+```
+
 ### Tests
 
 Run acceptance tests:

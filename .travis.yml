@@ -8,9 +8,6 @@ env:
   - NODE_JS=10.1.0
 cache:
   pip: true
-  directories:
-    - node_modules
-    - tests/gatsby-starter-default/node_modules
 before_install:
   - nvm install ${NODE_JS}
 script:

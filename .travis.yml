@@ -12,7 +12,6 @@ addons:
       - python3
 services:
   - docker
-before_script:
 script:
   - make purge test
 notifications:

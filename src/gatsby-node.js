@@ -1,7 +1,7 @@
 const axios = require(`axios`);
 const crypto = require(`crypto`);
 
-exports.sourceNodes = async(
+exports.sourceNodes = async (
   { boundActionCreators, getNode, hasNodeChanged, store, cache },
   { baseUrl }
 ) => {
@@ -9,31 +9,31 @@ exports.sourceNodes = async(
 
   const data = await axios.get(`${baseUrl}/@search`, {
     params: {
-      metadata_fields: "_all"
+      metadata_fields: '_all',
     },
     headers: {
-      accept: "application/json"
-    }
+      accept: 'application/json',
+    },
   });
   data.data.items.map(async item => {
     let node = {
       ...item,
       internal: {
-        type: item["@type"].replace(" ", ""),
+        type: item['@type'].replace(' ', ''),
         contentDigest: crypto
           .createHash(`md5`)
           .update(JSON.stringify(item))
           .digest(`hex`),
-        mediaType: "text/html"
-      }
+        mediaType: 'text/html',
+      },
     };
-    node.id = item["@id"];
+    node.id = item['@id'];
     node.parent = null;
     node.children = [];
-  console.log(JSON.stringify(node));
-  // console.log(JSON.stringify(data.data.items));
-  createNode(node);
-  return;
+    console.log(JSON.stringify(node));
+    // console.log(JSON.stringify(data.data.items));
+    createNode(node);
+    return;
   });
 
   // const data = await axios.get("http://localhost:8080/Plone/news/aggregator", {

@@ -19,9 +19,9 @@ test: node_modules
 
 .PHONY: prettier
 prettier: node_modules
-	prettier --write --trailing-comma es5 --no-semi --single-quote \
+	prettier --write --trailing-comma es5 --single-quote \
 	  $$(find src -name "*.js")
-	prettier --write $$(find src -name "*.css")
+	make -C tests/gatsby-starter-default prettier
 
 node_modules: package.json
 	yarn install

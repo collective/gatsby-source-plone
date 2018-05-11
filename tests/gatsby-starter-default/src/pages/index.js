@@ -1,5 +1,5 @@
-import React from 'react'
-import Link from 'gatsby-link'
+import React from 'react';
+import Link from 'gatsby-link';
 
 const IndexPage = ({ data }) => (
   <div>
@@ -10,9 +10,9 @@ const IndexPage = ({ data }) => (
       </div>
     ))}
   </div>
-)
+);
 
-export default IndexPage
+export default IndexPage;
 
 // Set here the ID of the home page.
 export const pageQuery = graphql`
@@ -27,4 +27,4 @@ export const pageQuery = graphql`
       }
     }
   }
-`
+`;

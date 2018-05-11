@@ -16,7 +16,7 @@ export default IndexPage
 
 // Set here the ID of the home page.
 export const pageQuery = graphql`
-query IndexPageQuery {
+  query IndexPageQuery {
     allDocument {
       edges {
         node {
@@ -26,5 +26,5 @@ query IndexPageQuery {
         }
       }
     }
-}
+  }
 `

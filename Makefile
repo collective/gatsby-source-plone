@@ -1,19 +1,19 @@
-SHELL := /bin/bash
-CURRENT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+SHELL := /usr/bin/env bash
+export PATH := node_modules/.bin:$(PATH)
 
-all: build test
+.PHONY: all
+all: test
 
-build:
-	@echo "Build"
-	make build-frontend
+.PHONY: test
+build: node_modules
+	make -C tests/gatsby-starter-default
 
-build-frontend:
+.PHONY: prettier
+prettier: node_modules
+	prettier --write --trailing-comma es5 --no-semi --single-quote \
+	  $$(find src -name "*.js")
+	prettier --write $$(find src -name "*.css")
+
+node_modules: package.json
 	yarn install
-	(cd tests/gatsby-starter-default && yarn install)
-
-test:
-	@echo "Run Tests"
-	(cd tests/gatsby-starter-default && gatsby build)
-	(cd tests/gatsby-starter-default && gatsby serve &)
-	sleep 10
-	pybot test.robot
+	yarn link

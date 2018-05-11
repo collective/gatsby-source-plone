@@ -1,31 +1,44 @@
 SHELL := /usr/bin/env bash
 export PATH := node_modules/.bin:pyvenv/bin:$(PATH)
 
-SOURCES := $(find src -type f)
+SOURCES := $(shell find src -type f)
 HTTP_GET := curl --silent --fail --output /dev/null
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-    GECKODRIVER = https://github.com/mozilla/geckodriver/releases/download/v0.20.1/geckodriver-v0.20.1-linux64.tar.gz
+	GECKODRIVER = https://github.com/mozilla/geckodriver/releases/download/v0.20.1/geckodriver-v0.20.1-linux64.tar.gz
 endif
 ifeq ($(UNAME_S),Darwin)
-    GECKODRIVER = https://github.com/mozilla/geckodriver/releases/download/v0.20.1/geckodriver-v0.20.1-macos.tar.gz
+	GECKODRIVER = https://github.com/mozilla/geckodriver/releases/download/v0.20.1/geckodriver-v0.20.1-macos.tar.gz
 endif
 
 .PHONY: all
 all: test
+
+build: public
 
 .PHONY: clean
 clean:
 	$(RM) -r public
 
 .PHONY: purge
-purge: clean
-	$(RM) -r node_modules pyvenv
+purge: clean stop
+	docker-compose stop
 	docker-compose rm -fv
+	$(RM) -r node_modules pyvenv
 
-.PHONY: build
-build: public
+.PHONY: develop
+develop: node_modules pyvenv
+	docker-compose up -d
+	gatsby develop
+
+.PHONY: serve
+serve: node_modules public
+	gatsby serve
+
+.PHONY: stop
+stop: pyvenv
+	docker-compose stop
 
 .PHONY: test
 test: clean build pyvenv
@@ -46,10 +59,10 @@ public: node_modules $(SOURCES)
 	docker-compose up -d
 	while ! $$($(HTTP_GET) http://localhost:8080/); do sleep 1; done
 	gatsby build
-	docker-compose stop
 
 pyvenv: requirements.txt
-	python3 -m venv --upgrade --without-pip pyvenv
+	$(RM) -r pyvenv
+	python3 -m venv --without-pip pyvenv
 	curl https://bootstrap.pypa.io/get-pip.py | pyvenv/bin/python
 	pyvenv/bin/pip install -U -r requirements.txt
 	curl -L -O $(GECKODRIVER)

@@ -62,40 +62,41 @@ We use Docker for handling the backend plone.restapi, and so it's required to ha
 
 Build project frontend:
 
-```bash:
+```bash
 make build
 ```
 
 ### Dev Environment
 
-Setup and start Plone backend API server:
-
-```bash
-docker-compose up
-```
-
 Gatsby Development Mode:
 
 ```bash
-(cd tests/gatsby-starter-default && gatsby develop)
+make develop
 ```
 
 Build Gatsby:
 
 ```bash
-(cd tests/gatsby-starter-default && gatsby build)
+make build
 ```
 
 Start Gatsby:
+
 ```bash
-(cd tests/gatsby-starter-default && gatsby serve)
+make serve
+```
+
+Stop Plone API server (started by any of the above):
+
+```bash
+make stop
 ```
 
 ### Tests
 
 Run acceptance tests:
 
-```bash:
+```bash
 make test
 ```
 

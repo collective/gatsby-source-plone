@@ -23,7 +23,6 @@ clean:
 
 .PHONY: purge
 purge: clean stop
-	docker-compose stop
 	docker-compose rm -fv
 	$(RM) -r node_modules pyvenv
 

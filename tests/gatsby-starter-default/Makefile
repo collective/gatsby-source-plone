@@ -36,7 +36,7 @@ serve: node_modules public
 	gatsby serve
 
 .PHONY: stop
-stop: pyvenv
+stop:
 	docker-compose stop
 
 .PHONY: test

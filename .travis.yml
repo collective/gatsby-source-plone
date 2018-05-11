@@ -10,7 +10,6 @@ addons:
   apt:
     packages:
       - python3
-      - xsel
 services:
   - docker
 script:

@@ -22,6 +22,7 @@ clean:
 .PHONY: purge
 purge: clean
 	$(RM) -r node_modules pyvenv
+	docker-compose rm -fv
 
 .PHONY: build
 build: public
@@ -45,10 +46,11 @@ public: node_modules $(SOURCES)
 	docker-compose up -d
 	while ! $$($(HTTP_GET) http://localhost:8080/); do sleep 1; done
 	gatsby build
-	docker-compose rm -fv
+	docker-compose stop
 
 pyvenv: requirements.txt
 	python3 -m venv --upgrade pyvenv
+	pyvenv/bin/python -m ensurepip --upgrade
 	pyvenv/bin/pip install -U -r requirements.txt
 	curl -L -O $(GECKODRIVER)
 	tar -xzf $$(basename $(GECKODRIVER)) -C pyvenv/bin

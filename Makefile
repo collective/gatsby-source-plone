@@ -4,6 +4,15 @@ export PATH := node_modules/.bin:$(PATH)
 .PHONY: all
 all: test
 
+.PHONY: clean
+clean:
+	make -C tests/gatsby-starter-default clean
+
+.PHONY: purge
+purge: clean
+	$(RM) -r node_modules
+	make -C tests/gatsby-starter-default purge
+
 .PHONY: test
 test: node_modules
 	make -C tests/gatsby-starter-default

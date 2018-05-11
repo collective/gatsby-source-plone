@@ -50,6 +50,7 @@ public: node_modules $(SOURCES)
 
 pyvenv: requirements.txt
 	python3 -m venv --upgrade pyvenv
+	ls -l pyvenv/bin
 	pyvenv/bin/python -m ensurepip --upgrade
 	pyvenv/bin/pip install -U -r requirements.txt
 	curl -L -O $(GECKODRIVER)

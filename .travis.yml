@@ -1,15 +1,14 @@
-language: python
-python: 3.6
+language: node_js
+node_js:
+  - 8.11.1
+  - 10.1.0
 sudo: required
+addons:
+  apt:
+    packages:
+      - python3
 services:
   - docker
-env:
-  - NODE_JS=8.11.1
-  - NODE_JS=10.1.0
-cache:
-  pip: true
-before_install:
-  - nvm install ${NODE_JS}
 script:
   - make test
 notifications:

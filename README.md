@@ -52,7 +52,7 @@ git clone git@github.com:collective/gatsby-source-plone.git
 
 ### Set up Node
 
-Make sure you use the latest NodeJS LTS version (currently 8.9.4). We recommend to use [http://nvm.sh/]nvm for local development.
+Make sure you use the latest NodeJS LTS version (currently 8.11.1). We recommend to use [http://nvm.sh/]nvm for local development.
 
 ### Set up Docker
 

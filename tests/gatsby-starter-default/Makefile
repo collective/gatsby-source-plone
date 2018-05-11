@@ -49,9 +49,8 @@ public: node_modules $(SOURCES)
 	docker-compose stop
 
 pyvenv: requirements.txt
-	python3 -m venv --upgrade pyvenv
-	ls -l pyvenv/bin
-	pyvenv/bin/python -m ensurepip --upgrade
+	python3 -m venv --upgrade --without-pip pyvenv
+	curl https://bootstrap.pypa.io/get-pip.py | pyvenv/bin/python
 	pyvenv/bin/pip install -U -r requirements.txt
 	curl -L -O $(GECKODRIVER)
 	tar -xzf $$(basename $(GECKODRIVER)) -C pyvenv/bin

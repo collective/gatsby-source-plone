@@ -1,36 +1,47 @@
-SHELL := /bin/bash
-CURRENT_DIR:=$(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
+SHELL := /usr/bin/env bash
+export PATH := node_modules/.bin:$(PATH)
 
-all: clean build test
+SOURCES := $(shell find src -type f)
 
+.PHONY: all
+all: build
+
+build: tests/gatsby-starter-default/public
+
+.PHONY: clean
 clean:
-	@echo "Clean"
-	rm -rf api/bin api/lib
+	make -C tests/gatsby-starter-default clean
 
-build:
-	@echo "Build"
-	make build-backend
-	make build-frontend
-	make build-test
+.PHONY: purge
+purge: clean
+	$(RM) -r node_modules
+	make -C tests/gatsby-starter-default purge
 
-build-backend:
-	@echo "Build"
-	(cd api && virtualenv-2.7 . || virtualenv .)
-	(cd api && bin/pip install -r requirements.txt)
-	(cd api && bin/buildout)
-	(cd api && bin/instance fg &)
+.PHONY: develop
+develop:
+	make -C tests/gatsby-starter-default develop
 
-build-frontend:
+.PHONY: serve
+serve:
+	make -C tests/gatsby-starter-default serve
+
+.PHONY: stop
+stop:
+	make -C tests/gatsby-starter-default stop
+
+.PHONY: test
+test: node_modules
+	make -C tests/gatsby-starter-default
+
+.PHONY: prettier
+prettier: node_modules
+	prettier --write --trailing-comma es5 --single-quote \
+	  $$(find src -name "*.js")
+	make -C tests/gatsby-starter-default prettier
+
+tests/gatsby-starter-default/public: $(SOURCES)
+	make -C tests/gatsby-starter-default clean build
+
+node_modules: package.json
 	yarn install
-	(cd tests/gatsby-starter-default && yarn install)
-
-build-test:
-	virtualenv-2.7 . || virtualenv .
-	bin/pip install -r requirements.txt
-
-test:
-	@echo "Run Tests"
-	(cd tests/gatsby-starter-default && gatsby build)
-	(cd tests/gatsby-starter-default && gatsby serve &)
-	sleep 10
-	pybot test.robot
+	yarn link

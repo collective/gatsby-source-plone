@@ -1,3 +1,0 @@
-# copy from https://github.com/plone/buildout.coredev/blob/5.1/requirements.txt
-setuptools==33.1.1
-zc.buildout==2.9.4

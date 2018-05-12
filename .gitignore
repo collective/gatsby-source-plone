@@ -1,16 +1,10 @@
-# plone
-api/bin
-api/lib
-api/eggs
-api/develop-eggs
-api/parts
-api/var
-
-# tests
-tests/gatsby-starter-default/node_modules
-
-packages/*/yarn.lock
-packages/*/package-lock.json
+# Tests
+node_modules
+pyvenv
+log.html
+output.xml
+report.html
+selenium-screenshot*.png
 
 # Logs
 logs

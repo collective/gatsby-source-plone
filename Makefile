@@ -33,12 +33,6 @@ stop:
 test: node_modules
 	make -C tests/gatsby-starter-default
 
-.PHONY: prettier
-prettier: node_modules
-	prettier --write --trailing-comma es5 --single-quote \
-	  $$(find src -name "*.js")
-	make -C tests/gatsby-starter-default prettier
-
 tests/gatsby-starter-default/public: $(SOURCES)
 	make -C tests/gatsby-starter-default clean build
 

@@ -48,12 +48,6 @@ test: clean build pyvenv
 	  kill $$pid; \
 	  exit $$status
 
-.PHONY: prettier
-prettier: node_modules
-	prettier --write --trailing-comma es5 --single-quote \
-	  $$(find src -name "*.js")
-	prettier --write $$(find src -name "*.css")
-
 public: node_modules $(SOURCES)
 	docker-compose up -d
 	while ! $$($(HTTP_GET) http://localhost:8080/); do sleep 1; done

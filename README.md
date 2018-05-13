@@ -17,8 +17,8 @@ Pulls data from Plone sites with
 // In your gatsby-config.js
 plugins: [
   {
-    resolve: `gatsby-source-plone`
-  }
+    resolve: `gatsby-source-plone`,
+  },
 ];
 ```
 
@@ -107,3 +107,15 @@ make test
 ```
 
 This command will automatically fire up the Plone backend, build and start Gatsby and the execute the selenium-based acceptance tests.
+
+### Prettier Configuration
+
+This project uses Prettier for code formatting, the `.prettierrc` file contains the requisite custom settings the project
+
+It's recommended that you setup _Format on Save_ so that your editor takes care of this automatically for you. In [Visual Studio Code](https://code.visualstudio.com/) this can be setup in project by adding the following to your Workspace settings (or in `.vscode/settings.json`):
+
+```json
+{
+  "editor.formatOnSave": true
+}
+```

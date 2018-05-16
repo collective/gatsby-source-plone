@@ -52,7 +52,7 @@ git clone git@github.com:collective/gatsby-source-plone.git
 
 ### Set up Node
 
-Make sure you use the latest NodeJS LTS version (currently 8.11.1). We recommend to use [http://nvm.sh/]nvm for local development.
+Make sure you use the latest NodeJS LTS version (currently 8.11.1). We recommend to use [nvm](http://nvm.sh/) for local development.
 
 ### Set up Docker
 
@@ -110,9 +110,9 @@ This command will automatically fire up the Plone backend, build and start Gatsb
 
 ### Prettier Configuration
 
-This project uses Prettier for code formatting, the `.prettierrc` file contains the requisite custom settings the project
+This project uses [Prettier](https://prettier.io/) for code formatting, the `.prettierrc` file contains the requisite custom settings the project
 
-It's recommended that you setup _Format on Save_ so that your editor takes care of this automatically for you. In [Visual Studio Code](https://code.visualstudio.com/) this can be setup in project by adding the following to your Workspace settings (or in `.vscode/settings.json`):
+It's recommended that you setup _Format on Save_ so that your editor takes care of this automatically for you. In [Visual Studio Code](https://code.visualstudio.com/) this can be setup in project by adding the following to your Workspace settings (or in `.vscode/settings.json`), while having the [VSCode plugin](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) for Prettier installed:
 
 ```json
 {

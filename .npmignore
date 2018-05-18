@@ -1,10 +1,7 @@
-# Tests
-node_modules
-pyvenv
-log.html
-output.xml
-report.html
-selenium-screenshot*.png
+# Package development resources
+src
+docs
+tests
 
 # Logs
 logs
@@ -28,17 +25,10 @@ coverage
 # Compiled binary addons (http://nodejs.org/api/addons.html)
 build/Release
 
-# Dependency directory
-*.un~
-dist
-bin/published.js
-
 # Build Path of Test Fixtures
 test/**/public
 .gatsby-context.js
-.DS_Store
 public/
-node_modules/
 .cache/
 .netlify
 
@@ -47,6 +37,3 @@ node_modules/
 .vscode/
 
 .serverless/
-
-# Build output
-gatsby-node.js

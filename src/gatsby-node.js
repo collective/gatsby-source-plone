@@ -1,20 +1,18 @@
-import axios from "axios";
-import crypto from "crypto";
+import axios from 'axios';
+import crypto from 'crypto';
 
 // Helper to create content digest
 const createContentDigest = item =>
   crypto
-  .createHash(`md5`)
-  .update(JSON.stringify(item))
-  .digest(`hex`);
+    .createHash(`md5`)
+    .update(JSON.stringify(item))
+    .digest(`hex`);
 
 // Helper to get data from url
 const fetchData = async url => {
-  const {
-    data
-  } = await axios.get(url, {
+  const { data } = await axios.get(url, {
     headers: {
-      accept: "application/json"
+      accept: 'application/json',
     },
     params: {
       metadata_fields: '_all',
@@ -23,18 +21,11 @@ const fetchData = async url => {
   return data;
 };
 
-exports.sourceNodes = async ({
-  boundActionCreators,
-  getNode,
-  hasNodeChanged,
-  store,
-  cache
-}, {
-  baseUrl
-}) => {
-  const {
-    createNode
-  } = boundActionCreators;
+exports.sourceNodes = async (
+  { boundActionCreators, getNode, hasNodeChanged, store, cache },
+  { baseUrl }
+) => {
+  const { createNode } = boundActionCreators;
 
   const data = await fetchData(`${baseUrl}/@search`);
 
@@ -42,12 +33,12 @@ exports.sourceNodes = async ({
     let node = {
       ...item,
       internal: {
-        type: item["@type"].replace(" ", ""),
+        type: item['@type'].replace(' ', ''),
         contentDigest: createContentDigest(item),
-        mediaType: "text/html"
-      }
+        mediaType: 'text/html',
+      },
     };
-    node.id = item["@id"];
+    node.id = item['@id'];
     node.parent = null;
     node.children = [];
     createNode(node);

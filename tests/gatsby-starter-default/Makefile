@@ -31,6 +31,11 @@ develop: node_modules pyvenv
 	docker-compose up -d
 	gatsby develop
 
+.PHONY: prettier
+prettier: node_modules
+	prettier --write $$(find src -name "*.js")
+	prettier --write --single-quote false $$(find src -name "*.css")
+
 .PHONY: serve
 serve: node_modules public
 	gatsby serve

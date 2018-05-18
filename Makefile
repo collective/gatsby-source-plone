@@ -17,6 +17,11 @@ purge: clean
 	$(RM) -r node_modules
 	make -C tests/gatsby-starter-default purge
 
+.PHONY: prettier
+prettier: node_modules
+	prettier --write $$(find src -name "*.js")
+	make -C tests/gatsby-starter-default prettier
+
 .PHONY: develop
 develop:
 	make -C tests/gatsby-starter-default develop

@@ -38,7 +38,7 @@ stop:
 test: node_modules
 	make -C tests/gatsby-starter-default
 
-tests/gatsby-starter-default/public: $(SOURCES)
+tests/gatsby-starter-default/public: node_modules $(SOURCES)
 	make -C tests/gatsby-starter-default clean build
 
 node_modules: package.json

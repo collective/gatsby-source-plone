@@ -21,6 +21,8 @@ deploy:
   target-branch: gh-pages
   keep-history: false
   skip-cleanup: true
+  on:
+    branch: master
 notifications:
   email:
   - stollenwerk@kitconcept.com

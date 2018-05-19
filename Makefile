@@ -26,6 +26,9 @@ prettier: node_modules
 develop:
 	make -C tests/gatsby-starter-default develop
 
+.PHONY: watch
+watch: develop
+
 .PHONY: serve
 serve:
 	make -C tests/gatsby-starter-default serve

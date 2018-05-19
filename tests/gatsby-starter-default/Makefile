@@ -31,6 +31,9 @@ develop: node_modules pyvenv
 	docker-compose up -d
 	gatsby develop
 
+.PHONY: watch
+watch: develop
+
 .PHONY: prettier
 prettier: node_modules
 	prettier --write $$(find src -name "*.js")

@@ -27,9 +27,12 @@ purge: clean stop
 	$(RM) -r node_modules pyvenv
 
 .PHONY: develop
-develop: node_modules pyvenv
+develop: node_modules
 	docker-compose up -d
 	gatsby develop
+
+.PHONY: watch
+watch: develop
 
 .PHONY: prettier
 prettier: node_modules

@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-  - 8.11.1
-  - 10.1.0
+- 8.11.1
+- 10.1.0
 cache:
   pip: true
   yarn: true
@@ -9,12 +9,21 @@ sudo: required
 addons:
   apt:
     packages:
-      - python3
+    - python3
 services:
-  - docker
+- docker
 script:
-  - make purge test
+- make purge test
+deploy:
+  provider: pages
+  github-token: "$GITHUB_TOKEN"
+  local-dir: "./tests/gatsby-starter-default/public"
+  target-branch: gh-pages
+  keep-history: false
+  skip-cleanup: true
 notifications:
   email:
-    - stollenwerk@kitconcept.com
-    - fernandezdealba@kitconcept.com
+  - stollenwerk@kitconcept.com
+  - fernandezdealba@kitconcept.com
+env:
+  secure: K60zXQWiqhkC+pfVnDWYK/Pzzxz8lua6ApIVFZyyPkh/5iqop9SfsxVin2LGo4GxwpBowMcMtxIhOOoysiBTG/XtLnr67QmoVipWLAbM5VsFUb+CtRLFbUSYPZG/jvjTW2L9eGjwgpX6PEXJ5M6XDIcHVKBI7Oxqs08+V8HGKRkX3CoEc5Hq9ZH/ZWbZPySsv0wnemBFoP0XKFUNyr9BrIQ07mNb5L8+RU9RrQ+BLSAV7mEjVgcZRpy1zxTDjpG+dphED9tbvCoOXY/RF2BQdrt9/4y2ZUGHjVlXErvUJ7JVXXhGJKzQBp5gTH2G0sEbkforFv/p01riaajhK9astig5tTiQ9ihpWUsIUHoOG5FSrWssmZHTbiFoQYqLMbcGqmgZYR37UEHUC0ECbxlaqEmrrxbqx6B2MRS796xVqOxR/PwGLpNBGcAfw9AgdsQo24VmnJzPXm85StLGi6rHw00wZihFn7qVFiF6DRCE+T5krtaznKH7tMx8JPN3l5YNKcddd3++lqfHYWpov96v1KlQKfCdcNvGPgu/ohMjs+OxgO08X1dJYa7suVP3CktHZF+/5AxjOUcssDRCKcQvbxz+tnyOPv/yXF2yu2VBRMqh2H2mGNS153e3O+4qi4lEJWeEfEYD7ptKShAszRp/PdSilOxDnl45ywkzT+JBT4c=

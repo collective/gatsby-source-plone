@@ -3,10 +3,10 @@
 pkgs.stdenv.mkDerivation rec {
   name = "gatsby-env";
   buildInputs = with pkgs; [
-    python3
     geckodriver
     nodejs-9_x
-    xsel
+    python3
+    travis
     (yarn.override {
       nodejs = nodejs-9_x;
     })

@@ -1,0 +1,64 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/tutorial/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/tutorial/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/tutorial/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/tutorial/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/tutorial",
+  "@type": "Folder",
+  "UID": "292f01d24160429d8b2cb83a828d6fa1",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2018-05-20T16:39:34+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "tutorial",
+  "is_folderish": true,
+  "items": [
+    {
+      "@id": "http://localhost:8080/Plone/tutorial/extras",
+      "@type": "Folder",
+      "description": "",
+      "review_state": "private",
+      "title": "Extras"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/tutorial/getting-started",
+      "@type": "Document",
+      "description": "",
+      "review_state": "private",
+      "title": "Getting started"
+    }
+  ],
+  "items_total": 2,
+  "language": "en",
+  "layout": "listing_view",
+  "modified": "2018-05-20T16:40:18+00:00",
+  "nextPreviousEnabled": false,
+  "parent": {
+    "@id": "http://localhost:8080/Plone",
+    "@type": "Plone Site",
+    "description": "",
+    "title": "Plone site"
+  },
+  "relatedItems": [],
+  "review_state": "private",
+  "rights": null,
+  "subjects": [],
+  "title": "Tutorial",
+  "version": "current"
+}

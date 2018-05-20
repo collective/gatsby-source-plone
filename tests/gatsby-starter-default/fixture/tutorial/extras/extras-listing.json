@@ -1,0 +1,50 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/tutorial/extras/extras-listing/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/tutorial/extras/extras-listing/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/tutorial/extras/extras-listing/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/tutorial/extras/extras-listing/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/tutorial/extras/extras-listing",
+  "@type": "Document",
+  "UID": "59d09c569d634f199a742d67ad8af71a",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-05-20T16:40:00+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": "2018-05-20T19:40:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "extras-listing",
+  "is_folderish": false,
+  "language": "en",
+  "layout": "document_view",
+  "modified": "2018-05-20T16:40:00+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/tutorial/extras",
+    "@type": "Folder",
+    "description": "",
+    "review_state": "private",
+    "title": "Extras"
+  },
+  "relatedItems": [],
+  "review_state": "private",
+  "rights": null,
+  "subjects": [],
+  "table_of_contents": false,
+  "text": null,
+  "title": "Extras listing",
+  "version": "current"
+}

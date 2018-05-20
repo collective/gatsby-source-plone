@@ -4,6 +4,7 @@ pkgs.stdenv.mkDerivation rec {
   name = "gatsby-env";
   buildInputs = with pkgs; [
     geckodriver
+    jq
     nodejs-9_x
     python3
     travis

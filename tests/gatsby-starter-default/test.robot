@@ -12,4 +12,5 @@ Test Teardown   Close Browser
 Scenario: Front page
   Go To  http://localhost:9000
   Wait until page contains  Gatsby
-  Page should contain  Welcome to Plone
+  Page should contain  Gatsby Source Plugin for Plone CMS
+  Page should contain  Contact us!

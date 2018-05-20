@@ -42,6 +42,5 @@ exports.sourceNodes = async (
     node.parent = null;
     node.children = [];
     createNode(node);
-    return;
   });
 };

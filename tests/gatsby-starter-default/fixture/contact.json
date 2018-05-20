@@ -1,0 +1,53 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/contact/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/contact/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/contact/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/contact/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/contact",
+  "@type": "Document",
+  "UID": "2667e8377296481eb8a74578cce61895",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-05-20T13:59:11+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "Contact us!",
+  "effective": "2018-05-20T12:26:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "contact",
+  "is_folderish": false,
+  "language": "en",
+  "layout": "document_view",
+  "modified": "2018-05-20T13:59:11+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone",
+    "@type": "Plone Site",
+    "description": "",
+    "title": "Plone site"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "table_of_contents": false,
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Please, contact us for more information.</p>",
+    "encoding": "utf-8"
+  },
+  "title": "Contact",
+  "version": "current"
+}

@@ -26,6 +26,13 @@ purge: clean stop
 	docker-compose rm -fv
 	$(RM) -r node_modules pyvenv
 
+.PHONY: populate
+populate:
+	docker-compose up -d
+	while ! $$($(HTTP_GET) http://localhost:8080/); do sleep 1; done
+	cd fixture && ./purge.sh
+	cd fixture && ./import.sh
+
 .PHONY: develop
 develop: node_modules
 	docker-compose up -d

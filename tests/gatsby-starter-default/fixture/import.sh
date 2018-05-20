@@ -6,7 +6,7 @@ post () {
     payload=$2
     if [ -z "$payload" ]; then
         response=$(\
-            curl \
+            curl -s \
             -X POST \
             -H "Accept: application/json" \
             -H "Content-type: application/json" \
@@ -16,7 +16,7 @@ post () {
         )
     else
         response=$(\
-            curl \
+            curl -s \
             -X POST \
             -H "Accept: application/json" \
             -H "Content-type: application/json" \
@@ -25,12 +25,66 @@ post () {
             "$url"
         )
     fi
-    echo "$response";
+    echo "$response"
     return $?
 }
 
-for file in $(ls -tr *.json); do
-    response=$(post "$baseUrl" "$file")
-    url=$(echo "${response}" | jq -r '."@id"')
+importPathToUrl () {
+    # Define local variables to support recursive calls
+    local basename=$1
+    local base=$2
+    local path=$3
+    # Post parent
+    response=$(post "$base" "$path/$basename.json")
+    local url=$(echo "${response}" | jq -r '."@id"')
     response=$(post "$url/@workflow/publish")
+    # Post children
+    local items=$(cat "$path/$basename.json" | jq -r '.items')
+    if [ "$items" != "null" ]; then
+        for sub in $(echo ${items} | jq -r '.[]."@id"'); do
+            stripped=$((${#url} + 1))
+            sub=${sub:${stripped}:$((${#sub} - stripped))}
+            if [ -f "$path/$basename/$sub.json" ]; then
+                echo "Importing $url/$sub"
+                importPathToUrl "$sub" "$url" "$path/$basename"
+            fi
+        done
+    fi
+    # Patch image
+    download=$(cat "$path/$basename.json" | jq -r '.image.download')
+    filename=$(cat "$path/$basename.json" | jq -r '.image.filename')
+    mimetype=$(cat "$path/$basename.json" | jq -r '.image."content-type"')
+    if [ -f "$path/$basename-$filename" ]; then
+        curl -s \
+        -X PATCH \
+        -H "Accept: application/json" \
+        -H "Content-type: application/json" \
+        --user "admin:admin" \
+        --data '{"image": {"data": "'"$(base64 "$path/$basename-$filename"|tr -d '\n')"'", "encoding": "base64", "filename": "'"$filename"'", "content-type": "'"$mimetype"'"}}' \
+        "$url"
+    fi
+    # Patch file
+    download=$(cat "$path/$basename.json" | jq -r '.file.download')
+    filename=$(cat "$path/$basename.json" | jq -r '.file.filename')
+    mimetype=$(cat "$path/$basename.json" | jq -r '.file."content-type"')
+    if [ -f "$path/$basename-$filename" ]; then
+        curl -s \
+        -X PATCH \
+        -H "Accept: application/json" \
+        -H "Content-type: application/json" \
+        --user "admin:admin" \
+        --data '{"file": {"data": "'"$(base64 "$path/$basename-$filename"|tr -d '\n')"'", "encoding": "base64", "filename": "'"$filename"'", "content-type": "'"$mimetype"'"}}' \
+        "$url"
+    fi
+    return $?
+}
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+for path in $(ls -tr ${DIR}/*.json); do
+    stripped=$((${#DIR} + 1))
+    filename=${path:${stripped}:$((${#path} - stripped))}
+    extension="${filename##*.}"
+    basename="${filename%.*}"
+    echo "Importing $baseUrl/$basename"
+    importPathToUrl "$basename" "$baseUrl" "$DIR"
 done

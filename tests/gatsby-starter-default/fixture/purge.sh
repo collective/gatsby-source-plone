@@ -22,12 +22,12 @@ delete () {
         --user "admin:admin" \
         "$url"
     )
-    echo "$response"
     return $?
 }
 
 root=$(get ${baseUrl})
 for item in $(echo "${root}" | jq -r '.items | .[]."@id"'); do
+    echo "Deleting $item"
     delete "$item"
 done
-echo "Done. Purged content can be restored at $baseUrl/manage_UndoForm"
+echo "Deleted content can restored at $baseUrl/manage_UndoForm"

@@ -6,47 +6,26 @@ SOURCES := $(shell find src -type f)
 .PHONY: all
 all: build
 
-build: tests/gatsby-starter-default/public
+build: node_modules $(SOURCES)
 
-.PHONY: clean
-clean:
-	make -C tests/gatsby-starter-default clean
+.PHONY: publish-to-backend
+publish-to-backend: start-backend
+	docs/publish.sh
 
 .PHONY: purge
 purge: clean
 	$(RM) -r node_modules
-	make -C tests/gatsby-starter-default purge
-
-.PHONY: populate
-populate:
-	make -C tests/gatsby-starter-default populate
+	$(MAKE) -C tests/gatsby-starter-default purge
 
 .PHONY: prettier
 prettier: node_modules
 	prettier --write $$(find src -name "*.js")
-	make -C tests/gatsby-starter-default prettier
+	$(MAKE) -C tests/gatsby-starter-default prettier
 
-.PHONY: develop
-develop:
-	make -C tests/gatsby-starter-default develop
-
-.PHONY: watch
-watch: develop
-
-.PHONY: serve
-serve:
-	make -C tests/gatsby-starter-default serve
-
-.PHONY: stop
-stop:
-	make -C tests/gatsby-starter-default stop
-
-.PHONY: test
 test: node_modules
-	make -C tests/gatsby-starter-default
 
-tests/gatsby-starter-default/public: node_modules $(SOURCES)
-	make -C tests/gatsby-starter-default clean build
+%:
+	$(MAKE) -C tests/gatsby-starter-default $*
 
 node_modules: package.json
 	yarn install

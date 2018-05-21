@@ -13,7 +13,7 @@ addons:
 services:
 - docker
 script:
-- make purge populate test
+- make purge init-backend test
 deploy:
   provider: pages
   github-token: "$GITHUB_TOKEN"

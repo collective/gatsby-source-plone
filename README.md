@@ -119,7 +119,7 @@ make import-fixture
 or replace Plone backend content with the test data with:
 
 ```bash
-make populate-backend
+make init-backend
 ```
 
 Publish Markdown docs at `./docs` into Plone backend with:

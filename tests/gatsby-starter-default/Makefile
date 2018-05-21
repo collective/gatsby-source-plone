@@ -30,8 +30,8 @@ purge: clean stop
 populate:
 	docker-compose up -d
 	while ! $$($(HTTP_GET) http://localhost:8080/); do sleep 1; done
-	cd fixture && ./purge.sh
-	cd fixture && ./import.sh
+	fixture/purge.sh
+	fixture/import.sh
 
 .PHONY: develop
 develop: node_modules

@@ -1,0 +1,36 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/@navigation"
+    }
+  },
+  "@id": "http://localhost:8080/Plone",
+  "@type": "Plone Site",
+  "id": "Plone",
+  "is_folderish": true,
+  "items": [
+    {
+      "@id": "http://localhost:8080/Plone/index",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "gatsby-source-plone"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/search_traversal",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Traversal using @search endpoint"
+    }
+  ],
+  "items_total": 2,
+  "parent": {},
+  "title": "Plone site"
+}

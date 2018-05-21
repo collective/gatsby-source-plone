@@ -53,4 +53,4 @@ for item in $(echo ${root} | jq -r '.items | .[]."@id"'); do
     echo "Exporting $item"
     exportUrlToPath "$item" "$baseUrl" "$DIR"
 done
-echo ${root} | jq . > "$DIR/index.json"
+echo ${root} | jq . > "$DIR/.index.json"

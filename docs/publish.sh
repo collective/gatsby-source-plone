@@ -39,33 +39,84 @@ escape () {
     return ${status}
 }
 
-publishPathToUrl () {
+publishFolderToUrl () {
     basename=$1
     base=$2
-    path=$3
-    # Compile
-    html=$("$marked" "$path/$basename".md)
-    title=$(echo "$html"|head -n 1|sed -e 's/<[^>]*>//g')
-    body=$(echo "$html"|tail +2)
-    json='{"@type": "Document", "id": "'"$basename"'", "title": '$(escape "$title")', "text": {"content-type": "text/html", "encoding": "utf-8", "data": '$(escape "$body")'}}'
-    # Create new
-    json=$(echo "$json"|jq . -r)
+    # Build
+    json='{"@type": "Folder", "id": "'"$basename"'", "title":"'"$basename"'"}'
+    # Post
     response=$(post "$base" "$json")
-    local url=$(echo "${response}" | jq -r '."@id"')
-    # Patch existing
-    if [ "$url" = "null" ]; then
-        url="$base/$basename"
-        response=$(patch "$url" "$json")
-    fi
+    url=$(echo "${response}" | jq -r '."@id"')
+    # Publish
     response=$(post "$url/@workflow/publish" "{}")
     return $?
 }
 
-for path in $(ls -tr ${DIR}/*.md); do
+publishMarkdownToUrl () {
+    path=$1
+    basename=$2
+    base=$3
+    # Build
+    html=$("$marked" "$path")
+    title=$(echo "$html"|head -n 1|sed -e 's/<[^>]*>//g')
+    body=$(echo "$html"|tail +2)
+    json='{"@type": "Document", "id": "'"$basename"'", "title": '$(escape "$title")', "text": {"content-type": "text/html", "encoding": "utf-8", "data": '$(escape "$body")'}}'
+    # Post
+    response=$(post "$base" "$json")
+    url=$(echo "${response}" | jq -r '."@id"')
+    # Patch
+    if [ "$url" = "null" ]; then
+        url="$base/$basename"
+        response=$(patch "$url" "$json")
+    fi
+    # Publish
+    response=$(post "$url/@workflow/publish" "{}")
+    return $?
+}
+
+publishImageToUrl () {
+    path=$1
+    basename=$2
+    base=$3
+    # Build
+    json='{"@type": "Image", "id": "'"$basename"'", "image": {"data": "'"$(base64 "$path"|tr -d '\n')"'", "encoding": "base64", "filename": "'"$basename"'", "content-type": "image/png"}}'
+    # Post
+    response=$(post "$base" "$json")
+    url=$(echo "${response}" | jq -r '."@id"')
+    # Patch
+    if [ "$url" = "null" ]; then
+        url="$base/$basename"
+        response=$(patch "$url" "$json")
+    fi
+    # Publish
+    response=$(post "$url/@workflow/publish" "{}")
+    return $?
+}
+
+for path in $(find ${DIR} -name "*.md" -or -name "*.png" -or -type d); do
     stripped=$((${#DIR} + 1))
     filename=${path:${stripped}:$((${#path} - stripped))}
     extension="${filename##*.}"
-    basename="${filename%.*}"
-    echo "Publishing $baseUrl/$basename"
-    publishPathToUrl "$basename" "$baseUrl" "$DIR"
+    directory=$(dirname "${filename%.*}")
+    basename=$(basename "${filename%.*}")
+    if [ "$directory" == "." ]; then
+        directory="/"
+    else
+        directory="/$directory/"
+    fi
+    if [ "$basename" != "" ]; then
+        if  [ -d "$path" ]; then
+            echo "Publishing folder $baseUrl$directory$basename"
+            publishFolderToUrl "$basename" "$baseUrl$directory"
+        else
+            if [ "$extension" == "md" ]; then
+                echo "Publishing $baseUrl$directory$basename"
+                publishMarkdownToUrl "$path" "$basename" "$baseUrl$directory"
+            fi
+            if [ "$extension" == "png" ]; then
+                echo "Publishing $baseUrl$directory$basename.$extension"
+                publishImageToUrl "$path" "$basename.$extension" "$baseUrl$directory"
+            fi
+        fi
+    fi
 done

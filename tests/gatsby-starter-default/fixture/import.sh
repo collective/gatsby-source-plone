@@ -101,7 +101,7 @@ importPathToUrl () {
 }
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-for item in $(cat "$DIR/index.json" | jq -r '.items | .[]."@id"'); do
+for item in $(cat "$DIR/.index.json" | jq -r '.items | .[]."@id"'); do
     stripped=$((${#baseUrl} + 1))
     basename=${item:${stripped}:$((${#item} - stripped))}
     echo "Importing $baseUrl/$basename"

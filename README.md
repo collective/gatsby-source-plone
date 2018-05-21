@@ -68,10 +68,10 @@ make build
 
 ### Dev Environment
 
-Gatsby Development Mode:
+Watch changes in Gatsby development mode:
 
 ```bash
-make develop
+make watch
 ```
 
 Build Gatsby:
@@ -80,7 +80,7 @@ Build Gatsby:
 make build
 ```
 
-Start Gatsby:
+Serve Gatsby build:
 
 ```bash
 make serve
@@ -89,7 +89,7 @@ make serve
 Stop Plone API server (started by any of the above):
 
 ```bash
-make stop
+make stop-backend
 ```
 
 Clean everything and reset the environment:
@@ -107,6 +107,30 @@ make test
 ```
 
 This command will automatically fire up the Plone backend, build and start Gatsby and the execute the selenium-based acceptance tests.
+
+Acceptance tests depend on currently available Plone backend content. Ensure that your Plone backend includes also the tested content with:
+
+```bash
+make import-fixture
+```
+
+or replace Plone backend content with the test data with:
+
+```bash
+make populate-backend
+```
+
+Publish Markdown docs at `./docs` into Plone backend with:
+
+```bash
+make publish-to-backend
+```
+
+and export Plone backend data into importable fixture (for CI) with:
+
+```bash
+make export-fixture
+```
 
 ### Prettier Configuration
 

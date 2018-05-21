@@ -21,25 +21,28 @@ build: public
 clean:
 	$(RM) -r public
 
-.PHONY: purge
-purge: clean stop
-	docker-compose rm -fv
-	$(RM) -r node_modules pyvenv
-
-.PHONY: populate
-populate:
-	docker-compose up -d
-	while ! $$($(HTTP_GET) http://localhost:8080/); do sleep 1; done
-	fixture/purge.sh
-	fixture/import.sh
-
 .PHONY: develop
 develop: node_modules
 	docker-compose up -d
 	gatsby develop
 
-.PHONY: watch
-watch: develop
+.PHONY: export-fixture
+export-fixture: start-backend
+	fixture/export.sh
+
+.PHONY: import-fixture
+import-fixture: start-backend
+	fixture/import.sh
+
+.PHONY: init-backend
+init-backend: start-backend
+	fixture/purge.sh
+	fixture/import.sh
+
+.PHONY: purge
+purge: clean stop-backend
+	docker-compose rm -fv
+	$(RM) -r node_modules pyvenv
 
 .PHONY: prettier
 prettier: node_modules
@@ -50,8 +53,13 @@ prettier: node_modules
 serve: node_modules public
 	gatsby serve
 
-.PHONY: stop
-stop:
+.PHONY: start-backend
+start-backend:
+	docker-compose up -d
+	while ! $$($(HTTP_GET) http://localhost:8080/); do sleep 1; done
+
+.PHONY: stop-backend
+stop-backend:
 	docker-compose stop
 
 .PHONY: test
@@ -63,9 +71,10 @@ test: clean build pyvenv
 	  kill $$pid; \
 	  exit $$status
 
-public: node_modules $(SOURCES)
-	docker-compose up -d
-	while ! $$($(HTTP_GET) http://localhost:8080/); do sleep 1; done
+.PHONY: watch
+watch: develop
+
+public: start-backend node_modules $(SOURCES)
 	gatsby build
 
 pyvenv: requirements.txt

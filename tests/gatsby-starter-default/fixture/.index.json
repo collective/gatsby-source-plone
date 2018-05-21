@@ -16,35 +16,21 @@
   "is_folderish": true,
   "items": [
     {
-      "@id": "http://localhost:8080/Plone/gatsby-source-plone",
+      "@id": "http://localhost:8080/Plone/index",
       "@type": "Document",
-      "description": "Gatsby Source Plugin for Plone CMS",
-      "review_state": "published",
-      "title": "Gatsby Source Plone"
-    },
-    {
-      "@id": "http://localhost:8080/Plone/tutorial",
-      "@type": "Folder",
       "description": "",
       "review_state": "published",
-      "title": "Tutorial"
+      "title": "gatsby-source-plone"
     },
     {
-      "@id": "http://localhost:8080/Plone/contact",
+      "@id": "http://localhost:8080/Plone/search_traversal",
       "@type": "Document",
-      "description": "Contact us!",
-      "review_state": "published",
-      "title": "Contact"
-    },
-    {
-      "@id": "http://localhost:8080/Plone/logo.png",
-      "@type": "Image",
       "description": "",
-      "review_state": null,
-      "title": "logo.png"
+      "review_state": "published",
+      "title": "Traversal using @search endpoint"
     }
   ],
-  "items_total": 4,
+  "items_total": 2,
   "parent": {},
   "title": "Plone site"
 }

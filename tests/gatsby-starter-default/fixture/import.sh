@@ -29,6 +29,22 @@ post () {
     return $?
 }
 
+patch () {
+    url=$1
+    payload=$2
+    response=$(\
+        curl -s \
+        -X PATCH \
+        -H "Accept: application/json" \
+        -H "Content-type: application/json" \
+        --user "admin:admin" \
+        -d @"$payload" \
+        "$url"
+    )
+    echo "$response"
+    return $?
+}
+
 importPathToUrl () {
     # Define local variables to support recursive calls
     local basename=$1
@@ -37,6 +53,11 @@ importPathToUrl () {
     # Post parent
     response=$(post "$base" "$path/$basename.json")
     local url=$(echo "${response}" | jq -r '."@id"')
+    # Patch parent (when content existed)
+    if [ "$url" = "null" ]; then
+        local url="$base/$basename"
+        response=$(patch "$url" "$path/$basename.json")
+    fi
     response=$(post "$url/@workflow/publish")
     # Post children
     local items=$(cat "$path/$basename.json" | jq -r '.items')

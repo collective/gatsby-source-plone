@@ -48,7 +48,9 @@ exportUrlToPath() {
 }
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-for item in $(get ${baseUrl} | jq -r '.items | .[]."@id"'); do
+root=$(get ${baseUrl})
+for item in $(echo ${root} | jq -r '.items | .[]."@id"'); do
     echo "Exporting $item"
     exportUrlToPath "$item" "$baseUrl" "$DIR"
 done
+echo ${root} | jq . > "$DIR/index.json"

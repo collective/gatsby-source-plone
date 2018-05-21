@@ -1,0 +1,50 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/@navigation"
+    }
+  },
+  "@id": "http://localhost:8080/Plone",
+  "@type": "Plone Site",
+  "id": "Plone",
+  "is_folderish": true,
+  "items": [
+    {
+      "@id": "http://localhost:8080/Plone/gatsby-source-plone",
+      "@type": "Document",
+      "description": "Gatsby Source Plugin for Plone CMS",
+      "review_state": "published",
+      "title": "Gatsby Source Plone"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/tutorial",
+      "@type": "Folder",
+      "description": "",
+      "review_state": "published",
+      "title": "Tutorial"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/contact",
+      "@type": "Document",
+      "description": "Contact us!",
+      "review_state": "published",
+      "title": "Contact"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/logo.png",
+      "@type": "Image",
+      "description": "",
+      "review_state": null,
+      "title": "logo.png"
+    }
+  ],
+  "items_total": 4,
+  "parent": {},
+  "title": "Plone site"
+}

@@ -15,10 +15,10 @@
   },
   "@id": "http://localhost:8080/Plone/tutorial/extras",
   "@type": "Folder",
-  "UID": "a52ee66ada384b4e9ee9568d9683f969",
+  "UID": "42e762cecd2f497fb9cbea1230fd8c03",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-05-20T16:39:44+00:00",
+  "created": "2018-05-21T03:14:35+00:00",
   "creators": [
     "admin"
   ],
@@ -33,24 +33,24 @@
       "@id": "http://localhost:8080/Plone/tutorial/extras/extras-listing",
       "@type": "Document",
       "description": "",
-      "review_state": "private",
+      "review_state": "published",
       "title": "Extras listing"
     }
   ],
   "items_total": 1,
   "language": "en",
   "layout": "listing_view",
-  "modified": "2018-05-20T16:40:00+00:00",
+  "modified": "2018-05-21T03:14:36+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone/tutorial",
     "@type": "Folder",
     "description": "",
-    "review_state": "private",
+    "review_state": "published",
     "title": "Tutorial"
   },
   "relatedItems": [],
-  "review_state": "private",
+  "review_state": "published",
   "rights": null,
   "subjects": [],
   "title": "Extras",

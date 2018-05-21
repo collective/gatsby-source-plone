@@ -29,6 +29,22 @@ post () {
     return $?
 }
 
+patch () {
+    url=$1
+    payload=$2
+    response=$(\
+        curl -s \
+        -X PATCH \
+        -H "Accept: application/json" \
+        -H "Content-type: application/json" \
+        --user "admin:admin" \
+        -d @"$payload" \
+        "$url"
+    )
+    echo "$response"
+    return $?
+}
+
 importPathToUrl () {
     # Define local variables to support recursive calls
     local basename=$1
@@ -37,6 +53,11 @@ importPathToUrl () {
     # Post parent
     response=$(post "$base" "$path/$basename.json")
     local url=$(echo "${response}" | jq -r '."@id"')
+    # Patch parent (when content existed)
+    if [ "$url" = "null" ]; then
+        local url="$base/$basename"
+        response=$(patch "$url" "$path/$basename.json")
+    fi
     response=$(post "$url/@workflow/publish")
     # Post children
     local items=$(cat "$path/$basename.json" | jq -r '.items')
@@ -80,11 +101,9 @@ importPathToUrl () {
 }
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-for path in $(ls -tr ${DIR}/*.json); do
-    stripped=$((${#DIR} + 1))
-    filename=${path:${stripped}:$((${#path} - stripped))}
-    extension="${filename##*.}"
-    basename="${filename%.*}"
+for item in $(cat "$DIR/index.json" | jq -r '.items | .[]."@id"'); do
+    stripped=$((${#baseUrl} + 1))
+    basename=${item:${stripped}:$((${#item} - stripped))}
     echo "Importing $baseUrl/$basename"
     importPathToUrl "$basename" "$baseUrl" "$DIR"
 done

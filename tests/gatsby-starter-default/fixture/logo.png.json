@@ -15,16 +15,16 @@
   },
   "@id": "http://localhost:8080/Plone/logo.png",
   "@type": "Image",
-  "UID": "bb5a03ab168e464882b32beb36f87558",
+  "UID": "569deb8e9c844c4ab3f7d3ecc2ad6715",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-05-20T17:22:32+00:00",
+  "created": "2018-05-21T03:14:41+00:00",
   "creators": [
     "admin"
   ],
-  "description": "",
+  "description": null,
   "effective": null,
-  "exclude_from_nav": false,
+  "exclude_from_nav": true,
   "expires": null,
   "id": "logo.png",
   "image": {
@@ -75,7 +75,7 @@
   "is_folderish": false,
   "language": "en",
   "layout": "image_view",
-  "modified": "2018-05-20T17:22:32+00:00",
+  "modified": "2018-05-21T03:14:59+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone",
     "@type": "Plone Site",

@@ -15,11 +15,11 @@
   },
   "@id": "http://localhost:8080/Plone/tutorial/getting-started",
   "@type": "Document",
-  "UID": "7628f92b5267433f944770040c1c84c2",
+  "UID": "dc9b0736acf047f0822202ca0d597122",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-05-20T16:40:17+00:00",
+  "created": "2018-05-21T03:14:38+00:00",
   "creators": [
     "admin"
   ],
@@ -31,16 +31,16 @@
   "is_folderish": false,
   "language": "en",
   "layout": "document_view",
-  "modified": "2018-05-20T16:40:18+00:00",
+  "modified": "2018-05-21T03:14:38+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/tutorial",
     "@type": "Folder",
     "description": "",
-    "review_state": "private",
+    "review_state": "published",
     "title": "Tutorial"
   },
   "relatedItems": [],
-  "review_state": "private",
+  "review_state": "published",
   "rights": null,
   "subjects": [],
   "table_of_contents": false,

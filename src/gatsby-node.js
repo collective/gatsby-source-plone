@@ -33,11 +33,12 @@ exports.sourceNodes = async (
     let node = {
       ...item,
       internal: {
-        type: item['@type'].replace(' ', ''),
+        type: `Plone${item['@type'].replace(' ', '')}`,
         contentDigest: createContentDigest(item),
         mediaType: 'text/html',
       },
     };
+    console.log(node.internal.type);
     node.id = item['@id'];
     node.parent = null;
     node.children = [];

@@ -30,7 +30,7 @@ You can query nodes created from Plone like the following:
 
 ```graphql
 {
-  allNewsItem {
+  allPloneNewsItem {
     edges {
       node {
         title

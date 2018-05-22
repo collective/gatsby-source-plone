@@ -28,7 +28,8 @@ watch-plugin:
 	babel -w src --out-dir . --ignore __tests__
 
 watch-tests:
-	$(MAKE) -C tests/gatsby-starter-default watch
+	nodemon -w gatsby-node.js \
+	--exec "$(MAKE) -C tests/gatsby-starter-default watch"
 
 watch: node_modules
 	make -j watch-plugin watch-tests
@@ -37,7 +38,7 @@ watch: node_modules
 	$(MAKE) -C tests/gatsby-starter-default $*
 
 gatsby-node.js: node_modules $(SOURCES)
-	babel src --out-dir . --ignore __tests__
+	NODE_ENV=production babel src --out-dir . --ignore __tests__
 
 node_modules: package.json
 	yarn install

@@ -38,7 +38,6 @@ exports.sourceNodes = async (
         mediaType: 'text/html',
       },
     };
-    console.log(node.internal.type);
     node.id = item['@id'];
     node.parent = null;
     node.children = [];

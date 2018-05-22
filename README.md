@@ -30,11 +30,30 @@ You can query nodes created from Plone like the following:
 
 ```graphql
 {
+  allPloneDocument {
+    edges {
+      node {
+        title
+        description
+        text {
+          data
+        }
+        ...
+      }
+    }
+  }
+}
+```
+
+or
+
+```graphql
+{
   allPloneNewsItem {
     edges {
       node {
         title
-        Description
+        description
         ...
       }
     }

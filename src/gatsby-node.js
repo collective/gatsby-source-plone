@@ -14,11 +14,16 @@ const fetchData = async url => {
     headers: {
       accept: 'application/json',
     },
-    params: {
-      metadata_fields: '_all',
-    },
   });
-  return data;
+  return (await Promise.all(
+    data.items.map(async item => {
+      return await axios.get(item['@id'], {
+        headers: {
+          accept: 'application/json',
+        },
+      });
+    })
+  )).map(item => item.data);
 };
 
 exports.sourceNodes = async (
@@ -29,7 +34,7 @@ exports.sourceNodes = async (
 
   const data = await fetchData(`${baseUrl}/@search`);
 
-  data.items.map(item => {
+  data.map(item => {
     let node = {
       ...item,
       internal: {

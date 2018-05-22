@@ -11,6 +11,7 @@ Test Teardown   Close Browser
 
 Scenario: Front page
   Go To  http://localhost:9000
-  Wait until page contains  Gatsby
+  Wait until page contains  Gatsby plugin for Plone
   Page should contain  gatsby-source-plone
+  Page should contain  Gatsby is a blazing fast static site generator for React.
   Page should contain  Traversal using @search endpoint

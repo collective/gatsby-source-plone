@@ -6,7 +6,7 @@ SOURCES := $(shell find src -type f)
 .PHONY: all
 all: build
 
-build: node_modules $(SOURCES)
+build: gatsby-node.js
 
 .PHONY: publish-to-backend
 publish-to-backend: start-backend
@@ -24,8 +24,20 @@ prettier: node_modules
 
 test: node_modules
 
+watch-plugin:
+	babel -w src --out-dir . --ignore __tests__
+
+watch-tests:
+	$(MAKE) -C tests/gatsby-starter-default watch
+
+watch: node_modules
+	make -j watch-plugin watch-tests
+
 %:
 	$(MAKE) -C tests/gatsby-starter-default $*
+
+gatsby-node.js: node_modules $(SOURCES)
+	babel src --out-dir . --ignore __tests__
 
 node_modules: package.json
 	yarn install

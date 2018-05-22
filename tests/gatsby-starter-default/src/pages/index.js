@@ -3,7 +3,7 @@ import Link from 'gatsby-link';
 
 const IndexPage = ({ data }) => (
   <div>
-    {data.allDocument.edges.map(({ node }) => (
+    {data.allPloneDocument.edges.map(({ node }) => (
       <div>
         <h3>{node.title}</h3>
         <h4>{node.description}</h4>
@@ -17,7 +17,7 @@ export default IndexPage;
 // Set here the ID of the home page.
 export const pageQuery = graphql`
   query IndexPageQuery {
-    allDocument {
+    allPloneDocument {
       edges {
         node {
           id

@@ -8,12 +8,14 @@ import 'bootstrap/scss/bootstrap.scss';
 const Header = () => (
   <div className={'jumbotron'}>
     <div className={'container'}>
-      <h1 className={'display-4'}>GatsbyJS plugin for Plone</h1>
+      <h1 className={'display-4'}>Gatsby plugin for Plone</h1>
+      {/*
       <p>
         <Link className={'btn btn-primary btn-lg'} to="/">
           Learn more &raquo;
         </Link>
       </p>
+      */}
     </div>
   </div>
 );

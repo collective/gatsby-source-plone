@@ -7,6 +7,7 @@ const IndexPage = ({ data }) => (
       <div>
         <h3>{node.title}</h3>
         <h4>{node.description}</h4>
+        <div dangerouslySetInnerHTML={{ __html: node.text.data }} />
       </div>
     ))}
   </div>
@@ -23,6 +24,9 @@ export const pageQuery = graphql`
           id
           title
           description
+          text {
+            data
+          }
         }
       }
     }

@@ -19,7 +19,7 @@ build: public
 
 .PHONY: clean
 clean:
-	$(RM) -r public
+	$(RM) -r .cache public
 
 .PHONY: develop
 develop: node_modules

@@ -15,15 +15,7 @@ const fetchData = async url => {
       accept: 'application/json',
     },
   });
-  return (await Promise.all(
-    data.items.map(async item => {
-      return await axios.get(item['@id'], {
-        headers: {
-          accept: 'application/json',
-        },
-      });
-    })
-  )).map(item => item.data);
+  return data;
 };
 
 exports.sourceNodes = async (
@@ -32,13 +24,23 @@ exports.sourceNodes = async (
 ) => {
   const { createNode } = boundActionCreators;
 
+  console.log('Fetching URLs');
   const data = await fetchData(`${baseUrl}/@search`);
 
-  data.map(item => {
+  console.log('Fetching item data');
+  const items = await Promise.all(
+    data.items.map(async item => {
+      const url = item['@id'];
+      return await fetchData(url);
+    })
+  );
+
+  console.log('Creating node structure');
+  const nodes = items.map(item => {
     let node = {
       ...item,
       internal: {
-        type: `Plone${item['@type'].replace(' ', '')}`,
+        type: 'Plone' + item['@type'].replace(' ', ''),
         contentDigest: createContentDigest(item),
         mediaType: 'text/html',
       },
@@ -46,6 +48,10 @@ exports.sourceNodes = async (
     node.id = item['@id'];
     node.parent = null;
     node.children = [];
-    createNode(node);
+
+    return node;
   });
+
+  console.log('Creating nodes');
+  nodes.map(node => createNode(node));
 };

@@ -28,9 +28,16 @@
       "description": "",
       "review_state": "published",
       "title": "Traversal using @search endpoint"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/plugin_options",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Plugin Options"
     }
   ],
-  "items_total": 2,
+  "items_total": 3,
   "parent": {},
   "title": "Plone site"
 }

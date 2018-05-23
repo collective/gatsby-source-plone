@@ -29,7 +29,7 @@ watch-plugin:
 
 watch-tests:
 	nodemon -w gatsby-node.js \
-	--exec "$(MAKE) -C tests/gatsby-starter-default watch"
+	--exec "$(MAKE) -C tests/gatsby-starter-default clean watch"
 
 watch: node_modules
 	make -j watch-plugin watch-tests

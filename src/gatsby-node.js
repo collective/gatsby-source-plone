@@ -18,16 +18,21 @@ const fetchData = async url => {
   return data;
 };
 
+// Display logs when showLogs is true
+const logMessage = (message, show) => {
+  show && console.log(message);
+};
+
 exports.sourceNodes = async (
   { boundActionCreators, getNode, hasNodeChanged, store, cache },
-  { baseUrl }
+  { baseUrl, showLogs = false }
 ) => {
   const { createNode } = boundActionCreators;
 
-  console.log('Fetching URLs');
+  logMessage('Fetching URLs', showLogs);
   const data = await fetchData(`${baseUrl}/@search`);
 
-  console.log('Fetching item data');
+  logMessage('Fetching item data', showLogs);
   const items = await Promise.all(
     data.items.map(async item => {
       const url = item['@id'];
@@ -35,7 +40,7 @@ exports.sourceNodes = async (
     })
   );
 
-  console.log('Creating node structure');
+  logMessage('Creating node structure', showLogs);
   const nodes = items.map(item => {
     let node = {
       ...item,
@@ -52,6 +57,6 @@ exports.sourceNodes = async (
     return node;
   });
 
-  console.log('Creating nodes');
+  logMessage('Creating nodes', showLogs);
   nodes.map(node => createNode(node));
 };

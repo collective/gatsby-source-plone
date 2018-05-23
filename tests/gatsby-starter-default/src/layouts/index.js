@@ -22,7 +22,7 @@ const Header = () => (
 
 const TemplateWrapper = ({ children }) => (
   <div>
-    <Helmet title="GatsbyJS plugin for Plone" />
+    <Helmet title="Gatsby plugin for Plone" />
     <Header />
     <div className={'container'}>
       <div className={'row'}>

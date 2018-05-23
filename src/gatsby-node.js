@@ -15,30 +15,37 @@ const fetchData = async url => {
       accept: 'application/json',
     },
   });
-  return (await Promise.all(
-    data.items.map(async item => {
-      return await axios.get(item['@id'], {
-        headers: {
-          accept: 'application/json',
-        },
-      });
-    })
-  )).map(item => item.data);
+  return data;
+};
+
+// Display logs when showLogs is true
+const logMessage = (message, show) => {
+  show && console.log(message);
 };
 
 exports.sourceNodes = async (
   { boundActionCreators, getNode, hasNodeChanged, store, cache },
-  { baseUrl }
+  { baseUrl, showLogs = false }
 ) => {
   const { createNode } = boundActionCreators;
 
+  logMessage('Fetching URLs', showLogs);
   const data = await fetchData(`${baseUrl}/@search`);
 
-  data.map(item => {
+  logMessage('Fetching item data', showLogs);
+  const items = await Promise.all(
+    data.items.map(async item => {
+      const url = item['@id'];
+      return await fetchData(url);
+    })
+  );
+
+  logMessage('Creating node structure', showLogs);
+  const nodes = items.map(item => {
     let node = {
       ...item,
       internal: {
-        type: `Plone${item['@type'].replace(' ', '')}`,
+        type: 'Plone' + item['@type'].replace(' ', ''),
         contentDigest: createContentDigest(item),
         mediaType: 'text/html',
       },
@@ -46,6 +53,10 @@ exports.sourceNodes = async (
     node.id = item['@id'];
     node.parent = null;
     node.children = [];
-    createNode(node);
+
+    return node;
   });
+
+  logMessage('Creating nodes', showLogs);
+  nodes.map(node => createNode(node));
 };

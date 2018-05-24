@@ -15,9 +15,19 @@ Scenario: Front page
   Page should contain  gatsby-source-plone
   Page should contain  Traversal using @search endpoint
 
-Scenario: Sub page
+Scenario: Link to sub page
   Go To  http://localhost:9000
   Wait until page contains  Gatsby plugin for Plone
+  Page should contain  Traversal using @search endpoint
+  Click link  Traversal using @search endpoint
+  Wait until page contains  plone.restapi
+
+Scenario: Link back to home
+  Go To  http://localhost:9000
+  Wait until page contains  Gatsby plugin for Plone
+  Page should contain  Traversal using @search endpoint
+  Click link  Traversal using @search endpoint
+  Wait until page contains  plone.restapi
+  Page should not contain  gatsby-source-plone
+  Click link  Learn more »
   Page should contain  gatsby-source-plone
-  Click link  gatsby-source-plone
-  Wait until page contains  Gatsby is a blazing fast

@@ -19,6 +19,8 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   }
 };
 
+const blacklist = ['index'];
+
 exports.createPages = async ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
   const result = await graphql(`
@@ -34,14 +36,16 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
       }
     }
   `);
-  result.data.allPloneDocument.edges.forEach(({ node }) => {
-    createPage({
-      path: node.fields.slug,
-      component: path.resolve(`./src/templates/page.js`),
-      context: {
-        // Data passed to context is available in page queries as GraphQL variables.
-        slug: node.fields.slug,
-      },
+  result.data.allPloneDocument.edges
+    .filter(({ node }) => !blacklist.includes(node.fields.slug))
+    .forEach(({ node }) => {
+      createPage({
+        path: node.fields.slug,
+        component: path.resolve(`./src/templates/page.js`),
+        context: {
+          // Data passed to context is available in page queries as GraphQL variables.
+          slug: node.fields.slug,
+        },
+      });
     });
-  });
 };

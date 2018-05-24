@@ -4,6 +4,8 @@ export PATH := node_modules/.bin:pyvenv/bin:$(PATH)
 SOURCES := $(shell find src -type f)
 HTTP_GET := curl --silent --fail --output /dev/null
 
+GATSBY_BUILD_FLAGS ?=
+
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
 	GECKODRIVER = https://github.com/mozilla/geckodriver/releases/download/v0.20.1/geckodriver-v0.20.1-linux64.tar.gz
@@ -75,7 +77,7 @@ test: clean build pyvenv
 watch: develop
 
 public: start-backend node_modules $(SOURCES)
-	gatsby build
+	gatsby build ${GATSBY_BUILD_FLAGS}
 
 pyvenv: requirements.txt
 	$(RM) -r pyvenv

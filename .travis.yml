@@ -15,7 +15,9 @@ services:
 script:
 - make purge init-backend test
 after_success:
-- GATSBY_BUILD_FLAGS=--prefix-paths make clean build
+- test $TRAVIS_BRANCH = "master" &&
+  test $(node --version) = "v10.1.0" &&
+  GATSBY_BUILD_FLAGS=--prefix-paths make clean build
 deploy:
   provider: pages
   github-token: "$GITHUB_TOKEN"

@@ -14,6 +14,8 @@ services:
 - docker
 script:
 - make purge init-backend test
+after_script:
+- GATSBY_BUILD_FLAGS=--prefix-paths make clean build
 deploy:
   provider: pages
   github-token: "$GITHUB_TOKEN"

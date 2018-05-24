@@ -18,7 +18,7 @@ export default ({ data }) => {
     } else {
       contents.push(
         <h4>
-          <Link to={node.fields.slug}>{node.title}</Link>
+          <Link to={`/${node.fields.slug}/`}>{node.title}</Link>
         </h4>
       );
     }

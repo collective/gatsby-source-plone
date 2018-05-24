@@ -14,7 +14,7 @@ services:
 - docker
 script:
 - make purge init-backend test
-after_script:
+after_success:
 - GATSBY_BUILD_FLAGS=--prefix-paths make clean build
 deploy:
   provider: pages

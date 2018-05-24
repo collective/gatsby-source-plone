@@ -28,6 +28,7 @@ export default ({ data }) => {
       {index}
       <h3>Contents</h3>
       <ul>{contents.map(node => <li>{node}</li>)}</ul>
+      <Link to="/Demo">Go to Demo folder</Link>
     </div>
   );
 };

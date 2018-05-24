@@ -1,19 +1,17 @@
 import React from 'react';
 import Link from 'gatsby-link';
 
-const IndexPage = ({ data }) => (
+export default ({ data }) => (
   <div>
     {data.allPloneDocument.edges.map(({ node }) => (
       <div>
-        <h3>{node.title}</h3>
-        <h4>{node.description}</h4>
-        <div dangerouslySetInnerHTML={{ __html: node.text.data }} />
+        <h2>
+          <Link to={node.fields.slug}>{node.title}</Link>
+        </h2>
       </div>
     ))}
   </div>
 );
-
-export default IndexPage;
 
 // Set here the ID of the home page.
 export const pageQuery = graphql`
@@ -26,6 +24,9 @@ export const pageQuery = graphql`
           description
           text {
             data
+          }
+          fields {
+            slug
           }
         }
       }

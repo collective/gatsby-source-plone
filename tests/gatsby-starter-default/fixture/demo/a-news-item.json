@@ -1,0 +1,51 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/demo/a-news-item/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/demo/a-news-item/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/demo/a-news-item/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/demo/a-news-item/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/demo/a-news-item",
+  "@type": "News Item",
+  "UID": "f5a50e55c8344933a8837ac0d9fab63b",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-05-24T14:41:22+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "A news item inside Demo",
+  "effective": "2018-05-24T14:41:27",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "a-news-item",
+  "image": null,
+  "image_caption": null,
+  "is_folderish": false,
+  "language": "en",
+  "layout": "newsitem_view",
+  "modified": "2018-05-24T14:41:27+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/demo",
+    "@type": "Folder",
+    "description": "A demo folder",
+    "review_state": "published",
+    "title": "Demo"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "text": null,
+  "title": "A News Item",
+  "version": "current"
+}

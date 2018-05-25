@@ -4,28 +4,53 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-const path = require(`path`);
+const path = require('path');
+const config = require('./gatsby-config');
 
 exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators;
-  if (node.internal.type === `PloneDocument`) {
-    const parts = node['@id'].split(/[\/,]+/);
-    const slug = parts[parts.length - 1];
+  const options = config.plugins.filter(
+    plugin => plugin.resolve === 'gatsby-source-plone'
+  )[0].options;
+  if (
+    ['PloneFolder', 'PloneDocument', 'PloneNewsItem'].includes(
+      node.internal.type
+    )
+  ) {
+    const slug = node['@id'].split(options.baseUrl)[1];
     createNodeField({
       node,
-      name: `slug`,
+      name: 'slug',
       value: slug,
     });
   }
 };
 
-const blacklist = ['index'];
+const pages = ['index']; // reserved manual pages
 
 exports.createPages = async ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
   const result = await graphql(`
     {
+      allPloneFolder {
+        edges {
+          node {
+            fields {
+              slug
+            }
+          }
+        }
+      }
       allPloneDocument {
+        edges {
+          node {
+            fields {
+              slug
+            }
+          }
+        }
+      }
+      allPloneNewsItem {
         edges {
           node {
             fields {
@@ -36,16 +61,18 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
       }
     }
   `);
-  result.data.allPloneDocument.edges
-    .filter(({ node }) => !blacklist.includes(node.fields.slug))
+  []
+    .concat(
+      result.data.allPloneFolder.edges,
+      result.data.allPloneDocument.edges,
+      result.data.allPloneNewsItem.edges
+    )
+    .filter(({ node }) => !pages.includes(node.fields.slug))
     .forEach(({ node }) => {
       createPage({
         path: node.fields.slug,
-        component: path.resolve(`./src/templates/page.js`),
-        context: {
-          // Data passed to context is available in page queries as GraphQL variables.
-          slug: node.fields.slug,
-        },
+        component: path.resolve('./src/templates/default.js'),
+        context: { slug: node.fields.slug }, // 'slug' is graphql variable
       });
     });
 };

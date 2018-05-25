@@ -1,0 +1,55 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone",
+  "@type": "News Item",
+  "UID": "1a3e77decea04cfb87d0c935bbf1e46b",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-05-25T15:30:00+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "Gatsby is a blazing fast static site generator for React.",
+  "effective": "2017-01-05T00:00:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "gatsby-plugin-for-plone",
+  "image": null,
+  "image_caption": null,
+  "is_folderish": false,
+  "language": "en",
+  "layout": "newsitem_view",
+  "modified": "2018-05-25T15:42:48+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/news",
+    "@type": "Folder",
+    "description": "News on gatsby-source-plone development",
+    "review_state": "published",
+    "title": "News"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>By using Plone REST API as its JSON source, GatsbyJS can be used to generate a blazing fast static site with PWA features.</p>&#13;\n<p>Work on GatsbyJS plugin for Plone has now been started at <a href=\"https://github.com/collective/gatsby-source-plone\">https://github.com/collective/gatsby-source-plone</a>.</p>",
+    "encoding": "utf-8"
+  },
+  "title": "Let's do a GatsbyJS plugin for Plone!",
+  "version": "current"
+}

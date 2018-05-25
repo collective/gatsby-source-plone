@@ -16,6 +16,13 @@
   "is_folderish": true,
   "items": [
     {
+      "@id": "http://localhost:8080/Plone/news",
+      "@type": "Folder",
+      "description": "News on gatsby-source-plone development",
+      "review_state": "published",
+      "title": "News"
+    },
+    {
       "@id": "http://localhost:8080/Plone/index",
       "@type": "Document",
       "description": "",
@@ -35,13 +42,6 @@
       "description": "",
       "review_state": "published",
       "title": "Plugin Options"
-    },
-    {
-      "@id": "http://localhost:8080/Plone/demo",
-      "@type": "Folder",
-      "description": "A demo folder",
-      "review_state": "published",
-      "title": "Demo"
     }
   ],
   "items_total": 4,

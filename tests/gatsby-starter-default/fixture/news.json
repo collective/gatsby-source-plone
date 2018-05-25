@@ -1,0 +1,64 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/news/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/news/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/news/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/news/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/news",
+  "@type": "Folder",
+  "UID": "a9f905735de7493eb30aa00c46bbb69b",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2018-05-25T15:29:56+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "News on gatsby-source-plone development",
+  "effective": "2018-05-24T14:41:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "news",
+  "is_folderish": true,
+  "items": [
+    {
+      "@id": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone",
+      "@type": "News Item",
+      "description": "Ajay NS was selected for Google Summer of Code to work on Plone Foundation project on GatsbyJS integration with Plone",
+      "review_state": "published",
+      "title": "GSOC for Gatsby source for Plone started"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone",
+      "@type": "News Item",
+      "description": "Gatsby is a blazing fast static site generator for React.",
+      "review_state": "published",
+      "title": "Let's do a GatsbyJS plugin for Plone!"
+    }
+  ],
+  "items_total": 2,
+  "language": "en",
+  "layout": "listing_view",
+  "modified": "2018-05-25T15:43:34+00:00",
+  "nextPreviousEnabled": false,
+  "parent": {
+    "@id": "http://localhost:8080/Plone",
+    "@type": "Plone Site",
+    "description": "",
+    "title": "Plone site"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "News",
+  "version": "current"
+}

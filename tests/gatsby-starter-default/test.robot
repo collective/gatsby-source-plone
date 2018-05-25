@@ -28,11 +28,25 @@ Scenario: Link back to home
   Page should contain  Traversal using @search endpoint
   Click link  Traversal using @search endpoint
   Wait until page contains  plone.restapi
-  Page should not contain  gatsby-source-plone
+  Page should not contain  Gatsby is a blazing fast
   Click link  Learn more »
-  Page should contain  gatsby-source-plone
+  Page should contain  Gatsby is a blazing fast
 
-Scenario: Demo page
-  Go To  http://localhost:9000/Demo
-  Wait until page contains  Demo
-  Page should contain  A News Item
+Scenario: Link to previous page
+  Go To  http://localhost:9000
+  Wait until page contains  Gatsby plugin for Plone
+  Page should contain  Traversal using @search endpoint
+  Click link  Traversal using @search endpoint
+  Wait until page contains  plone.restapi
+  Page should not contain  Gatsby is a blazing fast
+  Click link  « Return
+  Page should contain  Gatsby is a blazing fast
+
+Scenario: Children of a folder
+  Go To  http://localhost:9000/news
+  Wait until page contains  News on gatsby-source-plone development
+  Page should contain  GSOC for Gatsby
+  Page should contain  GatsbyJS plugin for Plone!
+  Click link  Let's do a GatsbyJS plugin for Plone!
+  Wait until page contains  Gatsby is a blazing fast
+  Page should not contain  GSOC for Gatsby

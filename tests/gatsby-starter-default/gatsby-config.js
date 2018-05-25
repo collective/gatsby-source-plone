@@ -1,17 +1,17 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby plugin for Plone`,
+    title: 'Gatsby plugin for Plone',
   },
-  pathPrefix: `/gatsby-source-plone`,
+  pathPrefix: '/gatsby-source-plone',
   plugins: [
     {
-      resolve: `gatsby-source-plone`,
+      resolve: 'gatsby-source-plone',
       options: {
-        baseUrl: `http://localhost:8080/Plone/`,
+        baseUrl: 'http://localhost:8080/Plone/',
         showLogs: true,
       },
     },
-    `gatsby-plugin-react-helmet`,
-    `gatsby-plugin-sass`,
+    'gatsby-plugin-react-helmet',
+    'gatsby-plugin-sass',
   ],
 };

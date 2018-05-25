@@ -31,13 +31,10 @@ Scenario: Link back to home
   Page should not contain  gatsby-source-plone
   Click link  Learn more »
   Page should contain  gatsby-source-plone
-<<<<<<< HEAD
-=======
   Click link  gatsby-source-plone
   Wait until page contains  Gatsby is a blazing fast
 
 Scenario: Demo page
-  Go To http://localhost:9000/Demo
+  Go To  http://localhost:9000/Demo
   Wait until page contains  Demo
   Page should contain  A News Item
->>>>>>> Update test.robot

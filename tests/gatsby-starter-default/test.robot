@@ -31,8 +31,6 @@ Scenario: Link back to home
   Page should not contain  gatsby-source-plone
   Click link  Learn more »
   Page should contain  gatsby-source-plone
-  Click link  gatsby-source-plone
-  Wait until page contains  Gatsby is a blazing fast
 
 Scenario: Demo page
   Go To  http://localhost:9000/Demo

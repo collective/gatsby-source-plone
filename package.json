@@ -8,6 +8,10 @@
     "watch": "babel -w src --out-dir . --ignore __tests__",
     "prepublish": "cross-env NODE_ENV=production npm run build"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/collective/gatsby-source-plone"
+  },
   "keywords": [
     "gatsby",
     "gatsby-plugin",

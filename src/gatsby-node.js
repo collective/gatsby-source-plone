@@ -51,8 +51,8 @@ exports.sourceNodes = async (
       },
     };
     node.id = item['@id'];
-    node.parent = null;
-    node.children = [];
+    node.parent = item.parent['@id'] ? item.parent['@id'] : null;
+    node.children = item.items ? item.items.map(item => item['@id']) : [];
 
     return node;
   });

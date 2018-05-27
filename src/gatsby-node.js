@@ -40,6 +40,9 @@ exports.sourceNodes = async (
     })
   );
 
+  // Fetch and push data of site root
+  items.push(await fetchData(baseUrl));
+
   logMessage('Creating node structure', showLogs);
   const nodes = items.map(item => {
     let node = {

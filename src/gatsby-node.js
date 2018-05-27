@@ -48,7 +48,9 @@ exports.sourceNodes = async (
     let node = {
       ...item,
       internal: {
-        type: 'Plone' + item['@type'].replace(' ', ''),
+        type: item['@type'].startsWith('Plone')
+          ? item['@type'].replace(' ', '')
+          : 'Plone' + item['@type'].replace(' ', ''),
         contentDigest: createContentDigest(item),
         mediaType: 'text/html',
       },

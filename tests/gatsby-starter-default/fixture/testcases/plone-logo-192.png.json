@@ -1,0 +1,94 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo-192.png/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo-192.png/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo-192.png/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo-192.png/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/testcases/plone-logo-192.png",
+  "@type": "Image",
+  "UID": "7dbd786704f9473bb14965defd4cfdfe",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2018-05-27T12:58:55+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "In png format",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "plone-logo-192.png",
+  "image": {
+    "content-type": "image/png",
+    "download": "http://localhost:8080/Plone/testcases/plone-logo-192.png/@@images/image",
+    "filename": "plone-logo-192.png",
+    "height": 192,
+    "scales": {
+      "icon": {
+        "download": "http://localhost:8080/Plone/testcases/plone-logo-192.png/@@images/image/icon",
+        "height": 8,
+        "width": 32
+      },
+      "large": {
+        "download": "http://localhost:8080/Plone/testcases/plone-logo-192.png/@@images/image/large",
+        "height": 192,
+        "width": 736
+      },
+      "listing": {
+        "download": "http://localhost:8080/Plone/testcases/plone-logo-192.png/@@images/image/listing",
+        "height": 4,
+        "width": 16
+      },
+      "mini": {
+        "download": "http://localhost:8080/Plone/testcases/plone-logo-192.png/@@images/image/mini",
+        "height": 52,
+        "width": 200
+      },
+      "preview": {
+        "download": "http://localhost:8080/Plone/testcases/plone-logo-192.png/@@images/image/preview",
+        "height": 104,
+        "width": 400
+      },
+      "thumb": {
+        "download": "http://localhost:8080/Plone/testcases/plone-logo-192.png/@@images/image/thumb",
+        "height": 33,
+        "width": 128
+      },
+      "tile": {
+        "download": "http://localhost:8080/Plone/testcases/plone-logo-192.png/@@images/image/tile",
+        "height": 16,
+        "width": 64
+      }
+    },
+    "size": 5367,
+    "width": 736
+  },
+  "is_folderish": false,
+  "language": "en",
+  "layout": "image_view",
+  "modified": "2018-05-27T13:35:34+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/testcases",
+    "@type": "Folder",
+    "description": "A folder with different standard content types that Plone supports out of the box",
+    "review_state": "published",
+    "title": "Testcases"
+  },
+  "relatedItems": [],
+  "review_state": null,
+  "rights": null,
+  "subjects": [
+    "testing"
+  ],
+  "title": "Plone logo",
+  "version": "current"
+}

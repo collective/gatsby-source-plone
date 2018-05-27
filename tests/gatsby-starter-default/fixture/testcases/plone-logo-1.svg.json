@@ -1,0 +1,53 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo-1.svg/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo-1.svg/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo-1.svg/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo-1.svg/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/testcases/plone-logo-1.svg",
+  "@type": "File",
+  "UID": "dd2f0b3ad71746fba175b3d09a9d9ba5",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2018-05-27T13:00:38+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "file": {
+    "content-type": "image/svg+xml",
+    "download": "http://localhost:8080/Plone/testcases/plone-logo-1.svg/@@download/file",
+    "filename": "plone-logo.svg",
+    "size": 3823
+  },
+  "id": "plone-logo-1.svg",
+  "is_folderish": false,
+  "language": "en",
+  "layout": "file_view",
+  "modified": "2018-05-27T13:35:34+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/testcases",
+    "@type": "Folder",
+    "description": "A folder with different standard content types that Plone supports out of the box",
+    "review_state": "published",
+    "title": "Testcases"
+  },
+  "relatedItems": [],
+  "review_state": null,
+  "rights": null,
+  "subjects": [],
+  "title": "Plone logo as file (svg)",
+  "version": "current"
+}

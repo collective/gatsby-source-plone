@@ -1,0 +1,53 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo.pdf/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo.pdf/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo.pdf/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo.pdf/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/testcases/plone-logo.pdf",
+  "@type": "File",
+  "UID": "f0e40e1ccd2c4197bbdcc2c2876f7dea",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2018-05-27T13:01:04+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "file": {
+    "content-type": "application/pdf",
+    "download": "http://localhost:8080/Plone/testcases/plone-logo.pdf/@@download/file",
+    "filename": "plone-logo.pdf",
+    "size": 218309
+  },
+  "id": "plone-logo.pdf",
+  "is_folderish": false,
+  "language": "en",
+  "layout": "file_view",
+  "modified": "2018-05-27T13:35:34+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/testcases",
+    "@type": "Folder",
+    "description": "A folder with different standard content types that Plone supports out of the box",
+    "review_state": "published",
+    "title": "Testcases"
+  },
+  "relatedItems": [],
+  "review_state": null,
+  "rights": null,
+  "subjects": [],
+  "title": "PDF example",
+  "version": "current"
+}

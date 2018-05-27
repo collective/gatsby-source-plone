@@ -1,0 +1,92 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/testcases/midsummer.jpg/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/testcases/midsummer.jpg/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/testcases/midsummer.jpg/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/testcases/midsummer.jpg/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/testcases/midsummer.jpg",
+  "@type": "Image",
+  "UID": "36059408af594dc0823263c1fc033557",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2018-05-27T12:38:07+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "midsummer.jpg",
+  "image": {
+    "content-type": "image/jpeg",
+    "download": "http://localhost:8080/Plone/testcases/midsummer.jpg/@@images/image",
+    "filename": "midsummer.jpg",
+    "height": 507,
+    "scales": {
+      "icon": {
+        "download": "http://localhost:8080/Plone/testcases/midsummer.jpg/@@images/image/icon",
+        "height": 32,
+        "width": 31
+      },
+      "large": {
+        "download": "http://localhost:8080/Plone/testcases/midsummer.jpg/@@images/image/large",
+        "height": 507,
+        "width": 500
+      },
+      "listing": {
+        "download": "http://localhost:8080/Plone/testcases/midsummer.jpg/@@images/image/listing",
+        "height": 16,
+        "width": 15
+      },
+      "mini": {
+        "download": "http://localhost:8080/Plone/testcases/midsummer.jpg/@@images/image/mini",
+        "height": 200,
+        "width": 197
+      },
+      "preview": {
+        "download": "http://localhost:8080/Plone/testcases/midsummer.jpg/@@images/image/preview",
+        "height": 400,
+        "width": 394
+      },
+      "thumb": {
+        "download": "http://localhost:8080/Plone/testcases/midsummer.jpg/@@images/image/thumb",
+        "height": 128,
+        "width": 126
+      },
+      "tile": {
+        "download": "http://localhost:8080/Plone/testcases/midsummer.jpg/@@images/image/tile",
+        "height": 64,
+        "width": 63
+      }
+    },
+    "size": 76435,
+    "width": 500
+  },
+  "is_folderish": false,
+  "language": "",
+  "layout": "image_view",
+  "modified": "2018-05-27T13:35:34+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/testcases",
+    "@type": "Folder",
+    "description": "A folder with different standard content types that Plone supports out of the box",
+    "review_state": "published",
+    "title": "Testcases"
+  },
+  "relatedItems": [],
+  "review_state": null,
+  "rights": "",
+  "subjects": [],
+  "title": "midsummer.jpg",
+  "version": "current"
+}

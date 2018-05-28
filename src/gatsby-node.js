@@ -45,7 +45,9 @@ exports.sourceNodes = async (
     let node = {
       ...item,
       internal: {
-        type: 'Plone' + item['@type'].replace(' ', ''),
+        type: item['@type'].startsWith('Plone')
+          ? item['@type'].replace(' ', '')
+          : 'Plone' + item['@type'].replace(' ', ''),
         contentDigest: createContentDigest(item),
         mediaType: 'text/html',
       },
@@ -56,6 +58,24 @@ exports.sourceNodes = async (
 
     return node;
   });
+
+  // Fetch data, process node for PloneSite
+  const ploneSite = await fetchData(baseUrl);
+  let ploneSiteNode = {
+    ...ploneSite,
+    internal: {
+      type: 'PloneSite',
+      contentDigest: createContentDigest(ploneSite),
+      mediaType: 'text/html',
+    },
+  };
+  ploneSiteNode.id = ploneSite['@id'];
+  ploneSiteNode.parent = null;
+  ploneSiteNode.children = ploneSite.items
+    ? ploneSite.items.map(item => item['@id'])
+    : [];
+  // Push to nodes array
+  nodes.push(ploneSiteNode);
 
   logMessage('Creating nodes', showLogs);
   nodes.map(node => createNode(node));

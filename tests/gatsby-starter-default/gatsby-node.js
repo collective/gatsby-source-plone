@@ -13,7 +13,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     plugin => plugin.resolve === 'gatsby-source-plone'
   )[0].options;
   if (
-    ['PloneFolder', 'PloneDocument', 'PloneNewsItem'].includes(
+    ['PloneFolder', 'PloneDocument', 'PloneNewsItem', 'PloneSite'].includes(
       node.internal.type
     )
   ) {
@@ -21,7 +21,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
     createNodeField({
       node,
       name: 'slug',
-      value: slug,
+      value: slug === '' ? '/' : slug,
     });
   }
 };
@@ -59,13 +59,23 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
           }
         }
       }
+      allPloneSite {
+        edges {
+          node {
+            fields {
+              slug
+            }
+          }
+        }
+      }
     }
   `);
   []
     .concat(
       result.data.allPloneFolder.edges,
       result.data.allPloneDocument.edges,
-      result.data.allPloneNewsItem.edges
+      result.data.allPloneNewsItem.edges,
+      result.data.allPloneSite.edges
     )
     .filter(({ node }) => !pages.includes(node.fields.slug))
     .forEach(({ node }) => {

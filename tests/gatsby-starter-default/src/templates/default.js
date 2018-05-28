@@ -5,14 +5,18 @@ import NewsItem from '../components/NewsItem';
 import PloneSite from '../components/PloneSite';
 
 export default ({ data }) => {
-  if (data.ploneFolder) {
-    return <Folder key={data.ploneFolder.id} data={data.ploneFolder} />;
-  } else if (data.ploneDocument) {
-    return <Document key={data.ploneDocument.id} data={data.ploneDocument} />;
-  } else if (data.ploneNewsItem) {
-    return <NewsItem key={data.ploneNewsItem.id} data={data.ploneNewsItem} />;
-  } else if (data.ploneSite) {
-    return <PloneSite key={data.ploneSite.id} data={data.ploneSite} />;
+  if (data) {
+    if (data.ploneFolder) {
+      return <Folder key={data.ploneFolder.id} data={data.ploneFolder} />;
+    } else if (data.ploneDocument) {
+      return <Document key={data.ploneDocument.id} data={data.ploneDocument} />;
+    } else if (data.ploneNewsItem) {
+      return <NewsItem key={data.ploneNewsItem.id} data={data.ploneNewsItem} />;
+    } else if (data.ploneSite) {
+      return <PloneSite key={data.ploneSite.id} data={data.ploneSite} />;
+    } else {
+      return null;
+    }
   } else {
     return null;
   }

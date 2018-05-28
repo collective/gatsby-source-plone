@@ -9,7 +9,7 @@ export default ({ data }) => (
     <p>
       <strong>{data.description}</strong>
     </p>
-    {data.children.map(child => (
+    {data.children.filter(child => child.fields).map(child => (
       <article>
         <h4>
           <Link to={`/${child.fields.slug}/`}>{child.title}</Link>

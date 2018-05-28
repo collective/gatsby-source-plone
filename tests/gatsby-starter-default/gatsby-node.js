@@ -79,7 +79,6 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
     )
     .filter(({ node }) => !pages.includes(node.fields.slug))
     .forEach(({ node }) => {
-      console.log(node.fields.slug);
       createPage({
         path: node.fields.slug,
         component: path.resolve('./src/templates/default.js'),

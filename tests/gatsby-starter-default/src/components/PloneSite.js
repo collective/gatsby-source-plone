@@ -1,17 +1,33 @@
 import React from 'react';
+import Link from 'gatsby-link';
 
-export default ({ data }) => (
-  <div>
-    <h2>{data.title}</h2>
-    <ul>{data.items.map(item => <li>{item.title}</li>)}</ul>
-  </div>
-);
-
-export const ploneSiteFragment = graphql`
-  fragment PloneSite on PloneSite {
-    title
-    items {
-      title
+export default ({ data }) => {
+  const index = [];
+  const contents = [];
+  data.children.forEach(child => {
+    if (child.fields.slug === 'index') {
+      index.push(
+        <div>
+          <h2>{child.title}</h2>
+          <p>
+            <strong>{child.description}</strong>
+          </p>
+          <div dangerouslySetInnerHTML={{ __html: child.text.data }} />
+        </div>
+      );
+    } else {
+      contents.push(
+        <h4>
+          <Link to={`/${child.fields.slug}/`}>{child.title}</Link>
+        </h4>
+      )
     }
-  }
-`;
+  });
+  return (
+    <div>
+      {index}
+      <h3>Contents</h3>
+      <ul>{contents.map(node => <li>{node}</li>)}</ul>
+    </div>
+  );
+};

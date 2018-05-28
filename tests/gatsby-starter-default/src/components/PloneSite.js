@@ -33,7 +33,7 @@ export default ({ data }) => {
 };
 
 export const plonSiteFragment = graphql`
-  fragment Site on PloneSite {
+  fragment PloneSite on PloneSite {
     id
     title
     children {

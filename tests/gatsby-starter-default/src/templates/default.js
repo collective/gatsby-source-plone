@@ -30,7 +30,7 @@ export const query = graphql`
       ...NewsItem
     }
     ploneSite(fields: { slug: { eq: $slug } }) {
-      ...Site
+      ...PloneSite
     }
   }
 `;

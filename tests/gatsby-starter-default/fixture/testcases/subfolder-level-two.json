@@ -1,0 +1,58 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two",
+  "@type": "Folder",
+  "UID": "f3b1ce9a95ff44f3839b97ba82f31d53",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2018-05-27T13:01:47+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": "2018-05-27T13:35:34",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "subfolder-level-two",
+  "is_folderish": true,
+  "items": [
+    {
+      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/level-three",
+      "@type": "Folder",
+      "description": "",
+      "review_state": "published",
+      "title": "Level three"
+    }
+  ],
+  "items_total": 1,
+  "language": "en",
+  "layout": "listing_view",
+  "modified": "2018-05-27T13:35:34+00:00",
+  "nextPreviousEnabled": false,
+  "parent": {
+    "@id": "http://localhost:8080/Plone/testcases",
+    "@type": "Folder",
+    "description": "A folder with different standard content types that Plone supports out of the box",
+    "review_state": "published",
+    "title": "Testcases"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "Subfolder level two",
+  "version": "current"
+}

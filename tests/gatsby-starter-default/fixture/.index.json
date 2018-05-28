@@ -42,9 +42,16 @@
       "description": "",
       "review_state": "published",
       "title": "Plugin Options"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/testcases",
+      "@type": "Folder",
+      "description": "A folder with different standard content types that Plone supports out of the box",
+      "review_state": "published",
+      "title": "Testcases"
     }
   ],
-  "items_total": 4,
+  "items_total": 5,
   "parent": {},
   "title": "Plone site"
 }

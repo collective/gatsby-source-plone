@@ -15,10 +15,10 @@
   },
   "@id": "http://localhost:8080/Plone/news",
   "@type": "Folder",
-  "UID": "a9f905735de7493eb30aa00c46bbb69b",
+  "UID": "570029a5934c4dd384b59f82d145593a",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-05-25T15:29:56+00:00",
+  "created": "2018-05-27T11:55:12+00:00",
   "creators": [
     "admin"
   ],
@@ -47,7 +47,7 @@
   "items_total": 2,
   "language": "en",
   "layout": "listing_view",
-  "modified": "2018-05-25T15:43:34+00:00",
+  "modified": "2018-05-27T11:55:14+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",

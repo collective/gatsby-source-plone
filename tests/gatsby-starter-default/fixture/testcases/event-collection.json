@@ -1,0 +1,86 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/testcases/event-collection/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/testcases/event-collection/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/testcases/event-collection/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/testcases/event-collection/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/testcases/event-collection",
+  "@type": "Collection",
+  "UID": "1e5082a52f334a65b0e5d36d68daf554",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2018-05-27T13:35:15+00:00",
+  "creators": [
+    "admin"
+  ],
+  "customViewFields": [
+    "Title",
+    "Creator",
+    "Type",
+    "ModificationDate"
+  ],
+  "description": "A common use case for collections is to present upcoming events",
+  "effective": "2018-05-27T13:35:35",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "event-collection",
+  "is_folderish": false,
+  "item_count": 30,
+  "items": [
+    {
+      "@id": "http://localhost:8080/Plone/testcases/plone-conference-tokyo",
+      "@type": "Event",
+      "description": "The worldwide gathering of the Plone family (and friends) will happen in Japan this year.",
+      "review_state": "published",
+      "title": "Plone conference Tokyo"
+    }
+  ],
+  "items_total": 1,
+  "language": "en",
+  "layout": "listing_view",
+  "limit": 1000,
+  "modified": "2018-05-27T13:35:35+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/testcases",
+    "@type": "Folder",
+    "description": "A folder with different standard content types that Plone supports out of the box",
+    "review_state": "published",
+    "title": "Testcases"
+  },
+  "query": [
+    {
+      "i": "portal_type",
+      "o": "plone.app.querystring.operation.selection.any",
+      "v": [
+        "Event"
+      ]
+    },
+    {
+      "i": "start",
+      "o": "plone.app.querystring.operation.date.afterToday",
+      "v": ""
+    }
+  ],
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": null,
+  "sort_on": "start",
+  "sort_reversed": true,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>This collection lists events in the future.</p>",
+    "encoding": "utf-8"
+  },
+  "title": "Event collection",
+  "version": "current"
+}

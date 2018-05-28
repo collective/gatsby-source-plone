@@ -15,11 +15,11 @@
   },
   "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone",
   "@type": "News Item",
-  "UID": "1a3e77decea04cfb87d0c935bbf1e46b",
+  "UID": "892c268bb7694588885ea805f4b29b8a",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-05-25T15:30:00+00:00",
+  "created": "2018-05-27T11:55:14+00:00",
   "creators": [
     "admin"
   ],
@@ -28,12 +28,56 @@
   "exclude_from_nav": false,
   "expires": null,
   "id": "gatsby-plugin-for-plone",
-  "image": null,
+  "image": {
+    "content-type": "image/png",
+    "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image",
+    "filename": "gatsby-horizontal.png",
+    "height": 106,
+    "scales": {
+      "icon": {
+        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image/icon",
+        "height": 8,
+        "width": 32
+      },
+      "large": {
+        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image/large",
+        "height": 106,
+        "width": 402
+      },
+      "listing": {
+        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image/listing",
+        "height": 4,
+        "width": 16
+      },
+      "mini": {
+        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image/mini",
+        "height": 52,
+        "width": 200
+      },
+      "preview": {
+        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image/preview",
+        "height": 105,
+        "width": 400
+      },
+      "thumb": {
+        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image/thumb",
+        "height": 33,
+        "width": 128
+      },
+      "tile": {
+        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image/tile",
+        "height": 16,
+        "width": 64
+      }
+    },
+    "size": 11583,
+    "width": 402
+  },
   "image_caption": null,
   "is_folderish": false,
   "language": "en",
   "layout": "newsitem_view",
-  "modified": "2018-05-25T15:42:48+00:00",
+  "modified": "2018-05-27T12:52:33+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/news",
     "@type": "Folder",

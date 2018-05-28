@@ -1,0 +1,92 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo.svg/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo.svg/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo.svg/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/testcases/plone-logo.svg/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/testcases/plone-logo.svg",
+  "@type": "Image",
+  "UID": "f12a29b80db942498e869c3c8de5d530",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2018-05-27T12:59:41+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "Scalable vector graphics",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "plone-logo.svg",
+  "image": {
+    "content-type": "image/svg+xml",
+    "download": "http://localhost:8080/Plone/testcases/plone-logo.svg/@@images/image",
+    "filename": "plone-logo.svg",
+    "height": -1,
+    "scales": {
+      "icon": {
+        "download": "http://localhost:8080/Plone/testcases/plone-logo.svg/@@images/image/icon",
+        "height": 32,
+        "width": 32
+      },
+      "large": {
+        "download": "http://localhost:8080/Plone/testcases/plone-logo.svg/@@images/image/large",
+        "height": 768,
+        "width": 768
+      },
+      "listing": {
+        "download": "http://localhost:8080/Plone/testcases/plone-logo.svg/@@images/image/listing",
+        "height": 16,
+        "width": 16
+      },
+      "mini": {
+        "download": "http://localhost:8080/Plone/testcases/plone-logo.svg/@@images/image/mini",
+        "height": 200,
+        "width": 200
+      },
+      "preview": {
+        "download": "http://localhost:8080/Plone/testcases/plone-logo.svg/@@images/image/preview",
+        "height": 400,
+        "width": 400
+      },
+      "thumb": {
+        "download": "http://localhost:8080/Plone/testcases/plone-logo.svg/@@images/image/thumb",
+        "height": 128,
+        "width": 128
+      },
+      "tile": {
+        "download": "http://localhost:8080/Plone/testcases/plone-logo.svg/@@images/image/tile",
+        "height": 64,
+        "width": 64
+      }
+    },
+    "size": 3823,
+    "width": -1
+  },
+  "is_folderish": false,
+  "language": "en",
+  "layout": "image_view",
+  "modified": "2018-05-27T13:35:34+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/testcases",
+    "@type": "Folder",
+    "description": "A folder with different standard content types that Plone supports out of the box",
+    "review_state": "published",
+    "title": "Testcases"
+  },
+  "relatedItems": [],
+  "review_state": null,
+  "rights": null,
+  "subjects": [],
+  "title": "Plone logo as SVG",
+  "version": "current"
+}

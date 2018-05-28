@@ -1,0 +1,48 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/testcases/a-link-to-the-documentation-of-plone/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/testcases/a-link-to-the-documentation-of-plone/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/testcases/a-link-to-the-documentation-of-plone/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/testcases/a-link-to-the-documentation-of-plone/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/testcases/a-link-to-the-documentation-of-plone",
+  "@type": "Link",
+  "UID": "472790484fcb4e7c833f4da56979ba10",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-05-27T13:03:31+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "Plone contains a special \"link\" content type",
+  "effective": "2018-05-27T13:35:34",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "a-link-to-the-documentation-of-plone",
+  "is_folderish": false,
+  "language": "en",
+  "layout": "link_redirect_view",
+  "modified": "2018-05-27T13:35:34+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/testcases",
+    "@type": "Folder",
+    "description": "A folder with different standard content types that Plone supports out of the box",
+    "review_state": "published",
+    "title": "Testcases"
+  },
+  "remoteUrl": "https://docs.plone.org",
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "A link to the documentation of Plone",
+  "version": "current"
+}

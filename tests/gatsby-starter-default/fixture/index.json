@@ -15,11 +15,11 @@
   },
   "@id": "http://localhost:8080/Plone/index",
   "@type": "Document",
-  "UID": "44b2feab0dff414f87b7cde08abab7d8",
+  "UID": "a2e22e7a6b374ce584df0fd70f81ddc8",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-05-25T15:29:51+00:00",
+  "created": "2018-05-27T11:55:16+00:00",
   "creators": [
     "admin"
   ],
@@ -31,7 +31,7 @@
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2018-05-25T15:29:51+00:00",
+  "modified": "2018-05-27T11:55:16+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone",
     "@type": "Plone Site",

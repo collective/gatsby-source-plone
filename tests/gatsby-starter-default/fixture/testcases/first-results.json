@@ -1,0 +1,99 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/testcases/first-results/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/testcases/first-results/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/testcases/first-results/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/testcases/first-results/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/testcases/first-results",
+  "@type": "News Item",
+  "UID": "88e6f7566dda46088b196f2c76f1565c",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-05-27T13:32:47+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "The Google Summer of Code project \"Gatsby source plugin for Plone\" is underway!",
+  "effective": "2018-05-27T13:35:34",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "first-results",
+  "image": {
+    "content-type": "image/png",
+    "download": "http://localhost:8080/Plone/testcases/first-results/@@images/image",
+    "filename": "plone-logo-192.png",
+    "height": 192,
+    "scales": {
+      "icon": {
+        "download": "http://localhost:8080/Plone/testcases/first-results/@@images/image/icon",
+        "height": 8,
+        "width": 32
+      },
+      "large": {
+        "download": "http://localhost:8080/Plone/testcases/first-results/@@images/image/large",
+        "height": 192,
+        "width": 736
+      },
+      "listing": {
+        "download": "http://localhost:8080/Plone/testcases/first-results/@@images/image/listing",
+        "height": 4,
+        "width": 16
+      },
+      "mini": {
+        "download": "http://localhost:8080/Plone/testcases/first-results/@@images/image/mini",
+        "height": 52,
+        "width": 200
+      },
+      "preview": {
+        "download": "http://localhost:8080/Plone/testcases/first-results/@@images/image/preview",
+        "height": 104,
+        "width": 400
+      },
+      "thumb": {
+        "download": "http://localhost:8080/Plone/testcases/first-results/@@images/image/thumb",
+        "height": 33,
+        "width": 128
+      },
+      "tile": {
+        "download": "http://localhost:8080/Plone/testcases/first-results/@@images/image/tile",
+        "height": 16,
+        "width": 64
+      }
+    },
+    "size": 5367,
+    "width": 736
+  },
+  "image_caption": null,
+  "is_folderish": false,
+  "language": "en",
+  "layout": "newsitem_view",
+  "modified": "2018-05-27T13:35:34+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/testcases",
+    "@type": "Folder",
+    "description": "A folder with different standard content types that Plone supports out of the box",
+    "review_state": "published",
+    "title": "Testcases"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>First results, which also serve as 'minimal testcase' and initial documentation, can be found at </p>&#13;\n<p>https://collective.github.io/gatsby-source-plone<a href=\"https://collective.github.io/gatsby-source-plone/\" target=\"_blank\" rel=\"noopener noreferrer\"/></p>&#13;\n<p/>&#13;\n<p/>",
+    "encoding": "utf-8"
+  },
+  "title": "First results",
+  "version": "current"
+}

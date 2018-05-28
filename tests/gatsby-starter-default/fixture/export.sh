@@ -21,11 +21,12 @@ exportUrlToPath() {
     local stripped=$((${#base} + 1))
     local basename=${url:${stripped}:$((${#url} - stripped))}
     local item=$(get "$url")
+    local type=$(echo ${item} | jq -r '."@type"')
     local items=$(echo ${item} | jq -r '.items')
     # Get parent
     echo "$item" | jq . > "$path/$basename.json"
     # Get children
-    if [ "$items" != "null" ]; then
+    if [ "$type" != "Collection" ] && [ "$items" != "null" ]; then
         mkdir -p "$path/$basename"
         for sub in $(echo ${items} | jq -r '.[]."@id"'); do
             echo "Exporting $sub"

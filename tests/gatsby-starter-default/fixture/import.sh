@@ -60,8 +60,9 @@ importPathToUrl () {
     fi
     response=$(post "$url/@workflow/publish")
     # Post children
+    local type=$(cat "$path/$basename.json" | jq -r '."@type"')
     local items=$(cat "$path/$basename.json" | jq -r '.items')
-    if [ "$items" != "null" ]; then
+    if [ "$type" != "Collection" ] && [ "$items" != "null" ]; then
         for sub in $(echo ${items} | jq -r '.[]."@id"'); do
             stripped=$((${#url} + 1))
             sub=${sub:${stripped}:$((${#sub} - stripped))}

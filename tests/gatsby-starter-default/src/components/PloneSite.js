@@ -20,7 +20,7 @@ export default ({ data }) => {
         <h4>
           <Link to={`/${child.fields.slug}/`}>{child.title}</Link>
         </h4>
-      )
+      );
     }
   });
   return (
@@ -31,3 +31,15 @@ export default ({ data }) => {
     </div>
   );
 };
+
+export const plonSiteFragment = graphql`
+  fragment Site on PloneSite {
+    id
+    title
+    children {
+      ...Document
+      ...Folder
+      ...NewsItem
+    }
+  }
+`;

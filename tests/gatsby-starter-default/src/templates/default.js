@@ -12,7 +12,7 @@ export default ({ data }) => {
   } else if (data.ploneNewsItem) {
     return <NewsItem key={data.ploneNewsItem.id} data={data.ploneNewsItem} />;
   } else if (data.ploneSite) {
-    return <PloneSite key={data.ploneSite.id} data={data.ploneSite} />
+    return <PloneSite key={data.ploneSite.id} data={data.ploneSite} />;
   } else {
     return null;
   }
@@ -30,13 +30,7 @@ export const query = graphql`
       ...NewsItem
     }
     ploneSite(fields: { slug: { eq: $slug } }) {
-      id
-      title
-      children {
-        ...Document
-        ...Folder
-        ...NewsItem
-      }
+      ...Site
     }
   }
 `;

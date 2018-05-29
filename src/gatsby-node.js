@@ -30,11 +30,24 @@ exports.sourceNodes = async (
   const { createNode } = boundActionCreators;
 
   logMessage('Fetching URLs', showLogs);
-  const data = await fetchData(`${baseUrl}/@search`);
+  const itemsList = [];
+  let data = await fetchData(`${baseUrl}/@search`);
+
+  // Loop through batches of items if number of items > 25
+  while (1) {
+    itemsList.push(...data.items);
+
+    if (data.batching) {
+      if (data.batching.next) data = await fetchData(data.batching.next);
+      else break;
+    } else {
+      break;
+    }
+  }
 
   logMessage('Fetching item data', showLogs);
   const items = await Promise.all(
-    data.items.map(async item => {
+    itemsList.map(async item => {
       const url = item['@id'];
       return await fetchData(url);
     })

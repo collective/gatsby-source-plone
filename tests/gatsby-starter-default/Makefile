@@ -77,6 +77,7 @@ test: clean build pyvenv
 watch: develop
 
 public: start-backend node_modules $(SOURCES)
+public: src/styles/typography.css:
 	gatsby build ${GATSBY_BUILD_FLAGS}
 
 pyvenv: requirements.txt
@@ -91,3 +92,7 @@ pyvenv: requirements.txt
 node_modules: package.json
 	yarn install
 	yarn link gatsby-source-plone
+
+src/styles/typography.css:
+	node -e "console.log(new require('typography')(require('typography-theme-twin-peaks')).toString())" \
+	> src/styles/typography.css

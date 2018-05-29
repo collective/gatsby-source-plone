@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Link from 'gatsby-link';
 import Helmet from 'react-helmet';
 
-import 'bootstrap/scss/bootstrap.scss';
+import './../styles/bootstrap.scss';
 
 const Header = () => (
   <div className={'jumbotron'}>

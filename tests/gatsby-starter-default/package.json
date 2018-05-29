@@ -17,6 +17,8 @@
   "license": "MIT",
   "main": "n/a",
   "devDependencies": {
-    "prettier": "^1.8.2"
+    "prettier": "^1.8.2",
+    "typography": "^0.16.17",
+    "typography-theme-twin-peaks": "^0.15.11"
   }
 }

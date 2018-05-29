@@ -89,7 +89,6 @@ exports.sourceNodes = async (
   // Push to nodes array
   nodes.push(ploneSiteNode);
 
-  console.log(nodes.length);
   logMessage('Creating nodes', showLogs);
   nodes.map(node => createNode(node));
 };

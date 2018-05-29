@@ -37,8 +37,9 @@ exports.sourceNodes = async (
   while (1) {
     itemsList.push(...data.items);
 
-    if (data.batching.next) {
-      data = await fetchData(data.batching.next);
+    if (data.batching) {
+      if (data.batching.next) data = await fetchData(data.batching.next);
+      else break;
     } else {
       break;
     }

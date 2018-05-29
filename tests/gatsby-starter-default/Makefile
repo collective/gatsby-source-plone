@@ -49,7 +49,7 @@ purge: clean stop-backend
 .PHONY: prettier
 prettier: node_modules
 	prettier --write $$(find src -name "*.js")
-	# prettier --write --single-quote false $$(find src -name "*.css")
+	prettier --write --single-quote false $$(find src -name "*.scss")
 
 .PHONY: serve
 serve: node_modules public
@@ -77,7 +77,7 @@ test: clean build pyvenv
 watch: develop
 
 public: start-backend node_modules $(SOURCES)
-public: src/styles/typography.css:
+public: src/styles/typography.css
 	gatsby build ${GATSBY_BUILD_FLAGS}
 
 pyvenv: requirements.txt

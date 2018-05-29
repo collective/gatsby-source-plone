@@ -48,8 +48,14 @@ a {
 }
 
 pre {
-  padding: 1ex;
   background-color: $gray-200;
-  overflow-x: scroll;
   border-radius: 3px;
+  overflow-x: scroll;
+  padding: 1ex;
+}
+
+table {
+  display: block;
+  max-width: 100%;
+  overflow-x: scroll;
 }

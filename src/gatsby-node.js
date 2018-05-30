@@ -9,12 +9,14 @@ const createContentDigest = item =>
     .digest(`hex`);
 
 // Helper to get data from url
-const fetchData = async url => {
-  const { data } = await axios.get(url, {
+const fetchData = async (url, token) => {
+  const config = {
     headers: {
       accept: 'application/json',
     },
-  });
+  };
+  token && (config.headers.Authorization = `bearer ${token}`);
+  const { data } = await axios.get(url, config);
   return data;
 };
 
@@ -25,20 +27,20 @@ const logMessage = (message, show) => {
 
 exports.sourceNodes = async (
   { boundActionCreators, getNode, hasNodeChanged, store, cache },
-  { baseUrl, showLogs = false }
+  { baseUrl, token, showLogs = false }
 ) => {
   const { createNode } = boundActionCreators;
 
   logMessage('Fetching URLs', showLogs);
   const itemsList = [];
-  let data = await fetchData(`${baseUrl}/@search`);
+  let data = await fetchData(`${baseUrl}/@search`, token);
 
   // Loop through batches of items if number of items > 25
   while (1) {
     itemsList.push(...data.items);
 
     if (data.batching) {
-      if (data.batching.next) data = await fetchData(data.batching.next);
+      if (data.batching.next) data = await fetchData(data.batching.next, token);
       else break;
     } else {
       break;
@@ -49,7 +51,7 @@ exports.sourceNodes = async (
   const items = await Promise.all(
     itemsList.map(async item => {
       const url = item['@id'];
-      return await fetchData(url);
+      return await fetchData(url, token);
     })
   );
 
@@ -73,7 +75,7 @@ exports.sourceNodes = async (
   });
 
   // Fetch data, process node for PloneSite
-  const ploneSite = await fetchData(baseUrl);
+  const ploneSite = await fetchData(baseUrl, token);
   let ploneSiteNode = {
     ...ploneSite,
     internal: {

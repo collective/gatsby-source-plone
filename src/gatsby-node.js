@@ -8,6 +8,15 @@ const createContentDigest = item =>
     .update(JSON.stringify(item))
     .digest(`hex`);
 
+// Helper to add token to header if present
+const headersWithToken = (headers, token) => {
+  if (token) {
+    return { ...headers, Authorization: `Bearer ${token}` };
+  }
+
+  return headers;
+};
+
 // Helper to get data from url
 const fetchData = async (url, token) => {
   const config = {
@@ -15,14 +24,17 @@ const fetchData = async (url, token) => {
       accept: 'application/json',
     },
   };
-  token && (config.headers.Authorization = `bearer ${token}`);
+  config.headers = headersWithToken(config.headers, token);
+
   const { data } = await axios.get(url, config);
   return data;
 };
 
 // Display logs when showLogs is true
-const logMessage = (message, show) => {
-  show && console.log(message);
+const logMessage = (message, showLogs) => {
+  if (showLogs) {
+    console.log(message);
+  }
 };
 
 exports.sourceNodes = async (

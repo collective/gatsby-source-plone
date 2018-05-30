@@ -15,14 +15,15 @@ const fetchData = async (url, token) => {
       accept: 'application/json',
     },
   };
-  token && (config.headers.Authorization = `bearer ${token}`);
+  if (token) config.headers.Authorization = `bearer ${token}`;
+
   const { data } = await axios.get(url, config);
   return data;
 };
 
 // Display logs when showLogs is true
-const logMessage = (message, show) => {
-  show && console.log(message);
+const logMessage = (message, showLogs) => {
+  if (showLogs) console.log(message);
 };
 
 exports.sourceNodes = async (

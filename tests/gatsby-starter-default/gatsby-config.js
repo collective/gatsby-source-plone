@@ -1,3 +1,7 @@
+require("dotenv").config({
+  path: '.env',
+});
+
 module.exports = {
   siteMetadata: {
     title: 'Gatsby plugin for Plone',
@@ -8,6 +12,7 @@ module.exports = {
       resolve: 'gatsby-source-plone',
       options: {
         baseUrl: 'http://localhost:8080/Plone/',
+        token: process.env.TOKEN,
         showLogs: true,
       },
     },

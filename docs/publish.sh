@@ -79,15 +79,18 @@ publishImageToUrl () {
     basename=$2
     base=$3
     # Build
-    json='{"@type": "Image", "id": "'"$basename"'", "image": {"data": "'"$(base64 "$path"|tr -d '\n')"'", "encoding": "base64", "filename": "'"$basename"'", "content-type": "image/png"}}'
+    cat > .publish.image.json << EOF
+{"@type": "Image", "title": "$basename", "id": "$basename", "image": {"data": "$(base64 "$path"|tr -d '\n')", "encoding": "base64", "filename": "$basename", "content-type": "image/png"}}
+EOF
     # Post
-    response=$(post "$base" "$json")
+    response=$(post "$base" "@.publish.image.json")
     url=$(echo "${response}" | jq -r '."@id"')
     # Patch
     if [ "$url" = "null" ]; then
         url="$base/$basename"
-        response=$(patch "$url" "$json")
+        response=$(patch "$url" "@.publish.image.json")
     fi
+    rm -f .publish.image.json
     # Publish
     response=$(post "$url/@workflow/publish" "{}")
     return $?

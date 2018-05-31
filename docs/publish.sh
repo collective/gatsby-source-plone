@@ -14,8 +14,10 @@ http () {
         -H "Accept: application/json" \
         -H "Content-type: application/json" \
         --user "admin:admin" \
-        --data "$payload" \
-        "$url"
+        --data "@-" \
+        "$url" << EOF
+$payload
+EOF
     )
     status=$?
     echo "$response"
@@ -79,18 +81,15 @@ publishImageToUrl () {
     basename=$2
     base=$3
     # Build
-    cat > .publish.image.json << EOF
-{"@type": "Image", "title": "$basename", "id": "$basename", "image": {"data": "$(base64 "$path"|tr -d '\n')", "encoding": "base64", "filename": "$basename", "content-type": "image/png"}}
-EOF
+    json='{"@type": "Image", "title": "'"$basename"'", "id": "'"$basename"'", "image": {"data": "'"$(base64 "$path"|tr -d '\n')"'", "encoding": "base64", "filename": "'"$basename"'", "content-type": "image/png"}}'
     # Post
-    response=$(post "$base" "@.publish.image.json")
+    response=$(post "$base" "$json")
     url=$(echo "${response}" | jq -r '."@id"')
     # Patch
     if [ "$url" = "null" ]; then
         url="$base/$basename"
-        response=$(patch "$url" "@.publish.image.json")
+        response=$(patch "$url" "$json")
     fi
-    rm -f .publish.image.json
     # Publish
     response=$(post "$url/@workflow/publish" "{}")
     return $?

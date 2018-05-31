@@ -77,34 +77,30 @@ importPathToUrl () {
     filename=$(cat "$path/$basename.json" | jq -r '.image.filename')
     mimetype=$(cat "$path/$basename.json" | jq -r '.image."content-type"')
     if [ -f "$path/$basename-$filename" ]; then
-        cat << EOF > .import.patch.json
-{"image": {"data": "$(base64 "$path/$basename-$filename"|tr -d '\n')", "encoding": "base64", "filename": "$filename", "content-type": "$mimetype"}}
-EOF
-        curl -s \
+      curl -s \
         -X PATCH \
         -H "Accept: application/json" \
         -H "Content-type: application/json" \
         --user "admin:admin" \
-        --data "@./.import.patch.json" \
-        "$url"
-        rm -f .import.patch.json
+        --data "@-" \
+        "$url" << EOF
+{"image": {"data": "$(base64 "$path/$basename-$filename"|tr -d '\n')", "encoding": "base64", "filename": "$filename", "content-type": "$mimetype"}}
+EOF
     fi
     # Patch file
     download=$(cat "$path/$basename.json" | jq -r '.file.download')
     filename=$(cat "$path/$basename.json" | jq -r '.file.filename')
     mimetype=$(cat "$path/$basename.json" | jq -r '.file."content-type"')
     if [ -f "$path/$basename-$filename" ]; then
-        cat << EOF > .import.patch.json
-{"file": {"data": "$(base64 "$path/$basename-$filename"|tr -d '\n')", "encoding": "base64", "filename": "$filename", "content-type": "$mimetype"}}
-EOF
-        curl -s \
+      curl -s \
         -X PATCH \
         -H "Accept: application/json" \
         -H "Content-type: application/json" \
         --user "admin:admin" \
-        --data "@./.import.patch.json" \
-        "$url"
-        rm -f .import.patch.json
+        --data "@-" \
+        "$url" << EOF
+{"file": {"data": "$(base64 "$path/$basename-$filename"|tr -d '\n')", "encoding": "base64", "filename": "$filename", "content-type": "$mimetype"}}
+EOF
     fi
     return $?
 }

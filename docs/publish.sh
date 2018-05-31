@@ -14,8 +14,10 @@ http () {
         -H "Accept: application/json" \
         -H "Content-type: application/json" \
         --user "admin:admin" \
-        --data "$payload" \
-        "$url"
+        --data "@-" \
+        "$url" << EOF
+$payload
+EOF
     )
     status=$?
     echo "$response"
@@ -79,7 +81,7 @@ publishImageToUrl () {
     basename=$2
     base=$3
     # Build
-    json='{"@type": "Image", "id": "'"$basename"'", "image": {"data": "'"$(base64 "$path"|tr -d '\n')"'", "encoding": "base64", "filename": "'"$basename"'", "content-type": "image/png"}}'
+    json='{"@type": "Image", "title": "'"$basename"'", "id": "'"$basename"'", "image": {"data": "'"$(base64 "$path"|tr -d '\n')"'", "encoding": "base64", "filename": "'"$basename"'", "content-type": "image/png"}}'
     # Post
     response=$(post "$base" "$json")
     url=$(echo "${response}" | jq -r '."@id"')

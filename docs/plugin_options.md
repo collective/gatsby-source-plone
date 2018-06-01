@@ -12,7 +12,7 @@ plugins: [
 
       // Provide authorization token (not required by default)
       // process.env.TOKEN is set by .env
-      // Read more about setup in authorization docs
+      // Read more about setup in authentication docs
       token: process.env.TOKEN,
 
       // Show logs of progress as plugin is run

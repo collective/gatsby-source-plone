@@ -10,6 +10,11 @@ plugins: [
       // The base URL of the Plone site you're using as source
       baseUrl: "localhost:8080/Plone",
 
+      // Provide authorization token (not required by default)
+      // process.env.TOKEN is set by .env
+      // Read more about setup in authorization docs
+      token: process.env.TOKEN,
+
       // Show logs of progress as plugin is run
       // Defaults to false
       showLogs: true,

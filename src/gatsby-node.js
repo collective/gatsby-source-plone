@@ -77,7 +77,7 @@ exports.sourceNodes = async (
   const items = await Promise.all(
     itemsList.map(async item => {
       const url = item['@id'];
-      return await fetchData(url, token);
+      return await fetchData(url, token, expansions);
     })
   );
 

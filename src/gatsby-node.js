@@ -17,8 +17,17 @@ const headersWithToken = (headers, token) => {
   return headers;
 };
 
+// Helper to add expansions parameters
+const urlWithExpansions = (url, expansions) => {
+  if (expansions) {
+    return `${url}?expand=${expansions.join()}`;
+  }
+
+  return `${url}?expand=breadcrumbs,navigation`;
+};
+
 // Helper to get data from url
-const fetchData = async (url, token) => {
+const fetchData = async (url, token, expansions) => {
   const config = {
     headers: {
       accept: 'application/json',
@@ -26,7 +35,9 @@ const fetchData = async (url, token) => {
   };
   config.headers = headersWithToken(config.headers, token);
 
-  const { data } = await axios.get(url, config);
+  const fullUrl = urlWithExpansions(url, expansions);
+
+  const { data } = await axios.get(fullUrl, config);
   return data;
 };
 
@@ -39,7 +50,7 @@ const logMessage = (message, showLogs) => {
 
 exports.sourceNodes = async (
   { boundActionCreators, getNode, hasNodeChanged, store, cache },
-  { baseUrl, token, showLogs = false }
+  { baseUrl, token, expansions, showLogs = false }
 ) => {
   const { createNode } = boundActionCreators;
 

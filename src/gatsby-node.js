@@ -93,7 +93,7 @@ exports.sourceNodes = async (
         mediaType: 'text/html',
       },
     };
-    node.id = item['@id'];
+    node.id = item['@id'].split('?')[0];
     node.parent = item.parent['@id'] ? item.parent['@id'] : null;
     node.children = item.items ? item.items.map(item => item['@id']) : [];
 

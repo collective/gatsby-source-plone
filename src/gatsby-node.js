@@ -10,20 +10,14 @@ const createContentDigest = item =>
 
 // Helper to add token to header if present
 const headersWithToken = (headers, token) => {
-  if (token) {
-    return { ...headers, Authorization: `Bearer ${token}` };
-  }
-
-  return headers;
+  return token ? { ...headers, Authorization: `Bearer ${token}` } : headers;
 };
 
 // Helper to add expansions parameters
 const urlWithExpansions = (url, expansions) => {
-  if (expansions) {
-    return `${url}?expand=${expansions.join()}`;
-  }
-
-  return `${url}?expand=breadcrumbs,navigation`;
+  return expansions
+    ? `${url}?expand=${expansions.join()}`
+    : `${url}?expand=breadcrumbs,navigation`;
 };
 
 // Helper to get data from url
@@ -63,8 +57,9 @@ exports.sourceNodes = async (
     itemsList.push(...data.items);
 
     if (data.batching) {
-      if (data.batching.next) data = await fetchData(data.batching.next, token);
-      else break;
+      if (data.batching.next) {
+        data = await fetchData(data.batching.next, token);
+      } else break;
     } else {
       break;
     }

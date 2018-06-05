@@ -1,5 +1,6 @@
 import axios from 'axios';
 import crypto from 'crypto';
+import url from 'url';
 
 // Helper to create content digest
 const createContentDigest = item =>
@@ -7,6 +8,11 @@ const createContentDigest = item =>
     .createHash(`md5`)
     .update(JSON.stringify(item))
     .digest(`hex`);
+
+// Get URL without expansion parameters
+const urlWithoutParameters = url => {
+  return url.split('?')[0];
+};
 
 // Helper to add token to header if present
 const headersWithToken = (headers, token) => {
@@ -88,7 +94,7 @@ exports.sourceNodes = async (
         mediaType: 'text/html',
       },
     };
-    node.id = item['@id'].split('?')[0];
+    node.id = urlWithoutParameters(item['@id']);
     node.parent = item.parent['@id'] ? item.parent['@id'] : null;
     node.children = item.items ? item.items.map(item => item['@id']) : [];
 
@@ -105,7 +111,7 @@ exports.sourceNodes = async (
       mediaType: 'text/html',
     },
   };
-  ploneSiteNode.id = ploneSite['@id'];
+  ploneSiteNode.id = urlWithoutParameters(ploneSite['@id']);
   ploneSiteNode.parent = null;
   ploneSiteNode.children = ploneSite.items
     ? ploneSite.items.map(item => item['@id'])

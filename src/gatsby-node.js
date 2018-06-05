@@ -44,7 +44,7 @@ exports.sourceNodes = async (
   const { createNode } = boundActionCreators;
 
   logMessage('Fetching URLs', showLogs);
-  const itemsList = [];
+  let itemsList = [];
   let data = await fetchData(`${baseUrl}/@search`, token);
 
   // Loop through batches of items if number of items > 25
@@ -58,6 +58,9 @@ exports.sourceNodes = async (
       break;
     }
   }
+
+  // Filter out Plone site object so that it doesn't get repeated twice
+  itemsList = itemsList.filter(item => item['@id'] !== baseUrl);
 
   logMessage('Fetching item data', showLogs);
   const items = await Promise.all(

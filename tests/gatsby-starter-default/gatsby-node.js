@@ -17,7 +17,7 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
       node.internal.type
     )
   ) {
-    const slug = node['@id'].split(options.baseUrl)[1];
+    const slug = node.id.split(options.baseUrl)[1];
     createNodeField({
       node,
       name: 'slug',

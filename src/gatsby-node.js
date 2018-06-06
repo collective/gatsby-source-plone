@@ -1,5 +1,6 @@
 import axios from 'axios';
 import crypto from 'crypto';
+import url from 'url';
 
 // Helper to create content digest
 const createContentDigest = item =>
@@ -8,17 +9,25 @@ const createContentDigest = item =>
     .update(JSON.stringify(item))
     .digest(`hex`);
 
+// Get URL without expansion parameters
+const urlWithoutParameters = url => {
+  return url.split('?')[0];
+};
+
 // Helper to add token to header if present
 const headersWithToken = (headers, token) => {
-  if (token) {
-    return { ...headers, Authorization: `Bearer ${token}` };
-  }
+  return token ? { ...headers, Authorization: `Bearer ${token}` } : headers;
+};
 
-  return headers;
+// Helper to add expansions parameters
+const urlWithExpansions = (url, expansions) => {
+  return expansions
+    ? `${url}?expand=${expansions.join()}`
+    : `${url}?expand=breadcrumbs,navigation`;
 };
 
 // Helper to get data from url
-const fetchData = async (url, token) => {
+const fetchData = async (url, token, expansions) => {
   const config = {
     headers: {
       accept: 'application/json',
@@ -26,7 +35,9 @@ const fetchData = async (url, token) => {
   };
   config.headers = headersWithToken(config.headers, token);
 
-  const { data } = await axios.get(url, config);
+  const fullUrl = urlWithExpansions(url, expansions);
+
+  const { data } = await axios.get(fullUrl, config);
   return data;
 };
 
@@ -39,7 +50,7 @@ const logMessage = (message, showLogs) => {
 
 exports.sourceNodes = async (
   { boundActionCreators, getNode, hasNodeChanged, store, cache },
-  { baseUrl, token, showLogs = false }
+  { baseUrl, token, expansions, showLogs = false }
 ) => {
   const { createNode } = boundActionCreators;
 
@@ -52,8 +63,9 @@ exports.sourceNodes = async (
     itemsList.push(...data.items);
 
     if (data.batching) {
-      if (data.batching.next) data = await fetchData(data.batching.next, token);
-      else break;
+      if (data.batching.next) {
+        data = await fetchData(data.batching.next, token);
+      } else break;
     } else {
       break;
     }
@@ -66,7 +78,7 @@ exports.sourceNodes = async (
   const items = await Promise.all(
     itemsList.map(async item => {
       const url = item['@id'];
-      return await fetchData(url, token);
+      return await fetchData(url, token, expansions);
     })
   );
 
@@ -82,7 +94,7 @@ exports.sourceNodes = async (
         mediaType: 'text/html',
       },
     };
-    node.id = item['@id'];
+    node.id = urlWithoutParameters(item['@id']);
     node.parent = item.parent['@id'] ? item.parent['@id'] : null;
     node.children = item.items ? item.items.map(item => item['@id']) : [];
 
@@ -90,7 +102,7 @@ exports.sourceNodes = async (
   });
 
   // Fetch data, process node for PloneSite
-  const ploneSite = await fetchData(baseUrl, token);
+  const ploneSite = await fetchData(baseUrl, token, expansions);
   let ploneSiteNode = {
     ...ploneSite,
     internal: {
@@ -99,7 +111,7 @@ exports.sourceNodes = async (
       mediaType: 'text/html',
     },
   };
-  ploneSiteNode.id = ploneSite['@id'];
+  ploneSiteNode.id = urlWithoutParameters(ploneSite['@id']);
   ploneSiteNode.parent = null;
   ploneSiteNode.children = ploneSite.items
     ? ploneSite.items.map(item => item['@id'])

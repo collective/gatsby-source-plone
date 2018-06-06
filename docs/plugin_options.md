@@ -15,6 +15,11 @@ plugins: [
       // Read more about setup in authentication docs
       token: process.env.TOKEN,
 
+      // Expands passed compoenents
+      // Accepts compoenents list as an array
+      // Defaults to ['breadcrumbs', 'navigation']
+      expansions: ['breadcrumbs', 'actions'],
+
       // Show logs of progress as plugin is run
       // Defaults to false
       showLogs: true,

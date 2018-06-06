@@ -102,7 +102,7 @@ exports.sourceNodes = async (
   });
 
   // Fetch data, process node for PloneSite
-  const ploneSite = await fetchData(baseUrl, token);
+  const ploneSite = await fetchData(baseUrl, token, expansions);
   let ploneSiteNode = {
     ...ploneSite,
     internal: {

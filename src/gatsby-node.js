@@ -29,7 +29,7 @@ const urlWithExpansions = (url, expansions) => {
 // Helper to process data before passing it to nodes
 // Replaces `@` to `_` in properties starting with `@`
 // to allow it to be queried with GraphQL
-const processData = data => {
+const processData = (data, baseUrl) => {
   let node = {};
 
   Object.entries(data).map(([key, value]) => {
@@ -41,6 +41,7 @@ const processData = data => {
             updatedValue[key] = {
               items: value.items.map(item => ({
                 _id: item['@id'],
+                _path: item['@id'].split(baseUrl)[1],
                 title: item.title,
               })),
             };
@@ -126,7 +127,7 @@ exports.sourceNodes = async (
       },
     };
 
-    node = { ...node, ...processData(item) };
+    node = { ...node, ...processData(item, baseUrl) };
 
     node.id = urlWithoutParameters(item['@id']);
     node.parent = item.parent['@id'] ? item.parent['@id'] : null;
@@ -145,7 +146,7 @@ exports.sourceNodes = async (
     },
   };
 
-  ploneSiteNode = { ...ploneSiteNode, ...processData(ploneSite) };
+  ploneSiteNode = { ...ploneSiteNode, ...processData(ploneSite, baseUrl) };
 
   ploneSiteNode.id = urlWithoutParameters(ploneSite['@id']);
   ploneSiteNode.parent = null;

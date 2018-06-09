@@ -26,6 +26,38 @@ const urlWithExpansions = (url, expansions) => {
     : `${url}?expand=breadcrumbs,navigation`;
 };
 
+// Helper to process data before passing it to nodes
+// Replaces `@` to `_` in properties starting with `@`
+// to allow it to be queried with GraphQL
+const processData = data => {
+  let node = {};
+
+  Object.entries(data).map(([key, value]) => {
+    if (key.startsWith('@')) {
+      let updatedValue = {};
+      if (key === '@components') {
+        Object.entries(value).map(([key, value]) => {
+          if (value.items && value.items.length > 0) {
+            updatedValue[key] = {
+              items: value.items.map(item => ({
+                _id: item['@id'],
+                title: item.title,
+              })),
+            };
+          }
+        });
+      } else {
+        updatedValue = value;
+      }
+      node['_' + key.slice(1)] = updatedValue;
+    } else {
+      node[key] = value;
+    }
+  });
+
+  return node;
+};
+
 // Helper to get data from url
 const fetchData = async (url, token, expansions) => {
   const config = {
@@ -85,7 +117,6 @@ exports.sourceNodes = async (
   logMessage('Creating node structure', showLogs);
   const nodes = items.map(item => {
     let node = {
-      ...item,
       internal: {
         type: item['@type'].startsWith('Plone')
           ? item['@type'].replace(' ', '')
@@ -94,6 +125,9 @@ exports.sourceNodes = async (
         mediaType: 'text/html',
       },
     };
+
+    node = { ...node, ...processData(item) };
+
     node.id = urlWithoutParameters(item['@id']);
     node.parent = item.parent['@id'] ? item.parent['@id'] : null;
     node.children = item.items ? item.items.map(item => item['@id']) : [];
@@ -104,13 +138,15 @@ exports.sourceNodes = async (
   // Fetch data, process node for PloneSite
   const ploneSite = await fetchData(baseUrl, token, expansions);
   let ploneSiteNode = {
-    ...ploneSite,
     internal: {
       type: 'PloneSite',
       contentDigest: createContentDigest(ploneSite),
       mediaType: 'text/html',
     },
   };
+
+  ploneSiteNode = { ...ploneSiteNode, ...processData(ploneSite) };
+
   ploneSiteNode.id = urlWithoutParameters(ploneSite['@id']);
   ploneSiteNode.parent = null;
   ploneSiteNode.children = ploneSite.items

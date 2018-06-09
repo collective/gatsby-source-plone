@@ -26,6 +26,38 @@ const urlWithExpansions = (url, expansions) => {
     : `${url}?expand=breadcrumbs,navigation`;
 };
 
+// Helper to process data before passing it to nodes
+// Replaces `@` to `_` in properties starting with `@`
+// to allow it to be queried with GraphQL
+const processData = data => {
+  let node = {};
+
+  Object.entries(data).map(([key, value]) => {
+    if (key.startsWith('@')) {
+      let updatedValue = {};
+      if (key === '@components') {
+        Object.entries(value).map(([key, value]) => {
+          if (value.items && value.items.length > 0) {
+            updatedValue[key] = {
+              items: value.items.map(item => ({
+                _id: item['@id'],
+                title: item.title,
+              })),
+            };
+          }
+        });
+      } else {
+        updatedValue = value;
+      }
+      node['_' + key.slice(1)] = updatedValue;
+    } else {
+      node[key] = value;
+    }
+  });
+
+  return node;
+};
+
 // Helper to get data from url
 const fetchData = async (url, token, expansions) => {
   const config = {
@@ -94,28 +126,7 @@ exports.sourceNodes = async (
       },
     };
 
-    Object.entries(item).map(([key, value]) => {
-      if (key.startsWith('@')) {
-        let updatedValue = {};
-        if (key === '@components') {
-          Object.entries(value).map(([key, value]) => {
-            if (value.items && value.items.length > 0) {
-              updatedValue[key] = {
-                items: value.items.map(item => ({
-                  _id: item['@id'],
-                  title: item.title,
-                })),
-              };
-            }
-          });
-        } else {
-          updatedValue = value;
-        }
-        node['_' + key.slice(1)] = updatedValue;
-      } else {
-        node[key] = value;
-      }
-    });
+    node = { ...node, ...processData(item) };
 
     node.id = urlWithoutParameters(item['@id']);
     node.parent = item.parent['@id'] ? item.parent['@id'] : null;
@@ -134,28 +145,7 @@ exports.sourceNodes = async (
     },
   };
 
-  Object.entries(ploneSite).map(([key, value]) => {
-    if (key.startsWith('@')) {
-      let updatedValue = {};
-      if (key === '@components') {
-        Object.entries(value).map(([key, value]) => {
-          if (value.items && value.items.length > 0) {
-            updatedValue[key] = {
-              items: value.items.map(item => ({
-                _id: item['@id'],
-                title: item.title,
-              })),
-            };
-          }
-        });
-      } else {
-        updatedValue = value;
-      }
-      ploneSiteNode['_' + key.slice(1)] = updatedValue;
-    } else {
-      ploneSiteNode[key] = value;
-    }
-  });
+  ploneSiteNode = { ...ploneSiteNode, ...processData(ploneSite) };
 
   ploneSiteNode.id = urlWithoutParameters(ploneSite['@id']);
   ploneSiteNode.parent = null;

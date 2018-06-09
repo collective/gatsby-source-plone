@@ -85,7 +85,6 @@ exports.sourceNodes = async (
   logMessage('Creating node structure', showLogs);
   const nodes = items.map(item => {
     let node = {
-      ...item,
       internal: {
         type: item['@type'].startsWith('Plone')
           ? item['@type'].replace(' ', '')
@@ -94,6 +93,30 @@ exports.sourceNodes = async (
         mediaType: 'text/html',
       },
     };
+
+    Object.entries(item).map(([key, value]) => {
+      if (key.startsWith('@')) {
+        let updatedValue = {};
+        if (key === '@components') {
+          Object.entries(value).map(([key, value]) => {
+            if (value.items && value.items.length > 0) {
+              updatedValue[key] = {
+                items: value.items.map(item => ({
+                  _id: item['@id'],
+                  title: item.title,
+                })),
+              };
+            }
+          });
+        } else {
+          updatedValue = value;
+        }
+        node['_' + key.slice(1)] = updatedValue;
+      } else {
+        node[key] = value;
+      }
+    });
+
     node.id = urlWithoutParameters(item['@id']);
     node.parent = item.parent['@id'] ? item.parent['@id'] : null;
     node.children = item.items ? item.items.map(item => item['@id']) : [];
@@ -104,13 +127,36 @@ exports.sourceNodes = async (
   // Fetch data, process node for PloneSite
   const ploneSite = await fetchData(baseUrl, token, expansions);
   let ploneSiteNode = {
-    ...ploneSite,
     internal: {
       type: 'PloneSite',
       contentDigest: createContentDigest(ploneSite),
       mediaType: 'text/html',
     },
   };
+
+  Object.entries(ploneSite).map(([key, value]) => {
+    if (key.startsWith('@')) {
+      let updatedValue = {};
+      if (key === '@components') {
+        Object.entries(value).map(([key, value]) => {
+          if (value.items && value.items.length > 0) {
+            updatedValue[key] = {
+              items: value.items.map(item => ({
+                _id: item['@id'],
+                title: item.title,
+              })),
+            };
+          }
+        });
+      } else {
+        updatedValue = value;
+      }
+      ploneSiteNode['_' + key.slice(1)] = updatedValue;
+    } else {
+      ploneSiteNode[key] = value;
+    }
+  });
+
   ploneSiteNode.id = urlWithoutParameters(ploneSite['@id']);
   ploneSiteNode.parent = null;
   ploneSiteNode.children = ploneSite.items

@@ -17,8 +17,13 @@ export const documentFragment = graphql`
     id
     title
     description
-    parent {
-      ...Breadcrumbs
+    _components {
+      breadcrumbs {
+        items {
+          _id
+          title
+        }
+      }
     }
     text {
       data

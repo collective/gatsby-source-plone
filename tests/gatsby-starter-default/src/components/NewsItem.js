@@ -23,8 +23,13 @@ export const newsItemFragment = graphql`
     title
     description
     effective
-    parent {
-      ...Breadcrumbs
+    _components {
+      breadcrumbs {
+        items {
+          _id
+          title
+        }
+      }
     }
     text {
       data

@@ -25,8 +25,13 @@ export const FolderFragment = graphql`
     id
     title
     description
-    parent {
-      ...Breadcrumbs
+    _components {
+      breadcrumbs {
+        items {
+          _id
+          title
+        }
+      }
     }
     children {
       ...Document

@@ -27,6 +27,7 @@ export const newsItemFragment = graphql`
       breadcrumbs {
         items {
           _id
+          _path
           title
         }
       }

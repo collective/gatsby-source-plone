@@ -29,8 +29,6 @@ export const documentFragment = graphql`
     text {
       data
     }
-    fields {
-      slug
-    }
+    _path
   }
 `;

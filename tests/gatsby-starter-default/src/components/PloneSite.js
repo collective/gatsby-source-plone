@@ -5,7 +5,7 @@ export default ({ data }) => {
   const index = [];
   const contents = [];
   data.children.forEach(child => {
-    if (child.fields.slug === 'index') {
+    if (child._path === '/index') {
       index.push(
         <div>
           <h2>{child.title}</h2>
@@ -18,7 +18,7 @@ export default ({ data }) => {
     } else {
       contents.push(
         <h4>
-          <Link to={`/${child.fields.slug}/`}>{child.title}</Link>
+          <Link to={child._path}>{child.title}</Link>
         </h4>
       );
     }

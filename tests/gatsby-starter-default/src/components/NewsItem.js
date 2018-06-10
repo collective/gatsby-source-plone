@@ -35,8 +35,6 @@ export const newsItemFragment = graphql`
     text {
       data
     }
-    fields {
-      slug
-    }
+    _path
   }
 `;

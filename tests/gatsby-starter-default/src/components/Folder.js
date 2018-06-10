@@ -12,7 +12,7 @@ export default ({ data }) => (
     {data.children.filter(child => child.fields).map(child => (
       <article>
         <h4>
-          <Link to={`/${child.fields.slug}/`}>{child.title}</Link>
+          <Link to={child._path}>{child.title}</Link>
         </h4>
         <p>{child.description}</p>
       </article>
@@ -38,8 +38,6 @@ export const FolderFragment = graphql`
       ...Document
       ...NewsItem
     }
-    fields {
-      slug
-    }
+    _path
   }
 `;

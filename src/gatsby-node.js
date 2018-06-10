@@ -41,7 +41,8 @@ const processData = (data, baseUrl) => {
             updatedValue[key] = {
               items: value.items.map(item => ({
                 _id: item['@id'],
-                _path: '/' + urlWithoutParameters(item['@id']).split(baseUrl)[1],
+                _path:
+                  '/' + urlWithoutParameters(item['@id']).split(baseUrl)[1],
                 title: item.title,
               })),
             };
@@ -55,6 +56,9 @@ const processData = (data, baseUrl) => {
       node[key] = value;
     }
   });
+
+  // Give node _path to be used similar to slug
+  node._path = '/' + urlWithoutParameters(data['@id']).split(baseUrl)[1];
 
   return node;
 };

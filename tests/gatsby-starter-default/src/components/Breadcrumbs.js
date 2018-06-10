@@ -9,7 +9,7 @@ export default ({ data }) => (
       </li>
       {data._components.breadcrumbs.items.map(item =>
         <li key={item._id} className={'breadcrumb-item'}>
-          <Link to={`/${item._path}`}>
+          <Link to={item._path}>
             {item.title}
           </Link>
         </li>

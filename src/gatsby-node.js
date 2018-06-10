@@ -41,7 +41,7 @@ const processData = (data, baseUrl) => {
             updatedValue[key] = {
               items: value.items.map(item => ({
                 _id: item['@id'],
-                _path: item['@id'].split(baseUrl)[1],
+                _path: '/' + urlWithoutParameters(item['@id']).split(baseUrl)[1],
                 title: item.title,
               })),
             };

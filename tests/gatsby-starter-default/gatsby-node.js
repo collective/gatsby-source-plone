@@ -6,7 +6,7 @@
 
 const path = require('path');
 
-const pages = ['index']; // reserved manual pages
+const pages = ['/index']; // reserved manual pages
 
 exports.createPages = async ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;

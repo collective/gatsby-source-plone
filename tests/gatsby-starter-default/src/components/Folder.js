@@ -9,10 +9,10 @@ export default ({ data }) => (
     <p>
       <strong>{data.description}</strong>
     </p>
-    {data.children.filter(child => child.fields).map(child => (
+    {data.children.map(child => (
       <article>
         <h4>
-          <Link to={`/${child.fields.slug}/`}>{child.title}</Link>
+          <Link to={child._path}>{child.title}</Link>
         </h4>
         <p>{child.description}</p>
       </article>
@@ -25,15 +25,19 @@ export const FolderFragment = graphql`
     id
     title
     description
-    parent {
-      ...Breadcrumbs
+    _components {
+      breadcrumbs {
+        items {
+          _id
+          _path
+          title
+        }
+      }
     }
     children {
       ...Document
       ...NewsItem
     }
-    fields {
-      slug
-    }
+    _path
   }
 `;

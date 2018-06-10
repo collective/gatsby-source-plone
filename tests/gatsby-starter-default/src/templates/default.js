@@ -24,16 +24,16 @@ export default ({ data }) => {
 
 export const query = graphql`
   query DefaultTemplateQuery($slug: String!) {
-    ploneFolder(fields: { slug: { eq: $slug } }) {
+    ploneFolder(_path: { eq: $slug }) {
       ...Folder
     }
-    ploneDocument(fields: { slug: { eq: $slug } }) {
+    ploneDocument(_path: { eq: $slug }) {
       ...Document
     }
-    ploneNewsItem(fields: { slug: { eq: $slug } }) {
+    ploneNewsItem(_path: { eq: $slug }) {
       ...NewsItem
     }
-    ploneSite(fields: { slug: { eq: $slug } }) {
+    ploneSite(_path: { eq: $slug }) {
       ...PloneSite
     }
   }

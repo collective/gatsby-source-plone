@@ -39,7 +39,8 @@ Scenario: Link to previous page
   Click link  Traversal using @search endpoint
   Wait until page contains  plone.restapi
   Page should not contain  Gatsby is a blazing fast
-  Click link  « Return
+  Page should contain  Home
+  Click link  Home
   Page should contain  Gatsby is a blazing fast
 
 Scenario: Children of a folder
@@ -49,4 +50,6 @@ Scenario: Children of a folder
   Page should contain  GatsbyJS plugin for Plone!
   Click link  Let's do a GatsbyJS plugin for Plone!
   Wait until page contains  Gatsby is a blazing fast
+  Page should contain  Home
+  Page should contain  News
   Page should not contain  GSOC for Gatsby

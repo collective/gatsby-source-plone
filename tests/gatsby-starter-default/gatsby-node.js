@@ -5,28 +5,8 @@
  */
 
 const path = require('path');
-const config = require('./gatsby-config');
 
-exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
-  const { createNodeField } = boundActionCreators;
-  const options = config.plugins.filter(
-    plugin => plugin.resolve === 'gatsby-source-plone'
-  )[0].options;
-  if (
-    ['PloneFolder', 'PloneDocument', 'PloneNewsItem', 'PloneSite'].includes(
-      node.internal.type
-    )
-  ) {
-    const slug = node.id.split(options.baseUrl)[1];
-    createNodeField({
-      node,
-      name: 'slug',
-      value: slug === '' ? '/' : slug,
-    });
-  }
-};
-
-const pages = ['index']; // reserved manual pages
+const pages = ['/index']; // reserved manual pages
 
 exports.createPages = async ({ graphql, boundActionCreators }) => {
   const { createPage } = boundActionCreators;
@@ -35,36 +15,28 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
       allPloneFolder {
         edges {
           node {
-            fields {
-              slug
-            }
+            _path
           }
         }
       }
       allPloneDocument {
         edges {
           node {
-            fields {
-              slug
-            }
+            _path
           }
         }
       }
       allPloneNewsItem {
         edges {
           node {
-            fields {
-              slug
-            }
+            _path
           }
         }
       }
       allPloneSite {
         edges {
           node {
-            fields {
-              slug
-            }
+            _path
           }
         }
       }
@@ -77,12 +49,12 @@ exports.createPages = async ({ graphql, boundActionCreators }) => {
       result.data.allPloneNewsItem.edges,
       result.data.allPloneSite.edges
     )
-    .filter(({ node }) => !pages.includes(node.fields.slug))
+    .filter(({ node }) => !pages.includes(node._path))
     .forEach(({ node }) => {
       createPage({
-        path: node.fields.slug,
+        path: node._path,
         component: path.resolve('./src/templates/default.js'),
-        context: { slug: node.fields.slug }, // 'slug' is graphql variable
+        context: { slug: node._path }, // slug is a GraphQL variable
       });
     });
 };

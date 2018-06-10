@@ -26,12 +26,20 @@ const urlWithExpansions = (url, expansions) => {
     : `${url}?expand=breadcrumbs,navigation`;
 };
 
-// Helper to process data before passing it to nodes
-// Replaces `@` to `_` in properties starting with `@`
-// to allow it to be queried with GraphQL
+// Helper to process data to pass it on to nodes
 const processData = (data, baseUrl) => {
-  let node = {};
+  let node = {
+    internal: {
+      type: data['@type'].startsWith('Plone')
+        ? data['@type'].replace(' ', '')
+        : 'Plone' + data['@type'].replace(' ', ''),
+      contentDigest: createContentDigest(data),
+      mediaType: 'text/html',
+    },
+  };
 
+  // Replaces `@` to `_` in properties starting with `@`
+  // to allow it to be queried with GraphQL
   Object.entries(data).map(([key, value]) => {
     if (key.startsWith('@')) {
       let updatedValue = {};
@@ -57,8 +65,13 @@ const processData = (data, baseUrl) => {
     }
   });
 
-  // Give node _path to be used similar to slug
+  // Add node _path variable to be used similar to slug
   node._path = '/' + urlWithoutParameters(data['@id']).split(baseUrl)[1];
+
+  // Tree hierarchy in nodes
+  node.id = urlWithoutParameters(data['@id']);
+  node.parent = data.parent['@id'] ? data.parent['@id'] : null;
+  node.children = data.items ? data.items.map(item => item['@id']) : [];
 
   return node;
 };
@@ -121,42 +134,12 @@ exports.sourceNodes = async (
 
   logMessage('Creating node structure', showLogs);
   const nodes = items.map(item => {
-    let node = {
-      internal: {
-        type: item['@type'].startsWith('Plone')
-          ? item['@type'].replace(' ', '')
-          : 'Plone' + item['@type'].replace(' ', ''),
-        contentDigest: createContentDigest(item),
-        mediaType: 'text/html',
-      },
-    };
-
-    node = { ...node, ...processData(item, baseUrl) };
-
-    node.id = urlWithoutParameters(item['@id']);
-    node.parent = item.parent['@id'] ? item.parent['@id'] : null;
-    node.children = item.items ? item.items.map(item => item['@id']) : [];
-
-    return node;
+    return processData(item, baseUrl);
   });
 
   // Fetch data, process node for PloneSite
   const ploneSite = await fetchData(baseUrl, token, expansions);
-  let ploneSiteNode = {
-    internal: {
-      type: 'PloneSite',
-      contentDigest: createContentDigest(ploneSite),
-      mediaType: 'text/html',
-    },
-  };
-
-  ploneSiteNode = { ...ploneSiteNode, ...processData(ploneSite, baseUrl) };
-
-  ploneSiteNode.id = urlWithoutParameters(ploneSite['@id']);
-  ploneSiteNode.parent = null;
-  ploneSiteNode.children = ploneSite.items
-    ? ploneSite.items.map(item => item['@id'])
-    : [];
+  const ploneSiteNode = processData(ploneSite, baseUrl);
   // Push to nodes array
   nodes.push(ploneSiteNode);
 

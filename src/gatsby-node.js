@@ -124,6 +124,66 @@ const logMessage = (message, showLogs) => {
   }
 };
 
+const processNodesUsingSearchTraversal = async (
+  baseUrl,
+  token,
+  expansions,
+  searchParams,
+  showLogs
+) => {
+  logMessage('Fetching URLs', showLogs);
+  let itemsList = fetchAllItems(baseUrl, token);
+
+  // Filter out Plone site object so that it doesn't get repeated twice
+  itemsList = itemsList.filter(item => item['@id'] !== baseUrl);
+
+  logMessage('Fetching item data', showLogs);
+  const items = await Promise.all(
+    itemsList.map(async item => {
+      const url = item['@id'];
+      return await fetchData(url, token, expansions);
+    })
+  );
+
+  logMessage('Creating node structure', showLogs);
+  const nodes = items.map(item => {
+    return processData(item, baseUrl);
+  });
+
+  // Fetch data, process node for PloneSite
+  const ploneSite = await fetchData(baseUrl, token, expansions);
+  const ploneSiteNode = processData(ploneSite, baseUrl);
+  // Push to nodes array
+  nodes.push(ploneSiteNode);
+
+  return nodes;
+};
+
+const processNodesUsingRecursion = async (
+  baseUrl,
+  token,
+  expansions,
+  showLogs
+) => {
+  let nodes = [];
+  const queue = [baseUrl];
+
+  logMessage('Traversing the site and fetching data', showLogs);
+  while (queue.length > 0) {
+    const url = queue.shift();
+    const itemData = await fetchData(url, token, expansions);
+
+    const children = itemData.items
+      ? itemData.items.map(item => item['@id'])
+      : [];
+    queue.push(...children);
+
+    nodes.push(processData(itemData, baseUrl));
+  }
+
+  return nodes;
+};
+
 exports.sourceNodes = async (
   { boundActionCreators },
   { baseUrl, token, expansions, searchParams, showLogs = false }
@@ -133,46 +193,21 @@ exports.sourceNodes = async (
 
   // @search approach if searchParams present
   if (searchParams) {
-    logMessage('Fetching URLs', showLogs);
-    let itemsList = fetchAllItems(baseUrl, token);
-
-    // Filter out Plone site object so that it doesn't get repeated twice
-    itemsList = itemsList.filter(item => item['@id'] !== baseUrl);
-
-    logMessage('Fetching item data', showLogs);
-    const items = await Promise.all(
-      itemsList.map(async item => {
-        const url = item['@id'];
-        return await fetchData(url, token, expansions);
-      })
+    nodes = await processNodesUsingSearchTraversal(
+      baseUrl,
+      token,
+      expansions,
+      searchParams,
+      showLogs
     );
-
-    logMessage('Creating node structure', showLogs);
-    nodes = items.map(item => {
-      return processData(item, baseUrl);
-    });
-
-    // Fetch data, process node for PloneSite
-    const ploneSite = await fetchData(baseUrl, token, expansions);
-    const ploneSiteNode = processData(ploneSite, baseUrl);
-    // Push to nodes array
-    nodes.push(ploneSiteNode);
   } else {
     // Recursive approach
-    const queue = [baseUrl];
-
-    logMessage('Traversing the site and fetching data', showLogs);
-    while (queue.length > 0) {
-      const url = queue.shift();
-      const itemData = await fetchData(url, token, expansions);
-
-      const children = itemData.items
-        ? itemData.items.map(item => item['@id'])
-        : [];
-      queue.push(...children);
-
-      nodes.push(processData(itemData, baseUrl));
-    }
+    nodes = await processNodesUsingRecursion(
+      baseUrl,
+      token,
+      expansions,
+      showLogs
+    );
   }
 
   logMessage('Creating nodes', showLogs);

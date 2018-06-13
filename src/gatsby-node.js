@@ -30,13 +30,19 @@ const urlWithExpansions = (url, expansions) => {
 const processData = (data, baseUrl) => {
   let node = {
     internal: {
-      type: data['@type'].startsWith('Plone')
-        ? data['@type'].replace(' ', '')
-        : 'Plone' + data['@type'].replace(' ', ''),
       contentDigest: createContentDigest(data),
       mediaType: 'text/html',
     },
   };
+
+  // Check if Plone Site node
+  if (data['@id'] === baseUrl) {
+    node.internal.type = 'PloneSite';
+  } else {
+    node.internal.type = data['@type'].startsWith('Plone')
+      ? data['@type'].replace(' ', '')
+      : 'Plone' + data['@type'].replace(' ', '');
+  }
 
   // Replaces `@` to `_` in properties starting with `@`
   // to allow it to be queried with GraphQL

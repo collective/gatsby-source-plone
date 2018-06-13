@@ -126,34 +126,54 @@ const logMessage = (message, showLogs) => {
 
 exports.sourceNodes = async (
   { boundActionCreators },
-  { baseUrl, token, expansions, showLogs = false }
+  { baseUrl, token, expansions, searchParams, showLogs = false }
 ) => {
   const { createNode } = boundActionCreators;
+  let nodes = [];
 
-  logMessage('Fetching URLs', showLogs);
-  let itemsList = fetchAllItems(baseUrl, token);
+  // @search approach if searchParams present
+  if (searchParams) {
+    logMessage('Fetching URLs', showLogs);
+    let itemsList = fetchAllItems(baseUrl, token);
 
-  // Filter out Plone site object so that it doesn't get repeated twice
-  itemsList = itemsList.filter(item => item['@id'] !== baseUrl);
+    // Filter out Plone site object so that it doesn't get repeated twice
+    itemsList = itemsList.filter(item => item['@id'] !== baseUrl);
 
-  logMessage('Fetching item data', showLogs);
-  const items = await Promise.all(
-    itemsList.map(async item => {
-      const url = item['@id'];
-      return await fetchData(url, token, expansions);
-    })
-  );
+    logMessage('Fetching item data', showLogs);
+    const items = await Promise.all(
+      itemsList.map(async item => {
+        const url = item['@id'];
+        return await fetchData(url, token, expansions);
+      })
+    );
 
-  logMessage('Creating node structure', showLogs);
-  const nodes = items.map(item => {
-    return processData(item, baseUrl);
-  });
+    logMessage('Creating node structure', showLogs);
+    nodes = items.map(item => {
+      return processData(item, baseUrl);
+    });
 
-  // Fetch data, process node for PloneSite
-  const ploneSite = await fetchData(baseUrl, token, expansions);
-  const ploneSiteNode = processData(ploneSite, baseUrl);
-  // Push to nodes array
-  nodes.push(ploneSiteNode);
+    // Fetch data, process node for PloneSite
+    const ploneSite = await fetchData(baseUrl, token, expansions);
+    const ploneSiteNode = processData(ploneSite, baseUrl);
+    // Push to nodes array
+    nodes.push(ploneSiteNode);
+  } else {
+    // Recursive approach
+    const queue = [baseUrl];
+
+    logMessage('Traversing the site and fetching data', showLogs);
+    while (queue.length > 0) {
+      const url = queue.shift();
+      const itemData = await fetchData(url, token, expansions);
+
+      const children = itemData.items
+        ? itemData.items.map(item => item['@id'])
+        : [];
+      queue.push(...children);
+
+      nodes.push(processData(itemData, baseUrl));
+    }
+  }
 
   logMessage('Creating nodes', showLogs);
   nodes.map(node => createNode(node));

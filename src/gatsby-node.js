@@ -76,6 +76,26 @@ const processData = (data, baseUrl) => {
   return node;
 };
 
+const fetchAllItems = async (baseUrl, token) => {
+  let itemsList = [];
+  let data = await fetchData(`${baseUrl}/@search`, token);
+
+  // Loop through batches of items if number of items > 25
+  while (1) {
+    itemsList.push(...data.items);
+
+    if (data.batching) {
+      if (data.batching.next) {
+        data = await fetchData(data.batching.next, token);
+      } else break;
+    } else {
+      break;
+    }
+  }
+
+  return itemsList;
+};
+
 // Helper to get data from url
 const fetchData = async (url, token, expansions) => {
   const config = {
@@ -99,27 +119,13 @@ const logMessage = (message, showLogs) => {
 };
 
 exports.sourceNodes = async (
-  { boundActionCreators, getNode, hasNodeChanged, store, cache },
+  { boundActionCreators },
   { baseUrl, token, expansions, showLogs = false }
 ) => {
   const { createNode } = boundActionCreators;
 
   logMessage('Fetching URLs', showLogs);
-  let itemsList = [];
-  let data = await fetchData(`${baseUrl}/@search`, token);
-
-  // Loop through batches of items if number of items > 25
-  while (1) {
-    itemsList.push(...data.items);
-
-    if (data.batching) {
-      if (data.batching.next) {
-        data = await fetchData(data.batching.next, token);
-      } else break;
-    } else {
-      break;
-    }
-  }
+  let itemsList = fetchAllItems(baseUrl, token);
 
   // Filter out Plone site object so that it doesn't get repeated twice
   itemsList = itemsList.filter(item => item['@id'] !== baseUrl);

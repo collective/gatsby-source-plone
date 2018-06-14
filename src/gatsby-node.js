@@ -1,6 +1,5 @@
 import axios from 'axios';
 import crypto from 'crypto';
-import url from 'url';
 
 // Helper to create content digest
 const createContentDigest = item =>
@@ -9,14 +8,16 @@ const createContentDigest = item =>
     .update(JSON.stringify(item))
     .digest(`hex`);
 
-// Get URL without expansion parameters
-const urlWithoutParameters = url => {
-  return url.split('?')[0];
-};
-
 // Helper to add token to header if present
 const headersWithToken = (headers, token) => {
   return token ? { ...headers, Authorization: `Bearer ${token}` } : headers;
+};
+
+// Display logs when showLogs is true
+const logMessage = (message, showLogs) => {
+  if (showLogs) {
+    console.log(message);
+  }
 };
 
 // Helper to add expansions parameters
@@ -26,7 +27,48 @@ const urlWithExpansions = (url, expansions) => {
     : `${url}?expand=breadcrumbs,navigation`;
 };
 
-// Helper to process data to pass it on to nodes
+// Helper to get URL without expansion parameters
+const urlWithoutParameters = url => {
+  return url.split('?')[0];
+};
+
+// Fetch data from a url
+const fetchData = async (url, token, expansions) => {
+  const config = {
+    headers: {
+      accept: 'application/json',
+    },
+  };
+  config.headers = headersWithToken(config.headers, token);
+
+  const fullUrl = urlWithExpansions(url, expansions);
+
+  const { data } = await axios.get(fullUrl, config);
+  return data;
+};
+
+// Fetch data of all items traversing through batches
+const fetchAllItems = async (baseUrl, token, searchParams) => {
+  let itemsList = [];
+  let data = await fetchData(`${baseUrl}/@search`, token);
+
+  // Loop through batches of items if number of items > 25
+  while (1) {
+    itemsList.push(...data.items);
+
+    if (data.batching) {
+      if (data.batching.next) {
+        data = await fetchData(data.batching.next, token);
+      } else break;
+    } else {
+      break;
+    }
+  }
+
+  return itemsList;
+};
+
+// Process data to pass it on to nodes
 const processData = (data, baseUrl) => {
   let node = {
     internal: {
@@ -82,48 +124,7 @@ const processData = (data, baseUrl) => {
   return node;
 };
 
-const fetchAllItems = async (baseUrl, token) => {
-  let itemsList = [];
-  let data = await fetchData(`${baseUrl}/@search`, token);
-
-  // Loop through batches of items if number of items > 25
-  while (1) {
-    itemsList.push(...data.items);
-
-    if (data.batching) {
-      if (data.batching.next) {
-        data = await fetchData(data.batching.next, token);
-      } else break;
-    } else {
-      break;
-    }
-  }
-
-  return itemsList;
-};
-
-// Helper to get data from url
-const fetchData = async (url, token, expansions) => {
-  const config = {
-    headers: {
-      accept: 'application/json',
-    },
-  };
-  config.headers = headersWithToken(config.headers, token);
-
-  const fullUrl = urlWithExpansions(url, expansions);
-
-  const { data } = await axios.get(fullUrl, config);
-  return data;
-};
-
-// Display logs when showLogs is true
-const logMessage = (message, showLogs) => {
-  if (showLogs) {
-    console.log(message);
-  }
-};
-
+// SEARCH TRAVERSAL ALGORITHM
 const processNodesUsingSearchTraversal = async (
   baseUrl,
   token,
@@ -132,7 +133,7 @@ const processNodesUsingSearchTraversal = async (
   showLogs
 ) => {
   logMessage('Fetching URLs', showLogs);
-  let itemsList = fetchAllItems(baseUrl, token);
+  let itemsList = fetchAllItems(baseUrl, token, searchParams);
 
   // Filter out Plone site object so that it doesn't get repeated twice
   itemsList = itemsList.filter(item => item['@id'] !== baseUrl);
@@ -159,6 +160,7 @@ const processNodesUsingSearchTraversal = async (
   return nodes;
 };
 
+// BFS RECURSIVE ALGORITHM
 const processNodesUsingRecursion = async (
   baseUrl,
   token,
@@ -184,6 +186,7 @@ const processNodesUsingRecursion = async (
   return nodes;
 };
 
+// Main function
 exports.sourceNodes = async (
   { boundActionCreators },
   { baseUrl, token, expansions, searchParams, showLogs = false }

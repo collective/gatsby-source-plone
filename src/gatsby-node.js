@@ -42,9 +42,11 @@ const processParams = params => {
 
 // Helper to add expansions parameters
 const urlWithExpansions = (url, expansions) => {
-  return expansions
-    ? `${url}?expand=${expansions.join()}`
-    : `${url}?expand=breadcrumbs,navigation`;
+  return encodeURIComponent(
+    expansions
+      ? `${url}?expand=${expansions.join()}`
+      : `${url}?expand=breadcrumbs,navigation`
+  );
 };
 
 // Helper to get URL without expansion parameters

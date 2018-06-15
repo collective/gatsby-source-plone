@@ -9,9 +9,8 @@ const createContentDigest = item =>
     .digest(`hex`);
 
 // Helper to add token to header if present
-const headersWithToken = (headers, token) => {
-  return token ? { ...headers, Authorization: `Bearer ${token}` } : headers;
-};
+const headersWithToken = (headers, token) =>
+  token ? { ...headers, Authorization: `Bearer ${token}` } : headers;
 
 // Display logs when showLogs is true
 const logMessage = (message, showLogs) => {
@@ -19,6 +18,22 @@ const logMessage = (message, showLogs) => {
     console.log(message);
   }
 };
+
+// Helper to process an object of params
+// Converts to a string that can be added to a query
+const processParams = params =>
+  params
+    ? '?=' +
+      Object.entries(params)
+        .map(([key, value]) => {
+          if (Array.isArray(value)) {
+            return value.map(valueItem => `${key}=${valueItem}`).join();
+          } else {
+            return `${key}=${value}`;
+          }
+        })
+        .join()
+    : '';
 
 // Helper to add expansions parameters
 const urlWithExpansions = (url, expansions) => {
@@ -50,7 +65,10 @@ const fetchData = async (url, token, expansions) => {
 // Fetch data of all items traversing through batches
 const fetchAllItems = async (baseUrl, token, searchParams) => {
   let itemsList = [];
-  let data = await fetchData(`${baseUrl}/@search`, token);
+  let data = await fetchData(
+    `${baseUrl}/@search/${processParams(searchParams)}`,
+    token
+  );
 
   // Loop through batches of items if number of items > 25
   while (1) {
@@ -133,7 +151,7 @@ const processNodesUsingSearchTraversal = async (
   showLogs
 ) => {
   logMessage('Fetching URLs', showLogs);
-  let itemsList = fetchAllItems(baseUrl, token, searchParams);
+  let itemsList = await fetchAllItems(baseUrl, token, searchParams);
 
   // Filter out Plone site object so that it doesn't get repeated twice
   itemsList = itemsList.filter(item => item['@id'] !== baseUrl);

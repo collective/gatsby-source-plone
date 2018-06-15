@@ -21,19 +21,24 @@ const logMessage = (message, showLogs) => {
 
 // Helper to process an object of params
 // Converts to a string that can be added to a query
-const processParams = params =>
-  params
-    ? '?=' +
-      Object.entries(params)
-        .map(([key, value]) => {
-          if (Array.isArray(value)) {
-            return value.map(valueItem => `${key}=${valueItem}`).join();
-          } else {
-            return `${key}=${value}`;
-          }
-        })
-        .join()
-    : '';
+// Query format: '?key1=value1&key2=value2'
+const processParams = params => {
+  if (params) {
+    return encodeURIComponent(
+      '?' +
+        Object.entries(params)
+          .map(([key, value]) => {
+            if (Array.isArray(value)) {
+              return value.map(v => `${key}=${v}`).join('&');
+            } else {
+              return `${key}=${value}`;
+            }
+          })
+          .join('&')
+    );
+  }
+  return '';
+};
 
 // Helper to add expansions parameters
 const urlWithExpansions = (url, expansions) => {
@@ -66,7 +71,7 @@ const fetchData = async (url, token, expansions) => {
 const fetchAllItems = async (baseUrl, token, searchParams) => {
   let itemsList = [];
   let data = await fetchData(
-    `${baseUrl}/@search/${processParams(searchParams)}`,
+    `${baseUrl}/@search${processParams(searchParams)}`,
     token
   );
 

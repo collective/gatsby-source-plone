@@ -19,53 +19,26 @@ const logMessage = (message, showLogs) => {
   }
 };
 
-// Helper to process an object of params
-// Converts to a string that can be added to a query
-// Query format: '?key1=value1&key2=value2'
-const processParams = params => {
-  if (params) {
-    return encodeURIComponent(
-      '?' +
-        Object.entries(params)
-          .map(([key, value]) => {
-            if (Array.isArray(value)) {
-              return value.map(v => `${key}=${v}`).join('&');
-            } else {
-              return `${key}=${value}`;
-            }
-          })
-          .join('&')
-    );
-  }
-  return '';
-};
-
-// Helper to add expansions parameters
-const urlWithExpansions = (url, expansions) => {
-  return encodeURIComponent(
-    expansions
-      ? `${url}?expand=${expansions.join()}`
-      : `${url}?expand=breadcrumbs,navigation`
-  );
-};
-
 // Helper to get URL without expansion parameters
 const urlWithoutParameters = url => {
   return url.split('?')[0];
 };
 
 // Fetch data from a url
-const fetchData = async (url, token, expansions) => {
+const fetchData = async (url, token, expansions, searchParams) => {
   const config = {
     headers: {
       accept: 'application/json',
     },
+    params: { ...searchParams },
   };
   config.headers = headersWithToken(config.headers, token);
 
-  const fullUrl = urlWithExpansions(url, expansions);
+  if (expansions) {
+    config.params.expand = expansions.join();
+  }
 
-  const { data } = await axios.get(fullUrl, config);
+  const { data } = await axios.get(url, config);
   return data;
 };
 
@@ -73,8 +46,10 @@ const fetchData = async (url, token, expansions) => {
 const fetchAllItems = async (baseUrl, token, searchParams) => {
   let itemsList = [];
   let data = await fetchData(
-    `${baseUrl}/@search${processParams(searchParams)}`,
-    token
+    `${baseUrl}/@search`,
+    token,
+    undefined,
+    searchParams
   );
 
   // Loop through batches of items if number of items > 25
@@ -214,7 +189,13 @@ const processNodesUsingRecursion = async (
 // Main function
 exports.sourceNodes = async (
   { boundActionCreators },
-  { baseUrl, token, expansions, searchParams, showLogs = false }
+  {
+    baseUrl,
+    token,
+    searchParams,
+    expansions = ['breadcrumbs', 'navigation'],
+    showLogs = false,
+  }
 ) => {
   const { createNode } = boundActionCreators;
   let nodes = [];

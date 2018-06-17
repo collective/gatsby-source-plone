@@ -9,9 +9,8 @@ const createContentDigest = item =>
     .digest(`hex`);
 
 // Helper to add token to header if present
-const headersWithToken = (headers, token) => {
-  return token ? { ...headers, Authorization: `Bearer ${token}` } : headers;
-};
+const headersWithToken = (headers, token) =>
+  token ? { ...headers, Authorization: `Bearer ${token}` } : headers;
 
 // Display logs when showLogs is true
 const logMessage = (message, showLogs) => {
@@ -20,37 +19,38 @@ const logMessage = (message, showLogs) => {
   }
 };
 
-// Helper to add expansions parameters
-const urlWithExpansions = (url, expansions) => {
-  return expansions
-    ? `${url}?expand=${expansions.join()}`
-    : `${url}?expand=breadcrumbs,navigation`;
-};
-
 // Helper to get URL without expansion parameters
 const urlWithoutParameters = url => {
   return url.split('?')[0];
 };
 
 // Fetch data from a url
-const fetchData = async (url, token, expansions) => {
+const fetchData = async (url, token, expansions, searchParams) => {
   const config = {
     headers: {
       accept: 'application/json',
     },
+    params: { ...searchParams },
   };
   config.headers = headersWithToken(config.headers, token);
 
-  const fullUrl = urlWithExpansions(url, expansions);
+  if (expansions) {
+    config.params.expand = expansions.join();
+  }
 
-  const { data } = await axios.get(fullUrl, config);
+  const { data } = await axios.get(url, config);
   return data;
 };
 
 // Fetch data of all items traversing through batches
 const fetchAllItems = async (baseUrl, token, searchParams) => {
   let itemsList = [];
-  let data = await fetchData(`${baseUrl}/@search`, token);
+  let data = await fetchData(
+    `${baseUrl}/@search`,
+    token,
+    undefined,
+    searchParams
+  );
 
   // Loop through batches of items if number of items > 25
   while (1) {
@@ -133,7 +133,7 @@ const processNodesUsingSearchTraversal = async (
   showLogs
 ) => {
   logMessage('Fetching URLs', showLogs);
-  let itemsList = fetchAllItems(baseUrl, token, searchParams);
+  let itemsList = await fetchAllItems(baseUrl, token, searchParams);
 
   // Filter out Plone site object so that it doesn't get repeated twice
   itemsList = itemsList.filter(item => item['@id'] !== baseUrl);
@@ -189,7 +189,13 @@ const processNodesUsingRecursion = async (
 // Main function
 exports.sourceNodes = async (
   { boundActionCreators },
-  { baseUrl, token, expansions, searchParams, showLogs = false }
+  {
+    baseUrl,
+    token,
+    searchParams,
+    expansions = ['breadcrumbs', 'navigation'],
+    showLogs = false,
+  }
 ) => {
   const { createNode } = boundActionCreators;
   let nodes = [];

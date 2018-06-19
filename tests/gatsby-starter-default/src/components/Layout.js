@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
 
 import './../styles/bootstrap.scss';
@@ -26,7 +26,7 @@ const TemplateWrapper = ({ children }) => (
     <Header />
     <div className={'container'}>
       <div className={'row'}>
-        <div className={'col-12'}>{children()}</div>
+        <div className={'col-12'}>{children}</div>
       </div>
     </div>
   </div>

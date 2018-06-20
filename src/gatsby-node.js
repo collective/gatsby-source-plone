@@ -188,7 +188,7 @@ const processNodesUsingRecursion = async (
 
 // Main function
 exports.sourceNodes = async (
-  { boundActionCreators },
+  { actions },
   {
     baseUrl,
     token,
@@ -197,7 +197,7 @@ exports.sourceNodes = async (
     showLogs = false,
   }
 ) => {
-  const { createNode } = boundActionCreators;
+  const { createNode } = actions;
   let nodes = [];
 
   // @search approach if searchParams present

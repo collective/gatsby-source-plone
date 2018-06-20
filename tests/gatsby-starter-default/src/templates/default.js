@@ -1,10 +1,12 @@
 import React from 'react';
+
+import Layout from '../components/Layout';
 import Document from '../components/Document';
 import Folder from '../components/Folder';
 import NewsItem from '../components/NewsItem';
 import PloneSite from '../components/PloneSite';
 
-export default ({ data }) => {
+const returnTemplate = (data) => {
   if (data) {
     if (data.ploneFolder) {
       return <Folder key={data.ploneFolder.id} data={data.ploneFolder} />;
@@ -21,6 +23,12 @@ export default ({ data }) => {
     return null;
   }
 };
+
+export default ({ data }) => (
+  <Layout>
+    {returnTemplate(data)}
+  </Layout>
+)
 
 export const query = graphql`
   query DefaultTemplateQuery($slug: String!) {

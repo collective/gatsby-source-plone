@@ -4,8 +4,8 @@
   "description": "Source plugin for pulling data into Gatsby from Plone sites",
   "main": "index.js",
   "scripts": {
-    "build": "babel src --out-dir . --ignore __tests__",
-    "watch": "babel -w src --out-dir . --ignore __tests__",
+    "build": "babel src -o gatsby-node.js --ignore __tests__",
+    "watch": "babel -w src -o gatsby-node.js --ignore __tests__",
     "prepublish": "cross-env NODE_ENV=production npm run build",
     "test": "jest"
   },

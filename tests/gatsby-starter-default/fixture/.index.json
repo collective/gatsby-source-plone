@@ -23,27 +23,6 @@
       "title": "News"
     },
     {
-      "@id": "http://localhost:8080/Plone/index",
-      "@type": "Document",
-      "description": "",
-      "review_state": "published",
-      "title": "gatsby-source-plone"
-    },
-    {
-      "@id": "http://localhost:8080/Plone/search_traversal",
-      "@type": "Document",
-      "description": "",
-      "review_state": "published",
-      "title": "Traversal using @search endpoint"
-    },
-    {
-      "@id": "http://localhost:8080/Plone/plugin_options",
-      "@type": "Document",
-      "description": "",
-      "review_state": "published",
-      "title": "Plugin Options"
-    },
-    {
       "@id": "http://localhost:8080/Plone/testcases",
       "@type": "Folder",
       "description": "A folder with different standard content types that Plone supports out of the box",
@@ -56,9 +35,16 @@
       "description": "",
       "review_state": "published",
       "title": "Docs"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/index",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "gatsby-source-plone"
     }
   ],
-  "items_total": 6,
+  "items_total": 4,
   "parent": {},
   "title": "Plone site"
 }

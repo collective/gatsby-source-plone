@@ -36,7 +36,7 @@ coverage: node_modules
 
 .PHONY: coveralls
 coveralls: coverage
-	cat ./coverage/lcov.info | coveralls.js
+	cat ./coverage/lcov.info | coveralls
 
 .PHONY: watch-plugin
 watch-plugin:

@@ -1,0 +1,54 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/docs/authentication/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/docs/authentication/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/docs/authentication/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/docs/authentication/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/docs/authentication",
+  "@type": "Document",
+  "UID": "6fb638f3dc6d479d8e2aaa5f094597d2",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-06-23T21:20:10+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "authentication",
+  "is_folderish": false,
+  "language": "",
+  "layout": "document_view",
+  "modified": "2018-06-23T21:20:10+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/docs",
+    "@type": "Folder",
+    "description": "",
+    "review_state": "published",
+    "title": "Docs"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "table_of_contents": null,
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>For Plone sites requiring authentication to use plone.restapi, use the following guide to set up a safe method of authentication using <a href=\"http://plonerestapi.readthedocs.io/en/latest/authentication.html#json-web-tokens-jwt\">JWT</a> and <a href=\"https://github.com/motdotla/dotenv\">dotenv</a> configuration.</p>\n<ul>\n<li>In UNIX-like systems (OSX, Linux, Linux subsystem for Windows), a bash script would serve as a good way to retrieve the JWT from plone.restapi, by prompting for username and password:</li>\n</ul>\n<pre><code class=\"lang-bash\"># 1. enter a new bash environment\nbash\n# 2. read username into environment variable\nread -p \"Username: \" USERNAME\n# 3. read password into environment variable without displaying it while typing\nread -sp \"Password: \" PASSWORD\n# 4. request authorization token\ncurl -s -X POST http://localhost:8080/Plone/@login -H 'Accept: application/json' -H 'Content-Type: application/json' --data-raw '{\"login\": \"'\"$USERNAME\"'\", \"password\": \"'\"$PASSWORD\"'\"}'\n# 5. exit bash to forget environment variables\nexit\n</code></pre>\n<ul>\n<li>This would give you a token as output:</li>\n</ul>\n<pre><code>{\n  \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmdWxsbmFtZSI6IkpvaG4gRG9lIiwic3ViIjoidXNlcm5hbWUiLCJleHAiOjE1Mjc0NDk0NTl9.epewKm09S6JXe07Ha6UNicN7v9MT32Rrkflxq2OqVRI\"\n}\n</code></pre><ul>\n<li>Install dotenv and setup <code>.env</code> with the token so that it can be used in the Gatsby project</li>\n</ul>\n<pre><code>// Install dotenv\nyarn install dotenv\n\n\n// In .env in the project folder\nTOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmdWxsbmFtZSI6IkpvaG4gRG9lIiwic3ViIjoidXNlcm5hbWUiLCJleHAiOjE1Mjc0NDk0NTl9.epewKm09S6JXe07Ha6UNicN7v9MT32Rrkflxq2OqVRI\n</code></pre><ul>\n<li>Finally setup <code>gatsby-config.js</code> to use this in your project:</li>\n</ul>\n<pre><code class=\"lang-javascript\">// Top of your file\nrequire(\"dotenv\").config({\n  path: '.env',\n});\n\n// In plugins list\n{\n  resolve: 'gatsby-source-plone',\n  options: {\n    baseUrl: 'http://localhost:8080/Plone/',\n    token: process.env.TOKEN,\n  },\n}\n</code></pre>",
+    "encoding": "utf-8"
+  },
+  "title": "Authentication",
+  "version": "current"
+}

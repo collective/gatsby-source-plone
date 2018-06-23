@@ -1,0 +1,54 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/docs/index/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/docs/index/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/docs/index/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/docs/index/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/docs/index",
+  "@type": "Document",
+  "UID": "417e0146e0144d42bb22b4c3b7df7865",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-06-23T21:20:08+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": "2018-06-23T21:23:19",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "index",
+  "is_folderish": false,
+  "language": "",
+  "layout": "document_view",
+  "modified": "2018-06-23T21:23:19+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/docs",
+    "@type": "Folder",
+    "description": "",
+    "review_state": "published",
+    "title": "Docs"
+  },
+  "relatedItems": [],
+  "review_state": "private",
+  "rights": "",
+  "subjects": [],
+  "table_of_contents": null,
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Gatsby is a blazing fast static site generator for React. By using Plone as source, this can be used to generate a static site with PWA features with something equivalent to the click of a button. That’s the essence of the <strong>“Big Green Button”</strong> proposal, according to <strong>Martin Aspeli</strong>, who wrote a blog post <strong>\"<a href=\"http://www.martinaspeli.net/articles/pete-and-andy-try-plone-4\">Pete and Andy try Plone 4</a>\"</strong>:</p>\n<p><em>\"Andy goes to Plone's Deployment control panel. There he finds a Big Green Button.\nHe pushes it and covers his eyes. A minute later, a bunch of static HTML files appear in a directory on the server, covering the Plone site, with basic navigation and a site map. Search is provided via a form that posts to Google for search results on the current site.\"</em></p>\n<p>A gatsby-source plugin pulls the whole content tree from the plone.restapi and makes it available for querying via GraphQL in a hierarchical data structure. The gatsby-plone-starter that uses the plugin to source the data from a Plone site will illustrate all use cases of the plugin in a Gatsby project.</p>",
+    "encoding": "utf-8"
+  },
+  "title": "gatsby-source-plone",
+  "version": "current"
+}

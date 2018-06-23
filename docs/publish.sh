@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-baseUrl="http://localhost:8080/Plone"
+baseUrl="http://localhost:8080/Plone/docs"
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 marked="$DIR/../node_modules/.bin/marked"

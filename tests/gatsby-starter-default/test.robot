@@ -57,3 +57,24 @@ Scenario: Children of a folder
   Page should contain  Home
   Page should contain  Docs
   Page should not contain  Plugin Options
+
+Scenario: Deep folder structure
+  Go To  http://localhost:9000
+  Wait until page contains  Gatsby plugin for Plone
+  Page should contain  Testcases
+  Click link  Testcases
+  Page should contain  Subfolder level two
+  Click link  Subfolder level two
+  Page should contain  Level three
+  Click link  Level three
+  Page should contain  Level four
+  Click link  Level four
+  Page should contain  Level four
+  # Test that breadcrumbs are shown
+  Page should contain  Home
+  Page should contain  Testcases
+  Page should contain  Subfolder level two
+  Page should contain  Level three
+  Page should contain  Level four
+  # Test that other folders from root level are not shown
+  Page should not contain  Docs

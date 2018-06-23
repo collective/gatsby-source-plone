@@ -37,7 +37,15 @@ export const FolderFragment = graphql`
     children {
       ...Document
       ...NewsItem
+      ...SubFolder
     }
+    _path
+  }
+
+  fragment SubFolder on PloneFolder {
+    id
+    title
+    description
     _path
   }
 `;

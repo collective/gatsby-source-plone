@@ -49,9 +49,16 @@
       "description": "A folder with different standard content types that Plone supports out of the box",
       "review_state": "published",
       "title": "Testcases"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/docs",
+      "@type": "Folder",
+      "description": "",
+      "review_state": "published",
+      "title": "Docs"
     }
   ],
-  "items_total": 5,
+  "items_total": 6,
   "parent": {},
   "title": "Plone site"
 }

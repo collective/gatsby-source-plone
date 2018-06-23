@@ -13,11 +13,11 @@ addons:
 services:
 - docker
 script:
-- make purge init-backend test
+- make purge init-backend test-all
 after_success:
 - test $TRAVIS_BRANCH = "master" &&
   test $(node --version) = "v10.1.0" &&
-  GATSBY_BUILD_FLAGS=--prefix-paths make clean build
+  GATSBY_BUILD_FLAGS=--prefix-paths make clean coveralls build
 deploy:
   provider: pages
   github-token: "$GITHUB_TOKEN"

@@ -6,7 +6,7 @@ import Folder from '../components/Folder';
 import NewsItem from '../components/NewsItem';
 import PloneSite from '../components/PloneSite';
 
-const returnTemplate = (data) => {
+const returnTemplate = data => {
   if (data) {
     if (data.ploneFolder) {
       return <Folder key={data.ploneFolder.id} data={data.ploneFolder} />;
@@ -24,24 +24,20 @@ const returnTemplate = (data) => {
   }
 };
 
-export default ({ data }) => (
-  <Layout>
-    {returnTemplate(data)}
-  </Layout>
-)
+export default ({ data }) => <Layout>{returnTemplate(data)}</Layout>;
 
 export const query = graphql`
-  query DefaultTemplateQuery($slug: String!) {
-    ploneFolder(_path: { eq: $slug }) {
+  query DefaultTemplateQuery($path: String!) {
+    ploneFolder(_path: { eq: $path }) {
       ...Folder
     }
-    ploneDocument(_path: { eq: $slug }) {
+    ploneDocument(_path: { eq: $path }) {
       ...Document
     }
-    ploneNewsItem(_path: { eq: $slug }) {
+    ploneNewsItem(_path: { eq: $path }) {
       ...NewsItem
     }
-    ploneSite(_path: { eq: $slug }) {
+    ploneSite(_path: { eq: $path }) {
       ...PloneSite
     }
   }

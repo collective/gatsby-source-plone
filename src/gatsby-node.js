@@ -1,28 +1,11 @@
 import axios from 'axios';
-import crypto from 'crypto';
 
-// Helper to create content digest
-const createContentDigest = item =>
-  crypto
-    .createHash(`md5`)
-    .update(JSON.stringify(item))
-    .digest(`hex`);
-
-// Helper to add token to header if present
-const headersWithToken = (headers, token) =>
-  token ? { ...headers, Authorization: `Bearer ${token}` } : headers;
-
-// Display logs when showLogs is true
-const logMessage = (message, showLogs) => {
-  if (showLogs) {
-    console.log(message);
-  }
-};
-
-// Helper to get URL without expansion parameters
-const urlWithoutParameters = url => {
-  return url.split('?')[0];
-};
+import {
+  createContentDigest,
+  headersWithToken,
+  logMessage,
+  urlWithoutParameters,
+} from './normalize';
 
 // Fetch data from a url
 const fetchData = async (url, token, expansions, searchParams) => {

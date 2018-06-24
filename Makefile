@@ -22,15 +22,36 @@ prettier: node_modules
 	prettier --write $$(find src -name "*.js")
 	$(MAKE) -C tests/gatsby-starter-default prettier
 
+.PHONY: test
 test: node_modules
+	jest src
 
+.PHONY: test-all
+test-all: test
+	make -C tests/gatsby-starter-default test
+
+.PHONY: coverage
+coverage: node_modules
+	jest --coverage src
+
+.PHONY: coveralls
+coveralls: coverage
+	cat ./coverage/lcov.info | coveralls
+
+.PHONY: watch-plugin
 watch-plugin:
 	babel -w src --out-dir . --ignore __tests__
 
+.PHONY: watch-test
+watch-test: node_modules
+	jest --watch src
+
+.PHONY: watch-tests
 watch-tests:
 	nodemon -w gatsby-node.js \
 	--exec "$(MAKE) -C tests/gatsby-starter-default clean watch"
 
+.PHONY: watch
 watch: node_modules
 	make -j watch-plugin watch-tests
 
@@ -43,3 +64,4 @@ gatsby-node.js: node_modules $(SOURCES)
 node_modules: package.json
 	yarn install
 	yarn link
+	touch node_modules

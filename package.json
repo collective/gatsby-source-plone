@@ -6,7 +6,8 @@
   "scripts": {
     "build": "babel src --out-dir . --ignore __tests__",
     "watch": "babel -w src --out-dir . --ignore __tests__",
-    "prepublish": "cross-env NODE_ENV=production npm run build"
+    "prepublish": "cross-env NODE_ENV=production npm run build",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -28,8 +29,10 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.1",
+    "coveralls": "^3.0.1",
     "cross-env": "^5.1.5",
     "gatsby": "next",
+    "jest": "^23.1.0",
     "marked": "^0.3.19",
     "nodemon": "^1.17.4",
     "prettify": "^0.1.7"

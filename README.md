@@ -121,10 +121,22 @@ make purge
 
 ### Tests
 
-Run acceptance tests:
+Run unit tests:
 
 ```bash
 make test
+```
+
+Watch unit tests:
+
+```bash
+make watch-test
+```
+
+Run both unit tests and acceptance tests:
+
+```bash
+make test-all
 ```
 
 This command will automatically fire up the Plone backend, build and start Gatsby and the execute the selenium-based acceptance tests.

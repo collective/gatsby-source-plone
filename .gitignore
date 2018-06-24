@@ -50,3 +50,4 @@ node_modules/
 
 # Build output
 gatsby-node.js
+normalize.js

@@ -1,0 +1,54 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/docs/tree-hierarchy/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/docs/tree-hierarchy/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/docs/tree-hierarchy/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/docs/tree-hierarchy/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/docs/tree-hierarchy",
+  "@type": "Document",
+  "UID": "807c5249ab8b4770be973624e42ac5c9",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-06-23T21:20:12+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "tree-hierarchy",
+  "is_folderish": false,
+  "language": "",
+  "layout": "document_view",
+  "modified": "2018-06-23T21:20:12+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/docs",
+    "@type": "Folder",
+    "description": "",
+    "review_state": "published",
+    "title": "Docs"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "table_of_contents": null,
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>In Gatsby hierarchy between nodes is established using the <code>parent</code> and <code>children</code> attributes of the node object. These attributes can be assigned with ids establishing the relation. A node can only have one parent and but it's children is an array of nodes.</p>\n<p>A sample for this kind of relationship is illustrated in this <a href=\"https://gist.github.com/ajayns/53c5cef6b83a7d7f70bb369b58706698\">gist</a> in which basic parent-child hierarchy is established and queried.</p>\n<p>In <code>tests/gatsby-starter-default</code> this is illustrated for instance, in the <a href=\"https://github.com/collective/gatsby-source-plone/blob/master/tests/gatsby-starter-default/src/components/Folder.js\">Folder component</a>, where details of it's children are retrieved:</p>\n<pre><code class=\"lang-graphql\">fragment Folder on PloneFolder {\n  id\n  title\n  description\n  parent {\n    ...Breadcrumbs\n  }\n  children {\n    ...Document\n    ...NewsItem\n  }\n  fields {\n    slug\n  }\n}\n</code></pre>",
+    "encoding": "utf-8"
+  },
+  "title": "Tree Hierarchy",
+  "version": "current"
+}

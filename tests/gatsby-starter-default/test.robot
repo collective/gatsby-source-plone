@@ -13,43 +13,68 @@ Scenario: Front page
   Go To  http://localhost:9000
   Wait until page contains  Gatsby plugin for Plone
   Page should contain  gatsby-source-plone
-  Page should contain  Traversal using @search endpoint
+  Page should contain  News
+  Page should contain  Docs
 
 Scenario: Link to sub page
   Go To  http://localhost:9000
   Wait until page contains  Gatsby plugin for Plone
-  Page should contain  Traversal using @search endpoint
-  Click link  Traversal using @search endpoint
-  Wait until page contains  plone.restapi
+  Page should contain  Docs
+  Page should not contain  Plugin Options
+  Click link  Docs
+  Wait until page contains  Plugin Options
 
 Scenario: Link back to home
   Go To  http://localhost:9000
   Wait until page contains  Gatsby plugin for Plone
-  Page should contain  Traversal using @search endpoint
-  Click link  Traversal using @search endpoint
-  Wait until page contains  plone.restapi
-  Page should not contain  Gatsby is a blazing fast
+  Page should contain  Docs
+  Page should not contain  Plugin Options
+  Click link  Docs
+  Wait until page contains  Plugin Options
   Click link  Learn more »
-  Page should contain  Gatsby is a blazing fast
+  Wait until page contains  Gatsby plugin for Plone
+  Page should not contain  Plugin Options
 
 Scenario: Link to previous page
   Go To  http://localhost:9000
   Wait until page contains  Gatsby plugin for Plone
-  Page should contain  Traversal using @search endpoint
-  Click link  Traversal using @search endpoint
-  Wait until page contains  plone.restapi
-  Page should not contain  Gatsby is a blazing fast
+  Page should contain  Docs
+  Page should not contain  Plugin Options
+  Click link  Docs
+  Wait until page contains  Plugin Options
   Page should contain  Home
   Click link  Home
-  Page should contain  Gatsby is a blazing fast
+  Wait until page contains  Gatsby plugin for Plone
+  Page should not contain  Plugin Options
 
 Scenario: Children of a folder
-  Go To  http://localhost:9000/news
-  Wait until page contains  News on gatsby-source-plone development
-  Page should contain  GSOC for Gatsby
-  Page should contain  GatsbyJS plugin for Plone!
-  Click link  Let's do a GatsbyJS plugin for Plone!
-  Wait until page contains  Gatsby is a blazing fast
+  Go To  http://localhost:9000/docs
+  Wait until page contains  Plugin Options
+  Page should contain  Authentication
+  Page should not contain  token
+  Click link  Authentication
+  Wait until page contains  token
   Page should contain  Home
-  Page should contain  News
-  Page should not contain  GSOC for Gatsby
+  Page should contain  Docs
+  Page should not contain  Plugin Options
+
+Scenario: Deep folder structure
+  Go To  http://localhost:9000
+  Wait until page contains  Gatsby plugin for Plone
+  Page should contain  Testcases
+  Click link  Testcases
+  Page should contain  Subfolder level two
+  Click link  Subfolder level two
+  Page should contain  Level three
+  Click link  Level three
+  Page should contain  Level four
+  Click link  Level four
+  Page should contain  Level four
+  # Test that breadcrumbs are shown
+  Page should contain  Home
+  Page should contain  Testcases
+  Page should contain  Subfolder level two
+  Page should contain  Level three
+  Page should contain  Level four
+  # Test that other folders from root level are not shown
+  Page should not contain  Docs

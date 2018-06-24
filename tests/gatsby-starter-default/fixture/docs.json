@@ -1,0 +1,113 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/docs/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/docs/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/docs/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/docs/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/docs",
+  "@type": "Folder",
+  "UID": "8ef375e62a7f48b6adbc19de5574f0f5",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2018-06-23T21:19:38+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": "2018-06-23T21:22:27",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "docs",
+  "is_folderish": true,
+  "items": [
+    {
+      "@id": "http://localhost:8080/Plone/docs/index",
+      "@type": "Document",
+      "description": "",
+      "review_state": "private",
+      "title": "gatsby-source-plone"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/docs/plugin_options",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Plugin Options"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/docs/authentication",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Authentication"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/docs/tree-hierarchy",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Tree Hierarchy"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/docs/expansions",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Expansions"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/docs/recursive_traversal",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Traversal using recursion"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/docs/search_traversal",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Traversal using @search endpoint"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/docs/search_parameters",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Search Parameters"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/docs/gatsby_v2",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Migration to Gatsby v2"
+    }
+  ],
+  "items_total": 9,
+  "language": "en",
+  "layout": "listing_view",
+  "modified": "2018-06-23T21:22:27+00:00",
+  "nextPreviousEnabled": false,
+  "parent": {
+    "@id": "http://localhost:8080/Plone",
+    "@type": "Plone Site",
+    "description": "",
+    "title": "Plone site"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "Docs",
+  "version": "current"
+}

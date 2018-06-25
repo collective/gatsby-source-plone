@@ -32,6 +32,7 @@
     "coveralls": "^3.0.1",
     "cross-env": "^5.1.5",
     "gatsby": "next",
+    "gatsby-source-filesystem": "^1.5.39",
     "jest": "^23.1.0",
     "marked": "^0.3.19",
     "nodemon": "^1.17.4",

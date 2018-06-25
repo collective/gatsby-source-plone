@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { createRemoteFileNode } from 'gatsby-source-filesystem';
 
 import {
   createContentDigest,
@@ -107,6 +108,37 @@ const processData = (data, baseUrl) => {
   return node;
 };
 
+// Handle file nodes
+// Currently only handles images, all other types TODO
+const processFileNodes = async (nodes, store, cache, createNode) => {
+  const updatedNodes = await Promise.all(
+    nodes.map(async node => {
+      let fileNode;
+
+      if (node.internal.type === 'PloneImage') {
+        try {
+          fileNode = await createRemoteFileNode({
+            url: node.image.download,
+            store,
+            cache,
+            createNode,
+          });
+        } catch (e) {
+          console.log('Error creating file nodes: ', e);
+        }
+      }
+
+      if (fileNode) {
+        return { ...node, localFile___NODE: fileNode.id };
+      } else {
+        return node;
+      }
+    })
+  );
+
+  return updatedNodes;
+};
+
 // SEARCH TRAVERSAL ALGORITHM
 const processNodesUsingSearchTraversal = async (
   baseUrl,
@@ -171,7 +203,7 @@ const processNodesUsingRecursion = async (
 
 // Main function
 exports.sourceNodes = async (
-  { actions },
+  { actions, store, cache },
   {
     baseUrl,
     token,
@@ -201,6 +233,9 @@ exports.sourceNodes = async (
       showLogs
     );
   }
+
+  logMessage('Creating file nodes', showLogs);
+  nodes = await processFileNodes(nodes, store, cache, createNode);
 
   logMessage('Creating nodes', showLogs);
   nodes.map(node => createNode(node));

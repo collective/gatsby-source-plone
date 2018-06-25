@@ -115,13 +115,17 @@ const processFileNodes = async (nodes, store, cache, createNode) => {
     nodes.map(async node => {
       let fileNode;
 
-      if (node.internal.type === 'PloneImage') {
+      let createImageNode = (node, source) => {
+        createNode({ ...node, extension: 'png' }, source);
+      };
+
+      if (node.internal.type === 'PloneNewsItem') {
         try {
           fileNode = await createRemoteFileNode({
             url: node.image.download,
             store,
             cache,
-            createNode,
+            createNode: createImageNode,
           });
         } catch (e) {
           console.log('Error creating file nodes: ', e);

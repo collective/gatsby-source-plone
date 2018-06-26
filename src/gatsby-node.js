@@ -115,7 +115,10 @@ const processFileNodes = async (nodes, store, cache, createNode) => {
     nodes.map(async node => {
       let fileNode;
 
-      let createImageNode = (fileNode, source) => {
+      // Wrapper function for createNode
+      // Adds 'png' extension to node so that gatsby-tranform-sharp recognizes it
+      // Also, appends existing node.image data along with fileNode data
+      const createImageNode = (fileNode, source) => {
         createNode({ ...fileNode, ...node.image, extension: 'png' }, source);
       };
 
@@ -128,7 +131,7 @@ const processFileNodes = async (nodes, store, cache, createNode) => {
             createNode: createImageNode,
           });
         } catch (e) {
-          console.log('Error creating file nodes: ', e);
+          console.error('Error creating file nodes: ', e);
         }
       }
 

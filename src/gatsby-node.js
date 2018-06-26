@@ -115,8 +115,8 @@ const processFileNodes = async (nodes, store, cache, createNode) => {
     nodes.map(async node => {
       let fileNode;
 
-      let createImageNode = (node, source) => {
-        createNode({ ...node, extension: 'png' }, source);
+      let createImageNode = (fileNode, source) => {
+        createNode({ ...fileNode, ...node.image, extension: 'png' }, source);
       };
 
       if (node.internal.type === 'PloneNewsItem') {
@@ -133,7 +133,7 @@ const processFileNodes = async (nodes, store, cache, createNode) => {
       }
 
       if (fileNode) {
-        return { ...node, localFile___NODE: fileNode.id };
+        return { ...node, image___NODE: fileNode.id };
       } else {
         return node;
       }

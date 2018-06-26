@@ -12,7 +12,7 @@
     "gatsby-plugin-sass": "next",
     "gatsby-plugin-sharp": "^1.6.48",
     "gatsby-source-plone": "file:../..",
-    "gatsby-transformer-sharp": "^1.6.27",
+    "gatsby-transformer-sharp": "next",
     "node-sass": "^4.9.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

@@ -6,7 +6,7 @@ export default ({ data }) => (
   <article>
     <Breadcrumbs data={data} />
     <h3>{data.title}</h3>
-    <Img resolutions={data.image.childImageSharp.resolutions} />
+    <Img fixed={data.image.childImageSharp.fixed} />
     <p>
       <small>
         Published <em>{data.effective}</em>
@@ -27,8 +27,8 @@ export const newsItemFragment = graphql`
     effective
     image {
       childImageSharp {
-        resolutions(width: 125, height: 125) {
-          ...GatsbyImageSharpResolutions
+        fixed(width: 125, height: 125) {
+          ...GatsbyImageSharpFixed
         }
       }
     }

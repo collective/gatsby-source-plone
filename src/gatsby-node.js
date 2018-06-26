@@ -122,7 +122,7 @@ const processFileNodes = async (nodes, store, cache, createNode) => {
         createNode({ ...fileNode, ...node.image, extension: 'png' }, source);
       };
 
-      if (node.internal.type === 'PloneNewsItem') {
+      if (['PloneNewsItem', 'PloneImage'].indexOf(node.internal.type) > -1) {
         try {
           fileNode = await createRemoteFileNode({
             url: node.image.download,

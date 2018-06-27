@@ -6,7 +6,7 @@ export default ({ data }) => (
   <article>
     <Breadcrumbs data={data} />
     <h3>{data.title}</h3>
-    <Img fixed={data.image.childImageSharp.fixed} />
+    <Img resolutions={data.image.childImageSharp.fixed} />
     <p>
       <small>
         Published <em>{data.effective}</em>

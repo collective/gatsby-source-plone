@@ -4330,7 +4330,7 @@ gatsby-source-filesystem@^1.5.39:
     slash "^1.0.0"
     valid-url "^1.0.9"
 
-gatsby@^2.0.0-beta.12:
+gatsby@next:
   version "2.0.0-beta.12"
   resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.0.0-beta.12.tgz#5cd7c7a350ac773bd3489d2c48db25fe3d4bb93f"
   dependencies:

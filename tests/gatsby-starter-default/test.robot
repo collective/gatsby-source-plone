@@ -84,5 +84,5 @@ Scenario: Image in a News Item
   Wait until page contains  News
   Click link  GSOC for Gatsby source for Plone started
   Page should contain  GSOC for Gatsby
-  Page should contain element  css=h3+img
+  Page should contain element  css=h3 + .gatsby-image-outer-wrapper img
 

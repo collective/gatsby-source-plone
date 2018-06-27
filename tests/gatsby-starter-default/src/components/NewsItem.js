@@ -1,10 +1,12 @@
 import React from 'react';
 import Breadcrumbs from '../components/Breadcrumbs';
+import Img from 'gatsby-image';
 
 export default ({ data }) => (
   <article>
     <Breadcrumbs data={data} />
     <h3>{data.title}</h3>
+    <Img resolutions={data.image.childImageSharp.fixed} />
     <p>
       <small>
         Published <em>{data.effective}</em>
@@ -23,6 +25,13 @@ export const newsItemFragment = graphql`
     title
     description
     effective
+    image {
+      childImageSharp {
+        fixed(width: 125, height: 125) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
     _components {
       breadcrumbs {
         items {

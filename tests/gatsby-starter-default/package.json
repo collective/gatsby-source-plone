@@ -7,13 +7,16 @@
     "bootstrap": "^4.1.1",
     "dotenv": "^5.0.1",
     "gatsby": "next",
+    "gatsby-image": "^1.0.54",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-sass": "next",
+    "gatsby-plugin-sharp": "next",
+    "gatsby-source-plone": "file:../..",
+    "gatsby-transformer-sharp": "next",
     "node-sass": "^4.9.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-helmet": "^5.2.0",
-    "gatsby-source-plone": "file:../.."
+    "react-helmet": "^5.2.0"
   },
   "keywords": [
     "gatsby"

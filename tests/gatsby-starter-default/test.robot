@@ -78,3 +78,11 @@ Scenario: Deep folder structure
   Page should contain  Level four
   # Test that other folders from root level are not shown
   Page should not contain  Docs
+
+Scenario: Image in a News Item
+  Go To  http://localhost:9000/News
+  Wait until page contains  News
+  Click link  GSOC for Gatsby source for Plone started
+  Page should contain  GSOC for Gatsby
+  Page should contain element  css=h3 + .gatsby-image-outer-wrapper img
+

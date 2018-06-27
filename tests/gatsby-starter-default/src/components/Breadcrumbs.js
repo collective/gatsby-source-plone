@@ -7,14 +7,11 @@ export default ({ data }) => (
       <li className={'breadcrumb-item'}>
         <Link to="/">Home</Link>
       </li>
-      {data._components.breadcrumbs.items.map(item =>
+      {data._components.breadcrumbs.items.map(item => (
         <li key={item._id} className={'breadcrumb-item'}>
-          <Link to={item._path}>
-            {item.title}
-          </Link>
+          <Link to={item._path}>{item.title}</Link>
         </li>
-      )}
+      ))}
     </ol>
   </nav>
 );
-

@@ -109,11 +109,10 @@ const processData = (data, baseUrl) => {
 };
 
 // Handle file nodes
-// Currently only handles images, all other types TODO
 const processFileNodes = async (nodes, store, cache, createNode) => {
   const updatedNodes = await Promise.all(
     nodes.map(async node => {
-      let fileNode;
+      let imageNode, fileNode;
 
       // Wrapper function for createNode
       // Adds 'png' extension to node so that gatsby-tranform-sharp recognizes it
@@ -122,21 +121,46 @@ const processFileNodes = async (nodes, store, cache, createNode) => {
         createNode({ ...fileNode, ...node.image, extension: 'png' }, source);
       };
 
-      if (['PloneNewsItem', 'PloneImage'].indexOf(node.internal.type) > -1) {
+      const createFileNode = (fileNode, source) => {
+        createNode({ ...fileNode, ...node.file }, source);
+      };
+
+      if (node.image) {
         try {
-          fileNode = await createRemoteFileNode({
+          imageNode = await createRemoteFileNode({
             url: node.image.download,
             store,
             cache,
             createNode: createImageNode,
           });
         } catch (e) {
+          console.error('Error creating image file nodes: ', e);
+        }
+      }
+
+      if (node.file) {
+        try {
+          imageNode = await createRemoteFileNode({
+            url: node.file.download,
+            store,
+            cache,
+            createNode: createFileNode,
+          });
+        } catch (e) {
           console.error('Error creating file nodes: ', e);
         }
       }
 
-      if (fileNode) {
-        return { ...node, image___NODE: fileNode.id };
+      if (imageNode && fileNode) {
+        return {
+          ...node,
+          image___NODE: imageNode.id,
+          file___NODE: fileNode.id,
+        };
+      } else if (imageNode) {
+        return { ...node, image___NODE: imageNode.id };
+      } else if (fileNode) {
+        return { ...node, file___NODE: fileNode.id };
       } else {
         return node;
       }

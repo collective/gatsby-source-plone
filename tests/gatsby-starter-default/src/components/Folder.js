@@ -12,7 +12,13 @@ export default ({ data }) => (
     {data.children.map(child => (
       <article>
         <h4>
-          <Link to={child._path}>{child.title}</Link>
+          {child.file ? (
+            <a href={child.file.publicURL} download={child.file.filename}>
+              {child.title}
+            </a>
+          ) : (
+            <Link to={child._path}>{child.title}</Link>
+          )}
         </h4>
         <p>{child.description}</p>
       </article>
@@ -36,6 +42,7 @@ export const FolderFragment = graphql`
     }
     children {
       ...Document
+      ...File
       ...NewsItem
       ...SubFolder
     }

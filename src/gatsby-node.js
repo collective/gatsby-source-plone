@@ -140,7 +140,7 @@ const processFileNodes = async (nodes, store, cache, createNode) => {
 
       if (node.file) {
         try {
-          imageNode = await createRemoteFileNode({
+          fileNode = await createRemoteFileNode({
             url: node.file.download,
             store,
             cache,

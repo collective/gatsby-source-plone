@@ -9,16 +9,7 @@ export default ({ data }) => (
     <p>
       <strong>{data.description}</strong>
     </p>
-    {data.children.map(child => child['_type'] === 'File' ? 
-    ( 
-      <article key={child.id}>
-        <h4>
-          <a href={child.file.publicURL}>{child.title}</a>
-        </h4>
-        <p>{child.description}</p>
-      </article>
-    ) :
-    (
+    {data.children.map(child => (
       <article key={child.id}>
         <h4>
           {child.file ? (
@@ -70,6 +61,7 @@ export const FolderFragment = graphql`
     id
     title
     file {
+      filename
       publicURL
     }
     _type

@@ -9,7 +9,7 @@ export default ({ data }) => (
     <Img resolutions={data.image.childImageSharp.fixed} />
     <p>
       <small>
-        Published <em>{data.effective}</em>
+        Published on <em>{data.effective}</em>
       </small>
     </p>
     <p>
@@ -24,7 +24,7 @@ export const newsItemFragment = graphql`
     id
     title
     description
-    effective
+    effective(formatString: "MMMM Do, YYYY")
     image {
       childImageSharp {
         fixed(width: 125, height: 125) {

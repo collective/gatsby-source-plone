@@ -16,6 +16,8 @@ module.exports = {
         showLogs: true,
       },
     },
+    // Note: gatsby-source-filesystems is required also to make Plone
+    // to have publicURL and be downloadable from the gatsby site
     {
       resolve: 'gatsby-source-filesystem',
       options: {

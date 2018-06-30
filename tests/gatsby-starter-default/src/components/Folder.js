@@ -9,8 +9,17 @@ export default ({ data }) => (
     <p>
       <strong>{data.description}</strong>
     </p>
-    {data.children.map(child => (
-      <article>
+    {data.children.map(child => child['_type'] === 'File' ? 
+    ( 
+      <article key={child.id}>
+        <h4>
+          <a href={child.file.publicURL}>{child.title}</a>
+        </h4>
+        <p>{child.description}</p>
+      </article>
+    ) :
+    (
+      <article key={child.id}>
         <h4>
           <Link to={child._path}>{child.title}</Link>
         </h4>
@@ -38,6 +47,7 @@ export const FolderFragment = graphql`
       ...Document
       ...NewsItem
       ...SubFolder
+      ...File
     }
     _path
   }
@@ -47,5 +57,15 @@ export const FolderFragment = graphql`
     title
     description
     _path
+  }
+
+  fragment File on PloneFile {
+    id
+    title
+    file {
+      publicURL
+    }
+    _type
+    description
   }
 `;

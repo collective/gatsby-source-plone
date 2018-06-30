@@ -5,6 +5,8 @@
  */
 
 const path = require('path');
+const graphql = require(`gatsby/graphql`);
+const fs = require(`fs-extra`);
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
@@ -19,6 +21,13 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
       allPloneDocument {
+        edges {
+          node {
+            _path
+          }
+        }
+      }
+      allPloneFile {
         edges {
           node {
             _path

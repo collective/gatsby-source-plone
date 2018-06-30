@@ -86,3 +86,9 @@ Scenario: Image in a News Item
   Page should contain  GSOC for Gatsby
   Page should contain element  css=h3 + .gatsby-image-outer-wrapper img
 
+
+Scenario: File download on a folder
+  Go To  http://localhost:9000/testcases
+  Wait until page contains  PDF example
+  Page should contain element  css=a[download="plone-logo.pdf"]
+

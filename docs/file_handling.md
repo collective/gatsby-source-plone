@@ -15,3 +15,5 @@ For allowing other types of files to be used in the gatsby-site, gatsby-source-f
       },
     },
 ```
+
+This exposes a `publicURL` field in GraphQL for the file node, which can be used to link to the file node and make it downloadable, as implemented in the example gatsby-site.

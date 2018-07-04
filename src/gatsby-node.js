@@ -6,6 +6,7 @@ import {
   headersWithToken,
   logMessage,
   urlWithoutParameters,
+  normalizePath,
 } from './normalize';
 
 // Fetch data from a url
@@ -81,8 +82,9 @@ const processData = (data, baseUrl) => {
             updatedValue[key] = {
               items: value.items.map(item => ({
                 _id: item['@id'],
-                _path:
-                  '/' + urlWithoutParameters(item['@id']).split(baseUrl)[1],
+                _path: normalizePath(
+                  urlWithoutParameters(item['@id']).split(baseUrl)[1]
+                ),
                 title: item.title,
               })),
             };
@@ -98,7 +100,9 @@ const processData = (data, baseUrl) => {
   });
 
   // Add node _path variable to be used similar to slug
-  node._path = '/' + urlWithoutParameters(data['@id']).split(baseUrl)[1];
+  node._path = normalizePath(
+    urlWithoutParameters(data['@id']).split(baseUrl)[1]
+  );
 
   // Tree hierarchy in nodes
   node.id = urlWithoutParameters(data['@id']);

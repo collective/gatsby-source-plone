@@ -1,6 +1,8 @@
 import React from 'react';
 import Breadcrumbs from '../components/Breadcrumbs';
 
+import { deserialize } from 'react-serialize';
+
 export default ({ data }) => (
   <article>
     <Breadcrumbs data={data} />
@@ -8,7 +10,7 @@ export default ({ data }) => (
     <p>
       <strong>{data.description}</strong>
     </p>
-    <div dangerouslySetInnerHTML={{ __html: data.text.data }} />
+    <div>{deserialize(data.text.react)}</div>
   </article>
 );
 
@@ -27,7 +29,7 @@ export const documentFragment = graphql`
       }
     }
     text {
-      data
+      react
     }
     _path
   }

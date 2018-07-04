@@ -23,4 +23,5 @@ test('normalize path', () => {
   expect(normalizePath('foo/')).toBe('/foo/');
   expect(normalizePath('/foo/')).toBe('/foo/');
   expect(normalizePath('//foo//')).toBe('/foo/');
+  expect(normalizePath(undefined)).toBe('/');
 });

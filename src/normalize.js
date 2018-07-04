@@ -25,5 +25,5 @@ export const urlWithoutParameters = url => {
 
 // Helper to normalize paths
 export const normalizePath = path => {
-  return path.replace(/^\/*/, '/').replace(/\/*$/, '/');
+  return path ? path.replace(/^\/*/, '/').replace(/\/*$/, '/') : '/';
 };

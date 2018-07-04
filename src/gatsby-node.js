@@ -62,7 +62,7 @@ const processData = (data, baseUrl) => {
   };
 
   // Check if Plone Site node
-  if (data['@id'] === baseUrl) {
+  if (urlWithoutParameters(data['@id']) === baseUrl) {
     node.internal.type = 'PloneSite';
   } else {
     node.internal.type = data['@type'].startsWith('Plone')

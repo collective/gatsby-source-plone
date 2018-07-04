@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
 
+import React from 'react';
+import { Link } from 'gatsby';
 import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser';
 import { serialize } from 'react-serialize';
 
@@ -60,17 +62,20 @@ const processHtml = (html, baseUrl) => {
   const transform = (node, index) => {
     // Replace hyperlinks with relative links
     if (node.type === 'tag' && node.name === 'a') {
-      if (node.attribs.href && node.attribs.href.startsWith(baseUrl))
-        node.attribs.href = node.attribs.href.split(baseUrl)[1];
-      return convertNodeToElement(node, index, transform);
+      if (node.attribs.href && node.attribs.href.startsWith(baseUrl)) {
+        return (
+          <Link to={node.attribs.href.split(baseUrl)[1]}>{node.children}</Link>
+        );
+      }
     }
 
     // Replace image src with relative paths
-    if (node.type === 'tag' && node.name === 'img') {
-      if (node.attribs.src && node.attribs.src.startsWith(baseUrl))
-        node.attribs.src = node.attribs.src.split(baseUrl)[1];
-      return convertNodeToElement(node, index, transform);
-    }
+    // if (node.type === 'tag' && node.name === 'img') {
+    //   if (node.attribs.src && node.attribs.src.startsWith(baseUrl)) {
+    //     node.attribs.src = node.attribs.src.split(baseUrl)[1];
+    //     return convertNodeToElement(node, index, transform);
+    //   }
+    // }
   };
 
   const options = {

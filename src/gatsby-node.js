@@ -1,8 +1,6 @@
 import axios from 'axios';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
 
-import React from 'react';
-import { Link } from 'gatsby';
 import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser';
 import { serialize } from 'react-serialize';
 
@@ -63,9 +61,10 @@ const processHtml = (html, baseUrl) => {
     // Replace hyperlinks with relative links
     if (node.type === 'tag' && node.name === 'a') {
       if (node.attribs.href && node.attribs.href.startsWith(baseUrl)) {
-        return (
-          <Link to={node.attribs.href.split(baseUrl)[1]}>{node.children}</Link>
-        );
+        node.attribs.to = node.attribs.href.split(baseUrl)[1];
+        node.attribs.href = null;
+        node.name = 'Link';
+        return convertNodeToElement(node, index, transform);
       }
     }
 

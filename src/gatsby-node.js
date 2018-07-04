@@ -132,7 +132,7 @@ const processData = (data, baseUrl) => {
 
   if (node.text) {
     if (node.text['content-type'] === 'text/html') {
-      node.text.html = processHtml(node.text.data, baseUrl);
+      node.text.react = processHtml(node.text.data, baseUrl);
     }
   }
 

@@ -15,10 +15,10 @@
   },
   "@id": "http://localhost:8080/Plone/testcases/event-collection",
   "@type": "Collection",
-  "UID": "1e5082a52f334a65b0e5d36d68daf554",
+  "UID": "55cc990fa5ef444ca41bc8b434e79641",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-05-27T13:35:15+00:00",
+  "created": "2018-07-05T06:02:19+00:00",
   "creators": [
     "admin"
   ],
@@ -29,7 +29,7 @@
     "ModificationDate"
   ],
   "description": "A common use case for collections is to present upcoming events",
-  "effective": "2018-05-27T13:35:35",
+  "effective": "2018-05-27T13:35:00",
   "exclude_from_nav": false,
   "expires": null,
   "id": "event-collection",
@@ -48,7 +48,7 @@
   "language": "en",
   "layout": "listing_view",
   "limit": 1000,
-  "modified": "2018-05-27T13:35:35+00:00",
+  "modified": "2018-07-05T06:02:19+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/testcases",
     "@type": "Folder",

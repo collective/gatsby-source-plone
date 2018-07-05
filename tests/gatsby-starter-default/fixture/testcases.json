@@ -15,15 +15,15 @@
   },
   "@id": "http://localhost:8080/Plone/testcases",
   "@type": "Folder",
-  "UID": "258ab1f1ec2a4306990385612e055038",
+  "UID": "5d1a5f77888f4deba4f97f1e2aa9ff01",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-05-27T12:27:52+00:00",
+  "created": "2018-07-05T06:01:53+00:00",
   "creators": [
     "admin"
   ],
   "description": "A folder with different standard content types that Plone supports out of the box",
-  "effective": "2018-05-27T13:35:34",
+  "effective": "2018-05-27T13:35:00",
   "exclude_from_nav": false,
   "expires": null,
   "id": "testcases",
@@ -112,12 +112,19 @@
       "description": "A common use case for collections is to present upcoming events",
       "review_state": "published",
       "title": "Event collection"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/testcases/a-page-with-internal-linking",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "A page with internal linking"
     }
   ],
-  "items_total": 12,
+  "items_total": 13,
   "language": "en",
   "layout": "listing_view",
-  "modified": "2018-05-27T13:35:34+00:00",
+  "modified": "2018-07-05T06:07:55+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",

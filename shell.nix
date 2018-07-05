@@ -5,20 +5,18 @@ pkgs.stdenv.mkDerivation rec {
   buildInputs = with pkgs; [
     geckodriver
     jq
-    libpng.dev
+    lcms2
+    libpng
     nodejs-9_x
-    pngquant
+    pkgconfig
     python3
     travis
+    zlib
     (yarn.override {
       nodejs = nodejs-9_x;
     })
   ];
   shellHook = ''
     export SSL_CERT_FILE=${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt
-    if [ -f tests/gatsby-starter-default/node_modules/pngquant-bin/vendor/pngquant ]; then
-      rm tests/gatsby-starter-default/node_modules/pngquant-bin/vendor/pngquant
-      ln -s $(which pngquant) tests/gatsby-starter-default/node_modules/pngquant-bin/vendor/pngquant
-    fi
   '';
 }

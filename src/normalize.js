@@ -22,3 +22,8 @@ export const logMessage = (message, showLogs) => {
 export const urlWithoutParameters = url => {
   return url.split('?')[0];
 };
+
+// Helper to normalize paths
+export const normalizePath = path => {
+  return path ? path.replace(/^\/*/, '/').replace(/\/*$/, '/') : '/';
+};

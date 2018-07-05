@@ -1,4 +1,8 @@
-import { urlWithoutParameters, headersWithToken } from '../normalize';
+import {
+  urlWithoutParameters,
+  headersWithToken,
+  normalizePath,
+} from '../normalize';
 
 test('url without parameters', () => {
   expect(
@@ -11,4 +15,13 @@ test('headers with token', () => {
     accept: 'application/json',
     Authorization: 'Bearer token',
   });
+});
+
+test('normalize path', () => {
+  expect(normalizePath('foo')).toBe('/foo/');
+  expect(normalizePath('/foo')).toBe('/foo/');
+  expect(normalizePath('foo/')).toBe('/foo/');
+  expect(normalizePath('/foo/')).toBe('/foo/');
+  expect(normalizePath('//foo//')).toBe('/foo/');
+  expect(normalizePath(undefined)).toBe('/');
 });

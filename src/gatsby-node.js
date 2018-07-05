@@ -62,7 +62,7 @@ const processHtml = (html, baseUrl) => {
     // Replace hyperlinks with relative links
     if (node.type === 'tag' && node.name === 'a') {
       if (node.attribs.href && node.attribs.href.startsWith(baseUrl)) {
-        node.attribs.to = node.attribs.href.split(baseUrl)[1];
+        node.attribs.to = normalizePath(node.attribs.href.split(baseUrl)[1]);
         node.attribs.href = null;
         node.name = 'Link';
         return convertNodeToElement(node, index, transform);

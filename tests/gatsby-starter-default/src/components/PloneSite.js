@@ -13,7 +13,13 @@ export default ({ data }) => {
           <p>
             <strong>{child.description}</strong>
           </p>
-          <div>{deserialize(child.text.react)}</div>
+          <div>
+            {deserialize(data.text.react, {
+              components: {
+                Link,
+              },
+            })}
+          </div>
         </div>
       );
     } else {

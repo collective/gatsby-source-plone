@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
 
+import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser';
+import { serialize } from 'react-serialize';
+
 import {
   createContentDigest,
   headersWithToken,
@@ -53,6 +56,36 @@ const fetchAllItems = async (baseUrl, token, searchParams) => {
   return itemsList;
 };
 
+// Process HTML data using react-html-parser
+const processHtml = (html, baseUrl) => {
+  const transform = (node, index) => {
+    // Replace hyperlinks with relative links
+    if (node.type === 'tag' && node.name === 'a') {
+      if (node.attribs.href && node.attribs.href.startsWith(baseUrl)) {
+        node.attribs.to = normalizePath(node.attribs.href.split(baseUrl)[1]);
+        node.attribs.href = null;
+        node.name = 'Link';
+        return convertNodeToElement(node, index, transform);
+      }
+    }
+
+    // Replace image src with relative paths
+    // if (node.type === 'tag' && node.name === 'img') {
+    //   if (node.attribs.src && node.attribs.src.startsWith(baseUrl)) {
+    //     node.attribs.src = node.attribs.src.split(baseUrl)[1];
+    //     return convertNodeToElement(node, index, transform);
+    //   }
+    // }
+  };
+
+  const options = {
+    decodeEntities: true,
+    transform,
+  };
+
+  return serialize(ReactHtmlParser(html, options));
+};
+
 // Process data to pass it on to nodes
 const processData = (data, baseUrl) => {
   let node = {
@@ -98,6 +131,12 @@ const processData = (data, baseUrl) => {
       node[key] = value;
     }
   });
+
+  if (node.text) {
+    if (node.text['content-type'] === 'text/html') {
+      node.text.react = processHtml(node.text.data, baseUrl);
+    }
+  }
 
   // Add node _path variable to be used similar to slug
   node._path = normalizePath(

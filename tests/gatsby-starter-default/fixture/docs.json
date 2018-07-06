@@ -15,15 +15,15 @@
   },
   "@id": "http://localhost:8080/Plone/docs",
   "@type": "Folder",
-  "UID": "8ef375e62a7f48b6adbc19de5574f0f5",
+  "UID": "c532b7838eec46369509c152ed8481d3",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-06-23T21:19:38+00:00",
+  "created": "2018-07-05T06:02:20+00:00",
   "creators": [
     "admin"
   ],
   "description": "",
-  "effective": "2018-06-23T21:22:27",
+  "effective": "2018-06-23T21:22:00",
   "exclude_from_nav": false,
   "expires": null,
   "id": "docs",
@@ -33,7 +33,7 @@
       "@id": "http://localhost:8080/Plone/docs/index",
       "@type": "Document",
       "description": "",
-      "review_state": "private",
+      "review_state": "published",
       "title": "gatsby-source-plone"
     },
     {
@@ -96,7 +96,7 @@
   "items_total": 9,
   "language": "en",
   "layout": "listing_view",
-  "modified": "2018-06-23T21:22:27+00:00",
+  "modified": "2018-07-05T06:02:33+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",

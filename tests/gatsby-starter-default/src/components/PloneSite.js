@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
+import { deserialize } from 'react-serialize';
 
 export default ({ data }) => {
   const index = [];
@@ -12,7 +13,13 @@ export default ({ data }) => {
           <p>
             <strong>{child.description}</strong>
           </p>
-          <div dangerouslySetInnerHTML={{ __html: child.text.data }} />
+          <div>
+            {deserialize(data.text.react, {
+              components: {
+                Link,
+              },
+            })}
+          </div>
         </div>
       );
     } else {

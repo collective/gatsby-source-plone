@@ -1,6 +1,9 @@
 import React from 'react';
 import Breadcrumbs from '../components/Breadcrumbs';
 import Img from 'gatsby-image';
+import { Link } from 'gatsby';
+
+import { deserialize } from 'react-serialize';
 
 export default ({ data }) => (
   <article>
@@ -15,7 +18,13 @@ export default ({ data }) => (
     <p>
       <strong>{data.description}</strong>
     </p>
-    <div dangerouslySetInnerHTML={{ __html: data.text.data }} />
+    <div>
+      {deserialize(data.text.react, {
+        components: {
+          Link,
+        },
+      })}
+    </div>
   </article>
 );
 
@@ -42,7 +51,7 @@ export const newsItemFragment = graphql`
       }
     }
     text {
-      data
+      react
     }
     _path
   }

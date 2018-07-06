@@ -92,3 +92,12 @@ Scenario: File download on a folder
   Wait until page contains  PDF example
   Page should contain element  css=a[download="plone-logo.pdf"]
 
+Scenario: Internal linking
+  Go To  http://localhost:9000/testcases/a-page-with-internal-linking/
+  Wait until page contains  A page with internal linking
+  Page should contain element  css=a[href="/testcases/first-results/"]
+  Click link  Link to first-results
+  Page should contain  First results
+
+
+

@@ -15,10 +15,10 @@
   },
   "@id": "http://localhost:8080/Plone/testcases/midsummer.jpg",
   "@type": "Image",
-  "UID": "36059408af594dc0823263c1fc033557",
+  "UID": "0fc6fb7074914a86bea06ce8bd1d06fd",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-05-27T12:38:07+00:00",
+  "created": "2018-07-05T06:01:54+00:00",
   "creators": [
     "admin"
   ],
@@ -75,7 +75,7 @@
   "is_folderish": false,
   "language": "",
   "layout": "image_view",
-  "modified": "2018-05-27T13:35:34+00:00",
+  "modified": "2018-07-05T06:01:55+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/testcases",
     "@type": "Folder",

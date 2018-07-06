@@ -1,0 +1,54 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/testcases/a-page-with-internal-linking/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/testcases/a-page-with-internal-linking/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/testcases/a-page-with-internal-linking/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/testcases/a-page-with-internal-linking/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/testcases/a-page-with-internal-linking",
+  "@type": "Document",
+  "UID": "e915805e83574e74ab77b7422249afe7",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-07-05T06:07:54+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": "2018-07-05T06:10:04",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "a-page-with-internal-linking",
+  "is_folderish": false,
+  "language": "en",
+  "layout": "document_view",
+  "modified": "2018-07-05T06:10:04+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/testcases",
+    "@type": "Folder",
+    "description": "A folder with different standard content types that Plone supports out of the box",
+    "review_state": "published",
+    "title": "Testcases"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "table_of_contents": false,
+  "text": {
+    "content-type": "text/html",
+    "data": "<p><a href=\"http://localhost:8080/Plone/testcases/first-results\">Link to first-results</a></p>",
+    "encoding": "utf-8"
+  },
+  "title": "A page with internal linking",
+  "version": "current"
+}

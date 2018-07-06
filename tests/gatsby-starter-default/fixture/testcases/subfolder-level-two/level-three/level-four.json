@@ -15,15 +15,15 @@
   },
   "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/level-three/level-four",
   "@type": "Folder",
-  "UID": "6f6cc71166f845298cba4dd248a086c5",
+  "UID": "130cf26254894672b6ccc887d5cf2cbd",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-05-27T13:02:16+00:00",
+  "created": "2018-07-05T06:02:12+00:00",
   "creators": [
     "admin"
   ],
   "description": "",
-  "effective": "2018-05-27T13:35:34",
+  "effective": "2018-05-27T13:35:00",
   "exclude_from_nav": false,
   "expires": null,
   "id": "level-four",
@@ -32,7 +32,7 @@
   "items_total": 0,
   "language": "en",
   "layout": "listing_view",
-  "modified": "2018-05-27T13:35:34+00:00",
+  "modified": "2018-07-05T06:02:12+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/level-three",

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
-
 import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser';
 import { serialize } from 'react-serialize';
 
@@ -160,11 +159,11 @@ const processFileNodes = async (nodes, store, cache, createNode) => {
       // Wrapper function for createNode
       // Adds 'png' extension to node so that gatsby-tranform-sharp recognizes it
       // Also, appends existing node.image data along with fileNode data
-      const createImageNode = (fileNode, source) => {
+      const createImageNode = async (fileNode, source) => {
         createNode({ ...fileNode, ...node.image, extension: 'png' }, source);
       };
 
-      const createFileNode = (fileNode, source) => {
+      const createFileNode = async (fileNode, source) => {
         createNode({ ...fileNode, ...node.file }, source);
       };
 
@@ -175,6 +174,7 @@ const processFileNodes = async (nodes, store, cache, createNode) => {
             store,
             cache,
             createNode: createImageNode,
+            createNodeId: createContentDigest,
           });
         } catch (e) {
           console.error('Error creating image file nodes: ', e);
@@ -188,6 +188,7 @@ const processFileNodes = async (nodes, store, cache, createNode) => {
             store,
             cache,
             createNode: createFileNode,
+            createNodeId: createContentDigest,
           });
         } catch (e) {
           console.error('Error creating file nodes: ', e);

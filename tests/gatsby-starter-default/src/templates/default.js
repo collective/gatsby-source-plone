@@ -12,7 +12,14 @@ const returnTemplate = data => {
     if (data.ploneFolder) {
       return <Folder key={data.ploneFolder.id} data={data.ploneFolder} />;
     } else if (data.ploneDocument) {
-      return <Document key={data.ploneDocument.id} data={data.ploneDocument} />;
+      return (
+        <Document
+          key={data.ploneDocument.id}
+          data={data.ploneDocument}
+          images={data.allPloneImage}
+          files={data.allPloneFile}
+        />
+      );
     } else if (data.ploneNewsItem) {
       return <NewsItem key={data.ploneNewsItem.id} data={data.ploneNewsItem} />;
     } else if (data.ploneSite) {
@@ -40,6 +47,20 @@ export const query = graphql`
     }
     ploneSite(_path: { eq: $path }) {
       ...PloneSite
+    }
+    allPloneImage(filter: { _backlinks: { eq: $path } }) {
+      edges {
+        node {
+          ...Image
+        }
+      }
+    }
+    allPloneFile(filter: { _backlinks: { eq: $path } }) {
+      edges {
+        node {
+          ...File
+        }
+      }
     }
   }
 `;

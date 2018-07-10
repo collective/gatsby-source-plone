@@ -60,11 +60,12 @@ export const FolderFragment = graphql`
   fragment File on PloneFile {
     id
     title
+    description
     file {
       filename
       publicURL
     }
     _type
-    description
+    _path
   }
 `;

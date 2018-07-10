@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { graphql, Link } from 'gatsby';
+import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
 
 import './../styles/bootstrap.scss';

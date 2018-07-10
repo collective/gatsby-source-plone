@@ -15,23 +15,23 @@
   },
   "@id": "http://localhost:8080/Plone/testcases/a-page-with-internal-linking",
   "@type": "Document",
-  "UID": "e915805e83574e74ab77b7422249afe7",
+  "UID": "71043cb9ab584b19b93582e0748ce586",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-07-05T06:07:54+00:00",
+  "created": "2018-07-10T06:16:32+00:00",
   "creators": [
     "admin"
   ],
   "description": "",
-  "effective": "2018-07-05T06:10:04",
+  "effective": "2018-07-05T06:10:00",
   "exclude_from_nav": false,
   "expires": null,
   "id": "a-page-with-internal-linking",
   "is_folderish": false,
   "language": "en",
   "layout": "document_view",
-  "modified": "2018-07-05T06:10:04+00:00",
+  "modified": "2018-07-10T21:24:29+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/testcases",
     "@type": "Folder",
@@ -46,7 +46,7 @@
   "table_of_contents": false,
   "text": {
     "content-type": "text/html",
-    "data": "<p><a href=\"http://localhost:8080/Plone/testcases/first-results\">Link to first-results</a></p>",
+    "data": "<p><a href=\"http://localhost:8080/Plone/testcases/first-results\">Link to first-results</a></p>&#13;\n<p><img src=\"http://localhost:8080/Plone/testcases/midsummer.jpg/@@images/132783c7-5e03-480d-81b8-6685623fca8d.jpeg\" title=\"Inline image\" alt=\"midsummer.jpg\" class=\"image-inline\"/></p>&#13;\n<p><a href=\"http://localhost:8080/Plone/testcases/plone-logo.pdf\" title=\"Link to a file\">Link to a file</a></p>",
     "encoding": "utf-8"
   },
   "title": "A page with internal linking",

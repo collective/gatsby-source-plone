@@ -15,11 +15,11 @@
   },
   "@id": "http://localhost:8080/Plone/docs/recursive_traversal",
   "@type": "Document",
-  "UID": "5f2e09b140fa4df487334c7f659faa15",
+  "UID": "723649fe837b4c7cb03d322e063ddbd0",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-07-05T06:02:29+00:00",
+  "created": "2018-07-10T06:16:43+00:00",
   "creators": [
     "admin"
   ],
@@ -31,7 +31,7 @@
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2018-07-05T06:02:29+00:00",
+  "modified": "2018-07-10T06:16:43+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/docs",
     "@type": "Folder",

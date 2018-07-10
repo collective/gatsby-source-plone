@@ -85,7 +85,6 @@ const processHtml = (html, baseUrl, path, backlinks) => {
         } else {
           backlinks[node.attribs.src].push(path);
         }
-        backlinks[node.attribs.src].push('/foo/');
         return convertNodeToElement(node, index, transform);
       }
     }

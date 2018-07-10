@@ -3,6 +3,31 @@
   "version": "0.1.0",
   "description": "Source plugin for pulling data into Gatsby from Plone sites",
   "main": "index.js",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      [
+        "@babel/preset-react",
+        {
+          "useBuiltIns": true,
+          "pragma": "React.createElement"
+        }
+      ]
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-class-properties",
+      "@babel/plugin-proposal-object-rest-spread",
+      "@babel/plugin-syntax-dynamic-import",
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "helpers": true,
+          "regenerator": true,
+          "polyfill": false
+        }
+      ]
+    ]
+  },
   "scripts": {
     "build": "babel src --out-dir . --ignore __tests__",
     "watch": "babel -w src --out-dir . --ignore __tests__",
@@ -23,22 +48,32 @@
   ],
   "author": "Andrea Cecchi, Timo Stollenwerk, Victor Fernandez de Alba",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
     "axios": "^0.16.1",
-    "babel-cli": "^6.26.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-plugin-transform-runtime": "^6.23.0",
-    "babel-preset-env": "^1.6.1",
-    "coveralls": "^3.0.1",
-    "cross-env": "^5.1.5",
     "gatsby": "next",
-    "gatsby-source-filesystem": "^1.5.39",
-    "jest": "^23.1.0",
-    "marked": "^0.3.19",
-    "nodemon": "^1.17.4",
-    "prettify": "^0.1.7",
+    "gatsby-source-filesystem": "next",
     "react": "^16.4.1",
     "react-html-parser": "^2.0.2",
     "react-serialize": "^0.1.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.52",
+    "@babel/core": "^7.0.0-beta.51",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.52",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.52",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0-beta.52",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.52",
+    "@babel/preset-env": "^7.0.0-beta.52",
+    "@babel/preset-react": "^7.0.0-beta.52",
+    "babel-core": "^7.0.0-bridge.0",
+    "coveralls": "^3.0.1",
+    "cross-env": "^5.1.5",
+    "jest": "^23.1.0",
+    "marked": "^0.3.19",
+    "nodemon": "^1.17.4",
+    "prettify": "^0.1.7"
+  },
+  "resolutions": {
+    "babel-core": "7.0.0-bridge.0"
   }
 }

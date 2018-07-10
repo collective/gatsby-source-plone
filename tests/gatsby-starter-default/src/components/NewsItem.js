@@ -1,7 +1,7 @@
 import React from 'react';
 import Breadcrumbs from '../components/Breadcrumbs';
 import Img from 'gatsby-image';
-import { Link } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 
 import { deserialize } from 'react-serialize';
 

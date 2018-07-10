@@ -1,6 +1,6 @@
 import React from 'react';
 import Breadcrumbs from '../components/Breadcrumbs';
-import { Link } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 
 import { deserialize } from 'react-serialize';
 

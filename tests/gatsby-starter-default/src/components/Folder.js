@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Breadcrumbs from '../components/Breadcrumbs';
 
 export default ({ data }) => (

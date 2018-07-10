@@ -264,7 +264,7 @@ const processNodesUsingSearchTraversal = async (
   );
 
   // Mutable container for collecting all backlinks
-  backlinks = {};
+  let backlinks = {};
 
   logMessage('Creating node structure', showLogs);
   const nodes = items.map(item => {

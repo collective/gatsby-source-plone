@@ -4516,12 +4516,12 @@ gatsby-cli@^2.0.0-beta.3:
     yargs "^11.1.0"
     yurnalist "^0.2.1"
 
-gatsby-image@^1.0.54:
-  version "1.0.54"
-  resolved "https://registry.yarnpkg.com/gatsby-image/-/gatsby-image-1.0.54.tgz#84ab7d723e48a031eb698d8552ad331943d369fd"
+gatsby-image@next:
+  version "2.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/gatsby-image/-/gatsby-image-2.0.0-beta.5.tgz#086f079b5fc84079f0fd3387a19fc48b4cf72a73"
   dependencies:
-    babel-runtime "^6.26.0"
-    prop-types "^15.6.0"
+    "@babel/runtime" "7.0.0-beta.51"
+    prop-types "^15.6.1"
 
 gatsby-link@^2.0.0-beta.4:
   version "2.0.0-beta.4"

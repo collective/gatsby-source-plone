@@ -37,3 +37,14 @@ public/
 .vscode/
 
 .serverless/
+
+
+# Config
+.editorconfig
+.prettierrc
+.travis.yml
+Makefile
+shell.nix
+
+# Tests
+jest.config.js

@@ -30,14 +30,9 @@ const fetchData = async (url, token, expansions, searchParams) => {
 };
 
 // Fetch data of all items traversing through batches
-const fetchAllItems = async (baseUrl, token, searchParams) => {
+const fetchAllItems = async (url, token, searchParams) => {
   let itemsList = [];
-  let data = await fetchData(
-    `${baseUrl}/@search`,
-    token,
-    undefined,
-    searchParams
-  );
+  let data = await fetchData(url, token, undefined, searchParams);
 
   // Loop through batches of items if number of items > 25
   while (1) {
@@ -99,7 +94,7 @@ const processHtml = (html, baseUrl, path, backlinks) => {
 };
 
 // Process data to pass it on to nodes
-const processData = (data, baseUrl, backlinks) => {
+const processData = (data, baseUrl, backlinks, token) => {
   let node = {
     internal: {
       contentDigest: createContentDigest(data),
@@ -171,7 +166,14 @@ const processData = (data, baseUrl, backlinks) => {
   // Tree hierarchy in nodes
   node.id = urlWithoutParameters(data['@id']);
   node.parent = data.parent['@id'] ? data.parent['@id'] : null;
-  node.children = data.items ? data.items.map(item => item['@id']) : [];
+
+  // Process children items, considering case of batching
+  if (node.batching) {
+    const allItems = await fetchAllItems(node.id, token);
+    node.children = allItems.map(item => item['@id']);
+  } else {
+    node.children = data.items ? data.items.map(item => item['@id']) : [];
+  }
 
   return node;
 };
@@ -249,7 +251,11 @@ const processNodesUsingSearchTraversal = async (
   showLogs
 ) => {
   logMessage('Fetching URLs', showLogs);
-  let itemsList = await fetchAllItems(baseUrl, token, searchParams);
+  let itemsList = await fetchAllItems(
+    `${baseUrl}/@search`,
+    token,
+    searchParams
+  );
 
   // Filter out Plone site object so that it doesn't get repeated twice
   itemsList = itemsList.filter(item => item['@id'] !== baseUrl);
@@ -267,12 +273,12 @@ const processNodesUsingSearchTraversal = async (
 
   logMessage('Creating node structure', showLogs);
   const nodes = items.map(item => {
-    return processData(item, baseUrl, backlinks);
+    return processData(item, baseUrl, backlinks, token);
   });
 
   // Fetch data, process node for PloneSite
   const ploneSite = await fetchData(baseUrl, token, expansions);
-  const ploneSiteNode = processData(ploneSite, baseUrl, backlinks);
+  const ploneSiteNode = processData(ploneSite, baseUrl, backlinks, token);
   // Push to nodes array
   nodes.push(ploneSiteNode);
 
@@ -300,7 +306,7 @@ const processNodesUsingRecursion = async (
       : [];
     queue.push(...children);
 
-    nodes.push(processData(itemData, baseUrl, backlinks));
+    nodes.push(processData(itemData, baseUrl, backlinks, token));
   }
 
   return nodes;

@@ -1,0 +1,41 @@
+/* This theme is made of */
+
+/* 1. Chosen Typography.js theme for good bodytext typography */
+
+@import "./typography";
+
+/* 2. Bootstrap 4 components, overriding Typography.js where required */
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+nav, .jumbotron {
+  @import "~bootstrap/scss/reboot";
+  @import "~bootstrap/scss/type";
+  font-family: $font-family-sans-serif;
+  ol, ul {
+    margin-left: 0;
+  }
+  li {
+    margin-bottom: 0;
+  }
+  .btn {
+    @include hover-focus {
+      text-decoration: none;
+      color: $white;
+    }
+  }
+}
+
+@import "./bootstrap";
+
+/* 3. Customized Bootstrap 4 variables */
+
+@import "./variables";
+
+/* 4. Custom styles and components */
+
+.navbar-brand {
+  a { color: $black; }
+}

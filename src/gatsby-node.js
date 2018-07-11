@@ -94,7 +94,7 @@ const processHtml = (html, baseUrl, path, backlinks) => {
 };
 
 // Process data to pass it on to nodes
-const processData = (data, baseUrl, backlinks, token) => {
+const processData = async (data, baseUrl, backlinks, token) => {
   let node = {
     internal: {
       contentDigest: createContentDigest(data),

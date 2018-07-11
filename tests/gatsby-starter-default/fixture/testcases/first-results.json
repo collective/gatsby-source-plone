@@ -15,11 +15,11 @@
   },
   "@id": "http://localhost:8080/Plone/testcases/first-results",
   "@type": "News Item",
-  "UID": "df5aea8c8f094b71b70f59b0154915cf",
+  "UID": "0921e7ead9eb4190b6a10e3fae6b4dcf",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-07-05T06:02:16+00:00",
+  "created": "2018-07-10T06:16:28+00:00",
   "creators": [
     "admin"
   ],
@@ -77,7 +77,7 @@
   "is_folderish": false,
   "language": "en",
   "layout": "newsitem_view",
-  "modified": "2018-07-05T06:02:18+00:00",
+  "modified": "2018-07-10T06:16:29+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/testcases",
     "@type": "Folder",

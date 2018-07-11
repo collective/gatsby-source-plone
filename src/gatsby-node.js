@@ -56,7 +56,7 @@ const fetchAllItems = async (baseUrl, token, searchParams) => {
 };
 
 // Process HTML data using react-html-parser
-const processHtml = (html, baseUrl) => {
+const processHtml = (html, baseUrl, path, backlinks) => {
   const transform = (node, index) => {
     // Replace hyperlinks with relative links
     if (node.type === 'tag' && node.name === 'a') {
@@ -64,17 +64,30 @@ const processHtml = (html, baseUrl) => {
         node.attribs.to = normalizePath(node.attribs.href.split(baseUrl)[1]);
         node.attribs.href = null;
         node.name = 'Link';
+        if (!backlinks[node.attribs.to]) {
+          backlinks[node.attribs.to] = [path];
+        } else {
+          backlinks[node.attribs.to].push(path);
+        }
         return convertNodeToElement(node, index, transform);
       }
     }
 
     // Replace image src with relative paths
-    // if (node.type === 'tag' && node.name === 'img') {
-    //   if (node.attribs.src && node.attribs.src.startsWith(baseUrl)) {
-    //     node.attribs.src = node.attribs.src.split(baseUrl)[1];
-    //     return convertNodeToElement(node, index, transform);
-    //   }
-    // }
+    if (node.type === 'tag' && node.name === 'img') {
+      if (node.attribs.src && node.attribs.src.startsWith(baseUrl)) {
+        node.attribs.src = normalizePath(
+          node.attribs.src.split(baseUrl)[1].split('/@@images')[0]
+        );
+        node.name = 'Img';
+        if (!backlinks[node.attribs.src]) {
+          backlinks[node.attribs.src] = [path];
+        } else {
+          backlinks[node.attribs.src].push(path);
+        }
+        return convertNodeToElement(node, index, transform);
+      }
+    }
   };
 
   const options = {
@@ -86,7 +99,7 @@ const processHtml = (html, baseUrl) => {
 };
 
 // Process data to pass it on to nodes
-const processData = (data, baseUrl) => {
+const processData = (data, baseUrl, backlinks) => {
   let node = {
     internal: {
       contentDigest: createContentDigest(data),
@@ -131,16 +144,29 @@ const processData = (data, baseUrl) => {
     }
   });
 
-  if (node.text) {
-    if (node.text['content-type'] === 'text/html') {
-      node.text.react = processHtml(node.text.data, baseUrl);
-    }
-  }
-
   // Add node _path variable to be used similar to slug
   node._path = normalizePath(
     urlWithoutParameters(data['@id']).split(baseUrl)[1]
   );
+
+  // Add array of backlinks
+  if (!backlinks[node._path]) {
+    backlinks[node._path] = node._backlinks = []; // create new container
+  } else {
+    node._backlinks = backlinks[node._path]; // merge with found backlinks
+  }
+
+  // Transform HTML string into serialized React tree
+  if (node.text) {
+    if (node.text['content-type'] === 'text/html') {
+      node.text.react = processHtml(
+        node.text.data,
+        baseUrl,
+        node._path,
+        backlinks
+      );
+    }
+  }
 
   // Tree hierarchy in nodes
   node.id = urlWithoutParameters(data['@id']);
@@ -236,14 +262,17 @@ const processNodesUsingSearchTraversal = async (
     })
   );
 
+  // Mutable container for collecting all backlinks
+  let backlinks = {};
+
   logMessage('Creating node structure', showLogs);
   const nodes = items.map(item => {
-    return processData(item, baseUrl);
+    return processData(item, baseUrl, backlinks);
   });
 
   // Fetch data, process node for PloneSite
   const ploneSite = await fetchData(baseUrl, token, expansions);
-  const ploneSiteNode = processData(ploneSite, baseUrl);
+  const ploneSiteNode = processData(ploneSite, baseUrl, backlinks);
   // Push to nodes array
   nodes.push(ploneSiteNode);
 
@@ -257,7 +286,8 @@ const processNodesUsingRecursion = async (
   expansions,
   showLogs
 ) => {
-  let nodes = [];
+  let nodes = [],
+    backlinks = {};
   const queue = [baseUrl];
 
   logMessage('Traversing the site and fetching data', showLogs);
@@ -270,7 +300,7 @@ const processNodesUsingRecursion = async (
       : [];
     queue.push(...children);
 
-    nodes.push(processData(itemData, baseUrl));
+    nodes.push(processData(itemData, baseUrl, backlinks));
   }
 
   return nodes;

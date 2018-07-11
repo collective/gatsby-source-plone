@@ -15,10 +15,10 @@
   },
   "@id": "http://localhost:8080/Plone/testcases/the-news-collection",
   "@type": "Collection",
-  "UID": "bdccd3bc8b3a42408000674038c87e07",
+  "UID": "d660819d237148509c8b6b9616d8cdc7",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-07-05T06:01:56+00:00",
+  "created": "2018-07-10T06:16:07+00:00",
   "creators": [
     "admin"
   ],
@@ -63,7 +63,7 @@
   "language": "en",
   "layout": "listing_view",
   "limit": 1000,
-  "modified": "2018-07-05T06:01:57+00:00",
+  "modified": "2018-07-10T06:16:07+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/testcases",
     "@type": "Folder",

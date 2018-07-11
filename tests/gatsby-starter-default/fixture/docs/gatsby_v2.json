@@ -15,11 +15,11 @@
   },
   "@id": "http://localhost:8080/Plone/docs/gatsby_v2",
   "@type": "Document",
-  "UID": "7a32c0f60da947b9b02369f18d4ae255",
+  "UID": "ea7066b90f9b49f99a7c18ba0effb627",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-07-05T06:02:33+00:00",
+  "created": "2018-07-10T06:16:47+00:00",
   "creators": [
     "admin"
   ],
@@ -31,7 +31,7 @@
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2018-07-05T06:02:33+00:00",
+  "modified": "2018-07-10T06:16:47+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/docs",
     "@type": "Folder",

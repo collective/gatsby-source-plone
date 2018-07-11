@@ -86,7 +86,6 @@ Scenario: Image in a News Item
   Page should contain  GSOC for Gatsby
   Page should contain element  css=h3 + .gatsby-image-outer-wrapper img
 
-
 Scenario: File download on a folder
   Go To  http://localhost:9000/testcases
   Wait until page contains  PDF example
@@ -99,5 +98,13 @@ Scenario: Internal linking
   Click link  Link to first-results
   Page should contain  First results
 
+Scenario: Inline image
+  Go To  http://localhost:9000/testcases/a-page-with-internal-linking/
+  Wait until page contains  A page with internal linking
+  Page should contain element  css=article p .gatsby-image-wrapper img
 
-
+Scenario: Inline link to a file download
+  Go To  http://localhost:9000/testcases/a-page-with-internal-linking/
+  Wait until page contains  A page with internal linking
+  Page should contain  Link to a file
+  Page should contain element  css=a[download="plone-logo.pdf"]

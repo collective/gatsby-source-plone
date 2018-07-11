@@ -1,10 +1,43 @@
 import React from 'react';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { graphql, Link } from 'gatsby';
+import Img from 'gatsby-image';
 
 import { deserialize } from 'react-serialize';
 
-export default ({ data }) => (
+const ResolveImage = images => data => {
+  if (images && images.edges) {
+    let match = images.edges.filter(edge => edge.node._path === data.src);
+    if (match.length) {
+      return (
+        <Img
+          Tag="span"
+          resolutions={match[0].node.image.childImageSharp.fixed}
+        />
+      );
+    }
+  }
+  return <img src={data.src} alt={data.alt} title={data.title} />;
+};
+
+const ResolveLink = files => data => {
+  if (files && files.edges) {
+    let match = files.edges.filter(edge => edge.node._path === data.to);
+    if (match.length) {
+      return (
+        <a
+          href={match[0].node.file.publicURL}
+          download={match[0].node.file.filename}
+        >
+          {data.children}
+        </a>
+      );
+    }
+  }
+  return <Link to={data.to}>{data.children}</Link>;
+};
+
+export default ({ data, images, files }) => (
   <article>
     <Breadcrumbs data={data} />
     <h3>{data.title}</h3>
@@ -14,7 +47,8 @@ export default ({ data }) => (
     <div>
       {deserialize(data.text.react, {
         components: {
-          Link,
+          Link: ResolveLink(files),
+          Img: ResolveImage(images),
         },
       })}
     </div>
@@ -37,6 +71,20 @@ export const documentFragment = graphql`
     }
     text {
       react
+    }
+    _path
+  }
+
+  fragment Image on PloneImage {
+    id
+    title
+    image {
+      publicURL
+      childImageSharp {
+        fixed(width: 125, height: 125) {
+          ...GatsbyImageSharpFixed
+        }
+      }
     }
     _path
   }

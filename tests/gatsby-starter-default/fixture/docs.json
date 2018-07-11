@@ -15,10 +15,10 @@
   },
   "@id": "http://localhost:8080/Plone/docs",
   "@type": "Folder",
-  "UID": "c532b7838eec46369509c152ed8481d3",
+  "UID": "77fdffe3da7e492aa7b420074768b596",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-07-05T06:02:20+00:00",
+  "created": "2018-07-10T06:16:33+00:00",
   "creators": [
     "admin"
   ],
@@ -96,7 +96,7 @@
   "items_total": 9,
   "language": "en",
   "layout": "listing_view",
-  "modified": "2018-07-05T06:02:33+00:00",
+  "modified": "2018-07-10T06:16:47+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",

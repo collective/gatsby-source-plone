@@ -15,11 +15,11 @@
   },
   "@id": "http://localhost:8080/Plone/testcases/a-nico-e-pagie",
   "@type": "Document",
-  "UID": "da3b5de8f5dc428287eb19c2994d4f68",
+  "UID": "90319e90165e45e1bef330593819081d",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-07-10T06:16:26+00:00",
+  "created": "2018-07-11T08:03:39+00:00",
   "creators": [
     "admin"
   ],
@@ -31,7 +31,7 @@
   "is_folderish": false,
   "language": "en",
   "layout": "document_view",
-  "modified": "2018-07-10T06:16:26+00:00",
+  "modified": "2018-07-11T08:03:39+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/testcases",
     "@type": "Folder",

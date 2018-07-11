@@ -1,32 +1,27 @@
 import React from 'react';
-import Breadcrumbs from '../components/Breadcrumbs';
 import Img from 'gatsby-image';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
+import RichText from './RichText';
 
-import { deserialize } from 'react-serialize';
-
-export default ({ data }) => (
-  <article>
-    <Breadcrumbs data={data} />
-    <h3>{data.title}</h3>
+const NewsItem = ({ data, images, files }) => (
+  <article key={data._id}>
+    <h1>{data.title}</h1>
     <Img resolutions={data.image.childImageSharp.fixed} />
     <p>
       <small>
         Published on <em>{data.effective}</em>
       </small>
     </p>
-    <p>
-      <strong>{data.description}</strong>
-    </p>
-    <div>
-      {deserialize(data.text.react, {
-        components: {
-          Link,
-        },
-      })}
-    </div>
+    {data.description ? (
+      <p>
+        <strong>{data.description}</strong>
+      </p>
+    ) : null}
+    <RichText serialized={data.text.react} images={images} files={files} />
   </article>
 );
+
+export default NewsItem;
 
 export const newsItemFragment = graphql`
   fragment NewsItem on PloneNewsItem {
@@ -36,7 +31,7 @@ export const newsItemFragment = graphql`
     effective(formatString: "MMMM Do, YYYY")
     image {
       childImageSharp {
-        fixed(width: 125, height: 125) {
+        fixed(width: 200) {
           ...GatsbyImageSharpFixed
         }
       }

@@ -32,19 +32,12 @@
     {
       "@id": "http://localhost:8080/Plone/docs",
       "@type": "Folder",
-      "description": "",
+      "description": "Plugin documentation",
       "review_state": "published",
       "title": "Docs"
-    },
-    {
-      "@id": "http://localhost:8080/Plone/index",
-      "@type": "Document",
-      "description": "",
-      "review_state": "published",
-      "title": "gatsby-source-plone"
     }
   ],
-  "items_total": 4,
+  "items_total": 3,
   "parent": {},
-  "title": "Plone site"
+  "title": "Gatsby source plugin for Plone"
 }

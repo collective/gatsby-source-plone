@@ -15,11 +15,11 @@
   },
   "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone",
   "@type": "News Item",
-  "UID": "54f5e5e23c954c7fab0801f9129b61a5",
+  "UID": "83c4ff9d325248608ed40e1bc03d697d",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-07-10T06:16:00+00:00",
+  "created": "2018-07-11T08:03:14+00:00",
   "creators": [
     "admin"
   ],
@@ -77,7 +77,7 @@
   "is_folderish": false,
   "language": "en",
   "layout": "newsitem_view",
-  "modified": "2018-07-10T06:16:01+00:00",
+  "modified": "2018-07-11T08:03:15+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/news",
     "@type": "Folder",

@@ -1,39 +1,55 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'gatsby';
 import Helmet from 'react-helmet';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Link } from 'gatsby';
 
-import './../styles/index.scss';
+import Breadcrumbs from './Breadcrumbs';
+import NavBar from './NavBar';
+
+import '../styles/index.scss';
 
 const Header = () => (
-  <div className={'jumbotron'}>
-    <div className={'container'}>
-      <h1 className={'display-4'}>Gatsby plugin for Plone</h1>
-      {
-        <p>
-          <Link className={'btn btn-primary btn-lg'} to="/">
-            Learn more &raquo;
-          </Link>
-        </p>
-      }
-    </div>
+  <div className="jumbotron">
+    <div className="display-4">Gatsby plugin for Plone</div>
+    <p className="lead">
+      Something old, something new, something borrowed, something blue&hellip;
+    </p>
+    <p className="lead">
+      <Link className={'btn btn-primary btn-lg'} to="/">
+        Learn more &raquo;
+      </Link>
+    </p>
   </div>
 );
 
-const TemplateWrapper = ({ children }) => (
-  <div>
-    <Helmet title="Gatsby plugin for Plone" />
-    <Header />
-    <div className={'container'}>
-      <div className={'row'}>
-        <div className={'col-12'}>{children}</div>
+const Layout = ({ children, title }) => {
+  const node = children.length ? children[0].props.data : children.props.data;
+  const active = node
+    ? node._path === '/docs/index/' ? '/' : node._path
+    : null;
+  return (
+    <div className="container-fluid">
+      <Helmet
+        title={`${title ? title : node.title} – Gatsby source plugin for Plone`}
+      />
+      <div className="row no-gutters'">
+        <NavBar active={active} />
+        <div className="col-12">
+          <Header />
+          {node ? (
+            node._components.breadcrumbs ? (
+              <Breadcrumbs data={node} active={active} />
+            ) : null
+          ) : null}
+          <div className="main-content">{children}</div>
+        </div>
       </div>
     </div>
-  </div>
-);
-
-TemplateWrapper.propTypes = {
-  children: PropTypes.func,
+  );
 };
 
-export default TemplateWrapper;
+Layout.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+};
+
+export default Layout;

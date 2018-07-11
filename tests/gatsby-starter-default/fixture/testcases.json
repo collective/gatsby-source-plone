@@ -15,10 +15,10 @@
   },
   "@id": "http://localhost:8080/Plone/testcases",
   "@type": "Folder",
-  "UID": "50cdd1c6f11d462588a8ff7d700e1272",
+  "UID": "c70fd016424943e0b37794af62e5e948",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-07-10T06:16:03+00:00",
+  "created": "2018-07-11T08:03:16+00:00",
   "creators": [
     "admin"
   ],
@@ -124,13 +124,13 @@
   "items_total": 13,
   "language": "en",
   "layout": "listing_view",
-  "modified": "2018-07-10T06:16:32+00:00",
+  "modified": "2018-07-11T08:03:45+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",
     "@type": "Plone Site",
     "description": "",
-    "title": "Plone site"
+    "title": "Gatsby source plugin for Plone"
   },
   "relatedItems": [],
   "review_state": "published",

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 
-export default ({ data }) => (
+const Breadcrumbs = ({ data }) => (
   <nav>
     <ol className={'breadcrumb'}>
       <li className={'breadcrumb-item'}>
@@ -15,3 +15,5 @@ export default ({ data }) => (
     </ol>
   </nav>
 );
+
+export default Breadcrumbs;

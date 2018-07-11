@@ -15,10 +15,10 @@
   },
   "@id": "http://localhost:8080/Plone/testcases/event-collection",
   "@type": "Collection",
-  "UID": "114f4fdb50854d2eae6bb0235c0178ab",
+  "UID": "78949b18399f412a974f156513910966",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-07-10T06:16:30+00:00",
+  "created": "2018-07-11T08:03:43+00:00",
   "creators": [
     "admin"
   ],
@@ -48,7 +48,7 @@
   "language": "en",
   "layout": "listing_view",
   "limit": 1000,
-  "modified": "2018-07-10T06:16:30+00:00",
+  "modified": "2018-07-11T08:03:43+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/testcases",
     "@type": "Folder",

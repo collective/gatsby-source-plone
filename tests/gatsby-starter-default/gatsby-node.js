@@ -5,12 +5,9 @@
  */
 
 const path = require('path');
-const graphql = require(`gatsby/graphql`);
-const fs = require(`fs-extra`);
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
-
   const result = await graphql(`
     {
       allPloneFolder {
@@ -54,8 +51,7 @@ exports.createPages = async ({ graphql, actions }) => {
     .concat(
       result.data.allPloneFolder.edges,
       result.data.allPloneDocument.edges,
-      result.data.allPloneNewsItem.edges,
-      result.data.allPloneSite.edges
+      result.data.allPloneNewsItem.edges
     )
     .forEach(({ node }) => {
       createPage({

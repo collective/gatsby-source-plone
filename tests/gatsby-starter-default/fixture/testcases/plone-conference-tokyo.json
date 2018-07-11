@@ -15,7 +15,7 @@
   },
   "@id": "http://localhost:8080/Plone/testcases/plone-conference-tokyo",
   "@type": "Event",
-  "UID": "6e402b9b331747c3bd3f00e8de1abda4",
+  "UID": "c763636c16064263b712fd5aa2291149",
   "allow_discussion": false,
   "attendees": [
     "everybody"
@@ -25,7 +25,7 @@
   "contact_name": "Tokyo Plone preparation team",
   "contact_phone": null,
   "contributors": [],
-  "created": "2018-07-10T06:16:08+00:00",
+  "created": "2018-07-11T08:03:22+00:00",
   "creators": [
     "admin"
   ],
@@ -40,7 +40,7 @@
   "language": "en",
   "layout": "event_view",
   "location": "Tokyo",
-  "modified": "2018-07-10T06:16:08+00:00",
+  "modified": "2018-07-11T08:03:22+00:00",
   "open_end": false,
   "parent": {
     "@id": "http://localhost:8080/Plone/testcases",

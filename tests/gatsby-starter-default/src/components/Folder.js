@@ -1,32 +1,53 @@
 import React from 'react';
 import { graphql, Link } from 'gatsby';
-import Breadcrumbs from '../components/Breadcrumbs';
 
-export default ({ data }) => (
-  <nav>
-    <Breadcrumbs data={data} />
-    <h3>{data.title}</h3>
+const Folder = ({ data, title }) => (
+  <nav key={data._id}>
+    <h1>{title ? title : data.title}</h1>
     <p>
       <strong>{data.description}</strong>
     </p>
-    {data.children.map(child => (
-      <article key={child.id}>
-        <h4>
-          {child.file ? (
-            <a href={child.file.publicURL} download={child.file.filename}>
-              {child.title}
-            </a>
-          ) : (
-            <Link to={child._path}>{child.title}</Link>
-          )}
-        </h4>
-        <p>{child.description}</p>
-      </article>
-    ))}
+    <ul className="list-group">
+      {data.children.filter(child => child.title).map(child => (
+        <li key={child._path} className="list-group-item">
+          <p>
+            {child.file ? (
+              <a href={child.file.publicURL} download={child.file.filename}>
+                {child.title}
+              </a>
+            ) : (
+              <Link to={child._path}>{child.title}</Link>
+            )}
+          </p>
+          {child.description ? <p>{child.description}</p> : null}
+        </li>
+      ))}
+    </ul>
   </nav>
 );
 
+export default Folder;
+
 export const FolderFragment = graphql`
+  fragment PloneSite on PloneSite {
+    id
+    title
+    children {
+      ...Document
+      ...Folder
+      ...NewsItem
+    }
+    _components {
+      navigation {
+        items {
+          _id
+          _path
+          title
+        }
+      }
+    }
+  }
+
   fragment Folder on PloneFolder {
     id
     title

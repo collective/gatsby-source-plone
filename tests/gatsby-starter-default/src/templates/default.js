@@ -5,25 +5,33 @@ import Layout from '../components/Layout';
 import Document from '../components/Document';
 import Folder from '../components/Folder';
 import NewsItem from '../components/NewsItem';
-import PloneSite from '../components/PloneSite';
 
-const returnTemplate = data => {
+const componentFor = data => {
   if (data) {
     if (data.ploneFolder) {
-      return <Folder key={data.ploneFolder.id} data={data.ploneFolder} />;
+      return (
+        <Folder
+          data={data.ploneFolder}
+          images={data.allPloneImage}
+          files={data.allPloneFile}
+        />
+      );
     } else if (data.ploneDocument) {
       return (
         <Document
-          key={data.ploneDocument.id}
           data={data.ploneDocument}
           images={data.allPloneImage}
           files={data.allPloneFile}
         />
       );
     } else if (data.ploneNewsItem) {
-      return <NewsItem key={data.ploneNewsItem.id} data={data.ploneNewsItem} />;
-    } else if (data.ploneSite) {
-      return <PloneSite key={data.ploneSite.id} data={data.ploneSite} />;
+      return (
+        <NewsItem
+          data={data.ploneNewsItem}
+          images={data.allPloneImage}
+          files={data.allPloneFile}
+        />
+      );
     } else {
       return null;
     }
@@ -32,7 +40,7 @@ const returnTemplate = data => {
   }
 };
 
-export default ({ data }) => <Layout>{returnTemplate(data)}</Layout>;
+export default ({ data }) => <Layout>{componentFor(data)}</Layout>;
 
 export const query = graphql`
   query DefaultTemplateQuery($path: String!) {

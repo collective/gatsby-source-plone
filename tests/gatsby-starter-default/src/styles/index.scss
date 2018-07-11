@@ -23,6 +23,8 @@ nav, .jumbotron {
   .btn {
     @include hover-focus {
       text-decoration: none;
+    }
+    @include hover {
       color: $white;
     }
   }

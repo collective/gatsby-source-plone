@@ -15,10 +15,10 @@
   },
   "@id": "http://localhost:8080/Plone/testcases/plone-logo.svg",
   "@type": "Image",
-  "UID": "0cb079cd451a43fb907881cb93ca82b6",
+  "UID": "ec573ad99a8b44e3b80955db882b553b",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-07-10T06:16:12+00:00",
+  "created": "2018-07-11T08:03:26+00:00",
   "creators": [
     "admin"
   ],
@@ -75,7 +75,7 @@
   "is_folderish": false,
   "language": "en",
   "layout": "image_view",
-  "modified": "2018-07-10T06:16:14+00:00",
+  "modified": "2018-07-11T08:03:27+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/testcases",
     "@type": "Folder",

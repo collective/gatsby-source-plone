@@ -61,6 +61,7 @@ Scenario: Children of a folder
 Scenario: Deep folder structure
   Go To  http://localhost:9000
   Wait until page contains  Gatsby plugin for Plone
+  Element should contain  css=.list-group  Docs
   Page should contain  Testcases
   Click link  Testcases
   Page should contain  Subfolder level two
@@ -77,14 +78,14 @@ Scenario: Deep folder structure
   Page should contain  Level three
   Page should contain  Level four
   # Test that other folders from root level are not shown
-  Page should not contain  Docs
+  Element should not contain  css=.list-group  Docs
 
 Scenario: Image in a News Item
   Go To  http://localhost:9000/News
   Wait until page contains  News
   Click link  GSOC for Gatsby source for Plone started
   Page should contain  GSOC for Gatsby
-  Page should contain element  css=h3 + .gatsby-image-outer-wrapper img
+  Page should contain element  css=h1 + .gatsby-image-outer-wrapper img
 
 Scenario: File download on a folder
   Go To  http://localhost:9000/testcases

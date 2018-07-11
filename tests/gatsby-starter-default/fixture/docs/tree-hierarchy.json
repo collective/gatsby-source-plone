@@ -15,11 +15,11 @@
   },
   "@id": "http://localhost:8080/Plone/docs/tree-hierarchy",
   "@type": "Document",
-  "UID": "b107fb3551524d3ea4df42de5cbd79f5",
+  "UID": "2db7a3b7801c479cbb49797b89d49714",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-07-10T06:16:40+00:00",
+  "created": "2018-07-11T08:03:52+00:00",
   "creators": [
     "admin"
   ],
@@ -31,11 +31,11 @@
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2018-07-10T06:16:40+00:00",
+  "modified": "2018-07-11T08:03:52+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/docs",
     "@type": "Folder",
-    "description": "",
+    "description": "Plugin documentation",
     "review_state": "published",
     "title": "Docs"
   },

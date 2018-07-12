@@ -180,7 +180,7 @@ const processData = async (data, baseUrl, backlinks, token) => {
 
 // Handle file nodes
 const processFileNodes = async (nodes, store, cache, createNode) => {
-  const updatedNodes = await Promise.all(
+  return await Promise.all(
     nodes.map(async node => {
       let imageNode, fileNode;
 
@@ -238,8 +238,6 @@ const processFileNodes = async (nodes, store, cache, createNode) => {
       }
     })
   );
-
-  return updatedNodes;
 };
 
 // SEARCH TRAVERSAL ALGORITHM

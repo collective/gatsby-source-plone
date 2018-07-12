@@ -328,20 +328,19 @@ exports.sourceNodes = async (
 
   // @search approach if searchParams present
   if (searchParams) {
-    nodes = await processNodesUsingSearchTraversal(
-      baseUrl,
-      token,
-      expansions,
-      searchParams,
-      showLogs
+    nodes = await Promise.all(
+      await processNodesUsingSearchTraversal(
+        baseUrl,
+        token,
+        expansions,
+        searchParams,
+        showLogs
+      )
     );
   } else {
     // Recursive approach
-    nodes = await processNodesUsingRecursion(
-      baseUrl,
-      token,
-      expansions,
-      showLogs
+    nodes = await Promise.all(
+      await processNodesUsingRecursion(baseUrl, token, expansions, showLogs)
     );
   }
 

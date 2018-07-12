@@ -36,7 +36,7 @@ const Layout = ({ children, title }) => {
         <NavBar active={active} />
         <div className="col-12">
           <Header />
-          {node ? (
+          {node && node._path !== '/docs/index/' ? (
             node._components.breadcrumbs ? (
               <Breadcrumbs data={node} active={active} />
             ) : null

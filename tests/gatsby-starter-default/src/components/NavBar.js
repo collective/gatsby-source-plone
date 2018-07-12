@@ -19,7 +19,7 @@ const NavBar = ({ active, toggleNavigation, navigationExpanded }) => (
       <nav className="navbar navbar-expand-md navbar-light bg-light col-12">
         <span className="navbar-brand">
           <Link className="nav-link" to="/">
-            <MdHome /> gatsby-source-plone
+            <MdHome /> GatsbyPlone
           </Link>
         </span>
         <button

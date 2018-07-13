@@ -293,10 +293,13 @@ const processNodesUsingRecursion = async (
   let nodes = [],
     backlinks = {};
   const queue = [baseUrl];
+  const seen = {};
 
   logMessage('Traversing the site and fetching data', showLogs);
   while (queue.length > 0) {
     const url = queue.shift();
+    seen[url] = true;
+
     const itemData = await fetchData(url, token, expansions);
 
     let children = [];
@@ -309,7 +312,7 @@ const processNodesUsingRecursion = async (
       }
     }
 
-    queue.push(...children);
+    queue.push(...children.filter(child => !seen[child]));
 
     nodes.push(processData(itemData, baseUrl, backlinks, token));
   }

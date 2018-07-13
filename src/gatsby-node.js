@@ -293,16 +293,26 @@ const processNodesUsingRecursion = async (
   let nodes = [],
     backlinks = {};
   const queue = [baseUrl];
+  const seen = {};
 
   logMessage('Traversing the site and fetching data', showLogs);
   while (queue.length > 0) {
     const url = queue.shift();
+    seen[url] = true;
+
     const itemData = await fetchData(url, token, expansions);
 
-    const children = itemData.items
-      ? itemData.items.map(item => item['@id'])
-      : [];
-    queue.push(...children);
+    let children = [];
+    if (itemData.batching) {
+      const allItems = await fetchAllItems(url, token);
+      children = allItems.map(item => item['@id']);
+    } else {
+      if (itemData.items) {
+        children = itemData.items.map(item => item['@id']);
+      }
+    }
+
+    queue.push(...children.filter(child => !seen[child]));
 
     nodes.push(processData(itemData, baseUrl, backlinks, token));
   }

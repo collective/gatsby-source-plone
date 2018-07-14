@@ -146,9 +146,11 @@ const processData = async (data, baseUrl, backlinks, token) => {
 
   // Add array of backlinks
   if (!backlinks[node._path]) {
-    backlinks[node._path] = node._backlinks = []; // create new container
+    // Create a new container, with a value to ensure it is never dropped
+    node._backlinks = backlinks[node._path] = [''];
   } else {
-    node._backlinks = backlinks[node._path]; // merge with found backlinks
+    // Merge with the already found backlinks
+    node._backlinks = backlinks[node._path];
   }
 
   // Transform HTML string into serialized React tree

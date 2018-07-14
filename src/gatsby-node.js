@@ -146,9 +146,11 @@ const processData = async (data, baseUrl, backlinks, token) => {
 
   // Add array of backlinks
   if (!backlinks[node._path]) {
-    backlinks[node._path] = node._backlinks = []; // create new container
+    // Create a new container, with a value to ensure it is never dropped
+    node._backlinks = backlinks[node._path] = [''];
   } else {
-    node._backlinks = backlinks[node._path]; // merge with found backlinks
+    // Merge with the already found backlinks
+    node._backlinks = backlinks[node._path];
   }
 
   // Transform HTML string into serialized React tree
@@ -270,13 +272,15 @@ const processNodesUsingSearchTraversal = async (
   let backlinks = {};
 
   logMessage('Creating node structure', showLogs);
-  const nodes = items.map(item => {
-    return processData(item, baseUrl, backlinks, token);
-  });
+  const nodes = Promise.all(
+    items.map(async item => {
+      return await processData(item, baseUrl, backlinks, token);
+    })
+  );
 
   // Fetch data, process node for PloneSite
   const ploneSite = await fetchData(baseUrl, token, expansions);
-  const ploneSiteNode = processData(ploneSite, baseUrl, backlinks, token);
+  const ploneSiteNode = await processData(ploneSite, baseUrl, backlinks, token);
   // Push to nodes array
   nodes.push(ploneSiteNode);
 
@@ -314,7 +318,7 @@ const processNodesUsingRecursion = async (
 
     queue.push(...children.filter(child => !seen[child]));
 
-    nodes.push(processData(itemData, baseUrl, backlinks, token));
+    nodes.push(await processData(itemData, baseUrl, backlinks, token));
   }
 
   return nodes;
@@ -336,19 +340,20 @@ exports.sourceNodes = async (
 
   // @search approach if searchParams present
   if (searchParams) {
-    nodes = await Promise.all(
-      await processNodesUsingSearchTraversal(
-        baseUrl,
-        token,
-        expansions,
-        searchParams,
-        showLogs
-      )
+    nodes = await processNodesUsingSearchTraversal(
+      baseUrl,
+      token,
+      expansions,
+      searchParams,
+      showLogs
     );
   } else {
     // Recursive approach
-    nodes = await Promise.all(
-      await processNodesUsingRecursion(baseUrl, token, expansions, showLogs)
+    nodes = await processNodesUsingRecursion(
+      baseUrl,
+      token,
+      expansions,
+      showLogs
     );
   }
 

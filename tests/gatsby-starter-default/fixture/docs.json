@@ -91,12 +91,19 @@
       "description": "",
       "review_state": "published",
       "title": "Migration to Gatsby v2"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/docs/file_handling",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "File Handling"
     }
   ],
-  "items_total": 9,
+  "items_total": 10,
   "language": "en",
   "layout": "listing_view",
-  "modified": "2018-07-11T15:17:38+00:00",
+  "modified": "2018-07-12T12:29:49+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",

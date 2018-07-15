@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import { deserialize } from 'react-serialize';
 
@@ -47,3 +47,31 @@ const RichText = ({ serialized, images, files }) => (
 );
 
 export default RichText;
+
+export const query = graphql`
+  fragment Image on PloneImage {
+    id
+    title
+    image {
+      publicURL
+      childImageSharp {
+        fixed(width: 600) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+    _path
+  }
+
+  fragment File on PloneFile {
+    id
+    title
+    description
+    file {
+      filename
+      publicURL
+    }
+    _type
+    _path
+  }
+`;

@@ -39,5 +39,9 @@ nav, .jumbotron {
 /* 4. Custom styles and components */
 
 .navbar-brand {
-  a { color: $black; }
+  a {
+    padding-left: 0;
+    padding-right: 0;
+    color: $black;
+  }
 }

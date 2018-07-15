@@ -16,7 +16,7 @@ const Document = ({ data, images, files }) => (
 
 export default Document;
 
-export const documentFragment = graphql`
+export const query = graphql`
   fragment Document on PloneDocument {
     id
     title
@@ -32,20 +32,6 @@ export const documentFragment = graphql`
     }
     text {
       react
-    }
-    _path
-  }
-
-  fragment Image on PloneImage {
-    id
-    title
-    image {
-      publicURL
-      childImageSharp {
-        fixed(width: 600) {
-          ...GatsbyImageSharpFixed
-        }
-      }
     }
     _path
   }

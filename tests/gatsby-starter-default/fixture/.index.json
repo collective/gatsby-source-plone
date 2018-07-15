@@ -23,11 +23,11 @@
       "title": "News"
     },
     {
-      "@id": "http://localhost:8080/Plone/testcases",
+      "@id": "http://localhost:8080/Plone/examples",
       "@type": "Folder",
       "description": "A folder with different standard content types that Plone supports out of the box",
       "review_state": "published",
-      "title": "Testcases"
+      "title": "Examples"
     },
     {
       "@id": "http://localhost:8080/Plone/docs",

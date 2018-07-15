@@ -1,19 +1,19 @@
 {
   "@components": {
     "actions": {
-      "@id": "http://localhost:8080/Plone/testcases/a-nico-e-pagie/@actions"
+      "@id": "http://localhost:8080/Plone/examples/a-nico-e-pagie/@actions"
     },
     "breadcrumbs": {
-      "@id": "http://localhost:8080/Plone/testcases/a-nico-e-pagie/@breadcrumbs"
+      "@id": "http://localhost:8080/Plone/examples/a-nico-e-pagie/@breadcrumbs"
     },
     "navigation": {
-      "@id": "http://localhost:8080/Plone/testcases/a-nico-e-pagie/@navigation"
+      "@id": "http://localhost:8080/Plone/examples/a-nico-e-pagie/@navigation"
     },
     "workflow": {
-      "@id": "http://localhost:8080/Plone/testcases/a-nico-e-pagie/@workflow"
+      "@id": "http://localhost:8080/Plone/examples/a-nico-e-pagie/@workflow"
     }
   },
-  "@id": "http://localhost:8080/Plone/testcases/a-nico-e-pagie",
+  "@id": "http://localhost:8080/Plone/examples/a-nico-e-pagie",
   "@type": "Document",
   "UID": "90319e90165e45e1bef330593819081d",
   "allow_discussion": false,
@@ -33,11 +33,11 @@
   "layout": "document_view",
   "modified": "2018-07-11T08:03:39+00:00",
   "parent": {
-    "@id": "http://localhost:8080/Plone/testcases",
+    "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",
     "description": "A folder with different standard content types that Plone supports out of the box",
     "review_state": "published",
-    "title": "Testcases"
+    "title": "Examples"
   },
   "relatedItems": [],
   "review_state": "published",

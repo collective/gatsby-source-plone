@@ -10,7 +10,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
   const result = await graphql(`
     {
-      allPloneFolder {
+      allPloneCollection {
         edges {
           node {
             _path
@@ -24,7 +24,14 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      allPloneFile {
+      allPloneEvent {
+        edges {
+          node {
+            _path
+          }
+        }
+      }
+      allPloneFolder {
         edges {
           node {
             _path
@@ -38,19 +45,14 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      allPloneSite {
-        edges {
-          node {
-            _path
-          }
-        }
-      }
     }
   `);
   []
     .concat(
-      result.data.allPloneFolder.edges,
+      result.data.allPloneCollection.edges,
       result.data.allPloneDocument.edges,
+      result.data.allPloneEvent.edges,
+      result.data.allPloneFolder.edges,
       result.data.allPloneNewsItem.edges
     )
     .forEach(({ node }) => {

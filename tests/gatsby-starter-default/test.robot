@@ -62,8 +62,8 @@ Scenario: Deep folder structure
   Go To  http://localhost:9000
   Wait until page contains  Gatsby plugin for Plone
   Element should contain  css=.list-group  Docs
-  Page should contain  Testcases
-  Click link  Testcases
+  Page should contain  Examples
+  Click link  Examples
   Page should contain  Subfolder level two
   Click link  Subfolder level two
   Page should contain  Level three
@@ -73,12 +73,18 @@ Scenario: Deep folder structure
   Page should contain  Level four
   # Test that breadcrumbs are shown
   Page should contain  Home
-  Page should contain  Testcases
+  Page should contain  Examples
   Page should contain  Subfolder level two
   Page should contain  Level three
   Page should contain  Level four
   # Test that other folders from root level are not shown
   Element should not contain  css=.list-group  Docs
+
+Senario: Collection shows event
+  Go To  http://localhost:9000/examples/
+  Wait until page contains  Event collection
+  Click link  Event collection
+  Page should contain  Plone conference Tokyo
 
 Scenario: Image in a News Item
   Go To  http://localhost:9000/News
@@ -88,24 +94,24 @@ Scenario: Image in a News Item
   Page should contain element  css=h1 + .gatsby-image-outer-wrapper img
 
 Scenario: File download on a folder
-  Go To  http://localhost:9000/testcases
+  Go To  http://localhost:9000/examples
   Wait until page contains  PDF example
   Page should contain element  css=a[download="plone-logo.pdf"]
 
 Scenario: Internal linking
-  Go To  http://localhost:9000/testcases/a-page-with-internal-linking/
+  Go To  http://localhost:9000/examples/a-page-with-internal-linking/
   Wait until page contains  A page with internal linking
-  Page should contain element  css=a[href="/testcases/first-results/"]
+  Page should contain element  css=a[href="/examples/first-results/"]
   Click link  Link to first-results
   Page should contain  First results
 
 Scenario: Inline image
-  Go To  http://localhost:9000/testcases/a-page-with-internal-linking/
+  Go To  http://localhost:9000/examples/a-page-with-internal-linking/
   Wait until page contains  A page with internal linking
   Page should contain element  css=article p .gatsby-image-wrapper img
 
 Scenario: Inline link to a file download
-  Go To  http://localhost:9000/testcases/a-page-with-internal-linking/
+  Go To  http://localhost:9000/examples/a-page-with-internal-linking/
   Wait until page contains  A page with internal linking
   Page should contain  Link to a file
   Page should contain element  css=a[download="plone-logo.pdf"]

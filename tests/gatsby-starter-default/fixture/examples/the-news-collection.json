@@ -1,19 +1,19 @@
 {
   "@components": {
     "actions": {
-      "@id": "http://localhost:8080/Plone/testcases/the-news-collection/@actions"
+      "@id": "http://localhost:8080/Plone/examples/the-news-collection/@actions"
     },
     "breadcrumbs": {
-      "@id": "http://localhost:8080/Plone/testcases/the-news-collection/@breadcrumbs"
+      "@id": "http://localhost:8080/Plone/examples/the-news-collection/@breadcrumbs"
     },
     "navigation": {
-      "@id": "http://localhost:8080/Plone/testcases/the-news-collection/@navigation"
+      "@id": "http://localhost:8080/Plone/examples/the-news-collection/@navigation"
     },
     "workflow": {
-      "@id": "http://localhost:8080/Plone/testcases/the-news-collection/@workflow"
+      "@id": "http://localhost:8080/Plone/examples/the-news-collection/@workflow"
     }
   },
-  "@id": "http://localhost:8080/Plone/testcases/the-news-collection",
+  "@id": "http://localhost:8080/Plone/examples/the-news-collection",
   "@type": "Collection",
   "UID": "fdcec3323a0841fda64dd07b15759759",
   "allow_discussion": false,
@@ -38,7 +38,7 @@
   "item_count": 30,
   "items": [
     {
-      "@id": "http://localhost:8080/Plone/testcases/first-results",
+      "@id": "http://localhost:8080/Plone/examples/first-results",
       "@type": "News Item",
       "description": "The Google Summer of Code project \"Gatsby source plugin for Plone\" is underway!",
       "review_state": "published",
@@ -65,11 +65,11 @@
   "limit": 1000,
   "modified": "2018-07-11T08:03:20+00:00",
   "parent": {
-    "@id": "http://localhost:8080/Plone/testcases",
+    "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",
     "description": "A folder with different standard content types that Plone supports out of the box",
     "review_state": "published",
-    "title": "Testcases"
+    "title": "Examples"
   },
   "query": [
     {

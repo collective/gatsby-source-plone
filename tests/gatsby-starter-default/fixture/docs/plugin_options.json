@@ -31,7 +31,7 @@
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2018-07-11T08:03:49+00:00",
+  "modified": "2018-07-12T12:29:44+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/docs",
     "@type": "Folder",

@@ -1,19 +1,19 @@
 {
   "@components": {
     "actions": {
-      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/level-three/@actions"
+      "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/level-three/@actions"
     },
     "breadcrumbs": {
-      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/level-three/@breadcrumbs"
+      "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/level-three/@breadcrumbs"
     },
     "navigation": {
-      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/level-three/@navigation"
+      "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/level-three/@navigation"
     },
     "workflow": {
-      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/level-three/@workflow"
+      "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/level-three/@workflow"
     }
   },
-  "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/level-three",
+  "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/level-three",
   "@type": "Folder",
   "UID": "74ba7b9791d24f61b1599e699aa1c6b8",
   "allow_discussion": false,
@@ -30,7 +30,7 @@
   "is_folderish": true,
   "items": [
     {
-      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/level-three/level-four",
+      "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/level-three/level-four",
       "@type": "Folder",
       "description": "",
       "review_state": "published",
@@ -43,7 +43,7 @@
   "modified": "2018-07-11T08:03:36+00:00",
   "nextPreviousEnabled": false,
   "parent": {
-    "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two",
+    "@id": "http://localhost:8080/Plone/examples/subfolder-level-two",
     "@type": "Folder",
     "description": "",
     "review_state": "published",

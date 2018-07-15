@@ -20,7 +20,7 @@ export const query = graphql`
       ...Document
     }
     ploneSite(_path: { eq: "/" }) {
-      ...PloneSite
+      ...Site
     }
   }
 `;

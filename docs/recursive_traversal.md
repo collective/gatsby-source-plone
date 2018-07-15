@@ -27,3 +27,11 @@ Tree.prototype.traverse = function(callback) {
 ```
 
 This was used as the reference, and the basic idea of the BFS algorithm was followed, ie, using the queue data structure to start with the first item, and then consecutively store the children of each processed item, while processing the dequeued element in each iteration of the loop.
+
+## Handling Collections
+
+Collections are data types that are basically a group of content objects returned which a certain search query is run. This means they have children that are originally children of other nodes, which means there isn't a need for them to be traversed again.
+
+The algorithm was modified to handle this condition as well using a `seen[path]` approach, in which an object `seen` has a list of all paths that's been traversed already saved as `seen[path] = true`.
+
+Furthermore, it was noted that often, when content objects have a huge list of children, they too, are batched like the `@search` response, and so all content objects have batching support added.

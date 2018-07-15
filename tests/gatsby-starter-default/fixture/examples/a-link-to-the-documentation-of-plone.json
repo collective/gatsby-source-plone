@@ -1,19 +1,19 @@
 {
   "@components": {
     "actions": {
-      "@id": "http://localhost:8080/Plone/testcases/a-link-to-the-documentation-of-plone/@actions"
+      "@id": "http://localhost:8080/Plone/examples/a-link-to-the-documentation-of-plone/@actions"
     },
     "breadcrumbs": {
-      "@id": "http://localhost:8080/Plone/testcases/a-link-to-the-documentation-of-plone/@breadcrumbs"
+      "@id": "http://localhost:8080/Plone/examples/a-link-to-the-documentation-of-plone/@breadcrumbs"
     },
     "navigation": {
-      "@id": "http://localhost:8080/Plone/testcases/a-link-to-the-documentation-of-plone/@navigation"
+      "@id": "http://localhost:8080/Plone/examples/a-link-to-the-documentation-of-plone/@navigation"
     },
     "workflow": {
-      "@id": "http://localhost:8080/Plone/testcases/a-link-to-the-documentation-of-plone/@workflow"
+      "@id": "http://localhost:8080/Plone/examples/a-link-to-the-documentation-of-plone/@workflow"
     }
   },
-  "@id": "http://localhost:8080/Plone/testcases/a-link-to-the-documentation-of-plone",
+  "@id": "http://localhost:8080/Plone/examples/a-link-to-the-documentation-of-plone",
   "@type": "Link",
   "UID": "92f9f9ff5be1413b9c01a8164f3bd1c0",
   "allow_discussion": false,
@@ -33,11 +33,11 @@
   "layout": "link_redirect_view",
   "modified": "2018-07-11T08:03:38+00:00",
   "parent": {
-    "@id": "http://localhost:8080/Plone/testcases",
+    "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",
     "description": "A folder with different standard content types that Plone supports out of the box",
     "review_state": "published",
-    "title": "Testcases"
+    "title": "Examples"
   },
   "remoteUrl": "https://docs.plone.org",
   "review_state": "published",

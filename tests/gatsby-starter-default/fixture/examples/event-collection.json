@@ -1,19 +1,19 @@
 {
   "@components": {
     "actions": {
-      "@id": "http://localhost:8080/Plone/testcases/event-collection/@actions"
+      "@id": "http://localhost:8080/Plone/examples/event-collection/@actions"
     },
     "breadcrumbs": {
-      "@id": "http://localhost:8080/Plone/testcases/event-collection/@breadcrumbs"
+      "@id": "http://localhost:8080/Plone/examples/event-collection/@breadcrumbs"
     },
     "navigation": {
-      "@id": "http://localhost:8080/Plone/testcases/event-collection/@navigation"
+      "@id": "http://localhost:8080/Plone/examples/event-collection/@navigation"
     },
     "workflow": {
-      "@id": "http://localhost:8080/Plone/testcases/event-collection/@workflow"
+      "@id": "http://localhost:8080/Plone/examples/event-collection/@workflow"
     }
   },
-  "@id": "http://localhost:8080/Plone/testcases/event-collection",
+  "@id": "http://localhost:8080/Plone/examples/event-collection",
   "@type": "Collection",
   "UID": "78949b18399f412a974f156513910966",
   "allow_discussion": false,
@@ -37,7 +37,7 @@
   "item_count": 30,
   "items": [
     {
-      "@id": "http://localhost:8080/Plone/testcases/plone-conference-tokyo",
+      "@id": "http://localhost:8080/Plone/examples/plone-conference-tokyo",
       "@type": "Event",
       "description": "The worldwide gathering of the Plone family (and friends) will happen in Japan this year.",
       "review_state": "published",
@@ -50,11 +50,11 @@
   "limit": 1000,
   "modified": "2018-07-11T08:03:43+00:00",
   "parent": {
-    "@id": "http://localhost:8080/Plone/testcases",
+    "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",
     "description": "A folder with different standard content types that Plone supports out of the box",
     "review_state": "published",
-    "title": "Testcases"
+    "title": "Examples"
   },
   "query": [
     {

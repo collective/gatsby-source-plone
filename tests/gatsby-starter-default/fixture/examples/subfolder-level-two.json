@@ -1,19 +1,19 @@
 {
   "@components": {
     "actions": {
-      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/@actions"
+      "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/@actions"
     },
     "breadcrumbs": {
-      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/@breadcrumbs"
+      "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/@breadcrumbs"
     },
     "navigation": {
-      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/@navigation"
+      "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/@navigation"
     },
     "workflow": {
-      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/@workflow"
+      "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/@workflow"
     }
   },
-  "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two",
+  "@id": "http://localhost:8080/Plone/examples/subfolder-level-two",
   "@type": "Folder",
   "UID": "177722ff95d941e892afdd858c219811",
   "allow_discussion": false,
@@ -30,7 +30,7 @@
   "is_folderish": true,
   "items": [
     {
-      "@id": "http://localhost:8080/Plone/testcases/subfolder-level-two/level-three",
+      "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/level-three",
       "@type": "Folder",
       "description": "",
       "review_state": "published",
@@ -43,11 +43,11 @@
   "modified": "2018-07-11T08:03:34+00:00",
   "nextPreviousEnabled": false,
   "parent": {
-    "@id": "http://localhost:8080/Plone/testcases",
+    "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",
     "description": "A folder with different standard content types that Plone supports out of the box",
     "review_state": "published",
-    "title": "Testcases"
+    "title": "Examples"
   },
   "relatedItems": [],
   "review_state": "published",

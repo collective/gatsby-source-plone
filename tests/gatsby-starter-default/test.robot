@@ -80,6 +80,12 @@ Scenario: Deep folder structure
   # Test that other folders from root level are not shown
   Element should not contain  css=.list-group  Docs
 
+Senario: Collection shows event
+  Go To  http://localhost:9000/examples/
+  Wait until page contains  Event collection
+  Click link  Event collection
+  Page should contain  Plone conference Tokyo
+
 Scenario: Image in a News Item
   Go To  http://localhost:9000/News
   Wait until page contains  News

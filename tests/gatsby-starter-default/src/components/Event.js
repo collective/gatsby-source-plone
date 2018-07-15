@@ -1,15 +1,13 @@
 import React from 'react';
-import Img from 'gatsby-image';
 import { graphql } from 'gatsby';
 import RichText from './RichText';
 
-const NewsItem = ({ data, images, files }) => (
+const Event = ({ data, images, files }) => (
   <article key={data._id}>
     <h1>{data.title}</h1>
-    <Img resolutions={data.image.childImageSharp.fixed} />
     <p>
       <small>
-        Published on <em>{data.effective}</em>
+        Begins <em>{data.start}</em>
       </small>
     </p>
     {data.description ? (
@@ -21,21 +19,14 @@ const NewsItem = ({ data, images, files }) => (
   </article>
 );
 
-export default NewsItem;
+export default Event;
 
 export const query = graphql`
-  fragment NewsItem on PloneNewsItem {
+  fragment Event on PloneEvent {
     id
     title
     description
-    effective(formatString: "MMMM Do, YYYY")
-    image {
-      childImageSharp {
-        fixed(width: 200) {
-          ...GatsbyImageSharpFixed
-        }
-      }
-    }
+    start(formatString: "MMMM Do, YYYY @ HH:MM")
     _components {
       breadcrumbs {
         items {

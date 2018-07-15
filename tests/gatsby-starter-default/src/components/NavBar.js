@@ -11,7 +11,7 @@ const NavBar = ({ active, toggleNavigation, navigationExpanded }) => (
     query={graphql`
       query NavbarQuery {
         ploneSite(_path: { eq: "/" }) {
-          ...PloneSite
+          ...Site
         }
       }
     `}
@@ -19,7 +19,7 @@ const NavBar = ({ active, toggleNavigation, navigationExpanded }) => (
       <nav className="navbar navbar-expand-md navbar-light bg-light col-12">
         <span className="navbar-brand">
           <Link className="nav-link" to="/">
-            <MdHome /> GatsbyPlone
+            <MdHome /> GtsbSrcPlone
           </Link>
         </span>
         <button

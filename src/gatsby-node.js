@@ -95,6 +95,8 @@ const processHtml = (html, baseUrl, path, backlinks) => {
 
 // Process data to pass it on to nodes
 const processData = async (data, baseUrl, backlinks, token) => {
+  // mediaType is set as 'text/html' as a common case
+  // Content objects may have html, images, files or combinations of them
   let node = {
     internal: {
       contentDigest: createContentDigest(data),

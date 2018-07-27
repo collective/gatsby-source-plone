@@ -96,3 +96,50 @@ export const query = graphql`
 The tree hierarchy established by the plugin is utilized here to get the children of the folder and `SubFolder` GraphQL fragment retrieves the content of folders inside this particular folder and links to them. More information on tree hierarchy in nodes can be found in the [docs](https://collective.github.io/gatsby-source-plone/docs/tree-hierarchy/).
 
 To see it in action, go to `/demo` or any existing folder path and it's details and subfolders displayed.
+
+## Displaying Plone site contents at homepage
+
+To actually view the pages we've created in the gatsby-site, let's display the contents of the Plone site on the homepage:
+
+```javascript
+const IndexPage = ({ data }) => (
+  <Layout>
+    <article>
+      <h1>{data.ploneDocument.title}</h1>
+      <p>{data.ploneDocument.description}</p>
+    </article>
+    <Folder data={data.ploneSite} title="Contents" />
+  </Layout>
+);
+
+export const query = graphql`
+  query IndexPageQuery {
+    ploneDocument(_path: { eq: "/frontpage/" }) {
+      id
+      title
+      description
+    }
+    ploneSite(_path: { eq: "/" }) {
+      ...Site
+    }
+  }
+`;
+```
+
+Site is a fragment defined in the `Folder` component to display the children of the Plone Site (root or baseUrl):
+
+```graphql
+{
+  fragment
+  Site
+  on
+  PloneSite {
+    id
+    title
+    children {
+      ...Folder
+    }
+    _path
+  }
+}
+```

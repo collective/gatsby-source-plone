@@ -11,21 +11,15 @@ export const query = graphql`
     id
     title
     description
-    _components {
-      breadcrumbs {
-        items {
-          _id
-          _path
-          title
-        }
-      }
+    text {
+      react
     }
-    children {
-      ...Document
-      ...Event
-      ...File
-      ...NewsItem
-      ...SubFolder
+    items {
+      _id
+      _path
+      _type
+      description
+      title
     }
     _path
   }

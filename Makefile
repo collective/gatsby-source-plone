@@ -49,7 +49,7 @@ watch-test: node_modules
 .PHONY: watch-tests
 watch-tests:
 	nodemon -w gatsby-node.js \
-	--exec "$(MAKE) -C tests/gatsby-starter-default clean watch"
+	--exec "$(MAKE) -C tests/gatsby-starter-default watch"
 
 .PHONY: watch
 watch: node_modules

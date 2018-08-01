@@ -50,8 +50,8 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.1",
-    "gatsby": "next",
-    "gatsby-source-filesystem": "next",
+    "gatsby": "^2.0.0-beta.59",
+    "gatsby-source-filesystem": "^2.0.1-beta.10",
     "react": "^16.4.1",
     "react-html-parser": "^2.0.2",
     "react-serialize": "^0.1.2"

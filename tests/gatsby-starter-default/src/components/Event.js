@@ -27,15 +27,6 @@ export const query = graphql`
     title
     description
     start(formatString: "MMMM Do, YYYY @ HH:MM")
-    _components {
-      breadcrumbs {
-        items {
-          _id
-          _path
-          title
-        }
-      }
-    }
     text {
       react
     }

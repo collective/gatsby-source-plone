@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import RichText from './RichText';
 
-const Document = ({ data, images, files }) => (
+const Document = ({ data, images = [], files = [] }) => (
   <article key={data._id}>
     <h1>{data.title}</h1>
     {data.description ? (
@@ -10,7 +10,9 @@ const Document = ({ data, images, files }) => (
         <strong>{data.description}</strong>
       </p>
     ) : null}
-    <RichText serialized={data.text.react} images={images} files={files} />
+    {data.text ? (
+      <RichText serialized={data.text.react} images={images} files={files} />
+    ) : null}
   </article>
 );
 
@@ -21,15 +23,6 @@ export const query = graphql`
     id
     title
     description
-    _components {
-      breadcrumbs {
-        items {
-          _id
-          _path
-          title
-        }
-      }
-    }
     text {
       react
     }

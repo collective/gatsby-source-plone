@@ -4,35 +4,39 @@ import Img from 'gatsby-image';
 import { deserialize } from 'react-serialize';
 
 const ResolveImage = images => data => {
-  if (images && images.edges) {
-    let match = images.edges.filter(edge => edge.node._path === data.src);
-    if (match.length) {
-      return (
-        <Img
-          Tag="span"
-          resolutions={match[0].node.image.childImageSharp.fixed}
-        />
-      );
-    }
+  let byPath = images.reduce(function(result, image) {
+    result[image._path] = image;
+    return result;
+  }, {});
+  if (byPath[data.src]) {
+    return (
+      <Img
+        Tag="span"
+        resolutions={byPath[data.src].image.childImageSharp.fixed}
+      />
+    );
+  } else {
+    return <img src={data.src} alt={data.alt} title={data.title} />;
   }
-  return <img src={data.src} alt={data.alt} title={data.title} />;
 };
 
 const ResolveLink = files => data => {
-  if (files && files.edges) {
-    let match = files.edges.filter(edge => edge.node._path === data.to);
-    if (match.length) {
-      return (
-        <a
-          href={match[0].node.file.publicURL}
-          download={match[0].node.file.filename}
-        >
-          {data.children}
-        </a>
-      );
-    }
+  let byPath = files.reduce(function(result, file) {
+    result[file._path] = file;
+    return result;
+  }, {});
+  if (byPath[data.to]) {
+    return (
+      <a
+        href={byPath[data.to].file.publicURL}
+        download={byPath[data.to].file.filename}
+      >
+        {data.children}
+      </a>
+    );
+  } else {
+    return <Link to={data.to}>{data.children}</Link>;
   }
-  return <Link to={data.to}>{data.children}</Link>;
 };
 
 const RichText = ({ serialized, images, files }) => (

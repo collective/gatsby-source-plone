@@ -2,7 +2,7 @@ import {
   urlWithoutParameters,
   headersWithToken,
   normalizePath,
-} from '../normalize';
+} from '../utils';
 
 test('url without parameters', () => {
   expect(

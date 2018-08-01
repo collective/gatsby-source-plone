@@ -401,9 +401,7 @@ exports.onCreateNode = async (
     };
 
     if (node.image) {
-      logger.info(
-        `Fetching file for Plone node – ${node.id.replace(baseUrl, '') || '/'}`
-      );
+      logger.info(`Fetching file – ${node.id.replace(baseUrl, '') || '/'}`);
       try {
         const imageNode = await createRemoteFileNode({
           url: node.image.download,
@@ -420,9 +418,7 @@ exports.onCreateNode = async (
     }
 
     if (node.file) {
-      logger.info(
-        `Fetching file for Plone node – ${node.id.replace(baseUrl, '') || '/'}`
-      );
+      logger.info(`Fetching file – ${node.id.replace(baseUrl, '') || '/'}`);
       try {
         const fileNode = await createRemoteFileNode({
           url: node.file.download,

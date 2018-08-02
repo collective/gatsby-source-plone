@@ -40,7 +40,7 @@ export const urlWithoutParameters = url => {
 
 // Return parent id for Plone REST API content object id
 export const parentId = id =>
-  id.match(/\//g).length > 3
+  id.match(/\//g).length >= 3
     ? id
         .split('/')
         .slice(0, -1)
@@ -61,7 +61,7 @@ export const fetchUrl = async (url, token, params, http = axios) => {
   const response = await http.get(url, {
     headers: headersWithToken(
       {
-        accept: 'application/json',
+        Accept: 'application/json',
       },
       token
     ),

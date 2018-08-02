@@ -6,13 +6,14 @@ import Event from '../components/Event';
 import Folder from '../components/Folder';
 import Layout from '../components/Layout';
 import NewsItem from '../components/NewsItem';
+import Collection from '../components/Collection';
 
 const componentFor = data => {
   const nodes = query => (query ? query['edges'] : []).map(edge => edge.node);
   if (data) {
     if (data['ploneCollection']) {
       return (
-        <Folder
+        <Collection
           data={data['ploneCollection']}
           images={nodes(data['allPloneImage'])}
           files={nodes(data['allPloneFile'])}

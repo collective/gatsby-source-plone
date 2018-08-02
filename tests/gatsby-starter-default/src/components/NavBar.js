@@ -10,8 +10,13 @@ const NavBar = ({ active, toggleNavigation, navigationExpanded }) => (
   <StaticQuery
     query={graphql`
       query NavbarQuery {
-        ploneSite(_path: { eq: "/" }) {
-          ...Site
+        ploneNavigation(_path: { eq: "/" }) {
+          items {
+            _id
+            _path
+            description
+            title
+          }
         }
       }
     `}
@@ -42,19 +47,24 @@ const NavBar = ({ active, toggleNavigation, navigationExpanded }) => (
           id="navbarSupportedContent"
         >
           <ul className="navbar-nav mr-auto">
-            {data.ploneSite._components.navigation.items.map(node => (
-              <li className="nav-item" key={node._id}>
-                <Link
-                  className={
-                    node._path === active ? 'nav-link active' : 'nav-link'
-                  }
-                  to={node._path}
-                >
-                  <GoChevronRight className="hide-md-up" />
-                  {node.title}
-                </Link>
-              </li>
-            ))}
+            {data.ploneNavigation.items
+              .filter(node => node._path !== '/')
+              .map(node => (
+                <li className="nav-item" key={node._id}>
+                  <Link
+                    className={
+                      node._path === active ||
+                      (active || '').startsWith(node._path)
+                        ? 'nav-link active'
+                        : 'nav-link'
+                    }
+                    to={node._path}
+                  >
+                    <GoChevronRight className="hide-md-up" />
+                    {node.title}
+                  </Link>
+                </li>
+              ))}
           </ul>
         </div>
       </nav>

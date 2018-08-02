@@ -22,7 +22,7 @@ const Header = () => (
   </div>
 );
 
-const Layout = ({ children, title }) => {
+const Layout = ({ breadcrumbs, children, title }) => {
   const node = children.length ? children[0].props.data : children.props.data;
   const active = node
     ? node._path === '/docs/index/' ? '/' : node._path
@@ -36,10 +36,8 @@ const Layout = ({ children, title }) => {
         <NavBar active={active} />
         <div className="col-12">
           <Header />
-          {node && node._path !== '/docs/index/' ? (
-            node._components.breadcrumbs ? (
-              <Breadcrumbs data={node} active={active} />
-            ) : null
+          {breadcrumbs ? (
+            <Breadcrumbs data={breadcrumbs} active={active} />
           ) : null}
           <div className="main-content">{children}</div>
         </div>

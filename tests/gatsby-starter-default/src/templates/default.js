@@ -6,47 +6,49 @@ import Event from '../components/Event';
 import Folder from '../components/Folder';
 import Layout from '../components/Layout';
 import NewsItem from '../components/NewsItem';
+import Collection from '../components/Collection';
 
 const componentFor = data => {
+  const nodes = query => (query ? query['edges'] : []).map(edge => edge.node);
   if (data) {
-    if (data.ploneCollection) {
+    if (data['ploneCollection']) {
       return (
-        <Folder
-          data={data.ploneCollection}
-          images={data.allPloneImage}
-          files={data.allPloneFile}
+        <Collection
+          data={data['ploneCollection']}
+          images={nodes(data['allPloneImage'])}
+          files={nodes(data['allPloneFile'])}
         />
       );
-    } else if (data.ploneDocument) {
+    } else if (data['ploneDocument']) {
       return (
         <Document
-          data={data.ploneDocument}
-          images={data.allPloneImage}
-          files={data.allPloneFile}
+          data={data['ploneDocument']}
+          images={nodes(data['allPloneImage'])}
+          files={nodes(data['allPloneFile'])}
         />
       );
-    } else if (data.ploneEvent) {
+    } else if (data['ploneEvent']) {
       return (
         <Event
-          data={data.ploneEvent}
-          images={data.allPloneImage}
-          files={data.allPloneFile}
+          data={data['ploneEvent']}
+          images={nodes(data['allPloneImage'])}
+          files={nodes(data['allPloneFile'])}
         />
       );
-    } else if (data.ploneFolder) {
+    } else if (data['ploneFolder']) {
       return (
         <Folder
-          data={data.ploneFolder}
-          images={data.allPloneImage}
-          files={data.allPloneFile}
+          data={data['ploneFolder']}
+          images={nodes(data['allPloneImage'])}
+          files={nodes(data['allPloneFile'])}
         />
       );
-    } else if (data.ploneNewsItem) {
+    } else if (data['ploneNewsItem']) {
       return (
         <NewsItem
-          data={data.ploneNewsItem}
-          images={data.allPloneImage}
-          files={data.allPloneFile}
+          data={data['ploneNewsItem']}
+          images={nodes(data['allPloneImage'])}
+          files={nodes(data['allPloneFile'])}
         />
       );
     } else {
@@ -57,7 +59,11 @@ const componentFor = data => {
   }
 };
 
-const DefaultLayout = ({ data }) => <Layout>{componentFor(data)}</Layout>;
+const DefaultLayout = ({ data }) => (
+  <Layout breadcrumbs={data['ploneBreadcrumbs'] || []}>
+    {componentFor(data)}
+  </Layout>
+);
 
 export default DefaultLayout;
 
@@ -77,6 +83,13 @@ export const query = graphql`
     }
     ploneNewsItem(_path: { eq: $path }) {
       ...NewsItem
+    }
+    ploneBreadcrumbs(_path: { eq: $path }) {
+      items {
+        _id
+        _path
+        title
+      }
     }
     allPloneFile(filter: { _backlinks: { eq: $path } }) {
       edges {

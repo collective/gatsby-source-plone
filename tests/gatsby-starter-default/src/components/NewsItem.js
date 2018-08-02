@@ -36,15 +36,6 @@ export const query = graphql`
         }
       }
     }
-    _components {
-      breadcrumbs {
-        items {
-          _id
-          _path
-          title
-        }
-      }
-    }
     text {
       react
     }

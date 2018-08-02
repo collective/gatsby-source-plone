@@ -2,7 +2,9 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Folder from './Folder';
 
-const Collection = ({ data, title }) => <Folder data={data} title={title} />;
+const Collection = ({ data, title, images, files }) => (
+  <Folder data={data} title={title} images={images} files={files} />
+);
 
 export default Collection;
 
@@ -11,21 +13,15 @@ export const query = graphql`
     id
     title
     description
-    _components {
-      breadcrumbs {
-        items {
-          _id
-          _path
-          title
-        }
-      }
+    text {
+      react
     }
-    children {
-      ...Document
-      ...Event
-      ...File
-      ...NewsItem
-      ...SubFolder
+    items {
+      _id
+      _path
+      _type
+      description
+      title
     }
     _path
   }

@@ -50,5 +50,5 @@ node_modules/
 .serverless/
 
 # Build output
-gatsby-node.js
-normalize.js
+/gatsby-node.js
+/utils.js

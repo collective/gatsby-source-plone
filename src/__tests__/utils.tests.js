@@ -1,4 +1,5 @@
 import {
+  createContentDigest,
   fetchPlone,
   fetchUrl,
   headersWithToken,
@@ -9,6 +10,10 @@ import {
   parseHTMLtoReact,
   urlWithoutParameters,
 } from '../utils';
+
+test('createContentDigest creates deterministic digest', () => {
+  expect(createContentDigest('data')).toBe('755af0e71655b62611370ead1f20bcae');
+});
 
 test('urlWithoutParameters removes query string', () => {
   expect(

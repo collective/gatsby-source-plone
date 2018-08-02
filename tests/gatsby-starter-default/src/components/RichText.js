@@ -4,15 +4,15 @@ import Img from 'gatsby-image';
 import { deserialize } from 'react-serialize';
 
 const ResolveImage = images => data => {
-  let byPath = images.reduce(function(result, image) {
-    result[image._path] = image;
-    return result;
-  }, {});
-  if (byPath[data.src]) {
+  let byPath = images.reduce(
+    (map, image) => map.set(image._path, image),
+    new Map()
+  );
+  if (byPath.get(data.src)) {
     return (
       <Img
         Tag="span"
-        resolutions={byPath[data.src].image.childImageSharp.fixed}
+        resolutions={byPath.get(data.src).image.childImageSharp.fixed}
       />
     );
   } else {
@@ -21,15 +21,15 @@ const ResolveImage = images => data => {
 };
 
 const ResolveLink = files => data => {
-  let byPath = files.reduce(function(result, file) {
-    result[file._path] = file;
-    return result;
-  }, {});
-  if (byPath[data.to]) {
+  let byPath = files.reduce(
+    (map, file) => map.set(file._path, file),
+    new Map()
+  );
+  if (byPath.get(data.to)) {
     return (
       <a
-        href={byPath[data.to].file.publicURL}
-        download={byPath[data.to].file.filename}
+        href={byPath.get(data.to).file.publicURL}
+        download={byPath.get(data.to).file.filename}
       >
         {data.children}
       </a>

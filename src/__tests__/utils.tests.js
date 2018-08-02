@@ -63,6 +63,7 @@ const mock = {
           data: {
             ...headers,
             items: [2],
+            batching: {},
           },
         },
 };

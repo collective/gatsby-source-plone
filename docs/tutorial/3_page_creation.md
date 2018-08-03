@@ -96,7 +96,7 @@ Contents inside a node can be retrieved by using the `items` property, which inc
 
 _Note: Items in a folder includes all types of Plone content objects, and cause we don't have components for other types such as Document or NewsItem and so on yet, these links would direct to the 404 page, and this is expected. The next part of the tutorial covers page creation of each object and handling them._
 
-To see it in action, go to `/demo` or any existing folder path and it's details and subfolders displayed.
+To see it in action, go to `/demo` or any existing folder path and it's details and contents displayed.
 
 ## Displaying Plone site contents at homepage
 
@@ -127,7 +127,7 @@ export const query = graphql`
 `;
 ```
 
-Site is a fragment defined in the `Folder` component to display the children of the Plone Site (root or baseUrl):
+Site is a fragment defined in the `Folder` component to display items in the Plone Site (root or baseUrl):
 
 ```graphql
 fragment Site on PloneSite {

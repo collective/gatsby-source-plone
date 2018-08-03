@@ -60,40 +60,41 @@ const Folder = ({ data, title }) => (
     <p>
       <strong>{data.description}</strong>
     </p>
-    <ul>
-      {data.children.filter(child => child.title).map(child => (
-        <li key={child._path}>
+    <ul className="list-group">
+      {data.items.filter(item => item.title).map(item => (
+        <li key={item._path} className="list-group-item">
           <p>
-            <Link to={child._path}>{child.title}</Link>
+            <Link to={item._path}>{item.title}</Link>
           </p>
-          {child.description && <p>{child.description}</p>}
+          {item.description && <p>{item.description}</p>}
         </li>
       ))}
     </ul>
   </nav>
 );
 
+export default Folder;
+
 export const query = graphql`
   fragment Folder on PloneFolder {
     id
     title
     description
-    children {
-      ...SubFolder
+    items {
+      _id
+      _path
+      _type
+      description
+      title
     }
-    _path
-  }
-
-  fragment SubFolder on PloneFolder {
-    id
-    title
-    description
     _path
   }
 `;
 ```
 
-The tree hierarchy established by the plugin is utilized here to get the children of the folder and `SubFolder` GraphQL fragment retrieves the content of folders inside this particular folder and links to them. More information on tree hierarchy in nodes can be found in the [docs](https://collective.github.io/gatsby-source-plone/docs/tree-hierarchy/).
+Contents inside a node can be retrieved by using the `items` property, which includes the list of children, irrespective of type. So here, all the children of folders are retrieved and displayed as links.
+
+_Note: Items in a folder includes all types of Plone content objects, and cause we don't have components for other types such as Document or NewsItem and so on yet, these links would direct to the 404 page, and this is expected. The next part of the tutorial covers page creation of each object and handling them._
 
 To see it in action, go to `/demo` or any existing folder path and it's details and subfolders displayed.
 
@@ -129,17 +130,16 @@ export const query = graphql`
 Site is a fragment defined in the `Folder` component to display the children of the Plone Site (root or baseUrl):
 
 ```graphql
-{
-  fragment
-  Site
-  on
-  PloneSite {
-    id
-    title
-    children {
-      ...Folder
-    }
+fragment Site on PloneSite {
+  id
+  title
+  items {
+    _id
     _path
+    _type
+    description
+    title
   }
+  _path
 }
 ```

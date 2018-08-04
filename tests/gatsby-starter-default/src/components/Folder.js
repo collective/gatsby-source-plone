@@ -27,7 +27,7 @@ const Folder = ({ data, title, images = [], files = [] }) => {
       <ul className="list-group">
         {data.items
           .filter(
-            item => listedTypes.has(item._type) && item._path !== '/docs/index/'
+            item => listedTypes.has(item._type) && item._path !== '/index/'
           )
           .map(item => (
             <li key={item._path} className="list-group-item">

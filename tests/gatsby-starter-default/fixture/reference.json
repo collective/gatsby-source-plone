@@ -1,0 +1,106 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/reference/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/reference/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/reference/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/reference/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/reference",
+  "@type": "Folder",
+  "UID": "21c9a68466df415c990bb33934d07255",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2018-08-04T19:37:19+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "Reference documentation",
+  "effective": "2018-08-04T00:00:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "reference",
+  "is_folderish": true,
+  "items": [
+    {
+      "@id": "http://localhost:8080/Plone/reference/plugin_options",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Plugin Options"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/reference/authentication",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Authenticating REST API calls"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/reference/file_handling",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "File and image field support"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/reference/html_parsing",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "RichText field support"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/reference/expansions",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Supported REST API expansions"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/reference/search_parameters",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Customizing search Parameters"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/reference/search_traversal",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "How plugin uses @search endpoint"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/reference/tree-hierarchy",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "How content hierarchy is mapped"
+    }
+  ],
+  "items_total": 8,
+  "language": "en",
+  "layout": "listing_view",
+  "modified": "2018-08-04T21:17:48+00:00",
+  "nextPreviousEnabled": false,
+  "parent": {
+    "@id": "http://localhost:8080/Plone",
+    "@type": "Plone Site",
+    "description": "",
+    "title": "Gatsby source plugin for Plone"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": null,
+  "subjects": [],
+  "title": "Docs",
+  "version": "current"
+}

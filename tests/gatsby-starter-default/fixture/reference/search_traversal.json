@@ -1,0 +1,54 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/reference/search_traversal/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/reference/search_traversal/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/reference/search_traversal/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/reference/search_traversal/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/reference/search_traversal",
+  "@type": "Document",
+  "UID": "56e902defe054aa187cb2ad13d79edd8",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-08-04T19:37:32+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": "2018-08-04T00:00:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "search_traversal",
+  "is_folderish": false,
+  "language": "",
+  "layout": "document_view",
+  "modified": "2018-08-04T21:18:16+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/reference",
+    "@type": "Folder",
+    "description": "Reference documentation",
+    "review_state": "published",
+    "title": "Docs"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "table_of_contents": null,
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>In the <a href=\"https://github.com/plone/plone.restapi\">plone.restapi</a>, the <code>@search</code> endpoint when fetched without any query returns the full list of content objects. This is used to pull the whole content tree and create nodes with tree hierarchy.</p>\n<p>The procedure followed for this:</p>\n<p>At first, this plugin uses <code>@search</code> endpoint to get a flat list of all content objects.</p>\n<p>For instance, <code>https://plonedemo.kitconcept.com/en/@search</code> gives the response:</p>\n<pre><code class=\"lang-json\">{\n  \"@id\": \"https://plonedemo.kitconcept.com/en/@search\",\n  \"items\": [\n    {\n      \"@id\": \"https://plonedemo.kitconcept.com/en\",\n      \"@type\": \"LRF\",\n      \"description\": \"\",\n      \"review_state\": \"published\",\n      \"title\": \"English\"\n    },\n    {\n      \"@id\": \"https://plonedemo.kitconcept.com/en/frontpage\",\n      \"@type\": \"Document\",\n      \"description\": \"The ultimate Open Source Enterprise CMS\",\n      \"review_state\": \"published\",\n      \"title\": \"Welcome to Plone 5\"\n    },\n    {\n      \"@id\": \"https://plonedemo.kitconcept.com/en/demo/a-page\",\n      \"@type\": \"Document\",\n      \"description\": \"Aenean dictum auctor elit, in volutpat ipsum venenatis at. Quisque lobortis augue et enim venenatis interdum. In egestas, est at condimentum ultrices, tortor enim malesuada nulla; vel sagittis nullam.\",\n      \"review_state\": \"published\",\n      \"title\": \"A Page\"\n    }\n ]\n}\n</code></pre>\n<p>The <code>items</code> is an array of all the content objects.</p>\n<p>Next, using this flat list, plugin iterates through the <code>@id</code> attributes making individual requests for each content object to get full data.</p>\n<p>From the previous request, plugin extracts the <code>@id</code>s forming a list of URLs for each content object:</p>\n<pre><code>https://plonedemo.kitconcept.com/en\nhttps://plonedemo.kitconcept.com/en/frontpage\nhttps://plonedemo.kitconcept.com/en/demo/a-page\n...\n</code></pre><p>Each request will fetch the required data of the content object:</p>\n<pre><code class=\"lang-json\">{\n  \"@components\": {\n    \"breadcrumbs\": {\n      \"@id\": \"https://plonedemo.kitconcept.com/en/demo/a-page/@breadcrumbs\"\n    },\n    \"navigation\": {\n      \"@id\": \"https://plonedemo.kitconcept.com/en/demo/a-page/@navigation\"\n    },\n    \"workflow\": {\n      \"@id\": \"https://plonedemo.kitconcept.com/en/demo/a-page/@workflow\"\n    }\n  },\n  \"@id\": \"https://plonedemo.kitconcept.com/en/demo/a-page\",\n  \"@type\": \"Document\",\n  \"UID\": \"eb023ac4d6cd4446ae692cdfd5058e91\",\n  \"allow_discussion\": null,\n  \"changeNote\": \"\",\n  \"contributors\": [],\n  \"created\": \"2015-07-31T15:42:54+02:00\",\n  \"...\": \"...\"\n}\n</code></pre>\n<p>Then this plugin spreads this data to nodes (making them available for GraphQL requests in Gatsby).</p>",
+    "encoding": "utf-8"
+  },
+  "title": "How plugin uses @search endpoint",
+  "version": "current"
+}

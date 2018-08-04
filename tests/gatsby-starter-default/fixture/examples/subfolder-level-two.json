@@ -15,15 +15,15 @@
   },
   "@id": "http://localhost:8080/Plone/examples/subfolder-level-two",
   "@type": "Folder",
-  "UID": "177722ff95d941e892afdd858c219811",
+  "UID": "182e8f200e4d4661985d29cbefe3f541",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-07-11T08:03:33+00:00",
+  "created": "2018-08-04T19:28:07+00:00",
   "creators": [
     "admin"
   ],
   "description": "",
-  "effective": "2018-05-27T13:35:00",
+  "effective": "2018-08-04T00:00:00",
   "exclude_from_nav": false,
   "expires": null,
   "id": "subfolder-level-two",
@@ -40,7 +40,7 @@
   "items_total": 1,
   "language": "en",
   "layout": "listing_view",
-  "modified": "2018-07-11T08:03:34+00:00",
+  "modified": "2018-08-04T19:44:14+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",

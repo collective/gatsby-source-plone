@@ -15,16 +15,16 @@
   },
   "@id": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone",
   "@type": "News Item",
-  "UID": "e221222333994bab96e91d1957022561",
+  "UID": "d182b4a55e31496da01799cf7f7dc448",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-07-11T08:03:11+00:00",
+  "created": "2018-08-04T19:27:58+00:00",
   "creators": [
     "admin"
   ],
   "description": "Ajay NS was selected for Google Summer of Code to work on Plone Foundation project on GatsbyJS integration with Plone",
-  "effective": "2018-05-14T00:00:00",
+  "effective": "2018-08-04T00:00:00",
   "exclude_from_nav": false,
   "expires": null,
   "id": "gsoc-gatsby-source-plone",
@@ -77,7 +77,7 @@
   "is_folderish": false,
   "language": "en",
   "layout": "newsitem_view",
-  "modified": "2018-07-11T08:03:12+00:00",
+  "modified": "2018-08-04T19:44:14+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/news",
     "@type": "Folder",

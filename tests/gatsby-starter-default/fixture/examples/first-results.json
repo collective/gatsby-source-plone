@@ -15,16 +15,16 @@
   },
   "@id": "http://localhost:8080/Plone/examples/first-results",
   "@type": "News Item",
-  "UID": "b3ed701d96db45fbaffd38b90c8bdfe2",
+  "UID": "b36bcbb727af4376bc0a1f76d71f5485",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-07-11T08:03:40+00:00",
+  "created": "2018-08-04T19:28:05+00:00",
   "creators": [
     "admin"
   ],
   "description": "The Google Summer of Code project \"Gatsby source plugin for Plone\" is underway!",
-  "effective": "2018-05-27T13:35:00",
+  "effective": "2018-08-04T00:00:00",
   "exclude_from_nav": false,
   "expires": null,
   "id": "first-results",
@@ -77,7 +77,7 @@
   "is_folderish": false,
   "language": "en",
   "layout": "newsitem_view",
-  "modified": "2018-07-11T08:03:42+00:00",
+  "modified": "2018-08-04T19:44:14+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",

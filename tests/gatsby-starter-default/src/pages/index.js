@@ -16,7 +16,7 @@ export default IndexPage;
 
 export const query = graphql`
   query IndexPageQuery {
-    ploneDocument(_path: { eq: "/docs/index/" }) {
+    ploneDocument(_path: { eq: "/index/" }) {
       ...Document
     }
     ploneSite(_path: { eq: "/" }) {

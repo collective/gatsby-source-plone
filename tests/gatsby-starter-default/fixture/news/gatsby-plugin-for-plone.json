@@ -15,16 +15,16 @@
   },
   "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone",
   "@type": "News Item",
-  "UID": "83c4ff9d325248608ed40e1bc03d697d",
+  "UID": "497bc0b219df43109e608e882ae85962",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-07-11T08:03:14+00:00",
+  "created": "2018-08-04T19:28:01+00:00",
   "creators": [
     "admin"
   ],
   "description": "Gatsby is a blazing fast static site generator for React.",
-  "effective": "2017-01-05T00:00:00",
+  "effective": "2018-08-04T00:00:00",
   "exclude_from_nav": false,
   "expires": null,
   "id": "gatsby-plugin-for-plone",
@@ -77,7 +77,7 @@
   "is_folderish": false,
   "language": "en",
   "layout": "newsitem_view",
-  "modified": "2018-07-11T08:03:15+00:00",
+  "modified": "2018-08-04T19:44:14+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/news",
     "@type": "Folder",

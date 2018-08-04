@@ -1,0 +1,54 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/reference/tree-hierarchy/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/reference/tree-hierarchy/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/reference/tree-hierarchy/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/reference/tree-hierarchy/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/reference/tree-hierarchy",
+  "@type": "Document",
+  "UID": "38b038805d444a10a00e58a851d997d1",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-08-04T19:37:34+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": "2018-08-04T00:00:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "tree-hierarchy",
+  "is_folderish": false,
+  "language": "",
+  "layout": "document_view",
+  "modified": "2018-08-04T21:18:16+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/reference",
+    "@type": "Folder",
+    "description": "Reference documentation",
+    "review_state": "published",
+    "title": "Docs"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "table_of_contents": null,
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>This plugin does not expose Plone content hierarchy in Gatsby GraphQL queries directly. Instead each node will contain a special attribute <code>_path</code> describing the position of node in content hierarchy. Container nodes will contain <code>_path</code> attribute also for each item in its <code>items</code> attribute returned by Plone REST API.</p>\n<p>In <code>tests/gatsby-starter-default</code> this is illustrated for instance, in the <a href=\"https://github.com/collective/gatsby-source-plone/blob/master/tests/gatsby-starter-default/src/components/Folder.js\">Folder component</a>, where details of it's children are retrieved:</p>\n<pre><code class=\"lang-graphql\">fragment Folder on PloneFolder {\n  id\n  title\n  description\n  items {\n    _id\n    _path\n    _type\n    description\n    title\n  }\n  _path\n}\n</code></pre>",
+    "encoding": "utf-8"
+  },
+  "title": "How content hierarchy is mapped",
+  "version": "current"
+}

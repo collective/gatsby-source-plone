@@ -15,7 +15,7 @@
   },
   "@id": "http://localhost:8080/Plone/examples/plone-conference-tokyo",
   "@type": "Event",
-  "UID": "c763636c16064263b712fd5aa2291149",
+  "UID": "6ca80a9b44b44dbc8b5b1583d260f576",
   "allow_discussion": false,
   "attendees": [
     "everybody"
@@ -25,12 +25,12 @@
   "contact_name": "Tokyo Plone preparation team",
   "contact_phone": null,
   "contributors": [],
-  "created": "2018-07-11T08:03:22+00:00",
+  "created": "2018-08-04T19:28:19+00:00",
   "creators": [
     "admin"
   ],
   "description": "The worldwide gathering of the Plone family (and friends) will happen in Japan this year.",
-  "effective": "2018-05-27T13:35:00",
+  "effective": "2018-08-04T00:00:00",
   "end": "2018-11-11T23:45:00+00:00",
   "event_url": "https://2018.ploneconf.org/",
   "exclude_from_nav": false,
@@ -40,7 +40,7 @@
   "language": "en",
   "layout": "event_view",
   "location": "Tokyo",
-  "modified": "2018-07-11T08:03:22+00:00",
+  "modified": "2018-08-04T19:44:14+00:00",
   "open_end": false,
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",

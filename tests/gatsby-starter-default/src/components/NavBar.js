@@ -48,7 +48,7 @@ const NavBar = ({ active, toggleNavigation, navigationExpanded }) => (
         >
           <ul className="navbar-nav mr-auto">
             {data.ploneNavigation.items
-              .filter(node => node._path !== '/')
+              .filter(node => !new Set(['/', '/index/']).has(node._path))
               .map(node => (
                 <li className="nav-item" key={node._id}>
                   <Link

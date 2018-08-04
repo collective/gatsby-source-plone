@@ -1,10 +1,12 @@
-# HTML Parsing
+# RichText field support
+
+**Note:** In time of writing, this plugin only supported RichText fields named `text`.
 
 HTML content from the [plone.restapi](https://github.com/plone/plone.restapi) is returned as string of HTML. Using a combination of [react-html-parser](url) and [react-serialize](url), this HTML content is processed into React nodes.
 
 ## RichText Component
 
-It deserializes the React nodes field which was processed by the plugin to be used in the component and also handles images, files and relative links. Using backlinks, images and files are queried separately and passed into the RichText componoent and it replaces the `img` and `a` tags with updated data, in the case of relative links, it even replaces it with `Link` tags.
+It deserializes the React nodes field which was processed by the plugin to be used in the component and also handles images, files and relative links. Using backlinks, images and files are queried separately and passed into the RichText componoent and it replaces the `img` and `a` tags with updated data, in the case of relative links, it even replaces it with `Img` or `Link` tags respectively.
 
 ## Parsing process
 

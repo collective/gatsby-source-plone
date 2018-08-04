@@ -72,7 +72,7 @@ const makeContentNode = (id, data, baseUrl, backlinks) => {
 
   // On 'Collection', remove 'query' field to hide GraphQL warnings
   if (node._type === 'Collection') {
-    delete node['query'];
+    delete node.query;
   }
 
   // TODO: Recognize query fields from any content type
@@ -246,7 +246,7 @@ exports.sourceNodes = async (
         // Fetch new node
         updateNodes.add(item._id);
         updateParents.add(parentId(item._id));
-      } else if (state.lastFetched < item['modified']) {
+      } else if (state.lastFetched < item.modified) {
         // Update changed node
         updateNodes.add(item._id);
         updateParents.add(parentId(item._id));

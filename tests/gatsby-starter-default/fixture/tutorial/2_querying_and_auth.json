@@ -1,0 +1,54 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/tutorial/2_querying_and_auth/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/tutorial/2_querying_and_auth/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/tutorial/2_querying_and_auth/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/tutorial/2_querying_and_auth/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/tutorial/2_querying_and_auth",
+  "@type": "Document",
+  "UID": "cac50f8560c94d5a8eabebd14df023c0",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-08-04T19:37:14+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": "2018-08-04T00:00:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "2_querying_and_auth",
+  "is_folderish": false,
+  "language": "",
+  "layout": "document_view",
+  "modified": "2018-08-04T19:44:14+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/tutorial",
+    "@type": "Folder",
+    "description": "",
+    "review_state": "published",
+    "title": "Tutorial"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "table_of_contents": null,
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Once you've got the gatsby project setup with gatsby-source-plone, running <code>gatsby develop</code>, although we haven't updated the site itself, the data sourced by the plugin will be available in GraphiQL.</p>\n<p>Go to <code>http://localhost:8000/___graphql</code>, and in the query:</p>\n<pre><code class=\"lang-graphql\">{\n  allPloneDocument {\n    edges {\n      node {\n        title\n      }\n    }\n  }\n}\n</code></pre>\n<p>This would give you a list of titles of all the objects of type <code>Document</code> in the Plone site (<code>PloneDocument</code> in the gatsby project) in the form:</p>\n<pre><code class=\"lang-json\">{\n  \"data\": {\n    \"allPloneDocument\": {\n      \"edges\": [\n        {\n          \"node\": {\n            \"title\": \"A page\"\n          }\n        },\n        {\n          \"node\": {\n            \"title\": \"Another page\"\n          }\n        },\n      ...\n</code></pre>\n<h1 id=\"displaying-queried-data-in-site\">Displaying queried data in site</h1>\n<p>In our Gatsby site's index page, let's display a document. Here we have a document <em>frontpage</em> which has the information to be displayed at root.</p>\n<p>To get the data via GraphQL:</p>\n<pre><code class=\"lang-graphql\">query IndexPageQuery {\n  ploneDocument(_path: { eq: \"/frontpage/\" }) {\n    title\n    description\n  }\n}\n</code></pre>\n<p>Displaying this data retrieved in the page:</p>\n<pre><code class=\"lang-javascript\">const IndexPage = ({ data }) =&gt; (\n  &lt;Layout&gt;\n    &lt;article&gt;\n      &lt;h1&gt;{data.ploneDocument.title}&lt;/h1&gt;\n      &lt;p&gt;{data.ploneDocument.description}&lt;/p&gt;\n    &lt;/article&gt;\n  &lt;/Layout&gt;\n);\n</code></pre>\n<p>Simple as that, we've got the index page to display content of a document sourced from our Plone site.</p>\n<h1 id=\"authentication\">Authentication</h1>\n<p>Directly sourcing data from the Plone site and getting all the objects would only work on Plone sites with anonymous access enabled, often it's the case we may need to authorize the plugin with JWT token before we're able to use it.</p>\n<p>Step by step explanation on how to set this up is given in the <a href=\"https://collective.github.io/gatsby-source-plone/docs/authentication/\">authentication docs</a>.</p>",
+    "encoding": "utf-8"
+  },
+  "title": "Querying Data with GraphQL",
+  "version": "current"
+}

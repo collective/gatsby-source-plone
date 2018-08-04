@@ -1,0 +1,54 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/reference/html_parsing/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/reference/html_parsing/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/reference/html_parsing/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/reference/html_parsing/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/reference/html_parsing",
+  "@type": "Document",
+  "UID": "52b115d58e934d3ab92b3a1496d78c17",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-08-04T19:37:26+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": "2018-08-04T00:00:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "html_parsing",
+  "is_folderish": false,
+  "language": "",
+  "layout": "document_view",
+  "modified": "2018-08-04T21:15:55+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/reference",
+    "@type": "Folder",
+    "description": "Reference documentation",
+    "review_state": "published",
+    "title": "Docs"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "table_of_contents": null,
+  "text": {
+    "content-type": "text/html",
+    "data": "<p><strong>Note:</strong> In time of writing, this plugin only supported RichText fields named <code>text</code>.</p>\n<p>HTML content from the <a href=\"https://github.com/plone/plone.restapi\">plone.restapi</a> is returned as string of HTML. Using a combination of <a href=\"http://localhost:8080/Plone/reference/url\">react-html-parser</a> and <a href=\"http://localhost:8080/Plone/reference/url\">react-serialize</a>, this HTML content is processed into React nodes.</p>\n<h2 id=\"richtext-component\">RichText Component</h2>\n<p>It deserializes the React nodes field which was processed by the plugin to be used in the component and also handles images, files and relative links. Using backlinks, images and files are queried separately and passed into the RichText componoent and it replaces the <code>img</code> and <code>a</code> tags with updated data, in the case of relative links, it even replaces it with <code>Img</code> or <code>Link</code> tags respectively.</p>\n<h2 id=\"parsing-process\">Parsing process</h2>\n<p><code>react-html-parser</code> is used to parse the HTML string into React nodes, it is then serialized by <code>react-serialize</code> so that it can be passed into and retrieved via GraphQL queries. In this process of parsing, backlinks and relative links are configured, and in the gatsby-site, RichText component is used to handle deserialization and displaying images, files and so on.</p>\n<h2 id=\"backlinks\">Backlinks</h2>\n<p>Backlinks provide an optimized way to get the relevant images and files for a certain component. It's basically an object with stores a list of nodes to which a certain file/image is relevant to. This eliminates the need for iterating every single image and file to replace the <code>a</code> or <code>img</code> tag with.</p>\n<p>Taking the case of the <code>tests/gatsby-starter-default</code>:</p>\n<ul>\n<li>In default layout, we find node for matching path and render it with a proper component, and also pass the component all related images and files</li>\n<li>in RichText component (called from Document or NewsItem) we use that data to replace links to files and images with optimized gatsby-images</li>\n</ul>",
+    "encoding": "utf-8"
+  },
+  "title": "RichText field support",
+  "version": "current"
+}

@@ -1,0 +1,54 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/reference/file_handling/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/reference/file_handling/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/reference/file_handling/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/reference/file_handling/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/reference/file_handling",
+  "@type": "Document",
+  "UID": "9b4db4718d404a99847e16c7e9234665",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-08-04T19:37:24+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": "2018-08-04T00:00:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "file_handling",
+  "is_folderish": false,
+  "language": "",
+  "layout": "document_view",
+  "modified": "2018-08-04T21:15:52+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/reference",
+    "@type": "Folder",
+    "description": "Reference documentation",
+    "review_state": "published",
+    "title": "Docs"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "table_of_contents": null,
+  "text": {
+    "content-type": "text/html",
+    "data": "<p><strong>Note:</strong> In time of writing, this plugin only supported file fields named <code>file</code> and image fields named <code>image</code>.</p>\n<p>Gatsby along with the plugin <a href=\"https://v2--gatsbyjs.netlify.com/packages/gatsby-source-filesystem\">gatsby-source-filesystem</a> and the <a href=\"https://v2--gatsbyjs.netlify.com/packages/gatsby-source-filesystem#createremotefilenode\"><code>createRemoteFileNode</code></a> function it exposes, can be used to pull all types of remote files into the Gatsby cache and use them in the generated Gatsby-site.</p>\n<p>For images, another plugin, <a href=\"https://v2--gatsbyjs.netlify.com/packages/gatsby-transformer-sharp#gatsby-transformer-sharp\">gatsby-transformer-sharp</a> to handle resizing, cropping, creating responsive images using the <a href=\"https://github.com/lovell/sharp\">Sharp</a> image processing library.</p>\n<p>For allowing other types of files to be used in the gatsby-site, gatsby-source-filesystem needs to be configured in the project itself as well, with path configured to a <code>static</code> folder:</p>\n<pre><code class=\"lang-javascript\">// gatsby-config.js\nmodule.exports = {\n  plugins: [\n    {\n      resolve: 'gatsby-source-filesystem',\n      options: {\n        path: `${__dirname}/src/static`,\n      },\n    },\n  ]\n}\n</code></pre>\n<p>This exposes a <code>publicURL</code> field in GraphQL for the file node, which can be used to link to the file node and make it downloadable, as implemented in the example gatsby-site.</p>",
+    "encoding": "utf-8"
+  },
+  "title": "File and image field support",
+  "version": "current"
+}

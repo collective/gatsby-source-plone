@@ -11,14 +11,14 @@ Test Teardown   Close Browser
 
 Scenario: Front page
   Go To  http://localhost:9000
-  Wait until page contains  Gatsby plugin for Plone
+  Wait until page contains  Plone plugin for Gatsby
   Page should contain  gatsby-source-plone
   Page should contain  News
   Page should contain  Docs
 
 Scenario: Link to sub page
   Go To  http://localhost:9000
-  Wait until page contains  Gatsby plugin for Plone
+  Wait until page contains  Plone plugin for Gatsby
   Page should contain  Docs
   Page should not contain  Plugin Options
   Click link  Docs
@@ -26,33 +26,33 @@ Scenario: Link to sub page
 
 Scenario: Link back to home
   Go To  http://localhost:9000
-  Wait until page contains  Gatsby plugin for Plone
+  Wait until page contains  Plone plugin for Gatsby
   Page should contain  Docs
   Page should not contain  Plugin Options
   Click link  Docs
   Wait until page contains  Plugin Options
   Click link  Learn more »
-  Wait until page contains  Gatsby plugin for Plone
+  Wait until page contains  Plone plugin for Gatsby
   Page should not contain  Plugin Options
 
 Scenario: Link to previous page
   Go To  http://localhost:9000
-  Wait until page contains  Gatsby plugin for Plone
+  Wait until page contains  Plone plugin for Gatsby
   Page should contain  Docs
   Page should not contain  Plugin Options
   Click link  Docs
   Wait until page contains  Plugin Options
   Page should contain  Home
   Click link  Home
-  Wait until page contains  Gatsby plugin for Plone
+  Wait until page contains  Plone plugin for Gatsby
   Page should not contain  Plugin Options
 
 Scenario: Children of a folder
-  Go To  http://localhost:9000/docs
+  Go To  http://localhost:9000/reference
   Wait until page contains  Plugin Options
-  Page should contain  Authentication
+  Page should contain  Authenticating REST API calls
   Page should not contain  token
-  Click link  Authentication
+  Click link  Authenticating REST API calls
   Wait until page contains  token
   Page should contain  Home
   Page should contain  Docs
@@ -60,7 +60,7 @@ Scenario: Children of a folder
 
 Scenario: Deep folder structure
   Go To  http://localhost:9000
-  Wait until page contains  Gatsby plugin for Plone
+  Wait until page contains  Plone plugin for Gatsby
   Element should contain  css=.list-group  Docs
   Page should contain  Examples
   Click link  Examples
@@ -80,7 +80,7 @@ Scenario: Deep folder structure
   # Test that other folders from root level are not shown
   Element should not contain  css=.list-group  Docs
 
-Senario: Collection shows event
+Scenario: Collection shows event
   Go To  http://localhost:9000/examples/
   Wait until page contains  Event collection
   Click link  Event collection

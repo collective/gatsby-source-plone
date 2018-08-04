@@ -4,7 +4,7 @@ require('dotenv').config({
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby plugin for Plone',
+    title: 'Plone plugin for Gatsby',
   },
   pathPrefix: '/gatsby-source-plone',
   plugins: [

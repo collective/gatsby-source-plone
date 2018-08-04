@@ -55,6 +55,7 @@ exports.createPages = async ({ graphql, actions }) => {
       result.data.allPloneFolder.edges,
       result.data.allPloneNewsItem.edges
     )
+    .filter(({ node }) => node._path !== '/index/')
     .forEach(({ node }) => {
       createPage({
         path: node._path,

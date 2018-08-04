@@ -16,6 +16,13 @@
   "is_folderish": true,
   "items": [
     {
+      "@id": "http://localhost:8080/Plone/index",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "gatsby-source-plone"
+    },
+    {
       "@id": "http://localhost:8080/Plone/news",
       "@type": "Folder",
       "description": "News on gatsby-source-plone development",
@@ -30,14 +37,21 @@
       "title": "Examples"
     },
     {
-      "@id": "http://localhost:8080/Plone/docs",
+      "@id": "http://localhost:8080/Plone/tutorial",
       "@type": "Folder",
-      "description": "Plugin documentation",
+      "description": "",
+      "review_state": "published",
+      "title": "Tutorial"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/reference",
+      "@type": "Folder",
+      "description": "Reference documentation",
       "review_state": "published",
       "title": "Docs"
     }
   ],
-  "items_total": 3,
+  "items_total": 5,
   "parent": {},
   "title": "Gatsby source plugin for Plone"
 }

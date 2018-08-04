@@ -4,24 +4,25 @@
       "@id": "http://localhost:8080/Plone/examples/the-news-collection/@actions"
     },
     "breadcrumbs": {
-      "@id": "http://localhost:8080/Plone/examples/the-news-collection/@breadcrumbs"
+      "@id":
+        "http://localhost:8080/Plone/examples/the-news-collection/@breadcrumbs"
     },
     "navigation": {
-      "@id": "http://localhost:8080/Plone/examples/the-news-collection/@navigation"
+      "@id":
+        "http://localhost:8080/Plone/examples/the-news-collection/@navigation"
     },
     "workflow": {
-      "@id": "http://localhost:8080/Plone/examples/the-news-collection/@workflow"
+      "@id":
+        "http://localhost:8080/Plone/examples/the-news-collection/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/examples/the-news-collection",
   "@type": "Collection",
-  "UID": "fdcec3323a0841fda64dd07b15759759",
+  "UID": "cb607b4becab42b1ba0ecd9d65483b74",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-07-11T08:03:20+00:00",
-  "creators": [
-    "admin"
-  ],
+  "created": "2018-08-04T19:28:13+00:00",
+  "creators": ["admin"],
   "customViewFields": [
     "Title",
     "Creator",
@@ -30,7 +31,7 @@
     "Subject"
   ],
   "description": "Collection that shows all the news",
-  "effective": "2018-05-27T13:35:00",
+  "effective": "2018-08-04T00:00:00",
   "exclude_from_nav": false,
   "expires": null,
   "id": "the-news-collection",
@@ -40,34 +41,38 @@
     {
       "@id": "http://localhost:8080/Plone/examples/first-results",
       "@type": "News Item",
-      "description": "The Google Summer of Code project \"Gatsby source plugin for Plone\" is underway!",
+      "description":
+        "The Google Summer of Code project \"Gatsby source plugin for Plone\" is underway!",
       "review_state": "published",
       "title": "First results"
     },
     {
-      "@id": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone",
-      "@type": "News Item",
-      "description": "Ajay NS was selected for Google Summer of Code to work on Plone Foundation project on GatsbyJS integration with Plone",
-      "review_state": "published",
-      "title": "GSOC for Gatsby source for Plone started"
-    },
-    {
       "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone",
       "@type": "News Item",
-      "description": "Gatsby is a blazing fast static site generator for React.",
+      "description":
+        "Gatsby is a blazing fast static site generator for React.",
       "review_state": "published",
       "title": "Let's do a GatsbyJS plugin for Plone!"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone",
+      "@type": "News Item",
+      "description":
+        "Ajay NS was selected for Google Summer of Code to work on Plone Foundation project on GatsbyJS integration with Plone",
+      "review_state": "published",
+      "title": "GSOC for Gatsby source for Plone started"
     }
   ],
   "items_total": 3,
   "language": "en",
   "layout": "listing_view",
   "limit": 1000,
-  "modified": "2018-07-11T08:03:20+00:00",
+  "modified": "2018-08-04T19:44:14+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",
-    "description": "A folder with different standard content types that Plone supports out of the box",
+    "description":
+      "A folder with different standard content types that Plone supports out of the box",
     "review_state": "published",
     "title": "Examples"
   },
@@ -75,9 +80,7 @@
     {
       "i": "portal_type",
       "o": "plone.app.querystring.operation.selection.any",
-      "v": [
-        "News Item"
-      ]
+      "v": ["News Item"]
     }
   ],
   "relatedItems": [],
@@ -85,13 +88,11 @@
   "rights": null,
   "sort_on": "effective",
   "sort_reversed": true,
-  "subjects": [
-    "examples",
-    "collections"
-  ],
+  "subjects": ["examples", "collections"],
   "text": {
     "content-type": "text/html",
-    "data": "<p>Collections are 'virtual folders' that contain content objects based on criteria. Those criteria can be</p>&#13;\n<ul>&#13;\n<li>type of content</li>&#13;\n<li>subject, or tag</li>&#13;\n<li>a variety of time-based criteria</li>&#13;\n<li>based on certain text</li>&#13;\n<li>based on who created them</li>&#13;\n<li>and a whole range of other metadata</li>&#13;\n</ul>&#13;\n<p>And, of course, you can combine all of them to narrow down your selection.</p>&#13;\n<p>Richtext</p>&#13;\n<p>They also come with a richtext introduction, meaning the introduction can contain formatting, <a href=\"https://docs.plone.org/working-with-content/using-collections/newstyle/creating_collections.html\" target=\"_blank\" rel=\"noopener noreferrer\" title=\"Link to the Plone docs on creating collections\">links</a> and images</p>&#13;\n<p><img src=\"http://localhost:8080/Plone/testcases/midsummer.jpg/@@images/fd5b4cc3-a2d9-43f1-9b55-f214691041ed.jpeg\" title=\"How to lure people to Finland\" alt=\"A meme enticing people to come to Finland to sprint on Plone\" class=\"image-inline\"/></p>",
+    "data":
+      "<p>Collections are 'virtual folders' that contain content objects based on criteria. Those criteria can be</p>&#13;\n<ul>&#13;\n<li>type of content</li>&#13;\n<li>subject, or tag</li>&#13;\n<li>a variety of time-based criteria</li>&#13;\n<li>based on certain text</li>&#13;\n<li>based on who created them</li>&#13;\n<li>and a whole range of other metadata</li>&#13;\n</ul>&#13;\n<p>And, of course, you can combine all of them to narrow down your selection.</p>&#13;\n<p>Richtext</p>&#13;\n<p>They also come with a richtext introduction, meaning the introduction can contain formatting, <a href=\"https://docs.plone.org/working-with-content/using-collections/newstyle/creating_collections.html\" target=\"_blank\" rel=\"noopener noreferrer\" title=\"Link to the Plone docs on creating collections\">links</a> and images</p>&#13;\n<p><img src=\"http://localhost:8080/Plone/examples/midsummer.jpg/@@images/fd5b4cc3-a2d9-43f1-9b55-f214691041ed.jpeg\" title=\"How to lure people to Finland\" alt=\"A meme enticing people to come to Finland to sprint on Plone\" class=\"image-inline\"/></p>",
     "encoding": "utf-8"
   },
   "title": "The news collection",

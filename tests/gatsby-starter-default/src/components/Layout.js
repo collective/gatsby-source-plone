@@ -10,9 +10,10 @@ import '../styles/index.scss';
 
 const Header = () => (
   <div className="jumbotron">
-    <div className="display-4">Gatsby plugin for Plone</div>
+    <div className="display-4">Plone plugin for Gatsby</div>
     <p className="lead">
-      Something old, something new, something borrowed, something blue&hellip;
+      One Plone site as CMS, unlimited individually branded deployments with
+      Gatsby.
     </p>
     <p className="lead">
       <Link className={'btn btn-primary btn-lg'} to="/">
@@ -24,9 +25,7 @@ const Header = () => (
 
 const Layout = ({ breadcrumbs, children, title }) => {
   const node = children.length ? children[0].props.data : children.props.data;
-  const active = node
-    ? node._path === '/docs/index/' ? '/' : node._path
-    : null;
+  const active = node ? (node._path === '/index/' ? '/' : node._path) : null;
   return (
     <div className="container-fluid">
       <Helmet

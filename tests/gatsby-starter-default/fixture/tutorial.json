@@ -1,0 +1,78 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/tutorial/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/tutorial/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/tutorial/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/tutorial/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/tutorial",
+  "@type": "Folder",
+  "UID": "a016c40b4475473299bb6367f4b2aedc",
+  "allow_discussion": false,
+  "contributors": [],
+  "created": "2018-08-04T19:37:10+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": "2018-08-04T00:00:00",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "tutorial",
+  "is_folderish": true,
+  "items": [
+    {
+      "@id": "http://localhost:8080/Plone/tutorial/1_getting_started",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Getting Started"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/tutorial/2_querying_and_auth",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Querying Data with GraphQL"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/tutorial/3_page_creation",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Page Creation"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/tutorial/4_handling_data_types",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Handling different data types"
+    }
+  ],
+  "items_total": 4,
+  "language": "",
+  "layout": "listing_view",
+  "modified": "2018-08-04T20:26:22+00:00",
+  "nextPreviousEnabled": false,
+  "parent": {
+    "@id": "http://localhost:8080/Plone",
+    "@type": "Plone Site",
+    "description": "",
+    "title": "Gatsby source plugin for Plone"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "title": "Tutorial",
+  "version": "current"
+}

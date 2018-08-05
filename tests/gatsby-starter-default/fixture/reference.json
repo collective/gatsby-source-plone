@@ -89,7 +89,7 @@
   "items_total": 8,
   "language": "en",
   "layout": "listing_view",
-  "modified": "2018-08-04T21:17:48+00:00",
+  "modified": "2018-08-04T21:41:10+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",

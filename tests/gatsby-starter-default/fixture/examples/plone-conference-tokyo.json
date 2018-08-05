@@ -40,7 +40,7 @@
   "language": "en",
   "layout": "event_view",
   "location": "Tokyo",
-  "modified": "2018-08-04T19:44:14+00:00",
+  "modified": "2018-08-04T21:40:35+00:00",
   "open_end": false,
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",

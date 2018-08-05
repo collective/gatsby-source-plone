@@ -75,7 +75,7 @@
   "is_folderish": false,
   "language": "en",
   "layout": "image_view",
-  "modified": "2018-08-04T19:44:14+00:00",
+  "modified": "2018-08-04T21:40:46+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",

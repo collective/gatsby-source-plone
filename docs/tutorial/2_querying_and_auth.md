@@ -70,4 +70,6 @@ Simple as that, we've got the index page to display content of a document source
 
 Directly sourcing data from the Plone site and getting all the objects would only work on Plone sites with anonymous access enabled, often it's the case we may need to authorize the plugin with JWT token before we're able to use it.
 
-Step by step explanation on how to set this up is given in the [authentication docs](https://collective.github.io/gatsby-source-plone/docs/authentication/).
+Step by step explanation on how to set this up is given in the [authentication docs](https://collective.github.io/gatsby-source-plone/reference/authentication/).
+
+Next: [Page Creation](3_page_creation)

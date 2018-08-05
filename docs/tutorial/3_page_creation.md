@@ -143,3 +143,5 @@ fragment Site on PloneSite {
   _path
 }
 ```
+
+Next: [Handling different data types](4_handling_data_types)

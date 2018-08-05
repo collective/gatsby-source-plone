@@ -136,3 +136,5 @@ export const query = graphql`
 ```
 
 Now all you need to do is design each component. Similar to the Folder component we already have, different components can be built depending on the data passed in and to be displayed.
+
+Next: [Image and File Handling](5_images_and_files)

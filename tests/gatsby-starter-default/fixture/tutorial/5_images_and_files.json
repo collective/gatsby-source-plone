@@ -1,0 +1,54 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/tutorial/5_images_and_files/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/tutorial/5_images_and_files/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/tutorial/5_images_and_files/@navigation"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/tutorial/5_images_and_files/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/tutorial/5_images_and_files",
+  "@type": "Document",
+  "UID": "9fffc015287440ffa375cb2201c7e9d1",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2018-08-05T06:26:58+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": null,
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "5_images_and_files",
+  "is_folderish": false,
+  "language": "",
+  "layout": "document_view",
+  "modified": "2018-08-05T06:26:58+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/tutorial",
+    "@type": "Folder",
+    "description": "",
+    "review_state": "published",
+    "title": "Tutorial"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "table_of_contents": null,
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>Media content that can be displayed or downloaded are first downloaded into the Gatsby cache by the plugin and later queried in by the Gatsby site. This allows image optimization and manipulation with the Sharp plugin and helps configure file download for other types.</p>\n<h2 id=\"files\">Files</h2>\n<p>Handling file node creation in the Gatsby-site would require configuration of <a href=\"https://v2--gatsbyjs.netlify.com/packages/gatsby-source-filesystem\">gatsby-source-filesystem</a>.</p>\n<p>Firstly, make sure you install it with:</p>\n<pre><code>yarn add gatsby-source-filesystem\n</code></pre><p>Then in <code>gatsby-config.js</code>:</p>\n<pre><code class=\"lang-javascript\">    // Note: gatsby-source-filesystems is required also to make Plone\n    // to have publicURL and be downloadable from the gatsby site\n    {\n      resolve: 'gatsby-source-filesystem',\n      options: {\n        path: `${__dirname}/src/static`,\n      },\n    },\n</code></pre>\n<p>For the plugin to work, you need to create a static folder and configure it with the plugin, here we've created <code>/src/static</code> and added it to <code>path</code>.</p>\n<p>Now in GraphQL, file nodes will be available to query as:</p>\n<pre><code class=\"lang-graphql\">allPloneFile(filter: { _backlinks: { eq: $path } }) {\n  edges {\n    node {\n      id\n      title\n      description\n      file {\n        filename\n        publicURL\n      }\n      _type\n      _path\n    }\n  }\n}\n</code></pre>\n<h1 id=\"images\">Images</h1>\n<p>Configuring gatsby-source-filesystem, images, along with other file types are downloaded into the Gatsby cache. But instead of just getting their publicURLs, they can be processed by Sharp plugins and optimized images can be queried. For more information about go through the documentation for <a href=\"https://v2--gatsbyjs.netlify.com/packages/gatsby-plugin-sharp/\">gatsby-plugin-sharp</a> and <a href=\"https://v2--gatsbyjs.netlify.com/packages/gatsby-transformer-sharp\">gatsby-transformer-sharp</a></p>\n<p>Install the plugins required:</p>\n<pre><code class=\"lang-bash\">yarn add gatsby-image gatsby-plugin-sharp gatsby-transformer-sharp\n</code></pre>\n<p>In the <code>gatsby-config.js</code> these just need to be added, no other options required:</p>\n<pre><code class=\"lang-javascript\">plugins: [\n  ...\n  'gatsby-plugin-sharp',\n  'gatsby-transformer-sharp',\n],\n</code></pre>\n<p>Now to query from GraphQL:</p>\n<pre><code class=\"lang-graphql\">  allPloneImage {\n      edges {\n        node {\n          id\n          title\n          image {\n            publicURL\n            childImageSharp {\n              fixed(width: 600) {\n                ...GatsbyImageSharpFixed\n              }\n            }\n          }\n          _path\n        }\n      }\n    }\n</code></pre>\n<p>This query returns all images in width <code>600px</code> but you configure this with a wide range of options. We'd recommend going through the Sharp docs mentioned above.</p>\n<p>Next: <a href=\"http://localhost:8080/Plone/tutorial/6_richtext_component\">RichText Component</a></p>",
+    "encoding": "utf-8"
+  },
+  "title": "Image and File Handling",
+  "version": "current"
+}

@@ -56,12 +56,26 @@
       "description": "",
       "review_state": "published",
       "title": "Handling different data types"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/tutorial/5_images_and_files",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Image and File Handling"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/tutorial/6_richtext_component",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "RichText Component"
     }
   ],
-  "items_total": 4,
+  "items_total": 6,
   "language": "",
   "layout": "listing_view",
-  "modified": "2018-08-04T21:40:56+00:00",
+  "modified": "2018-08-05T06:27:28+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",

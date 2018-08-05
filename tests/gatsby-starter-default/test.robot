@@ -31,7 +31,7 @@ Scenario: Link back to home
   Page should not contain  Plugin Options
   Click link  Docs
   Wait until page contains  Plugin Options
-  Click link  Learn more »
+  Click link  GtsbSrcPlone
   Wait until page contains  Plone plugin for Gatsby
   Page should not contain  Plugin Options
 

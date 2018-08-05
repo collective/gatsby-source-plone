@@ -16,7 +16,10 @@ const Header = () => (
       Gatsby.
     </p>
     <p className="lead">
-      <Link className={'btn btn-primary btn-lg'} to="/">
+      <Link
+        className={'btn btn-primary btn-lg'}
+        to="/tutorial/1_getting_started/"
+      >
         Learn more &raquo;
       </Link>
     </p>
@@ -34,7 +37,7 @@ const Layout = ({ breadcrumbs, children, title }) => {
       <div className="row no-gutters'">
         <NavBar active={active} />
         <div className="col-12">
-          <Header />
+          {node && node._path === '/index/' ? <Header /> : null}
           {breadcrumbs ? (
             <Breadcrumbs data={breadcrumbs} active={active} />
           ) : null}

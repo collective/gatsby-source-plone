@@ -296,10 +296,12 @@ exports.sourceNodes = async (
           createNode(node);
         }
         // For updated nodes, breadcrumbs of all children must be updated
-        dirtyBreadcrumbs =
-          dirtyBreadcrumbs === null || !item._id.startsWith(dirtyBreadcrumbs)
-            ? item._id
-            : dirtyBreadcrumbs;
+        if (item._id !== baseUrl) {  // except for update baseUrl
+          dirtyBreadcrumbs =
+            dirtyBreadcrumbs === null || !item._id.startsWith(dirtyBreadcrumbs)
+              ? item._id
+              : dirtyBreadcrumbs;
+        }
       } else if (updateParents.has(item._id)) {
         for await (const node of ploneNodeGenerator(
           item._id,

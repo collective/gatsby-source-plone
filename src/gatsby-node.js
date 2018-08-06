@@ -204,16 +204,18 @@ exports.sourceNodes = async (
       token,
       // Search nodes in path order to ensure parents before their children
       {
+        ...searchParams,
         metadata_fields: 'modified',
         sort_on: 'path',
         sort_order: 'ascending',
-        ...searchParams,
       }
     ),
     baseUrl
   );
-  // Ensure that items include baseUrl (which may be fetched twice)
-  plone.items.push({ _id: baseUrl });
+  // Ensure that items include baseUrl
+  if (!plone.items.length || plone.items[0]._id !== baseUrl) {
+    plone.items.unshift({ _id: baseUrl });
+  }
 
   // Define shared backlinks container to collect links between nodes
   const backlinks = new Map();
@@ -294,10 +296,12 @@ exports.sourceNodes = async (
           createNode(node);
         }
         // For updated nodes, breadcrumbs of all children must be updated
-        dirtyBreadcrumbs =
-          dirtyBreadcrumbs === null || !item._id.startsWith(dirtyBreadcrumbs)
-            ? item._id
-            : dirtyBreadcrumbs;
+        if (item._id !== baseUrl) {  // except for update baseUrl
+          dirtyBreadcrumbs =
+            dirtyBreadcrumbs === null || !item._id.startsWith(dirtyBreadcrumbs)
+              ? item._id
+              : dirtyBreadcrumbs;
+        }
       } else if (updateParents.has(item._id)) {
         for await (const node of ploneNodeGenerator(
           item._id,

@@ -204,10 +204,10 @@ exports.sourceNodes = async (
       token,
       // Search nodes in path order to ensure parents before their children
       {
+        ...searchParams,
         metadata_fields: 'modified',
         sort_on: 'path',
         sort_order: 'ascending',
-        ...searchParams,
       }
     ),
     baseUrl

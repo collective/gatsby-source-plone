@@ -212,8 +212,10 @@ exports.sourceNodes = async (
     ),
     baseUrl
   );
-  // Ensure that items include baseUrl (which may be fetched twice)
-  plone.items.push({ _id: baseUrl });
+  // Ensure that items include baseUrl
+  if (!plone.items.length || plone.items[0]._id !== baseUrl) {
+    plone.items.unshift({ _id: baseUrl });
+  }
 
   // Define shared backlinks container to collect links between nodes
   const backlinks = new Map();

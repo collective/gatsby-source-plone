@@ -45,7 +45,7 @@ This is the common topbar in all the views of the site, that allows quick jumpin
 // src/components/Navbar.js
 
 // Major difference would be the Static Query
-const NavBar = () => (
+const NavBar = ({ active }) => (
   <StaticQuery
     query={graphql`
       query NavbarQuery {
@@ -71,7 +71,15 @@ const NavBar = () => (
             {data.ploneNavigation.items
               .filter(node => node._path !== '/')
               .map(item => (
-                <li key={item._id} className="navbar-item">
+                <li
+                  key={item._id}
+                  className={
+                    item._path === active ||
+                    (active || '').startsWith(item._path)
+                      ? 'navbar-item active'
+                      : 'navbar-item'
+                  }
+                >
                   <Link to={item._path}>{item.title}</Link>
                 </li>
               ))}
@@ -83,4 +91,25 @@ const NavBar = () => (
 );
 ```
 
-Then all you need to do is add this to the top of your `Header` in `Layout`.
+Then all you need to do is add this to the top of your `Header` in `Layout`, and pass the active path.
+
+```javascript
+// src/components/Layout.js
+
+    // Render function of the Layout component
+    // node gets the current child being displayed
+    // active uses node to determine which is the active path
+    render={data => {
+      const node = children.length
+        ? children[0].props.data
+        : children.props.data;
+      const active = node
+        ? node._path === '/frontpage/'
+          ? '/'
+          : node._path
+        : null;
+      return (
+        <>
+          <NavBar active={active} />
+          ...
+```

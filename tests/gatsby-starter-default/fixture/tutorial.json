@@ -70,12 +70,19 @@
       "description": "",
       "review_state": "published",
       "title": "RichText Component"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/tutorial/7_navigation",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Navigation"
     }
   ],
-  "items_total": 6,
+  "items_total": 7,
   "language": "",
   "layout": "listing_view",
-  "modified": "2018-08-05T06:27:28+00:00",
+  "modified": "2018-08-09T08:10:21+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",

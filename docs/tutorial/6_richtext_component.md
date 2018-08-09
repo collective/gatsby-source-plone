@@ -199,3 +199,5 @@ const Document = ({ data, images = [], files = [] }) => (
 ```
 
 This same code can be reused for all the content types containing HTML fields.
+
+Next: [Navigation](7_navigation)

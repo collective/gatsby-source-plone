@@ -1,7 +1,6 @@
 *** Settings ***
 
 Library         SeleniumLibrary  timeout=10  implicit_wait=0
-Library         DebugLibrary
 
 Test Setup      Open browser  about:blank  browser=headlessfirefox
 Test Teardown   Close Browser
@@ -87,7 +86,7 @@ Scenario: Collection shows event
   Page should contain  Plone conference Tokyo
 
 Scenario: Image in a News Item
-  Go To  http://localhost:9000/News
+  Go To  http://localhost:9000/news
   Wait until page contains  News
   Click link  GSOC for Gatsby source for Plone started
   Page should contain  GSOC for Gatsby

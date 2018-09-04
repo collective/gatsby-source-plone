@@ -4193,9 +4193,9 @@ gatsby-source-filesystem@^2.0.1-beta.10:
     valid-url "^1.0.9"
     xstate "^3.1.0"
 
-gatsby@^2.0.0-beta.59:
-  version "2.0.0-rc.10"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.0.0-rc.10.tgz#3fd4b2c78ff694c9ef30c628ba2c9dbbe0d827d9"
+gatsby@2.0.0-rc.7:
+  version "2.0.0-rc.7"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.0.0-rc.7.tgz#64b1efb7c58ce6cc9c0bad6f5c2c8078e2a05344"
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/core" "^7.0.0"

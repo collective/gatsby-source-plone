@@ -29,7 +29,7 @@ This would give you a token as output:
 }
 ```
 
-Install dotenv and setup `.env` with the token so that it can be used in the Gatsby project:
+Install dotenv and setup `.secrets` with the token so that it can be used in the Gatsby project:
 
 ```bash
 // Install dotenv
@@ -45,7 +45,7 @@ Finally setup `gatsby-config.js` to use this in your project:
 ```javascript
 // Top of your file
 require("dotenv").config({
-  path: '.env',
+  path: '.secrets',
 });
 
 // In plugins list
@@ -57,3 +57,5 @@ module.exports = {
   }
 };
 ```
+
+**Important!** Be careful in naming your environment variable file, because Gatsby will automatically include and make public all environment variables from files starting with `.env.` (e.g. `.env.production`).

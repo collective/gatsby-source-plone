@@ -2,10 +2,7 @@
 
 # gatsby-source-plone
 
-Source plugin for pulling data into Gatsby from Plone sites.
-
-Pulls data from Plone sites with
-[plone.restapi](https://github.com/plone/plone.restapi) installed.
+Source plugin for pulling data into [Gatsby](https://www.gatsbyjs.org/) from [Plone](https://plone.org) sites using [plone.restapi](https://github.com/plone/plone.restapi).
 
 [Full documentation.](https://collective.github.io/gatsby-source-plone)
 

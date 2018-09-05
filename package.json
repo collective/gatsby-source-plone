@@ -45,7 +45,7 @@
     "cms",
     "python"
   ],
-  "author": "Andrea Cecchi, Timo Stollenwerk, Victor Fernandez de Alba",
+  "author": "Ajay NS, Asko Soukka, Andrea Cecchi, Timo Stollenwerk, Victor Fernandez de Alba",
   "license": "MIT",
   "dependencies": {
     "axios": "^0.16.1",

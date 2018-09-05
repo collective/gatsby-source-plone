@@ -11,7 +11,7 @@ Pulls data from Plone sites with
 
 ## Install
 
-`npm install --save gatsby-source-plone` (not yet published)
+`npm install --save gatsby-source-plone`
 
 ## How to use
 

@@ -43,7 +43,9 @@
     "gatsby-source-plugin",
     "plone",
     "cms",
-    "python"
+    "python",
+    "react",
+    "reactjs"
   ],
   "author": "Ajay NS, Asko Soukka, Andrea Cecchi, Timo Stollenwerk, Victor Fernandez de Alba",
   "license": "MIT",

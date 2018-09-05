@@ -1,5 +1,5 @@
 {
-  "name": "@plone/gatsby-source-plone",
+  "name": "gatsby-source-plone",
   "version": "0.1.0",
   "description": "Source plugin for pulling data into Gatsby from Plone sites",
   "main": "index.js",

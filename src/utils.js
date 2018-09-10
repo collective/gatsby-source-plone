@@ -89,6 +89,10 @@ export const fetchPlone = async (url, token, params, http = axios) => {
 
 // Normalize Plone JSON to be usable as such in GatsbyJS
 export const normalizeData = function(data, baseUrl) {
+  // - Adds '@id' for plone.restapi < 1.0b1 results from 'url'
+  if (!data['@id'] && data.url) {
+    data['@id'] = data.url;
+  }
   // - Adds '_path' without baseUrl for objects with '@id'
   if (data['@id']) {
     // _path variables are used similarly to slugs in

@@ -1,4 +1,5 @@
 import {
+  normalizeType,
   createContentDigest,
   fetchPlone,
   fetchUrl,
@@ -10,6 +11,15 @@ import {
   parseHTMLtoReact,
   urlWithoutParameters,
 } from '../utils';
+
+test('normalizeType normalizes and normalizeTypes content types', () => {
+  expect(normalizeType('Folder')).toBe('PloneFolder');
+  expect(normalizeType('PloneSite')).toBe('PloneSite');
+  expect(normalizeType('Plone Site')).toBe('PloneSite');
+  expect(normalizeType('News Item')).toBe('PloneNewsItem');
+  expect(normalizeType('Super News Item')).toBe('PloneSuperNewsItem');
+  expect(normalizeType('collective.type')).toBe('PloneCollectiveType');
+});
 
 test('createContentDigest creates deterministic digest', () => {
   expect(createContentDigest('data')).toBe('755af0e71655b62611370ead1f20bcae');

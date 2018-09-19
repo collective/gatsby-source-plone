@@ -5,6 +5,7 @@ import {
   fetchPlone,
   logging,
   normalizeData,
+  normalizeType,
   parentId,
   parseHTMLtoReact,
 } from './utils';
@@ -32,9 +33,7 @@ const makeContentNode = (id, data, baseUrl, backlinks) => {
     node.internal.type = 'PloneSite';
   } else {
     // Node types are 'Plone'-prefixed content types without white spaces
-    node.internal.type = node._type.startsWith('Plone')
-      ? node._type.replace(/\s*/g, '')
-      : 'Plone' + node._type.replace(/\s*/g, '');
+    node.internal.type = normalizeType(node._type);
   }
 
   // Add array of backlinks to support GraphQL queries for related nodes

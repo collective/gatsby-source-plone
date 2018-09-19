@@ -52,6 +52,14 @@ export const normalizePath = path => {
   return path ? path.replace(/^\/*/, '/').replace(/\/*$/, '/') : '/';
 };
 
+// Camelize
+export const normalizeType = type => {
+  type = type.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter) {
+    return letter.toUpperCase();
+  }).replace(/[\s\.]+/g, '');
+  return type.startsWith('Plone') ? type : `Plone${type}`;
+};
+
 // Add token to header when given
 export const headersWithToken = (headers, token) =>
   token ? { ...headers, Authorization: `Bearer ${token}` } : headers;
@@ -89,6 +97,10 @@ export const fetchPlone = async (url, token, params, http = axios) => {
 
 // Normalize Plone JSON to be usable as such in GatsbyJS
 export const normalizeData = function(data, baseUrl) {
+  // - Adds '@id' for plone.restapi < 1.0b1 results from 'url'
+  if (!data['@id'] && data.url) {
+    data['@id'] = data.url;
+  }
   // - Adds '_path' without baseUrl for objects with '@id'
   if (data['@id']) {
     // _path variables are used similarly to slugs in

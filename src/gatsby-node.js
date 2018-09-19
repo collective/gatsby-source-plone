@@ -5,6 +5,7 @@ import {
   fetchPlone,
   logging,
   normalizeData,
+  normalizeType,
   parentId,
   parseHTMLtoReact,
 } from './utils';
@@ -32,9 +33,7 @@ const makeContentNode = (id, data, baseUrl, backlinks) => {
     node.internal.type = 'PloneSite';
   } else {
     // Node types are 'Plone'-prefixed content types without white spaces
-    node.internal.type = node._type.startsWith('Plone')
-      ? node._type.replace(' ', '')
-      : 'Plone' + node._type.replace(' ', '');
+    node.internal.type = normalizeType(node._type);
   }
 
   // Add array of backlinks to support GraphQL queries for related nodes
@@ -223,14 +222,18 @@ exports.sourceNodes = async (
   if (!state.lastFetched) {
     logger.info('Creating all nodes');
     for (const item of plone.items) {
-      for await (const node of ploneNodeGenerator(
-        item._id,
-        token,
-        baseUrl,
-        backlinks
-      )) {
-        logger.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
-        createNode(node);
+      try {
+        for await (const node of ploneNodeGenerator(
+          item._id,
+          token,
+          baseUrl,
+          backlinks
+        )) {
+          logger.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+          createNode(node);
+        }
+      } catch (e) {
+        logger.error(`Skipping node – ${item._id.replace(baseUrl, '')} (${e})`)
       }
     }
   } else {

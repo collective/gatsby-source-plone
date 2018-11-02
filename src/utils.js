@@ -117,8 +117,10 @@ export const normalizeData = function(data, baseUrl) {
     if (key === '@components') {
       data._components = {};
       for (const [key_, value_] of Object.entries(value)) {
-        data._components[key_] = normalizeData(value_, baseUrl);
-        data._components[key_]._path = data._path;
+        if (value_ !== null) {
+          data._components[key_] = normalizeData(value_, baseUrl);
+          data._components[key_]._path = data._path;
+        }
       }
       delete data[key];
     } else if (key === 'items' && value) {

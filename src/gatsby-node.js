@@ -242,7 +242,7 @@ exports.sourceNodes = async (
           createNode(node);
         }
       } catch (e) {
-        logger.error(`Skipping node – ${item._id.replace(baseUrl, '')} (${e})`)
+        logger.error(`Skipping node – ${item._id.replace(baseUrl, '')} (${e})`);
       }
     }
   } else {

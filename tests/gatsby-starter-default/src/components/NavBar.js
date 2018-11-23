@@ -91,6 +91,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-const ConnectedNavBar = connect(mapStateToProps, mapDispatchToProps)(NavBar);
+const ConnectedNavBar = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavBar);
 
 export default ConnectedNavBar;

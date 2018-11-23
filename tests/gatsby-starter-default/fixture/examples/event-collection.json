@@ -63,11 +63,6 @@
       "v": [
         "Event"
       ]
-    },
-    {
-      "i": "start",
-      "o": "plone.app.querystring.operation.date.afterToday",
-      "v": ""
     }
   ],
   "relatedItems": [],

@@ -390,7 +390,7 @@ exports.onCreateNode = async (
           ...fileNode,
           ...node.image,
           parent: node.id,
-          extension: extension || 'png',
+          extension: (extension || 'png').toLowerCase(),
         },
         source
       );

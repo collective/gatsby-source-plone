@@ -200,4 +200,4 @@ const Document = ({ data, images = [], files = [] }) => (
 
 This same code can be reused for all the content types containing HTML fields.
 
-Next: [Navigation](7_navigation)
+Next: [Navigation](https://github.com/collective/gatsby-source-plone/blob/master/docs/tutorial/7_navigation.md)

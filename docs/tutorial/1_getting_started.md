@@ -34,4 +34,4 @@ In `gatsby-starter-plone/gatsby-config.js` add:
 
 Configuring `gatsby-config.js` is covered in detail in the [plugin options docs](https://collective.github.io/gatsby-source-plone/reference/plugin_options/). Furthermore if your site is protected, go through the [authentication docs](https://collective.github.io/gatsby-source-plone/reference/authentication/) to learn how to setup access with JWT.
 
-Next: [Querying Data with GraphQL](2_querying_and_auth)
+Next: [Querying Data with GraphQL](https://github.com/collective/gatsby-source-plone/blob/master/docs/tutorial/2_querying_and_auth.md)

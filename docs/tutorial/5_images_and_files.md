@@ -91,4 +91,4 @@ Now to query from GraphQL:
 
 This query returns all images in width `600px` but you configure this with a wide range of options. We'd recommend going through the Sharp docs mentioned above.
 
-Next: [RichText Component](6_richtext_component)
+Next: [RichText Component](https://github.com/collective/gatsby-source-plone/blob/master/docs/tutorial/6_richtext_component.md)

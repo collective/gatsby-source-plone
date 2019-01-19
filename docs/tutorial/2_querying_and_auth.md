@@ -72,4 +72,4 @@ Directly sourcing data from the Plone site and getting all the objects would onl
 
 Step by step explanation on how to set this up is given in the [authentication docs](https://collective.github.io/gatsby-source-plone/reference/authentication/).
 
-Next: [Page Creation](3_page_creation)
+Next: [Page Creation](https://github.com/collective/gatsby-source-plone/blob/master/docs/tutorial/3_page_creation.md)

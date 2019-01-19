@@ -144,4 +144,4 @@ fragment Site on PloneSite {
 }
 ```
 
-Next: [Handling different data types](4_handling_data_types)
+Next: [Handling different data types](https://github.com/collective/gatsby-source-plone/blob/master/docs/tutorial/4_handling_data_types.md)

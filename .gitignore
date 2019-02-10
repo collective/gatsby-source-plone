@@ -50,5 +50,6 @@ node_modules/
 .serverless/
 
 # Build output
+.secrets
 /gatsby-node.js
 /utils.js

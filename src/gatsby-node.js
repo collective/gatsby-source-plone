@@ -242,7 +242,7 @@ exports.sourceNodes = async (
           createNode(node);
         }
       } catch (e) {
-        logger.error(`Skipping node – ${item._id.replace(baseUrl, '')} (${e})`)
+        logger.error(`Skipping node – ${item._id.replace(baseUrl, '')} (${e})`);
       }
     }
   } else {
@@ -378,7 +378,7 @@ exports.sourceNodes = async (
 // Expand file and image attributes into linked remote file nodes
 exports.onCreateNode = async (
   { node, actions, cache, store },
-  { baseUrl, token, logLevel }
+  { baseUrl, token, imageScale, logLevel }
 ) => {
   const logger = logging.getLogger(logging[logLevel] || 100);
   if (
@@ -420,10 +420,12 @@ exports.onCreateNode = async (
     };
 
     if (node.image) {
-      logger.info(`Fetching file – ${node.id.replace(baseUrl, '') || '/'}`);
+      logger.info(`Fetching image – ${node.id.replace(baseUrl, '') || '/'}`);
       try {
         const imageNode = await createRemoteFileNode({
-          url: node.image.download,
+          url: imageScale
+            ? `${node.image.download}/${imageScale}`
+            : node.image.download,
           store,
           cache,
           createNode: createImageNode,

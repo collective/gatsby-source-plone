@@ -7,13 +7,13 @@ pkgs.stdenv.mkDerivation rec {
     jq
     lcms2
     libpng
-    nodejs-9_x
+    nodejs-10_x
     pkgconfig
     python3
     travis
     zlib
     (yarn.override {
-      nodejs = nodejs-9_x;
+      nodejs = nodejs-10_x;
     })
   ];
   shellHook = ''

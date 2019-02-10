@@ -54,9 +54,11 @@ export const normalizePath = path => {
 
 // Camelize
 export const normalizeType = type => {
-  type = type.replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter) {
-    return letter.toUpperCase();
-  }).replace(/[\s\.]+/g, '');
+  type = type
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, function(letter) {
+      return letter.toUpperCase();
+    })
+    .replace(/[\s\.]+/g, '');
   return type.startsWith('Plone') ? type : `Plone${type}`;
 };
 
@@ -117,8 +119,10 @@ export const normalizeData = function(data, baseUrl) {
     if (key === '@components') {
       data._components = {};
       for (const [key_, value_] of Object.entries(value)) {
-        data._components[key_] = normalizeData(value_, baseUrl);
-        data._components[key_]._path = data._path;
+        if (value_ !== null) {
+          data._components[key_] = normalizeData(value_, baseUrl);
+          data._components[key_]._path = data._path;
+        }
       }
       delete data[key];
     } else if (key === 'items' && value) {

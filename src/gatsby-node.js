@@ -106,11 +106,19 @@ const makeBreadcrumbsNode = (id, data, path) => {
 };
 
 // Generator to yield the supported nodes for a single Plone content object
-const ploneNodeGenerator = async function*(id, token, baseUrl, backlinks) {
+const ploneNodeGenerator = async function*(
+  id,
+  token,
+  baseUrl,
+  expansions,
+  backlinks
+) {
   // Fetch from Plone REST API and normalize it to be GraphQL compatible
   const data = normalizeData(
     await fetchPlone(id, token, {
-      expand: ['breadcrumbs', 'navigation'].join(),
+      expand: Array.from(
+        new Set((expansions || []).concat(['breadcrumbs', 'navigation']))
+      ).join(),
       // TODO: Higher depth results in "conflicting field types in your data"
       'expand.navigation.depth': 1,
     }),
@@ -175,7 +183,7 @@ const fetchPloneNavigationNode = async (id, token, baseUrl) => {
 // GatsbyJS source plugin for Plone
 exports.sourceNodes = async (
   { actions, cache, getNode, getNodes, store },
-  { baseUrl, token, searchParams, logLevel }
+  { baseUrl, token, searchParams, expansions, logLevel }
 ) => {
   const { createNode, deleteNode, setPluginStatus, touchNode } = actions;
   let state = {},
@@ -227,6 +235,7 @@ exports.sourceNodes = async (
           item._id,
           token,
           baseUrl,
+          expansions,
           backlinks
         )) {
           logger.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
@@ -293,13 +302,15 @@ exports.sourceNodes = async (
           item._id,
           token,
           baseUrl,
+          expansions,
           backlinks
         )) {
           logger.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
           createNode(node);
         }
         // For updated nodes, breadcrumbs of all children must be updated
-        if (item._id !== baseUrl) {  // except for update baseUrl
+        if (item._id !== baseUrl) {
+          // except for update baseUrl
           dirtyBreadcrumbs =
             dirtyBreadcrumbs === null || !item._id.startsWith(dirtyBreadcrumbs)
               ? item._id
@@ -310,6 +321,7 @@ exports.sourceNodes = async (
           item._id,
           token,
           baseUrl,
+          expansions,
           backlinks
         )) {
           logger.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);

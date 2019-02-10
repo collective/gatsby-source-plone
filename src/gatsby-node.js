@@ -428,6 +428,7 @@ exports.onCreateNode = async (
             : node.image.download,
           store,
           cache,
+          headers:{'Authorization': `Bearer ${token}`},
           createNode: createImageNode,
           createNodeId: () => `${node.id} >> image`,
         });
@@ -446,6 +447,7 @@ exports.onCreateNode = async (
           store,
           cache,
           createNode: createFileNode,
+          headers:{'Authorization': `Bearer ${token}`},
           createNodeId: () => `${node.id} >> file`,
         });
         node.file___NODE = fileNode.id;

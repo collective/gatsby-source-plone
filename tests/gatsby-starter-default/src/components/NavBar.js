@@ -3,8 +3,8 @@ import { graphql, Link, StaticQuery } from 'gatsby';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { EXPAND_NAVIGATION, COLLAPSE_NAVIGATION } from '../state/createStore';
-import MdHome from 'react-icons/lib/md/home';
-import GoChevronRight from 'react-icons/lib/go/chevron-right';
+import { MdHome } from 'react-icons/md';
+import { GoChevronRight } from 'react-icons/go';
 
 const NavBar = ({ active, toggleNavigation, navigationExpanded }) => (
   <StaticQuery

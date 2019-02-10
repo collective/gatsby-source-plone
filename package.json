@@ -50,29 +50,29 @@
   "author": "Ajay NS, Asko Soukka, Andrea Cecchi, Timo Stollenwerk, Victor Fernandez de Alba",
   "license": "MIT",
   "dependencies": {
-    "axios": "^0.16.1",
-    "gatsby": "^2.0.43",
-    "gatsby-source-filesystem": "^2.0.8",
-    "react": "^16.4.1",
+    "axios": "^0.18.0",
+    "gatsby": "^2.0.118",
+    "gatsby-source-filesystem": "^2.0.20",
+    "react": "^16.8.1",
     "react-html-parser": "^2.0.2",
-    "react-serialize": "^0.1.2"
+    "react-serialize": "^0.2.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.5",
-    "@babel/core": "^7.1.5",
-    "@babel/plugin-proposal-class-properties": "^7.1.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-transform-runtime": "^7.1.0",
-    "@babel/preset-env": "^7.1.5",
+    "@babel/preset-env": "^7.3.1",
     "@babel/preset-react": "^7.0.0",
-    "babel-core": "^7.0.0-bridge.0",
-    "coveralls": "^3.0.1",
-    "cross-env": "^5.1.5",
-    "jest": "^23.1.0",
-    "marked": "^0.3.19",
-    "nodemon": "^1.17.4",
-    "prettier": "^1.12.0"
+    "babel-core": "7.0.0-bridge.0",
+    "coveralls": "^3.0.2",
+    "cross-env": "^5.2.0",
+    "jest": "^24.1.0",
+    "marked": "^0.6.0",
+    "nodemon": "^1.18.10",
+    "prettier": "^1.16.4"
   },
   "resolutions": {
     "babel-core": "7.0.0-bridge.0"

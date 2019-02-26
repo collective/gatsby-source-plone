@@ -1,6 +1,6 @@
 version: '3'
 services:
   api:
-    image: "kitconcept/plone.restapi"
+    image: "kitconcept/plone.restapi:2.2.1"
     ports:
       - 8080:8080

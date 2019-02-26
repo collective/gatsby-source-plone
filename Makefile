@@ -17,10 +17,13 @@ purge: clean
 	$(RM) -r node_modules
 	$(MAKE) -C tests/gatsby-starter-default purge
 
-.PHONY: prettier
-prettier: node_modules
+.PHONY: format
+format: node_modules
 	prettier --write $$(find src -name "*.js")
 	$(MAKE) -C tests/gatsby-starter-default prettier
+
+.PHONY: prettier
+prettier: format
 
 .PHONY: test
 test: node_modules

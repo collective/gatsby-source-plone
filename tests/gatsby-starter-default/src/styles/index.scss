@@ -10,11 +10,13 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
-nav, .jumbotron {
+nav,
+.jumbotron {
   @import "~bootstrap/scss/reboot";
   @import "~bootstrap/scss/type";
   font-family: $font-family-sans-serif;
-  ol, ul {
+  ol,
+  ul {
     margin-left: 0;
   }
   li {

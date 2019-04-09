@@ -10,6 +10,7 @@ import {
   parentId,
   parseHTMLtoReact,
   urlWithoutParameters,
+  serializeParams,
 } from '../utils';
 
 test('normalizeType normalizes and normalizeTypes content types', () => {
@@ -334,4 +335,27 @@ test('parseHTMLtoReact transforms relative links', async () => {
   expect(backlinks).toEqual(
     new Map([['/foobar/', ['/index/']], ['/foo/bar.png/', ['/index/']]])
   );
+});
+
+test('serialiseParams serialize paramas into ZPublisher format', () => {
+  expect(
+    serializeParams({
+      portal_type: 'Document',
+    })
+  ).toBe('portal_type=Document');
+  expect(
+    serializeParams({
+      portal_type: ['Document', 'Folder'],
+    })
+  ).toBe('portal_type%3Alist=Document&portal_type%3Alist=Folder');
+  expect(
+    serializeParams({
+      numeric_field: 42,
+    })
+  ).toBe('numeric_field%3Aint=42')
+  expect(
+    serializeParams({
+      numeric_field: 42,
+    })
+  ).toBe('numeric_field%3Aint=42')
 });

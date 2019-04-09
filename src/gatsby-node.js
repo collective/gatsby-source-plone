@@ -430,7 +430,7 @@ exports.onCreateNode = async (
           cache,
           createNode: createImageNode,
           createNodeId: () => `${node.id} >> image`,
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
+          httpHeaders: token ? { Authorization: `Bearer ${token}` } : {},
         });
         node.image___NODE = imageNode.id;
         createParentChildLink({ parent: node, child: imageNode });
@@ -448,7 +448,7 @@ exports.onCreateNode = async (
           cache,
           createNode: createFileNode,
           createNodeId: () => `${node.id} >> file`,
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
+          httpHeaders: token ? { Authorization: `Bearer ${token}` } : {},
         });
         node.file___NODE = fileNode.id;
         createParentChildLink({ parent: node, child: fileNode });

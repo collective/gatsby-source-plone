@@ -52,7 +52,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "gatsby": "^2.0.118",
-    "gatsby-source-filesystem": "^2.0.20",
+    "gatsby-source-filesystem": "^2.0.29",
     "react": "^16.8.1",
     "react-html-parser": "^2.0.2",
     "react-serialize": "^0.2.0"

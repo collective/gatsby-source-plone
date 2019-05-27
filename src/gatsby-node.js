@@ -1,4 +1,5 @@
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
+import io from 'socket.io-client';
 
 import {
   createContentDigest,
@@ -370,6 +371,13 @@ exports.sourceNodes = async (
   }
   logger.info('Setting plugin status');
   logger.debug(JSON.stringify(newState));
+  const socket = io('http://localhost:9000');
+    socket.on('connect',(data)=>{
+        socket.on('welcome',(data)=>{
+            console.log("This is from gatsby nodejs",data);
+        })
+        socket.emit('message',{data:'I am Excited'})
+    })
   setPluginStatus(newState);
   logger.info('Done');
 };

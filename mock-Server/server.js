@@ -13,6 +13,32 @@ io.on('connection', (socket, req) => {
     socket.on('message', (msg) => {
         console.log(msg);
     })
+    setTimeout(()=>{
+        socket.emit('setTimeout',JSON.stringify({
+            "created": [{
+                "@id": "http://localhost:8080/...",
+                "parent": {
+                    "@id": "http://localhost:8080/..."
+                }
+            }]
+        },
+        {
+            "modified": [{
+                "@id": "http://localhost:8080/...",
+                "parent": {
+                    "@id": "http://localhost:8080/..."
+                }
+            }]
+        },
+        {
+            "removed": [{
+                "@id": "http://localhost:8080/...",
+                "parent": {
+                    "@id": "http://localhost:8080/..."
+                }
+            }]
+        }))
+    }, 5000)
 })
 
 

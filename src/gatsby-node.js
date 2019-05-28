@@ -376,7 +376,14 @@ exports.sourceNodes = async (
         socket.on('welcome',(data)=>{
             console.log("This is from gatsby nodejs",data);
         })
-        socket.emit('message',{data:'I am Excited'})
+        setTimeout(()=>{
+          socket.emit('message',{data:'I am Excited'})
+
+        },5000);
+        socket.on('setTimeout',(data) => {
+          console.log("this is from the json payload after some timeout");
+          console.log(data)
+        })
     })
   setPluginStatus(newState);
   logger.info('Done');

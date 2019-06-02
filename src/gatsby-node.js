@@ -1,4 +1,5 @@
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
+import io from 'socket.io-client';
 
 import {
   createContentDigest,
@@ -183,7 +184,7 @@ const fetchPloneNavigationNode = async (id, token, baseUrl) => {
 // GatsbyJS source plugin for Plone
 exports.sourceNodes = async (
   { actions, cache, getNode, getNodes, store },
-  { baseUrl, token, searchParams, expansions, logLevel }
+  { baseUrl, token, searchParams, expansions, logLevel, websocketUpdates }
 ) => {
   const { createNode, deleteNode, setPluginStatus, touchNode } = actions;
   let state = {},
@@ -370,6 +371,22 @@ exports.sourceNodes = async (
   }
   logger.info('Setting plugin status');
   logger.debug(JSON.stringify(newState));
+  if(websocketUpdates){
+    const socket = io('http://localhost:9000');
+    socket.on('connect',(data)=>{
+        socket.on('welcome',(data)=>{
+            console.log("This is from gatsby nodejs",data);
+        })
+        setTimeout(()=>{
+          socket.emit('message',{data:'I am Excited'})
+
+        },5000);
+        socket.on('setTimeout',(data) => {
+          console.log("this is from the json payload after some timeout");
+          console.log(data)
+        })
+    })
+  }
   setPluginStatus(newState);
   logger.info('Done');
 };

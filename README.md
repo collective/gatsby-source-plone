@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/collective/gatsby-source-plone.svg?branch=add_source_dependency)](https://travis-ci.org/collective/gatsby-source-plone)
+[![Gitter chat](https://badges.gitter.im/gitterHQ/gitter.png)](https://gitter.im/collective/gatsby-source-plone)
 
 # gatsby-source-plone
 
@@ -81,8 +82,12 @@ We use Docker for handling the backend plone.restapi, and so it's required to ha
 Build project frontend:
 
 ```bash
-make build
+make purge  # if you already put some data into plone site
+make init-backend  # Feeding automatic data into the plone site
+make build # this command build the frontend for this plugin
 ```
+
+you will see a site running at localhost:8000 similar to https://collective.github.io/gatsby-source-plone/
 
 ### Dev Environment
 

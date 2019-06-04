@@ -1,6 +1,6 @@
 version: '3'
 services:
   api:
-    image: "kitconcept/plone.restapi:2.2.1"
+    image: "datakurre/gatsby-source-plone:2019-06-04"
     ports:
       - 8080:8080

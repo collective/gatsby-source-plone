@@ -14,6 +14,7 @@ module.exports = {
         baseUrl: 'http://localhost:8080/Plone/',
         token: process.env.TOKEN,
         logLevel: 'DEBUG',
+        websocketUpdates: true,
       },
     },
     // Note: gatsby-source-filesystems is required also to make Plone

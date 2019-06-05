@@ -1,5 +1,6 @@
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
 import io from 'socket.io-client';
+import WebSocket  from 'ws';
 
 import {
   createContentDigest,
@@ -371,21 +372,25 @@ exports.sourceNodes = async (
   }
   logger.info('Setting plugin status');
   logger.debug(JSON.stringify(newState));
-  if(websocketUpdates){
-    const socket = io('http://localhost:9000');
-    socket.on('connect',(data)=>{
-        socket.on('welcome',(data)=>{
-            console.log("This is from gatsby nodejs",data);
-        })
-        setTimeout(()=>{
-          socket.emit('message',{data:'I am Excited'})
+  if(websocketUpdates) {
+    let ws = new WebSocket('ws://localhost:8080/Plone/');
+    console.log(ws.readyState);
+    ws.onmessage = (msg)=>{
+      console.log(msg.data);
+      let data = JSON.parse(msg.data)
+      if(data["created"]){
+        console.log("we are in created state");
+      
+      }
+      if(data["modified"]){
+        console.log("we are in modified state");
 
-        },5000);
-        socket.on('setTimeout',(data) => {
-          console.log("this is from the json payload after some timeout");
-          console.log(data)
-        })
-    })
+      }
+      if(data["removed"]){
+        console.log("we are removed state");
+      }
+
+    }
   }
   setPluginStatus(newState);
   logger.info('Done');

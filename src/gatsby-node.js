@@ -10,6 +10,7 @@ import {
   normalizeType,
   parentId,
   parseHTMLtoReact,
+  fetchUrl,
 } from './utils';
 
 const ComponentNodeTypes = new Set(['PloneBreadcrumbs', 'PloneNavigation']);
@@ -375,19 +376,32 @@ exports.sourceNodes = async (
   if(websocketUpdates) {
     let ws = new WebSocket('ws://localhost:8080/Plone/');
     console.log(ws.readyState);
-    ws.onmessage = (msg)=>{
+    ws.onmessage = async (msg)=>{
       console.log(msg.data);
       let data = JSON.parse(msg.data)
       if(data["created"]){
         console.log("we are in created state");
-      
+        let url = data["created"][0]["@id"];
+        console.log(url)
+
+        const dataNode = normalizeData(
+          await fetchUrl(url,token),
+          baseUrl
+        );
+        const node = makeContentNode(url, dataNode, baseUrl, backlinks)
+        console.log(node)
+        createNode(node);
       }
       if(data["modified"]){
         console.log("we are in modified state");
+        let url = data["modified"][0]["@id"];
+        console.log(url);
 
       }
       if(data["removed"]){
         console.log("we are removed state");
+        let url = data["removed"][0]["@id"];
+        console.log(url);
       }
 
     }

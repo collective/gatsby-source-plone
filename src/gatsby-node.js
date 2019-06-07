@@ -1,5 +1,4 @@
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
-import io from 'socket.io-client';
 import WebSocket  from 'ws';
 
 import {
@@ -374,28 +373,32 @@ exports.sourceNodes = async (
   logger.info('Setting plugin status');
   logger.debug(JSON.stringify(newState));
   if(websocketUpdates) {
-    let ws = new WebSocket('ws://localhost:8080/Plone/');
-    console.log(ws.readyState);
+    let ws = new WebSocket(baseUrl.replace(/(http)(s)?\:\/\//, "ws$2://"));
     ws.onmessage = async (msg)=>{
-      console.log(msg.data);
       let data = JSON.parse(msg.data)
       if(data["created"]){
         console.log("we are in created state");
-        let url = data["created"][0]["@id"];
-        console.log(url)
-
-        const dataNode = normalizeData(
-          await fetchUrl(url,token),
-          baseUrl
-        );
-        const node = makeContentNode(url, dataNode, baseUrl, backlinks)
-        console.log(node)
-        createNode(node);
+        let urlChild = data["created"][0]["@id"];
+        let urlParent = data["created"][0]["parent"]["@id"]
+        let urlList = [urlChild, urlParent]
+        urlList.forEach(async(url) => {
+          for await (const node of ploneNodeGenerator(
+            url,
+            token,
+            baseUrl,
+            expansions,
+            backlinks
+          )) {
+            logger.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+            createNode(node);
+          }
+        })
       }
       if(data["modified"]){
         console.log("we are in modified state");
         let url = data["modified"][0]["@id"];
-        console.log(url);
+        let urlParent = data["modified"][0]["parent"]["@id"]
+        console.log(urlParent);
 
       }
       if(data["removed"]){

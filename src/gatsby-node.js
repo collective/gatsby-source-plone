@@ -399,8 +399,18 @@ exports.sourceNodes = async (
       if (data['modified']) {
         console.log('we are in modified state');
         let url = data['modified'][0]['@id'];
-        let urlParent = data['modified'][0]['parent']['@id'];
-        console.log(urlParent);
+        for await (const node of ploneNodeGenerator(
+          url,
+          token,
+          baseUrl,
+          expansions,
+          backlinks
+        )) {
+          logger.info(
+            `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
+          );
+          createNode(node);
+        }
       }
       if (data['removed']) {
         console.log('we are removed state');

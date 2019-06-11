@@ -1,5 +1,5 @@
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
-import io from 'socket.io-client';
+import WebSocket  from 'ws';
 
 import {
   createContentDigest,
@@ -9,6 +9,7 @@ import {
   normalizeType,
   parentId,
   parseHTMLtoReact,
+  fetchUrl,
 } from './utils';
 
 const ComponentNodeTypes = new Set(['PloneBreadcrumbs', 'PloneNavigation']);
@@ -371,21 +372,42 @@ exports.sourceNodes = async (
   }
   logger.info('Setting plugin status');
   logger.debug(JSON.stringify(newState));
-  if(websocketUpdates){
-    const socket = io('http://localhost:9000');
-    socket.on('connect',(data)=>{
-        socket.on('welcome',(data)=>{
-            console.log("This is from gatsby nodejs",data);
+  if(websocketUpdates) {
+    let ws = new WebSocket(baseUrl.replace(/(http)(s)?\:\/\//, "ws$2://"));
+    ws.onmessage = async (msg)=>{
+      let data = JSON.parse(msg.data)
+      if(data["created"]){
+        console.log("we are in created state");
+        let urlChild = data["created"][0]["@id"];
+        let urlParent = data["created"][0]["parent"]["@id"]
+        let urlList = [urlChild, urlParent]
+        urlList.forEach(async(url) => {
+          for await (const node of ploneNodeGenerator(
+            url,
+            token,
+            baseUrl,
+            expansions,
+            backlinks
+          )) {
+            logger.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+            createNode(node);
+          }
         })
-        setTimeout(()=>{
-          socket.emit('message',{data:'I am Excited'})
+      }
+      if(data["modified"]){
+        console.log("we are in modified state");
+        let url = data["modified"][0]["@id"];
+        let urlParent = data["modified"][0]["parent"]["@id"]
+        console.log(urlParent);
 
-        },5000);
-        socket.on('setTimeout',(data) => {
-          console.log("this is from the json payload after some timeout");
-          console.log(data)
-        })
-    })
+      }
+      if(data["removed"]){
+        console.log("we are removed state");
+        let url = data["removed"][0]["@id"];
+        console.log(url);
+      }
+
+    }
   }
   setPluginStatus(newState);
   logger.info('Done');

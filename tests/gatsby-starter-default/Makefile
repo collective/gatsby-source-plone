@@ -66,6 +66,8 @@ stop-backend:
 
 .PHONY: test
 test: clean build pyvenv
+	prettier -c $$(find src -name "*.js")
+	prettier -c --single-quote false $$(find src -name "*.scss")
 	gatsby serve & pid=$$! && \
 	  while ! $$($(HTTP_GET) http://localhost:9000/); do sleep 1; done && \
 	  pybot test.robot; \

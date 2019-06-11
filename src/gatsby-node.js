@@ -1,5 +1,5 @@
 import { createRemoteFileNode } from 'gatsby-source-filesystem';
-import WebSocket  from 'ws';
+import WebSocket from 'ws';
 
 import {
   createContentDigest,
@@ -372,16 +372,16 @@ exports.sourceNodes = async (
   }
   logger.info('Setting plugin status');
   logger.debug(JSON.stringify(newState));
-  if(websocketUpdates) {
-    let ws = new WebSocket(baseUrl.replace(/(http)(s)?\:\/\//, "ws$2://"));
-    ws.onmessage = async (msg)=>{
-      let data = JSON.parse(msg.data)
-      if(data["created"]){
-        console.log("we are in created state");
-        let urlChild = data["created"][0]["@id"];
-        let urlParent = data["created"][0]["parent"]["@id"]
-        let urlList = [urlChild, urlParent]
-        urlList.forEach(async(url) => {
+  if (websocketUpdates) {
+    let ws = new WebSocket(baseUrl.replace(/(http)(s)?\:\/\//, 'ws$2://'));
+    ws.onmessage = async msg => {
+      let data = JSON.parse(msg.data);
+      if (data['created']) {
+        console.log('we are in created state');
+        let urlChild = data['created'][0]['@id'];
+        let urlParent = data['created'][0]['parent']['@id'];
+        let urlList = [urlChild, urlParent];
+        urlList.forEach(async url => {
           for await (const node of ploneNodeGenerator(
             url,
             token,
@@ -389,25 +389,25 @@ exports.sourceNodes = async (
             expansions,
             backlinks
           )) {
-            logger.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+            logger.info(
+              `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
+            );
             createNode(node);
           }
-        })
+        });
       }
-      if(data["modified"]){
-        console.log("we are in modified state");
-        let url = data["modified"][0]["@id"];
-        let urlParent = data["modified"][0]["parent"]["@id"]
+      if (data['modified']) {
+        console.log('we are in modified state');
+        let url = data['modified'][0]['@id'];
+        let urlParent = data['modified'][0]['parent']['@id'];
         console.log(urlParent);
-
       }
-      if(data["removed"]){
-        console.log("we are removed state");
-        let url = data["removed"][0]["@id"];
+      if (data['removed']) {
+        console.log('we are removed state');
+        let url = data['removed'][0]['@id'];
         console.log(url);
       }
-
-    }
+    };
   }
   setPluginStatus(newState);
   logger.info('Done');

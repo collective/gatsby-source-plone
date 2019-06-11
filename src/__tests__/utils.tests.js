@@ -352,10 +352,10 @@ test('serialiseParams serialize paramas into ZPublisher format', () => {
     serializeParams({
       numeric_field: 42,
     })
-  ).toBe('numeric_field%3Aint=42')
+  ).toBe('numeric_field%3Aint=42');
   expect(
     serializeParams({
       numeric_field: 42,
     })
-  ).toBe('numeric_field%3Aint=42')
+  ).toBe('numeric_field%3Aint=42');
 });

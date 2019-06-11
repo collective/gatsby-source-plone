@@ -27,6 +27,7 @@ prettier: format
 
 .PHONY: test
 test: node_modules
+	prettier -c $$(find src -name "*.js")
 	jest src
 
 .PHONY: test-all

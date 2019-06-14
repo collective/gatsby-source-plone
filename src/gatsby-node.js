@@ -398,17 +398,41 @@ exports.sourceNodes = async (
       }
       if (data['modified']) {
         console.log('we are in modified state');
-        let url = data['modified'][0]['@id'];
-        for await (const node of ploneNodeGenerator(
-          url,
-          token,
-          baseUrl,
-          expansions,
-          backlinks
-        )) {
-          logger.info(
-            `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
-          );
+        let urlChild = data['modified'][0]['@id'];
+        let urlParent = data['modified'][0]['parent']['@id'];
+        let urlList = [urlChild, urlParent];
+        urlList.forEach(async url => {
+          for await (const node of ploneNodeGenerator(
+            url,
+            token,
+            baseUrl,
+            expansions,
+            backlinks
+          )) {
+            logger.info(
+              `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
+            );
+            createNode(node);
+          }
+        });
+        const childItems = normalizeData(
+          await fetchPlone(
+            `${urlChild}/@search`,
+            token,
+            // Search nodes in path order to ensure parents before their children
+            {
+              ...searchParams,
+              metadata_fields: 'modified',
+              sort_on: 'path',
+              sort_order: 'ascending',
+            }
+          ),
+          baseUrl
+        );
+        for (const item of childItems.items) {
+          let node = await fetchPloneNavigationNode(item._id, token, baseUrl);
+          createNode(node);
+          node = await fetchPloneBreadcrumbsNode(item._id, token, baseUrl);
           createNode(node);
         }
       }

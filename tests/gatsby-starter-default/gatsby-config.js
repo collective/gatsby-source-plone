@@ -12,7 +12,7 @@ module.exports = {
       resolve: 'gatsby-source-plone',
       options: {
         baseUrl: 'http://localhost:8080/Plone/',
-        token: process.env.TOKEN,
+        token:  "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTU2MDU2MDk2MiwiZnVsbG5hbWUiOm51bGx9.OWFRexr_u2sWIltclUrhgy16qrQ1Fjsf-JDPjPoU8rE",
         logLevel: 'DEBUG',
         websocketUpdates: true,
       },

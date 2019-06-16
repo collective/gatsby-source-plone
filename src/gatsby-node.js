@@ -416,24 +416,14 @@ exports.sourceNodes = async (
           }
         });
         const childItems = normalizeData(
-          await fetchPlone(
-            `${urlChild}/@search`,
-            token,
-            // Search nodes in path order to ensure parents before their children
-            {
-              ...searchParams,
-              metadata_fields: 'modified',
-              sort_on: 'path',
-              sort_order: 'ascending',
-            }
-          ),
+          await fetchPlone(`${urlChild}/@search`, token, {
+            ...searchParams,
+          }),
           baseUrl
         );
         for (const item of childItems.items) {
-          let node = await fetchPloneNavigationNode(item._id, token, baseUrl);
-          createNode(node);
-          node = await fetchPloneBreadcrumbsNode(item._id, token, baseUrl);
-          createNode(node);
+          createNode(await fetchPloneNavigationNode(item._id, token, baseUrl));
+          createNode(await fetchPloneBreadcrumbsNode(item._id, token, baseUrl));
         }
       }
       if (data['removed']) {

@@ -429,7 +429,20 @@ exports.sourceNodes = async (
       if (data['removed']) {
         console.log('we are removed state');
         let url = data['removed'][0]['@id'];
-        console.log(url);
+        let urlParent = data['removed'][0]['parent']['@id'];
+        let node = getNode(url);
+        let breadcrumbsNode = getNode(`${url}/@breadcrumbs`);
+        let navigationNode = getNode(`${url}/@navigation`);
+        if (node) {
+          console.log(`node deleted at ${url}`);
+          deleteNode({ node: node });
+        }
+        if (breadcrumbsNode) {
+          deleteNode({ node: breadcrumbsNode });
+        }
+        if (navigationNode) {
+          deleteNode({ node: navigationNode });
+        }
       }
     };
   }

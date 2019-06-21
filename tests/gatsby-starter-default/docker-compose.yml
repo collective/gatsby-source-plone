@@ -1,6 +1,6 @@
 version: '3'
 services:
   api:
-    image: "datakurre/gatsby-source-plone:2019-06-04"
+    image: "datakurre/gatsby-source-plone:2019-06-21"
     ports:
       - 8080:8080

@@ -443,6 +443,24 @@ exports.sourceNodes = async (
         if (navigationNode) {
           deleteNode({ node: navigationNode });
         }
+        try {
+          for await (const node of ploneNodeGenerator(
+            urlParent,
+            token,
+            baseUrl,
+            expansions,
+            backlinks
+          )) {
+            logger.info(
+              `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
+            );
+            createNode(node);
+          }
+        } catch (err) {
+          logger.error(
+            `Skipping node – ${urlParent.replace(baseUrl, '')} (${err})`
+          );
+        }
       }
     };
   }

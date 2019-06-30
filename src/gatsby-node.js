@@ -402,28 +402,57 @@ exports.sourceNodes = async (
         let urlParent = data['modified'][0]['parent']['@id'];
         let urlList = [urlChild, urlParent];
         urlList.forEach(async url => {
-          for await (const node of ploneNodeGenerator(
-            url,
-            token,
-            baseUrl,
-            expansions,
-            backlinks
-          )) {
-            logger.info(
-              `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
+          try {
+            for await (const node of ploneNodeGenerator(
+              url,
+              token,
+              baseUrl,
+              expansions,
+              backlinks
+            )) {
+              logger.info(
+                `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
+              );
+              createNode(node);
+            }
+          } catch (err) {
+            logger.error(
+              `Skipping node – ${url.replace(baseUrl, '')} (${err})`
             );
-            createNode(node);
+            let node = getNode(url);
+            let breadcrumbsNode = getNode(`${url}/@breadcrumbs`);
+            let navigationNode = getNode(`${url}/@navigation`);
+            if (node) {
+              console.log(`node deleted at ${url}`);
+              deleteNode({ node: node });
+            }
+            if (breadcrumbsNode) {
+              deleteNode({ node: breadcrumbsNode });
+            }
+            if (navigationNode) {
+              deleteNode({ node: navigationNode });
+            }
           }
         });
-        const childItems = normalizeData(
-          await fetchPlone(`${urlChild}/@search`, token, {
-            ...searchParams,
-          }),
-          baseUrl
-        );
-        for (const item of childItems.items) {
-          createNode(await fetchPloneNavigationNode(item._id, token, baseUrl));
-          createNode(await fetchPloneBreadcrumbsNode(item._id, token, baseUrl));
+        try {
+          const childItems = normalizeData(
+            await fetchPlone(`${urlChild}/@search`, token, {
+              ...searchParams,
+            }),
+            baseUrl
+          );
+          for (const item of childItems.items) {
+            createNode(
+              await fetchPloneNavigationNode(item._id, token, baseUrl)
+            );
+            createNode(
+              await fetchPloneBreadcrumbsNode(item._id, token, baseUrl)
+            );
+          }
+        } catch (err) {
+          logger.error(
+            `Skipping node – ${urlChild.replace(baseUrl, '')} (${err})`
+          );
         }
       }
       if (data['removed']) {

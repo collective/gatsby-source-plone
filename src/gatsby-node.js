@@ -373,34 +373,33 @@ exports.sourceNodes = async (
   logger.info('Setting plugin status');
   logger.debug(JSON.stringify(newState));
 
-  const updatePloneCollection = function(timeout) {
-    setTimeout(async () => {
-      console.log('we are updating the Plone Collection');
-      const nodes = getNodes().filter(
-        n => n.internal.owner === `gatsby-source-plone`
-      );
-      const updateNodes = new Set();
-      for (let item of nodes) {
-        if (item._type === 'Collection') {
-          updateNodes.add(item.id);
-        }
+  const updatePloneCollection = async function() {
+    console.log('we are updating the Plone Collection');
+    const nodes = getNodes().filter(
+      n => n.internal.owner === `gatsby-source-plone`
+    );
+    const updateNodes = new Set();
+    for (let item of nodes) {
+      if (item._type === 'Collection') {
+        updateNodes.add(item.id);
       }
-      for (let item of updateNodes) {
-        for await (const node of ploneNodeGenerator(
-          item,
-          token,
-          baseUrl,
-          expansions,
-          backlinks
-        )) {
-          logger.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
-          createNode(node);
-        }
+    }
+    for (let item of updateNodes) {
+      for await (const node of ploneNodeGenerator(
+        item,
+        token,
+        baseUrl,
+        expansions,
+        backlinks
+      )) {
+        logger.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+        createNode(node);
       }
-    }, parseInt(timeout));
+    }
   };
   if (websocketUpdates) {
     let ws = new WebSocket(baseUrl.replace(/(http)(s)?\:\/\//, 'ws$2://'));
+    let timerId = null;
     ws.onmessage = async msg => {
       let data = JSON.parse(msg.data);
       if (data['created']) {
@@ -422,7 +421,10 @@ exports.sourceNodes = async (
             createNode(node);
           }
         });
-        updatePloneCollection(3 * 1000);
+        if (timerId) {
+          clearTimeout(timerId);
+        }
+        timerId = setTimeout(updatePloneCollection, 3000);
       }
       if (data['modified']) {
         console.log('we are in modified state');
@@ -453,7 +455,10 @@ exports.sourceNodes = async (
           createNode(await fetchPloneNavigationNode(item._id, token, baseUrl));
           createNode(await fetchPloneBreadcrumbsNode(item._id, token, baseUrl));
         }
-        updatePloneCollection(3 * 1000);
+        if (timerId) {
+          clearTimeout(timerId);
+        }
+        timerId = setTimeout(updatePloneCollection, 3000);
       }
       if (data['removed']) {
         console.log('we are removed state');
@@ -490,7 +495,10 @@ exports.sourceNodes = async (
             `Skipping node – ${urlParent.replace(baseUrl, '')} (${err})`
           );
         }
-        updatePloneCollection(3 * 1000);
+        if (timerId) {
+          clearTimeout(timerId);
+        }
+        timerId = setTimeout(updatePloneCollection, 3000);
       }
     };
   }

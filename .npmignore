@@ -45,6 +45,9 @@ public/
 .travis.yml
 Makefile
 shell.nix
+yarn.lock
 
 # Tests
+__tests__
 jest.config.js
+mock-server

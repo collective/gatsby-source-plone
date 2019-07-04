@@ -67,5 +67,4 @@ gatsby-node.js: node_modules $(SOURCES)
 
 node_modules: package.json
 	yarn install
-	yarn link
 	touch node_modules

@@ -74,6 +74,12 @@ test: clean build pyvenv
 	  status=$$?; \
 	  kill $$pid; \
 	  exit $$status
+	gatsby watch & pid=$$! && \
+	  while ! $$($(HTTP_GET) http://localhost:8000/); do sleep 1; done && \
+	  pybot test-updates.robot; \
+	  status=$$?; \
+	  kill $$pid; \
+	  exit $$status
 
 .PHONY: watch
 watch: develop

@@ -75,7 +75,7 @@ test: clean build pyvenv
 	  kill $$pid; \
 	  exit $$status
 	gatsby develop -p 9000 & pid=$$! && \
-	  while ! $$($(HTTP_GET) http://localhost:8000/); do sleep 1; done && \
+	  while ! $$($(HTTP_GET) http://localhost:9000/); do sleep 1; done && \
 	  pybot test-updates.robot; \
 	  status=$$?; \
 	  kill $$pid; \

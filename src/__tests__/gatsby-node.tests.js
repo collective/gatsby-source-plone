@@ -1,4 +1,4 @@
-import { makeContentNode } from '../gatsby-node';
+import { makeContentNode } from '../utils';
 import { createContentDigest } from '../utils';
 
 const mockid = 'http://localhost:8080/Plone';

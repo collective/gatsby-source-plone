@@ -76,7 +76,7 @@ test: clean build pyvenv
 	  exit $$status
 	gatsby develop -p 9000 & pid=$$! && \
 	  while ! $$($(HTTP_GET) http://localhost:9000/); do sleep 1; done && \
-	  pybot test-updates.robot; \
+	  pybot -v BROWSER:headlessfirefox test-updates.robot; \
 	  status=$$?; \
 	  kill $$pid; \
 	  exit $$status
@@ -101,10 +101,10 @@ node_modules: package.json
 	yarn install
 	$(RM) -r node_modules/gatsby-source-plone
 	mkdir node_modules/gatsby-source-plone
-	ln -sf ../../../../package.json node_modules/gatsby-source-plone
-	ln -sf ../../../../index.js node_modules/gatsby-source-plone
-	ln -sf ../../../../gatsby-node.js node_modules/gatsby-source-plone
-	ln -sf ../../../../utils.js node_modules/gatsby-source-plone
+	ln -sf ../../../package.json node_modules/gatsby-source-plone
+	ln -sf ../../../index.js node_modules/gatsby-source-plone
+	ln -sf ../../../gatsby-node.js node_modules/gatsby-source-plone
+	ln -sf ../../../utils.js node_modules/gatsby-source-plone
 
 src/styles/_typography.scss:
 	node -e "console.log(new require('typography')(require('typography-theme-twin-peaks')).toString())" \

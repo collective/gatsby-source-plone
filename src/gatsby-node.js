@@ -18,7 +18,7 @@ const DownloadableContentTypes = new Set(['Image', 'File']);
 // TODO: Make DownloadableContentTypes configurable
 
 // Make gatsby node from Plone REST API data
-const makeContentNode = (id, data, baseUrl, backlinks) => {
+export const makeContentNode = (id, data, baseUrl, backlinks) => {
   // mediaType is always set as 'text/html' as a common case, because
   // content objects may have html, images, files or combinations of them
   let node = {

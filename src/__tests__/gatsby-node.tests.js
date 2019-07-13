@@ -1,5 +1,4 @@
-import { makeContentNode } from '../utils';
-import { createContentDigest } from '../utils';
+import { makeContentNode, createContentDigest } from '../utils';
 
 const mockid = 'http://localhost:8080/Plone';
 const mockbaseUrl = 'http://localhost:8080/Plone';
@@ -188,7 +187,7 @@ const expectednode = {
   _backlinks: [''],
 };
 
-test('makeContentNode test', () => {
+test('makeContentNode returns Gatsby Node', () => {
   expect(makeContentNode(mockid, mockdata, mockbaseUrl, mockbacklinks)).toEqual(
     expectednode
   );

@@ -7,6 +7,7 @@ import {
   logging,
   normalizeData,
   makeContentNode,
+  makeNavigationNode,
   parentId,
 } from './utils';
 
@@ -14,19 +15,6 @@ const ComponentNodeTypes = new Set(['PloneBreadcrumbs', 'PloneNavigation']);
 const DownloadableContentTypes = new Set(['Image', 'File']);
 
 // TODO: Make DownloadableContentTypes configurable
-
-const makeNavigationNode = (id, data, path) => {
-  return {
-    ...data,
-    id: id,
-    internal: {
-      contentDigest: createContentDigest(data),
-      mediaType: 'application/json',
-      type: 'PloneNavigation',
-    },
-    _path: path,
-  };
-};
 
 const makeBreadcrumbsNode = (id, data, path) => {
   return {

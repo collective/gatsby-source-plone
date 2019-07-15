@@ -284,3 +284,16 @@ export const makeContentNode = (id, data, baseUrl, backlinks) => {
 
   return node;
 };
+
+export const makeNavigationNode = (id, data, path) => {
+  return {
+    ...data,
+    id: id,
+    internal: {
+      contentDigest: createContentDigest(data),
+      mediaType: 'application/json',
+      type: 'PloneNavigation',
+    },
+    _path: path,
+  };
+};

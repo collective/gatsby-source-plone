@@ -22,7 +22,7 @@ after_success:
 deploy:
   provider: pages
   github-token: "$GITHUB_TOKEN"
-  local-dir: "./tests/gatsby-starter-default/public"
+  local-dir: "./demo/public"
   target-branch: gh-pages
   keep-history: false
   skip-cleanup: true

@@ -70,7 +70,7 @@ test: clean build pyvenv
 	prettier -c --single-quote false $$(find src -name "*.scss")
 	gatsby serve & pid=$$! && \
 	  while ! $$($(HTTP_GET) http://localhost:9000/); do sleep 1; done && \
-	  robot test.robot; \
+	  robot -v BROWSER:headlessfirefox test.robot; \
 	  status=$$?; \
 	  kill $$pid; \
 	  exit $$status

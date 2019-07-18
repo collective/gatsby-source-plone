@@ -2,9 +2,12 @@
 
 Library         SeleniumLibrary  timeout=10  implicit_wait=0
 
-Test Setup      Open browser  about:blank  browser=headlessfirefox
+Test Setup      Open browser  about:blank  browser=${BROWSER}
 Test Teardown   Close Browser
 
+*** Variables ***
+
+${BROWSER}  firefox
 
 *** Test Cases ***
 

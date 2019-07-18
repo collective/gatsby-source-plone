@@ -76,7 +76,7 @@ test: clean build pyvenv
 	  exit $$status
 	gatsby develop -p 9000 & pid=$$! && \
 	  while ! $$($(HTTP_GET) http://localhost:9000/); do sleep 1; done && \
-	  pybot -v BROWSER:headlessfirefox test-updates.robot; \
+	  pybot -v GATSBY_PORT:9000 -v BROWSER:headlessfirefox test-updates.robot; \
 	  status=$$?; \
 	  kill $$pid; \
 	  exit $$status

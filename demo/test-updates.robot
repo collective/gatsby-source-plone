@@ -5,7 +5,7 @@ Library         SeleniumLibrary  timeout=10  implicit_wait=0
 Library         REST
 
 Test Setup      Open singleton browser  ${GATSBY_URL}
-Test Teardown   Close Browser
+Test Teardown   Close All Browsers
 
 *** Variables ***
 
@@ -58,7 +58,7 @@ Scenario: Deep folder structure
 
 Scenario: Delete single page
     Set Plone headers
-    Go to  ${BASE_URL}/examples/subfolder-level-two/level-three/
+    Go to  ${GATSBY_URL}/examples/subfolder-level-two/level-three/
     Wait until page contains element  css:a[href$="/level-four/"]
     Delete  ${PLONE_URL}/examples/subfolder-level-two/level-three/level-four/
     Wait until page does not contain element  css:a[href$="/level-four/"]

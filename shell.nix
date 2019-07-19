@@ -3,6 +3,7 @@
 pkgs.stdenv.mkDerivation rec {
   name = "gatsby-env";
   buildInputs = with pkgs; [
+    firefox
     geckodriver
     jq
     lcms2

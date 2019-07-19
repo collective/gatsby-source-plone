@@ -1,0 +1,11 @@
+jupyter
+jupyterlab
+RESTinstance
+robotframework
+robotframework-seleniumlibrary
+robotkernel
+
+ipython==7.2.0
+
+setuptools-scm
+pytest-runner

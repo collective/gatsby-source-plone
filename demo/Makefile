@@ -70,7 +70,14 @@ test: clean build pyvenv
 	prettier -c --single-quote false $$(find src -name "*.scss")
 	gatsby serve & pid=$$! && \
 	  while ! $$($(HTTP_GET) http://localhost:9000/); do sleep 1; done && \
-	  pybot test.robot; \
+	  robot -v BROWSER:headlessfirefox test.robot; \
+	  status=$$?; \
+	  kill $$pid; \
+	  exit $$status
+	make clean   # https://github.com/collective/gatsby-source-plone/issues/202
+	gatsby develop -p 9000 & pid=$$! && \
+	  while ! $$($(HTTP_GET) http://localhost:9000/); do sleep 1; done && \
+	  robot -v GATSBY_PORT:9000 -v BROWSER:headlessfirefox test-updates.robot; \
 	  status=$$?; \
 	  kill $$pid; \
 	  exit $$status
@@ -95,10 +102,10 @@ node_modules: package.json
 	yarn install
 	$(RM) -r node_modules/gatsby-source-plone
 	mkdir node_modules/gatsby-source-plone
-	ln -sf ../../../../package.json node_modules/gatsby-source-plone
-	ln -sf ../../../../index.js node_modules/gatsby-source-plone
-	ln -sf ../../../../gatsby-node.js node_modules/gatsby-source-plone
-	ln -sf ../../../../utils.js node_modules/gatsby-source-plone
+	ln -sf ../../../package.json node_modules/gatsby-source-plone
+	ln -sf ../../../index.js node_modules/gatsby-source-plone
+	ln -sf ../../../gatsby-node.js node_modules/gatsby-source-plone
+	ln -sf ../../../utils.js node_modules/gatsby-source-plone
 
 src/styles/_typography.scss:
 	node -e "console.log(new require('typography')(require('typography-theme-twin-peaks')).toString())" \

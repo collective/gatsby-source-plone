@@ -51,11 +51,12 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.19.0",
-    "gatsby": "^2.13.6",
+    "gatsby": "^2.13.31",
     "gatsby-source-filesystem": "^2.1.2",
     "react": "^16.8.6",
     "react-html-parser": "^2.0.2",
-    "react-serialize": "^0.2.0"
+    "react-serialize": "^0.2.0",
+    "ws": "^7.1.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.5.0",

@@ -74,6 +74,7 @@ test: clean build pyvenv
 	  status=$$?; \
 	  kill $$pid; \
 	  exit $$status
+	make clean   # https://github.com/collective/gatsby-source-plone/issues/202
 	gatsby develop -p 9000 & pid=$$! && \
 	  while ! $$($(HTTP_GET) http://localhost:9000/); do sleep 1; done && \
 	  robot -v GATSBY_PORT:9000 -v BROWSER:headlessfirefox test-updates.robot; \

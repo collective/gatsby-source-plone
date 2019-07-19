@@ -6,9 +6,7 @@ import {
 } from '../utils';
 
 // This import is here only to make gatsby-node to appear in overall coverage
-import {
-  ploneNodeGenerator,
-} from '../gatsby-node';
+import { ploneNodeGenerator } from '../gatsby-node';
 
 const mockid = 'http://localhost:8080/Plone';
 const mockbaseUrl = 'http://localhost:8080/Plone';

@@ -8,6 +8,7 @@ import {
   normalizeData,
   makeContentNode,
   makeNavigationNode,
+  makeBreadcrumbsNode,
   parentId,
 } from './utils';
 
@@ -15,19 +16,6 @@ const ComponentNodeTypes = new Set(['PloneBreadcrumbs', 'PloneNavigation']);
 const DownloadableContentTypes = new Set(['Image', 'File']);
 
 // TODO: Make DownloadableContentTypes configurable
-
-const makeBreadcrumbsNode = (id, data, path) => {
-  return {
-    ...data,
-    id: id,
-    internal: {
-      contentDigest: createContentDigest(data),
-      mediaType: 'application/json',
-      type: 'PloneBreadcrumbs',
-    },
-    _path: path,
-  };
-};
 
 // Generator to yield the supported nodes for a single Plone content object
 const ploneNodeGenerator = async function*(

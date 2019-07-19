@@ -2,6 +2,7 @@ import {
   makeContentNode,
   createContentDigest,
   makeNavigationNode,
+  makeBreadcrumbsNode,
 } from '../utils';
 
 const mockid = 'http://localhost:8080/Plone';
@@ -310,6 +311,26 @@ const expectedNavigationNode = {
   },
 };
 
+const idBreadcrumbs = 'http://localhost:8080/Plone/@breadcrumbs';
+const dataBreadcrumbs = {
+  items: [],
+  _path: '/',
+  _id: 'http://localhost:8080/Plone/@breadcrumbs',
+};
+const pathBreadcrumbs = '/';
+
+const expectedBreadcrumbsNode = {
+  items: [],
+  _path: '/',
+  _id: 'http://localhost:8080/Plone/@breadcrumbs',
+  id: 'http://localhost:8080/Plone/@breadcrumbs',
+  internal: {
+    contentDigest: '42e098df7c173baeefe17561865da7a4',
+    mediaType: 'application/json',
+    type: 'PloneBreadcrumbs',
+  },
+};
+
 test('makeContentNode returns Gatsby Node', () => {
   expect(makeContentNode(mockid, mockdata, mockbaseUrl, mockbacklinks)).toEqual(
     expectednode
@@ -320,4 +341,10 @@ test('makeNavigationNode returns Gatsby Node for Navigation', () => {
   expect(
     makeNavigationNode(idNavigation, dataNavigation, pathNavigation)
   ).toEqual(expectedNavigationNode);
+});
+
+test('makeBreadcrumbsNode returns Gatsby Node for Breadcrumbs', () => {
+  expect(
+    makeBreadcrumbsNode(idBreadcrumbs, dataBreadcrumbs, pathBreadcrumbs)
+  ).toEqual(expectedBreadcrumbsNode);
 });

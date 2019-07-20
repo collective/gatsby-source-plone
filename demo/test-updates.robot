@@ -122,3 +122,29 @@ Scenario: Update content visible in breadcrumbs
     Wait until element contains
     ...  css:.breadcrumb a[href$="/tutorial/"]
     ...  The Tutorial
+
+*** Test Cases ***
+
+Scenario: Add new content
+    Set Plone headers
+    Go to  ${GATSBY_URL}
+    Page should not contain  New Page
+    ${payload}=  Create dictionary
+    ...  @type=Document
+    ...  title=New Page
+    ...  description=Hello World!
+    ...  text=<p>HERE BE DRAGONS</p>
+    Post  ${PLONE_URL}  ${payload}
+    Integer  response status  201
+    ${url}=  Output  response headers Location
+    Should be equal  ${url}  ${PLONE_URL}/new-page
+    Post  ${PLONE_URL}/new-page/@workflow/publish
+    Integer  response status  200
+    Wait until page contains element  css:a[href$="/new-page/"]
+    Element should contain
+    ...  css:a[href$="/new-page/"]
+    ...  New Page
+    Page should not contain  HERE BE DRAGONS
+    Go to  ${GATSBY_URL}/new-page/
+    Wait until page contains  HERE BE DRAGONS
+

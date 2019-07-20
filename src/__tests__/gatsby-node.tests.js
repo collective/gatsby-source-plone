@@ -3,6 +3,7 @@ import {
   createContentDigest,
   makeNavigationNode,
   makeBreadcrumbsNode,
+  fetchPloneNavigationNode,
 } from '../utils';
 
 // This import is here only to make gatsby-node to appear in overall coverage
@@ -334,6 +335,111 @@ const expectedBreadcrumbsNode = {
   },
 };
 
+const idFetchPloneNavigation =
+  'http://localhost:8080/Plone/this-is-upperfolder';
+const baseUrlNavigation = 'http://localhost:8080/Plone';
+const fetchPloneNode = {
+  items: [
+    {
+      description: '',
+      title: 'Home',
+      _path: '/',
+      _id: 'http://localhost:8080/Plone',
+    },
+    {
+      description: '',
+      title: 'gatsby-source-plone',
+      _path: '/index/',
+      _id: 'http://localhost:8080/Plone/index',
+    },
+    {
+      description: 'News on gatsby-source-plone development',
+      title: 'News',
+      _path: '/news/',
+      _id: 'http://localhost:8080/Plone/news',
+    },
+    {
+      description:
+        'A folder with different standard content types that Plone supports out of the box',
+      title: 'Examples',
+      _path: '/examples/',
+      _id: 'http://localhost:8080/Plone/examples',
+    },
+    {
+      description: '',
+      title: 'Tutorial',
+      _path: '/tutorial/',
+      _id: 'http://localhost:8080/Plone/tutorial',
+    },
+    {
+      description: 'Reference documentation',
+      title: 'Docs',
+      _path: '/reference/',
+      _id: 'http://localhost:8080/Plone/reference',
+    },
+    {
+      description: 'UpperFolder',
+      title: 'This is upperFolder',
+      _path: '/this-is-upperfolder/',
+      _id: 'http://localhost:8080/Plone/this-is-upperfolder',
+    },
+  ],
+  _path: '/this-is-upperfolder/',
+  _id: 'http://localhost:8080/Plone/this-is-upperfolder/@navigation',
+  id: 'http://localhost:8080/Plone/this-is-upperfolder/@navigation',
+  internal: {
+    contentDigest: '641ddc1e243fc5a8d38ac14ad28be690',
+    mediaType: 'application/json',
+    type: 'PloneNavigation',
+  },
+};
+
+const mockDataNavigation = {
+  '@id': 'http://localhost:8080/Plone/this-is-upperfolder/@navigation',
+  items: [
+    { '@id': 'http://localhost:8080/Plone', description: '', title: 'Home' },
+    {
+      '@id': 'http://localhost:8080/Plone/index',
+      description: '',
+      title: 'gatsby-source-plone',
+    },
+    {
+      '@id': 'http://localhost:8080/Plone/news',
+      description: 'News on gatsby-source-plone development',
+      title: 'News',
+    },
+    {
+      '@id': 'http://localhost:8080/Plone/examples',
+      description:
+        'A folder with different standard content types that Plone supports out of the box',
+      title: 'Examples',
+    },
+    {
+      '@id': 'http://localhost:8080/Plone/tutorial',
+      description: '',
+      title: 'Tutorial',
+    },
+    {
+      '@id': 'http://localhost:8080/Plone/reference',
+      description: 'Reference documentation',
+      title: 'Docs',
+    },
+    {
+      '@id': 'http://localhost:8080/Plone/this-is-upperfolder',
+      description: 'UpperFolder',
+      title: 'This is upperFolder',
+    },
+  ],
+};
+
+const mockfetchPloneget = {
+  get: async (url, headers, params) => {
+    return {
+      data: mockDataNavigation,
+    };
+  },
+};
+
 test('makeContentNode returns Gatsby Node', () => {
   expect(makeContentNode(mockid, mockdata, mockbaseUrl, mockbacklinks)).toEqual(
     expectednode
@@ -350,4 +456,14 @@ test('makeBreadcrumbsNode returns Gatsby Node for Breadcrumbs', () => {
   expect(
     makeBreadcrumbsNode(idBreadcrumbs, dataBreadcrumbs, pathBreadcrumbs)
   ).toEqual(expectedBreadcrumbsNode);
+});
+
+test('fetchPloneNavigation returns Gatsby Node for Navigation', async () => {
+  const data = await fetchPloneNavigationNode(
+    idFetchPloneNavigation,
+    '',
+    baseUrlNavigation,
+    mockfetchPloneget
+  );
+  expect(data).toEqual(fetchPloneNode);
 });

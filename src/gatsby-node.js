@@ -9,6 +9,7 @@ import {
   makeContentNode,
   makeNavigationNode,
   makeBreadcrumbsNode,
+  fetchPloneNavigationNode,
   parentId,
 } from './utils';
 
@@ -71,24 +72,6 @@ const fetchPloneBreadcrumbsNode = async (id, token, baseUrl) => {
     `${id}/@breadcrumbs`,
     data,
     data._path.split('@breadcrumbs')[0]
-  );
-};
-
-// Fetch only navigation component node
-const fetchPloneNavigationNode = async (id, token, baseUrl) => {
-  // Fetch from Plone REST API and normalize it to be GraphQL compatible
-  const data = normalizeData(
-    await fetchPlone(`${id}/@navigation`, token, {
-      // TODO: Higher depth results in "conflicting field types in your data"
-      'expand.navigation.depth': 1,
-    }),
-    baseUrl
-  );
-  // Yield navigation node
-  return makeNavigationNode(
-    `${id}/@navigation`,
-    data,
-    data._path.split('@navigation')[0]
   );
 };
 

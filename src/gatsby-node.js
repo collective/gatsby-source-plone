@@ -2,7 +2,6 @@ import { createRemoteFileNode } from 'gatsby-source-filesystem';
 import WebSocket from 'ws';
 
 import {
-  createContentDigest,
   fetchPlone,
   logging,
   normalizeData,
@@ -13,9 +12,6 @@ import {
 } from './utils';
 
 const ComponentNodeTypes = new Set(['PloneBreadcrumbs', 'PloneNavigation']);
-const DownloadableContentTypes = new Set(['Image', 'File']);
-
-// TODO: Make DownloadableContentTypes configurable
 
 // Generator to yield the supported nodes for a single Plone content object
 const ploneNodeGenerator = async function*(

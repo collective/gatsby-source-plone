@@ -12,7 +12,6 @@ import {
 } from './utils';
 
 const ComponentNodeTypes = new Set(['PloneBreadcrumbs', 'PloneNavigation']);
-// TODO: Make DownloadableContentTypes configurable
 
 // Generator to yield the supported nodes for a single Plone content object
 const ploneNodeGenerator = async function*(

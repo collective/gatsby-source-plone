@@ -3,7 +3,9 @@ import crypto from 'crypto';
 import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser';
 import { serialize } from 'react-serialize';
 
+// TODO: Make DownloadableContentTypes configurable
 const DownloadableContentTypes = new Set(['Image', 'File']);
+
 // Minimal logging module mimicking Python logging module
 export const logging = {
   CRITICAL: 50,

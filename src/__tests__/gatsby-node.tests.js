@@ -4,6 +4,7 @@ import {
   makeNavigationNode,
   makeBreadcrumbsNode,
   fetchPloneNavigationNode,
+  fetchPloneBreadcrumbsNode,
 } from '../utils';
 
 // This import is here only to make gatsby-node to appear in overall coverage
@@ -440,6 +441,44 @@ const mockfetchPloneget = {
   },
 };
 
+const idFetchPloneBreadcrumbs =
+  'http://localhost:8080/Plone/this-is-upperfolder';
+const baseUrlBreadcrumbs = 'http://localhost:8080/Plone';
+const fetchBreadcrumbsNode = {
+  items: [
+    {
+      title: 'This is upperFolder',
+      _path: '/this-is-upperfolder/',
+      _id: 'http://localhost:8080/Plone/this-is-upperfolder',
+    },
+  ],
+  _path: '/this-is-upperfolder/',
+  _id: 'http://localhost:8080/Plone/this-is-upperfolder/@breadcrumbs',
+  id: 'http://localhost:8080/Plone/this-is-upperfolder/@breadcrumbs',
+  internal: {
+    contentDigest: '353425d2b9eef5845b6e57b40a6e4042',
+    mediaType: 'application/json',
+    type: 'PloneBreadcrumbs',
+  },
+};
+
+const mockDataBreadcrumbs = {
+  '@id': 'http://localhost:8080/Plone/this-is-upperfolder/@breadcrumbs',
+  items: [
+    {
+      '@id': 'http://localhost:8080/Plone/this-is-upperfolder',
+      title: 'This is upperFolder',
+    },
+  ],
+};
+const mockfetchPloneBreadcrumbsget = {
+  get: async (url, headers, params) => {
+    return {
+      data: mockDataBreadcrumbs,
+    };
+  },
+};
+
 test('makeContentNode returns Gatsby Node', () => {
   expect(makeContentNode(mockid, mockdata, mockbaseUrl, mockbacklinks)).toEqual(
     expectednode
@@ -466,4 +505,14 @@ test('fetchPloneNavigation returns Gatsby Node for Navigation', async () => {
     mockfetchPloneget
   );
   expect(data).toEqual(fetchPloneNode);
+});
+
+test('fetchPloneBreadcrumbs returns Gatsby Node for Breadcrumbs', async () => {
+  const data = await fetchPloneBreadcrumbsNode(
+    idFetchPloneBreadcrumbs,
+    '',
+    baseUrlBreadcrumbs,
+    mockfetchPloneBreadcrumbsget
+  );
+  expect(data).toEqual(fetchBreadcrumbsNode);
 });

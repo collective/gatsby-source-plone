@@ -9,6 +9,7 @@ import {
   makeNavigationNode,
   makeBreadcrumbsNode,
   fetchPloneNavigationNode,
+  fetchPloneBreadcrumbsNode,
   parentId,
 } from './utils';
 
@@ -54,21 +55,6 @@ const ploneNodeGenerator = async function*(
       data._path
     );
   }
-};
-
-// Fetch only breadcrumbs component node
-const fetchPloneBreadcrumbsNode = async (id, token, baseUrl) => {
-  // Fetch from Plone REST API and normalize it to be GraphQL compatible
-  const data = normalizeData(
-    await fetchPlone(`${id}/@breadcrumbs`, token),
-    baseUrl
-  );
-  // Yield breadcrumbs node
-  return makeBreadcrumbsNode(
-    `${id}/@breadcrumbs`,
-    data,
-    data._path.split('@breadcrumbs')[0]
-  );
 };
 
 // GatsbyJS source plugin for Plone

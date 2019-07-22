@@ -102,7 +102,7 @@ export const fetchPlone = async (url, token, params, http = axios) => {
 };
 
 // Normalize Plone JSON to be usable as such in GatsbyJS
-export const normalizeData = function(data, baseUrl) {
+export const normalizeData = function(data, baseUrl, depth = 0) {
   // - Adds '@id' for plone.restapi < 1.0b1 results from 'url'
   if (!data['@id'] && data.url) {
     data['@id'] = data.url;
@@ -124,25 +124,24 @@ export const normalizeData = function(data, baseUrl) {
       data._components = {};
       for (const [key_, value_] of Object.entries(value)) {
         if (value_ !== null) {
-          data._components[key_] = normalizeData(value_, baseUrl);
+          data._components[key_] = normalizeData(value_, baseUrl, depth + 1);
           data._components[key_]._path = data._path;
         }
       }
       delete data[key];
     } else if (key === 'items' && value) {
-      data[key] = value.map(item => normalizeData(item, baseUrl));
+      data[key] = value.map(item => normalizeData(item, baseUrl, depth + 1));
     } else if (new Set(['id', 'parent', 'children']).has(key)) {
       if (key === 'parent') {
-        data[`_${key}`] = normalizeData(value, baseUrl);
+        data[`_${key}`] = normalizeData(value, baseUrl, depth + 1);
       } else {
         data[`_${key}`] = value;
       }
       delete data[key];
     } else if (key.length && key[0] === '@') {
-      if (key === 'id') {
-        data.id = value;
-      } else {
-        data['_' + key.slice(1)] = value;
+      data['_' + key.slice(1)] = value;
+      if (key === '@id' && depth > 0) {
+        data.node___NODE = value;
       }
       delete data[key];
     }

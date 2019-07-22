@@ -140,7 +140,7 @@ export const normalizeData = function(data, baseUrl, depth = 0) {
       delete data[key];
     } else if (key.length && key[0] === '@') {
       data['_' + key.slice(1)] = value;
-      if (key === '@id' && depth > 0) {
+      if (key === '@id' && depth > 0 && value.match('@') === null) {
         data.node___NODE = value;
       }
       delete data[key];

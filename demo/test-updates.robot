@@ -80,9 +80,9 @@ Scenario: Delete content with children
 Scenario: Update page content
     Set Plone headers
     Go to  ${GATSBY_URL}/news
-    ${payload}=  Create dictionary  description=Read the news
     Wait until page contains  News on gatsby-source-plone development
     Page should not contain  Read the news
+    ${payload}=  Create dictionary  description=Read the news
     Patch  ${PLONE_URL}/news  ${payload}
     Go to  ${GATSBY_URL}/news
     Wait until page contains  Read the news
@@ -133,7 +133,9 @@ Scenario: Update content visible in breadcrumbs
 Scenario: Add new content
     Set Plone headers
     Go to  ${GATSBY_URL}
+    Wait until page contains  Plone plugin for Gatsby
     Page should not contain  New Page
+    Page should not contain  HERE BE DRAGONS
     ${payload}=  Create dictionary
     ...  @type=Document
     ...  title=New Page
@@ -150,7 +152,6 @@ Scenario: Add new content
     Element should contain
     ...  css:a[href$="/new-page/"]
     ...  New Page
-    Page should not contain  HERE BE DRAGONS
     Go to  ${GATSBY_URL}/new-page/
     Wait until page contains  HERE BE DRAGONS
 

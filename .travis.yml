@@ -13,7 +13,7 @@ addons:
 services:
 - docker
 script:
-- travis_retry make purge init-backend test-all
+- make purge init-backend test-all
 after_success:
 - make coveralls
 - test $TRAVIS_BRANCH = "master" &&

@@ -2,9 +2,9 @@ language: node_js
 node_js:
 - 8.11.1
 - 10.1.0
-#cache:  # cache has gotten slow
-#  pip: true
-#  yarn: true
+cache:
+  pip: true
+  yarn: true
 sudo: required
 addons:
   apt:
@@ -13,7 +13,7 @@ addons:
 services:
 - docker
 script:
-- make purge init-backend test-all
+- travis_retry make purge init-backend test-all
 after_success:
 - make coveralls
 - test $TRAVIS_BRANCH = "master" &&

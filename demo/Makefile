@@ -73,6 +73,7 @@ test: clean build pyvenv
 	  robot -v BROWSER:headlessfirefox test.robot; \
 	  status=$$?; \
 	  kill $$pid; \
+	  cat output.xml; \
 	  exit $$status
 	make clean   # https://github.com/collective/gatsby-source-plone/issues/202
 	gatsby develop -p 9000 & pid=$$! && \
@@ -80,6 +81,7 @@ test: clean build pyvenv
 	  robot -v GATSBY_PORT:9000 -v BROWSER:headlessfirefox test-updates.robot; \
 	  status=$$?; \
 	  kill $$pid; \
+	  cat output.xml; \
 	  exit $$status
 
 .PHONY: watch

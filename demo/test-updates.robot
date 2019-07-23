@@ -62,6 +62,7 @@ Scenario: Delete leaf content
     Go to  ${GATSBY_URL}/examples/subfolder-level-two/level-three/
     Wait until page contains element  css:a[href$="/level-four/"]
     Delete  ${PLONE_URL}/examples/subfolder-level-two/level-three/level-four/
+    Go to  ${GATSBY_URL}/examples/subfolder-level-two/level-three/
     Wait until page does not contain element  css:a[href$="/level-four/"]
 
 *** Test Cases ***
@@ -71,6 +72,7 @@ Scenario: Delete content with children
     Go to  ${GATSBY_URL}
     Wait until page contains element  css:a[href$="/examples/"]
     Delete  ${PLONE_URL}/examples
+    Go to  ${GATSBY_URL}
     Wait until page does not contain element  css:a[href$="/examples/"]
 
 *** Test Cases ***
@@ -78,10 +80,11 @@ Scenario: Delete content with children
 Scenario: Update page content
     Set Plone headers
     Go to  ${GATSBY_URL}/news
-    ${payload}=  Create dictionary  description=Read the news
     Wait until page contains  News on gatsby-source-plone development
     Page should not contain  Read the news
+    ${payload}=  Create dictionary  description=Read the news
     Patch  ${PLONE_URL}/news  ${payload}
+    Go to  ${GATSBY_URL}/news
     Wait until page contains  Read the news
     Page should not contain  News on gatsby-source-plone development
 
@@ -97,6 +100,7 @@ Scenario: Update content visible in navigation
     Page should not contain  The Docs
     ${payload}=  Create dictionary  title=The Docs
     Patch  ${PLONE_URL}/reference  ${payload}
+    Go to  ${GATSBY_URL}/reference
     Wait until element contains
     ...  css:a[href$="/reference/"]
     ...  The Docs
@@ -119,6 +123,7 @@ Scenario: Update content visible in breadcrumbs
     Page should not contain  The Tutorial
     ${payload}=  Create dictionary  title=The Tutorial
     Patch  ${PLONE_URL}/tutorial  ${payload}
+    Go to  ${GATSBY_URL}/tutorial/1_getting_started
     Wait until element contains
     ...  css:.breadcrumb a[href$="/tutorial/"]
     ...  The Tutorial
@@ -128,7 +133,9 @@ Scenario: Update content visible in breadcrumbs
 Scenario: Add new content
     Set Plone headers
     Go to  ${GATSBY_URL}
+    Wait until page contains  Plone plugin for Gatsby
     Page should not contain  New Page
+    Page should not contain  HERE BE DRAGONS
     ${payload}=  Create dictionary
     ...  @type=Document
     ...  title=New Page
@@ -140,11 +147,11 @@ Scenario: Add new content
     Should be equal  ${url}  ${PLONE_URL}/new-page
     Post  ${PLONE_URL}/new-page/@workflow/publish
     Integer  response status  200
+    Go to  ${GATSBY_URL}
     Wait until page contains element  css:a[href$="/new-page/"]
     Element should contain
     ...  css:a[href$="/new-page/"]
     ...  New Page
-    Page should not contain  HERE BE DRAGONS
     Go to  ${GATSBY_URL}/new-page/
     Wait until page contains  HERE BE DRAGONS
 

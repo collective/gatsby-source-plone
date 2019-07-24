@@ -53,5 +53,7 @@ node_modules/
 .ipynb_checkpoints
 .jupyter
 .jupyterlab
+.yalc
+yalc.lock
 /gatsby-node.js
 /utils.js

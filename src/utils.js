@@ -52,7 +52,11 @@ export const parentId = id =>
 
 // Normalize path
 export const normalizePath = path => {
-  return path ? path.replace(/^\/*/, '/').replace(/\/*$/, '/') : '/';
+  path = path ? path.replace(/^\/*/, '/').replace(/\/*$/, '/') : '/';
+  if (path.match(/\/view\/$/)) {
+    path = path.substr(0, path.length - 'view/'.length);
+  }
+  return path;
 };
 
 // Camelize
@@ -119,7 +123,12 @@ export const normalizeData = function(data, baseUrl, depth = 0) {
   // - Prefixes reserved keys with '_'
   //   to allow them to be queried with GraphQL
   // - Replaces '@' to '_' in properties starting with '@'
-  for (const [key, value] of Object.entries(data)) {
+  for (let [key, value] of Object.entries(data)) {
+    if (key === '@id' && value.match(/\/view$/)) {
+      // @navigation may contain @id values with reserved /view suffix
+      // that is convenient on Plone, but makes no sense with GatsbyJS
+      value = value.substr(0, value.length - '/view'.length);
+    }
     if (key === '@components') {
       data._components = {};
       for (const [key_, value_] of Object.entries(value)) {
@@ -129,7 +138,7 @@ export const normalizeData = function(data, baseUrl, depth = 0) {
         }
       }
       delete data[key];
-    } else if (key === 'items' && value) {
+    } else if (new Set(['items', 'relatedItems']).has(key) && value) {
       data[key] = value.map(item => normalizeData(item, baseUrl, depth + 1));
     } else if (new Set(['id', 'parent', 'children']).has(key)) {
       if (key === 'parent') {
@@ -170,6 +179,7 @@ export const parseHTMLtoReact = (html, baseUrl, path, backlinks) => {
     // Replace image src with relative paths
     if (node.type === 'tag' && node.name === 'img') {
       if (node.attribs.src && node.attribs.src.startsWith(baseUrl)) {
+        node.attribs['data-download'] = node.attribs.src;
         node.attribs.src = normalizePath(
           node.attribs.src.split(baseUrl)[1].split('/@@images')[0]
         );

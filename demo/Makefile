@@ -26,6 +26,7 @@ clean:
 .PHONY: develop
 develop: node_modules
 	docker-compose up -d
+	yalc link gatsby-source-plone
 	gatsby develop
 
 .PHONY: export-fixture
@@ -102,12 +103,6 @@ pyvenv: requirements.txt
 
 node_modules: package.json
 	yarn install
-	$(RM) -r node_modules/gatsby-source-plone
-	mkdir node_modules/gatsby-source-plone
-	ln -sf ../../../package.json node_modules/gatsby-source-plone
-	ln -sf ../../../index.js node_modules/gatsby-source-plone
-	ln -sf ../../../gatsby-node.js node_modules/gatsby-source-plone
-	ln -sf ../../../utils.js node_modules/gatsby-source-plone
 
 src/styles/_typography.scss:
 	node -e "console.log(new require('typography')(require('typography-theme-twin-peaks')).toString())" \

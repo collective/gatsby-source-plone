@@ -3,46 +3,15 @@
   "description": "GtsbSrcPlone documentation",
   "version": "1.0.0",
   "author": "Asko Soukka <asko.soukka@iki.fi>",
-  "babel": {
-    "presets": [
-      [
-        "@babel/preset-env",
-        {
-          "useBuiltIns": "usage",
-          "corejs": 2
-        }
-      ],
-      [
-        "@babel/preset-react",
-        {
-          "useBuiltIns": true,
-          "pragma": "React.createElement"
-        }
-      ]
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-class-properties",
-      "@babel/plugin-proposal-object-rest-spread",
-      "@babel/plugin-syntax-dynamic-import",
-      [
-        "@babel/plugin-transform-runtime",
-        {
-          "helpers": true,
-          "regenerator": true
-        }
-      ]
-    ]
-  },
   "dependencies": {
     "bootstrap": "^4.3.1",
-    "dotenv": "^8.0.0",
-    "gatsby": "2.13.8",
+    "gatsby": "2.13.35",
     "gatsby-image": "^2.2.6",
     "gatsby-plugin-react-helmet": "^3.1.2",
     "gatsby-plugin-sass": "^2.1.3",
-    "gatsby-plugin-sharp": "^2.2.8",
-    "gatsby-source-filesystem": "^2.1.5",
-    "gatsby-source-plone": "^0.1.0",
+    "gatsby-plugin-sharp": "^2.2.9",
+    "gatsby-source-filesystem": "^2.1.6",
+    "gatsby-source-plone": "https://github.com/collective/gatsby-source-plone.git#master",
     "gatsby-transformer-sharp": "^2.2.4",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
@@ -51,26 +20,15 @@
     "react-icons": "^3.7.0",
     "react-redux": "^7.1.0",
     "react-serialize": "^0.2.0",
-    "redux": "^4.0.1"
+    "redux": "^4.0.1",
+    "typography": "^0.16.19",
+    "typography-theme-twin-peaks": "^0.16.19"
   },
   "license": "MIT",
   "main": "n/a",
   "devDependencies": {
-    "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.0",
-    "@babel/plugin-proposal-class-properties": "^7.5.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.5.1",
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.5.0",
-    "@babel/preset-env": "^7.5.0",
-    "@babel/preset-react": "^7.0.0",
-    "@babel/runtime": "^7.0.0",
-    "babel-core": "^7.0.0-bridge.0",
+    "dotenv": "^8.0.0",
     "prettier": "^1.18.2",
-    "typography": "^0.16.19",
-    "typography-theme-twin-peaks": "^0.16.19"
-  },
-  "resolutions": {
-    "babel-core": "7.0.0-bridge.0"
+    "yalc": "^1.0.0-pre.32"
   }
 }

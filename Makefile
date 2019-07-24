@@ -54,14 +54,10 @@ watch-plugin:
 watch-test: node_modules
 	jest --watch src
 
-.PHONY: watch-tests
-watch-tests:
-	nodemon -w gatsby-node.js \
-	--exec "$(MAKE) -C demo watch"
-
 .PHONY: watch
 watch: node_modules
-	make -j watch-plugin watch-tests
+	nodemon --verbose -w src \
+	--exec "yalc publish && $(MAKE) -C demo watch"
 
 %:
 	$(MAKE) -C demo $*
@@ -72,3 +68,4 @@ gatsby-node.js: node_modules $(SOURCES)
 node_modules: package.json
 	yarn install
 	touch node_modules
+	yalc publish

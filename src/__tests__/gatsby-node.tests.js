@@ -7,8 +7,6 @@ import {
   fetchPloneNavigationNode,
   fetchPloneBreadcrumbsNode,
 } from '../utils';
-import co from 'co';
-
 // This import is here only to make gatsby-node to appear in overall coverage
 // import { ploneNodeGenerator } from '../gatsby-node';
 

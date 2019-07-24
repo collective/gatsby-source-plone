@@ -85,6 +85,10 @@ test: clean build pyvenv
 	  cat output.xml; \
 	  exit $$status
 
+.PHONY: upgrade
+upgrade: node_modules
+	yarn upgrade --latest --pattern "gatsby"
+
 .PHONY: watch
 watch: develop
 

@@ -46,6 +46,11 @@ coveralls: coverage
 show: node_modules
 	npm pack && tar -xvzf *.tgz && rm -rf package *.tgz
 
+.PHONY: upgrade
+upgrade: node_modules
+	yarn upgrade --latest --pattern "gatsby"
+	make -C demo upgrade
+
 .PHONY: watch-plugin
 watch-plugin:
 	babel -w src --out-dir . --ignore __tests__

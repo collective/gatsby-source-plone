@@ -129,7 +129,7 @@ export const normalizeData = function(data, baseUrl, depth = 0) {
         }
       }
       delete data[key];
-    } else if (key === 'items' && value) {
+    } else if (new Set(['items', 'relatedItems']).has(key) && value) {
       data[key] = value.map(item => normalizeData(item, baseUrl, depth + 1));
     } else if (new Set(['id', 'parent', 'children']).has(key)) {
       if (key === 'parent') {

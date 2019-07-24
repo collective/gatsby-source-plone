@@ -48,6 +48,10 @@ test('normalizePath returns canonical /path/', () => {
   expect(normalizePath(undefined)).toBe('/');
 });
 
+test('normalizePath drops /view suffix', () => {
+  expect(normalizePath('/foo/view')).toBe('/foo/');
+});
+
 test('parentId returns @id of Plone object parent', () => {
   expect(parentId('http://localhost:8080/foo/bar')).toBe(
     'http://localhost:8080/foo'
@@ -227,6 +231,29 @@ test('normalizeData prefixes id, parent and children with _', async () => {
   });
 });
 
+test('normalizeData drops /view suffix from id', async () => {
+  expect(
+    normalizeData(
+      {
+        id: '',
+        parent: {
+          '@id': 'http://localhost:8080/Plone/image.png/view',
+        },
+        children: [],
+      },
+      'http://localhost:8080/Plone/'
+    )
+  ).toEqual({
+    _id: '',
+    _parent: {
+      _id: 'http://localhost:8080/Plone/image.png',
+      _path: '/image.png/',
+      node___NODE: 'http://localhost:8080/Plone/image.png',
+    },
+    _children: [],
+  });
+});
+
 test('normalizeData process items recursively', async () => {
   expect(
     normalizeData(
@@ -305,7 +332,7 @@ test('parseHTMLtoReact transforms relative links', async () => {
     `
 <p>
 <a href="http://localhost:8080/Plone/foobar">
-<img src="http://localhost:8080/Plone/foo/bar.png">
+<img src="http://localhost:8080/Plone/foo/bar.png/@@images/uuid">
 </a>
 </p>
 `,
@@ -323,6 +350,8 @@ test('parseHTMLtoReact transforms relative links', async () => {
                 {
                   props: {
                     children: [],
+                    'data-download':
+                      'http://localhost:8080/Plone/foo/bar.png/@@images/uuid',
                     src: '/foo/bar.png/',
                   },
                   type: 'Img',

@@ -213,17 +213,42 @@ test('normalizeData maps @id to _id and _path', async () => {
 
 test('normalizeData prefixes id, parent and children with _', async () => {
   expect(
-    normalizeData({
-      id: '',
-      parent: {
-        '@id': 'http://localhost:8080/Plone',
+    normalizeData(
+      {
+        id: '',
+        parent: {
+          '@id': 'http://localhost:8080/Plone',
+        },
+        children: [],
       },
-      children: [],
-    })
+      'http://localhost:8080/Plone'
+    )
   ).toEqual({
     _id: '',
     _parent: {
       _id: 'http://localhost:8080/Plone',
+      _path: '/',
+    },
+    _children: [],
+  });
+});
+
+test('normalizeData excludes node___NODE when @id outside baseUrl', async () => {
+  expect(
+    normalizeData(
+      {
+        id: '',
+        parent: {
+          '@id': 'http://localhost:8080/Foo',
+        },
+        children: [],
+      },
+      'http://localhost:8080/Plone'
+    )
+  ).toEqual({
+    _id: '',
+    _parent: {
+      _id: 'http://localhost:8080/Foo',
       _path: '/',
     },
     _children: [],

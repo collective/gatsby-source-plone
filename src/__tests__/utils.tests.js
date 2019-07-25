@@ -225,7 +225,6 @@ test('normalizeData prefixes id, parent and children with _', async () => {
     _parent: {
       _id: 'http://localhost:8080/Plone',
       _path: '/',
-      node___NODE: 'http://localhost:8080/Plone',
     },
     _children: [],
   });
@@ -248,7 +247,6 @@ test('normalizeData drops /view suffix from id', async () => {
     _parent: {
       _id: 'http://localhost:8080/Plone/image.png',
       _path: '/image.png/',
-      node___NODE: 'http://localhost:8080/Plone/image.png',
     },
     _children: [],
   });
@@ -273,20 +271,22 @@ test('normalizeData process items recursively', async () => {
       {
         _id: 'http://localhost:8080/Plone',
         _path: '/Plone/',
-        node___NODE: 'http://localhost:8080/Plone',
       },
       {
         _id: 'http://localhost:8080/Plone',
         _path: '/Plone/',
-        node___NODE: 'http://localhost:8080/Plone',
         items: [
           {
             _id: 'http://localhost:8080/Plone',
             _path: '/Plone/',
-            node___NODE: 'http://localhost:8080/Plone',
           },
         ],
+        nodes___NODE: ['http://localhost:8080/Plone'],
       },
+    ],
+    nodes___NODE: [
+      'http://localhost:8080/Plone',
+      'http://localhost:8080/Plone',
     ],
   });
 });
@@ -313,13 +313,15 @@ test('normalizeData process @components recursively', async () => {
           {
             _id: 'http://localhost:8080/Plone',
             _path: '/Plone/',
-            node___NODE: 'http://localhost:8080/Plone',
           },
           {
             _id: 'http://localhost:8080/Plone',
             _path: '/Plone/',
-            node___NODE: 'http://localhost:8080/Plone',
           },
+        ],
+        nodes___NODE: [
+          'http://localhost:8080/Plone',
+          'http://localhost:8080/Plone',
         ],
       },
     },

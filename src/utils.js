@@ -106,7 +106,7 @@ export const fetchPlone = async (url, token, params, http = axios) => {
 };
 
 // Normalize Plone JSON to be usable as such in GatsbyJS
-export const normalizeData = function(data, baseUrl, depth = 0) {
+export const normalizeData = function(data, baseUrl) {
   // - Adds '@id' for plone.restapi < 1.0b1 results from 'url'
   if (!data['@id'] && data.url) {
     data['@id'] = data.url;
@@ -123,35 +123,44 @@ export const normalizeData = function(data, baseUrl, depth = 0) {
   // - Prefixes reserved keys with '_'
   //   to allow them to be queried with GraphQL
   // - Replaces '@' to '_' in properties starting with '@'
-  for (let [key, value] of Object.entries(data)) {
-    if (key === '@id' && value.match(/\/view$/)) {
-      // @navigation may contain @id values with reserved /view suffix
-      // that is convenient on Plone, but makes no sense with GatsbyJS
-      value = value.substr(0, value.length - '/view'.length);
-    }
-    if (key === '@components') {
-      data._components = {};
-      for (const [key_, value_] of Object.entries(value)) {
-        if (value_ !== null) {
-          data._components[key_] = normalizeData(value_, baseUrl, depth + 1);
-          data._components[key_]._path = data._path;
-        }
-      }
-      delete data[key];
-    } else if (new Set(['items', 'relatedItems']).has(key) && value) {
-      data[key] = value.map(item => normalizeData(item, baseUrl, depth + 1));
-    } else if (new Set(['id', 'parent', 'children']).has(key)) {
+  for (const [key, value] of Object.entries(data)) {
+    if (new Set(['id', 'parent', 'children']).has(key)) {
       if (key === 'parent') {
-        data[`_${key}`] = normalizeData(value, baseUrl, depth + 1);
+        data[`_${key}`] = normalizeData(value, baseUrl);
       } else {
         data[`_${key}`] = value;
       }
       delete data[key];
+    } else if (key === 'items') {
+      data[key] = (value || []).map(item => normalizeData(item, baseUrl));
+      data.nodes___NODE = data[key]
+        .filter(item => !item['_id'].match('@'))
+        .map(item => item['_id']);
+    } else if (key === 'relatedItems') {
+      data[key] = (value || []).map(item => normalizeData(item, baseUrl));
+      data.relatedNodes___NODE = data[key]
+        .filter(item => !item['_id'].match('@'))
+        .map(item => item['_id']);
+    } else if (key === '@id') {
+      if (value.match(/\/view$/)) {
+        // @navigation may contain @id values with reserved /view suffix
+        // that is convenient on Plone, but makes no sense with GatsbyJS
+        data['_id'] = value.substr(0, value.length - '/view'.length);
+      } else {
+        data['_id'] = value;
+      }
+      delete data[key];
+    } else if (key === '@components') {
+      data._components = {};
+      for (const [key_, value_] of Object.entries(value)) {
+        if (value_ !== null) {
+          data._components[key_] = normalizeData(value_, baseUrl);
+          data._components[key_]._path = data._path;
+        }
+      }
+      delete data[key];
     } else if (key.length && key[0] === '@') {
       data['_' + key.slice(1)] = value;
-      if (key === '@id' && depth > 0 && value.match('@') === null) {
-        data.node___NODE = value;
-      }
       delete data[key];
     }
   }

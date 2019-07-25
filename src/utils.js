@@ -1,7 +1,15 @@
 import axios from 'axios/index';
+import axiosRetry from 'axios-retry';
 import crypto from 'crypto';
 import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser';
 import { serialize } from 'react-serialize';
+
+axiosRetry(axios, {
+  retries: 3,
+  retryDelay: retryCount => {
+    return retryCount * 1000 + retryCount * 1000 * Math.random();
+  },
+});
 
 // TODO: Make DownloadableContentTypes configurable
 const DownloadableContentTypes = new Set(['Image', 'File']);

@@ -238,7 +238,7 @@ exports.sourceNodes = async (
         let urlChild = data['created'][0]['@id'];
         let urlParent = data['created'][0]['parent']['@id'];
         let urlList = [urlChild, urlParent];
-        urlList.forEach(async url => {
+        for (const url of urlList) {
           for await (const node of ploneNodeGenerator(
             url,
             token,
@@ -251,7 +251,7 @@ exports.sourceNodes = async (
             );
             createNode(node);
           }
-        });
+        }
         if (timerId) {
           clearTimeout(timerId);
         }
@@ -262,7 +262,7 @@ exports.sourceNodes = async (
         let urlChild = data['modified'][0]['@id'];
         let urlParent = data['modified'][0]['parent']['@id'];
         let urlList = [urlChild, urlParent];
-        urlList.forEach(async url => {
+        for (const url of urlList) {
           try {
             for await (const node of ploneNodeGenerator(
               url,
@@ -294,7 +294,7 @@ exports.sourceNodes = async (
               deleteNode({ node: navigationNode });
             }
           }
-        });
+        }
         try {
           const childItems = normalizeData(
             await fetchPlone(`${urlChild}/@search`, token, {

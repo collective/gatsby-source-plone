@@ -13,7 +13,14 @@ import {
 
 const ComponentNodeTypes = new Set(['PloneBreadcrumbs', 'PloneNavigation']);
 
-const updatePloneCollection = async function(getNodes, token, baseUrl, expansions, backlinks, createNode) {
+const updatePloneCollection = async function(
+  getNodes,
+  token,
+  baseUrl,
+  expansions,
+  backlinks,
+  createNode
+) {
   console.log('we are updating the Plone Collection');
   const nodes = getNodes().filter(
     n => n.internal.owner === `gatsby-source-plone`
@@ -27,6 +34,31 @@ const updatePloneCollection = async function(getNodes, token, baseUrl, expansion
   for (let item of updateNodes) {
     for await (const node of ploneNodeGenerator(
       item,
+      token,
+      baseUrl,
+      expansions,
+      backlinks
+    )) {
+      console.log(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+      createNode(node);
+    }
+  }
+};
+
+const createWebsocketEvent = async function(
+  data,
+  token,
+  baseUrl,
+  expansions,
+  backlinks,
+  createNode
+) {
+  let urlChild = data['created'][0]['@id'];
+  let urlParent = data['created'][0]['parent']['@id'];
+  let urlList = [urlChild, urlParent];
+  for (const url of urlList) {
+    for await (const node of ploneNodeGenerator(
+      url,
       token,
       baseUrl,
       expansions,
@@ -236,27 +268,27 @@ exports.sourceNodes = async (
       let data = JSON.parse(msg.data);
       if (data['created']) {
         console.log('we are in created state');
-        let urlChild = data['created'][0]['@id'];
-        let urlParent = data['created'][0]['parent']['@id'];
-        let urlList = [urlChild, urlParent];
-        for (const url of urlList) {
-          for await (const node of ploneNodeGenerator(
-            url,
-            token,
-            baseUrl,
-            expansions,
-            backlinks
-          )) {
-            logger.info(
-              `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
-            );
-            createNode(node);
-          }
-        }
+        await createWebsocketEvent(
+          data,
+          token,
+          baseUrl,
+          expansions,
+          backlinks,
+          createNode
+        );
         if (timerId) {
           clearTimeout(timerId);
         }
-        timerId = setTimeout(updatePloneCollection, 3000, getNodes, token, baseUrl, expansions, backlinks, createNode);
+        timerId = setTimeout(
+          updatePloneCollection,
+          3000,
+          getNodes,
+          token,
+          baseUrl,
+          expansions,
+          backlinks,
+          createNode
+        );
       }
       if (data['modified']) {
         console.log('we are in modified state');
@@ -319,7 +351,7 @@ exports.sourceNodes = async (
         if (timerId) {
           clearTimeout(timerId);
         }
-        timerId = setTimeout(updatePloneCollection, 3000,);
+        timerId = setTimeout(updatePloneCollection, 3000);
       }
       if (data['removed']) {
         console.log('we are removed state');

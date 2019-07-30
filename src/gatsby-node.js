@@ -13,6 +13,31 @@ import {
 
 const ComponentNodeTypes = new Set(['PloneBreadcrumbs', 'PloneNavigation']);
 
+const updatePloneCollection = async function(getNodes, token, baseUrl, expansions, backlinks, createNode) {
+  console.log('we are updating the Plone Collection');
+  const nodes = getNodes().filter(
+    n => n.internal.owner === `gatsby-source-plone`
+  );
+  const updateNodes = new Set();
+  for (let item of nodes) {
+    if (item._type === 'Collection') {
+      updateNodes.add(item.id);
+    }
+  }
+  for (let item of updateNodes) {
+    for await (const node of ploneNodeGenerator(
+      item,
+      token,
+      baseUrl,
+      expansions,
+      backlinks
+    )) {
+      console.log(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+      createNode(node);
+    }
+  }
+};
+
 // GatsbyJS source plugin for Plone
 exports.sourceNodes = async (
   { actions, cache, getNode, getNodes, store },
@@ -204,30 +229,6 @@ exports.sourceNodes = async (
   logger.info('Setting plugin status');
   logger.debug(JSON.stringify(newState));
 
-  const updatePloneCollection = async function() {
-    console.log('we are updating the Plone Collection');
-    const nodes = getNodes().filter(
-      n => n.internal.owner === `gatsby-source-plone`
-    );
-    const updateNodes = new Set();
-    for (let item of nodes) {
-      if (item._type === 'Collection') {
-        updateNodes.add(item.id);
-      }
-    }
-    for (let item of updateNodes) {
-      for await (const node of ploneNodeGenerator(
-        item,
-        token,
-        baseUrl,
-        expansions,
-        backlinks
-      )) {
-        logger.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
-        createNode(node);
-      }
-    }
-  };
   if (websocketUpdates) {
     let ws = new WebSocket(baseUrl.replace(/(http)(s)?\:\/\//, 'ws$2://'));
     let timerId = null;
@@ -255,7 +256,7 @@ exports.sourceNodes = async (
         if (timerId) {
           clearTimeout(timerId);
         }
-        timerId = setTimeout(updatePloneCollection, 3000);
+        timerId = setTimeout(updatePloneCollection, 3000, getNodes, token, baseUrl, expansions, backlinks, createNode);
       }
       if (data['modified']) {
         console.log('we are in modified state');
@@ -318,7 +319,7 @@ exports.sourceNodes = async (
         if (timerId) {
           clearTimeout(timerId);
         }
-        timerId = setTimeout(updatePloneCollection, 3000);
+        timerId = setTimeout(updatePloneCollection, 3000,);
       }
       if (data['removed']) {
         console.log('we are removed state');

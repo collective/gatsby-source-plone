@@ -21,6 +21,7 @@ plugins: [
   },
 ];
 ```
+* For more config option visit [configuration.md](https://github.com/collective/gatsby-source-plone/blob/master/docs/reference/configuration.md)
 
 ## How to query
 

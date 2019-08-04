@@ -113,10 +113,16 @@ const modifiedWebSocketEvent = async function(
       }
     }
   }
-  await childItemsForAUrl(urlChild, token, baseUrl, createNode, searchParams)
+  await childItemsForAUrl(urlChild, token, baseUrl, createNode, searchParams);
 };
 
-const childItemsForAUrl = async function(urlChild, token, baseUrl, createNode, searchParams ) {
+const childItemsForAUrl = async function(
+  urlChild,
+  token,
+  baseUrl,
+  createNode,
+  searchParams
+) {
   try {
     const childItems = normalizeData(
       await fetchPlone(`${urlChild}/@search`, token, {
@@ -125,20 +131,13 @@ const childItemsForAUrl = async function(urlChild, token, baseUrl, createNode, s
       baseUrl
     );
     for (const item of childItems.items) {
-      createNode(
-        await fetchPloneNavigationNode(item._id, token, baseUrl)
-      );
-      createNode(
-        await fetchPloneBreadcrumbsNode(item._id, token, baseUrl)
-      );
+      createNode(await fetchPloneNavigationNode(item._id, token, baseUrl));
+      createNode(await fetchPloneBreadcrumbsNode(item._id, token, baseUrl));
     }
   } catch (err) {
-    console.error(
-      `Skipping node – ${urlChild.replace(baseUrl, '')} (${err})`
-    );
+    console.error(`Skipping node – ${urlChild.replace(baseUrl, '')} (${err})`);
   }
-
-}
+};
 // GatsbyJS source plugin for Plone
 exports.sourceNodes = async (
   { actions, cache, getNode, getNodes, store },

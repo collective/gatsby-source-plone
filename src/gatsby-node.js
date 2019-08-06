@@ -70,6 +70,74 @@ const createWebsocketEvent = async function(
   }
 };
 
+const modifiedWebSocketEvent = async function(
+  data,
+  createNode,
+  getNode,
+  deleteNode,
+  token,
+  baseUrl,
+  expansions,
+  backlinks,
+  searchParams
+) {
+  let urlChild = data['modified'][0]['@id'];
+  let urlParent = data['modified'][0]['parent']['@id'];
+  let urlList = [urlChild, urlParent];
+  for (const url of urlList) {
+    try {
+      for await (const node of ploneNodeGenerator(
+        url,
+        token,
+        baseUrl,
+        expansions,
+        backlinks
+      )) {
+        console.log(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+        createNode(node);
+      }
+    } catch (err) {
+      console.error(`Skipping node – ${url.replace(baseUrl, '')} (${err})`);
+      let node = getNode(url);
+      let breadcrumbsNode = getNode(`${url}/@breadcrumbs`);
+      let navigationNode = getNode(`${url}/@navigation`);
+      if (node) {
+        console.log(`node deleted at ${url}`);
+        deleteNode({ node: node });
+      }
+      if (breadcrumbsNode) {
+        deleteNode({ node: breadcrumbsNode });
+      }
+      if (navigationNode) {
+        deleteNode({ node: navigationNode });
+      }
+    }
+  }
+  await childItemsForAUrl(urlChild, token, baseUrl, createNode, searchParams);
+};
+
+const childItemsForAUrl = async function(
+  urlChild,
+  token,
+  baseUrl,
+  createNode,
+  searchParams
+) {
+  try {
+    const childItems = normalizeData(
+      await fetchPlone(`${urlChild}/@search`, token, {
+        ...searchParams,
+      }),
+      baseUrl
+    );
+    for (const item of childItems.items) {
+      createNode(await fetchPloneNavigationNode(item._id, token, baseUrl));
+      createNode(await fetchPloneBreadcrumbsNode(item._id, token, baseUrl));
+    }
+  } catch (err) {
+    console.error(`Skipping node – ${urlChild.replace(baseUrl, '')} (${err})`);
+  }
+};
 // GatsbyJS source plugin for Plone
 exports.sourceNodes = async (
   { actions, cache, getNode, getNodes, store },
@@ -292,66 +360,30 @@ exports.sourceNodes = async (
       }
       if (data['modified']) {
         console.log('we are in modified state');
-        let urlChild = data['modified'][0]['@id'];
-        let urlParent = data['modified'][0]['parent']['@id'];
-        let urlList = [urlChild, urlParent];
-        for (const url of urlList) {
-          try {
-            for await (const node of ploneNodeGenerator(
-              url,
-              token,
-              baseUrl,
-              expansions,
-              backlinks
-            )) {
-              logger.info(
-                `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
-              );
-              createNode(node);
-            }
-          } catch (err) {
-            logger.error(
-              `Skipping node – ${url.replace(baseUrl, '')} (${err})`
-            );
-            let node = getNode(url);
-            let breadcrumbsNode = getNode(`${url}/@breadcrumbs`);
-            let navigationNode = getNode(`${url}/@navigation`);
-            if (node) {
-              console.log(`node deleted at ${url}`);
-              deleteNode({ node: node });
-            }
-            if (breadcrumbsNode) {
-              deleteNode({ node: breadcrumbsNode });
-            }
-            if (navigationNode) {
-              deleteNode({ node: navigationNode });
-            }
-          }
-        }
-        try {
-          const childItems = normalizeData(
-            await fetchPlone(`${urlChild}/@search`, token, {
-              ...searchParams,
-            }),
-            baseUrl
-          );
-          for (const item of childItems.items) {
-            createNode(
-              await fetchPloneNavigationNode(item._id, token, baseUrl)
-            );
-            createNode(
-              await fetchPloneBreadcrumbsNode(item._id, token, baseUrl)
-            );
-          }
-        } catch (err) {
-          logger.error(
-            `Skipping node – ${urlChild.replace(baseUrl, '')} (${err})`
-          );
-        }
+        await modifiedWebSocketEvent(
+          data,
+          createNode,
+          getNode,
+          deleteNode,
+          token,
+          baseUrl,
+          expansions,
+          backlinks,
+          searchParams
+        );
         if (timerId) {
           clearTimeout(timerId);
         }
-        timerId = setTimeout(updatePloneCollection, 3000);
+        timerId = setTimeout(
+          updatePloneCollection,
+          3000,
+          getNodes,
+          token,
+          baseUrl,
+          expansions,
+          backlinks,
+          createNode
+        );
       }
       if (data['removed']) {
         console.log('we are removed state');

@@ -138,6 +138,47 @@ const childItemsForAUrl = async function(
     console.error(`Skipping node – ${urlChild.replace(baseUrl, '')} (${err})`);
   }
 };
+const deleteWebSocketEvent = async function(
+  data,
+  getNode,
+  deleteNode,
+  createNode,
+  token,
+  baseUrl,
+  expansions,
+  backlinks
+) {
+  let url = data['removed'][0]['@id'];
+  let urlParent = data['removed'][0]['parent']['@id'];
+  let node = getNode(url);
+  let breadcrumbsNode = getNode(`${url}/@breadcrumbs`);
+  let navigationNode = getNode(`${url}/@navigation`);
+  if (node) {
+    console.log(`node deleted at ${url}`);
+    deleteNode({ node: node });
+  }
+  if (breadcrumbsNode) {
+    deleteNode({ node: breadcrumbsNode });
+  }
+  if (navigationNode) {
+    deleteNode({ node: navigationNode });
+  }
+  try {
+    for await (const node of ploneNodeGenerator(
+      urlParent,
+      token,
+      baseUrl,
+      expansions,
+      backlinks
+    )) {
+      console.log(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+      createNode(node);
+    }
+  } catch (err) {
+    console.error(`Skipping node – ${urlParent.replace(baseUrl, '')} (${err})`);
+  }
+};
+
 // GatsbyJS source plugin for Plone
 exports.sourceNodes = async (
   { actions, cache, getNode, getNodes, store },
@@ -387,43 +428,29 @@ exports.sourceNodes = async (
       }
       if (data['removed']) {
         console.log('we are removed state');
-        let url = data['removed'][0]['@id'];
-        let urlParent = data['removed'][0]['parent']['@id'];
-        let node = getNode(url);
-        let breadcrumbsNode = getNode(`${url}/@breadcrumbs`);
-        let navigationNode = getNode(`${url}/@navigation`);
-        if (node) {
-          console.log(`node deleted at ${url}`);
-          deleteNode({ node: node });
-        }
-        if (breadcrumbsNode) {
-          deleteNode({ node: breadcrumbsNode });
-        }
-        if (navigationNode) {
-          deleteNode({ node: navigationNode });
-        }
-        try {
-          for await (const node of ploneNodeGenerator(
-            urlParent,
-            token,
-            baseUrl,
-            expansions,
-            backlinks
-          )) {
-            logger.info(
-              `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
-            );
-            createNode(node);
-          }
-        } catch (err) {
-          logger.error(
-            `Skipping node – ${urlParent.replace(baseUrl, '')} (${err})`
-          );
-        }
+        await deleteWebSocketEvent(
+          data,
+          getNode,
+          deleteNode,
+          createNode,
+          token,
+          baseUrl,
+          expansions,
+          backlinks
+        );
         if (timerId) {
           clearTimeout(timerId);
         }
-        timerId = setTimeout(updatePloneCollection, 3000);
+        timerId = setTimeout(
+          updatePloneCollection,
+          3000,
+          getNodes,
+          token,
+          baseUrl,
+          expansions,
+          backlinks,
+          createNode
+        );
       }
     };
   }

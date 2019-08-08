@@ -2,10 +2,9 @@ import { createRemoteFileNode } from 'gatsby-source-filesystem';
 import WebSocket from 'ws';
 
 import {
-  fetchPlone,
-  logging,
-  normalizeData,
   parentId,
+  fetchPlone,
+  normalizeData,
   ploneNodeGenerator,
   fetchPloneNavigationNode,
   fetchPloneBreadcrumbsNode,
@@ -19,9 +18,10 @@ const updatePloneCollection = async function(
   baseUrl,
   expansions,
   backlinks,
-  createNode
+  createNode,
+  reporter
 ) {
-  console.log('we are updating the Plone Collection');
+  reporter.info('we are updating the Plone Collection');
   const nodes = getNodes().filter(
     n => n.internal.owner === `gatsby-source-plone`
   );
@@ -39,7 +39,7 @@ const updatePloneCollection = async function(
       expansions,
       backlinks
     )) {
-      console.log(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+      reporter.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
       createNode(node);
     }
   }
@@ -51,7 +51,8 @@ const createWebsocketEvent = async function(
   baseUrl,
   expansions,
   backlinks,
-  createNode
+  createNode,
+  reporter
 ) {
   let urlChild = data['created'][0]['@id'];
   let urlParent = data['created'][0]['parent']['@id'];
@@ -64,7 +65,7 @@ const createWebsocketEvent = async function(
       expansions,
       backlinks
     )) {
-      console.log(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+      reporter.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
       createNode(node);
     }
   }
@@ -79,7 +80,8 @@ const modifiedWebSocketEvent = async function(
   baseUrl,
   expansions,
   backlinks,
-  searchParams
+  searchParams,
+  reporter
 ) {
   let urlChild = data['modified'][0]['@id'];
   let urlParent = data['modified'][0]['parent']['@id'];
@@ -93,16 +95,16 @@ const modifiedWebSocketEvent = async function(
         expansions,
         backlinks
       )) {
-        console.log(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+        reporter.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
         createNode(node);
       }
     } catch (err) {
-      console.error(`Skipping node – ${url.replace(baseUrl, '')} (${err})`);
+      reporter.error(`Skipping node – ${url.replace(baseUrl, '')} (${err})`);
       let node = getNode(url);
       let breadcrumbsNode = getNode(`${url}/@breadcrumbs`);
       let navigationNode = getNode(`${url}/@navigation`);
       if (node) {
-        console.log(`node deleted at ${url}`);
+        reporter.info(`node deleted at ${url}`);
         deleteNode({ node: node });
       }
       if (breadcrumbsNode) {
@@ -113,7 +115,7 @@ const modifiedWebSocketEvent = async function(
       }
     }
   }
-  await childItemsForAUrl(urlChild, token, baseUrl, createNode, searchParams);
+  await childItemsForAUrl(urlChild, token, baseUrl, createNode, searchParams, reporter);
 };
 
 const childItemsForAUrl = async function(
@@ -121,7 +123,8 @@ const childItemsForAUrl = async function(
   token,
   baseUrl,
   createNode,
-  searchParams
+  searchParams,
+  reporter
 ) {
   try {
     const childItems = normalizeData(
@@ -135,7 +138,7 @@ const childItemsForAUrl = async function(
       createNode(await fetchPloneBreadcrumbsNode(item._id, token, baseUrl));
     }
   } catch (err) {
-    console.error(`Skipping node – ${urlChild.replace(baseUrl, '')} (${err})`);
+    reporter.error(`Skipping node – ${urlChild.replace(baseUrl, '')} (${err})`);
   }
 };
 const deleteWebSocketEvent = async function(
@@ -146,7 +149,8 @@ const deleteWebSocketEvent = async function(
   token,
   baseUrl,
   expansions,
-  backlinks
+  backlinks,
+  reporter
 ) {
   let url = data['removed'][0]['@id'];
   let urlParent = data['removed'][0]['parent']['@id'];
@@ -154,7 +158,7 @@ const deleteWebSocketEvent = async function(
   let breadcrumbsNode = getNode(`${url}/@breadcrumbs`);
   let navigationNode = getNode(`${url}/@navigation`);
   if (node) {
-    console.log(`node deleted at ${url}`);
+    reporter.info(`node deleted at ${url}`);
     deleteNode({ node: node });
   }
   if (breadcrumbsNode) {
@@ -171,17 +175,17 @@ const deleteWebSocketEvent = async function(
       expansions,
       backlinks
     )) {
-      console.log(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+      reporter.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
       createNode(node);
     }
   } catch (err) {
-    console.error(`Skipping node – ${urlParent.replace(baseUrl, '')} (${err})`);
+    reporter.info(`Skipping node – ${urlParent.replace(baseUrl, '')} (${err})`);
   }
 };
 
 // GatsbyJS source plugin for Plone
 exports.sourceNodes = async (
-  { actions, cache, getNode, getNodes, store },
+  { actions, cache, getNode, getNodes, store, reporter },
   { baseUrl, token, searchParams, expansions, logLevel, websocketUpdates }
 ) => {
   const { createNode, deleteNode, setPluginStatus, touchNode } = actions;
@@ -189,21 +193,20 @@ exports.sourceNodes = async (
     newState = {
       lastFetched: new Date(),
     };
-  const logger = logging.getLogger(logging[logLevel] || 100);
 
-  logger.info('Reading plugin status');
+  reporter.info('Reading plugin status');
   if (
     store.getState().status.plugins &&
     store.getState().status.plugins['gatsby-source-plone']
   ) {
     state = store.getState().status.plugins['gatsby-source-plone'];
   }
-  logger.debug(JSON.stringify(state));
+  reporter.info(JSON.stringify(state));
 
   // Normalize baseUrl into form without ending slash
   baseUrl = baseUrl.replace(/\/+$/, '');
 
-  logger.info('Fetching all metadata');
+  reporter.info('Fetching all metadata');
   const plone = normalizeData(
     await fetchPlone(
       `${baseUrl}/@search`,
@@ -227,7 +230,7 @@ exports.sourceNodes = async (
   const backlinks = new Map();
 
   if (!state.lastFetched) {
-    logger.info('Creating all nodes');
+    reporter.info('Creating all nodes');
     for (const item of plone.items) {
       try {
         for await (const node of ploneNodeGenerator(
@@ -237,11 +240,15 @@ exports.sourceNodes = async (
           expansions,
           backlinks
         )) {
-          logger.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+          reporter.info(
+            `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
+          );
           createNode(node);
         }
       } catch (e) {
-        logger.error(`Skipping node – ${item._id.replace(baseUrl, '')} (${e})`);
+        reporter.error(
+          `Skipping node – ${item._id.replace(baseUrl, '')} (${e})`
+        );
       }
     }
   } else {
@@ -253,7 +260,7 @@ exports.sourceNodes = async (
     const updateNodes = new Set();
     const updateParents = new Set();
 
-    logger.info('Resolving new and changed nodes');
+    reporter.info('Resolving new and changed nodes');
     for (const item of plone.items) {
       if (!nodesById.has(item._id)) {
         // Fetch new node
@@ -276,23 +283,23 @@ exports.sourceNodes = async (
       nodesById.delete(`${item._id}/@navigation`);
     }
 
-    logger.info('Deleting removed nodes');
+    reporter.info('Deleting removed nodes');
     for (const node of nodesById.values()) {
       if (!ComponentNodeTypes.has(node.internal.type)) {
         updateParents.add(parentId(node.id));
       }
-      logger.info(`Deleting node – ${node.id.replace(baseUrl, '') || '/'}`);
+      reporter.info(`Deleting node – ${node.id.replace(baseUrl, '') || '/'}`);
       deleteNode({ node: node });
       for (const id of node.children || []) {
         const child = getNode(id);
         if (child) {
-          logger.info(`Deleting node – ${id.replace(baseUrl, '') || '/'}`);
+          reporter.info(`Deleting node – ${id.replace(baseUrl, '') || '/'}`);
           deleteNode({ node: child });
         }
       }
     }
 
-    logger.info('Updating changed nodes');
+    reporter.info('Updating changed nodes');
     let dirtyBreadcrumbs = null;
     let dirtyNavigation = null;
     for (const item of plone.items) {
@@ -304,7 +311,9 @@ exports.sourceNodes = async (
           expansions,
           backlinks
         )) {
-          logger.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+          reporter.info(
+            `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
+          );
           createNode(node);
         }
         // For updated nodes, breadcrumbs of all children must be updated
@@ -323,7 +332,9 @@ exports.sourceNodes = async (
           expansions,
           backlinks
         )) {
-          logger.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
+          reporter.info(
+            `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
+          );
           createNode(node);
         }
         // For changed parents, navigation of all children must be updated
@@ -332,33 +343,35 @@ exports.sourceNodes = async (
             ? item._id
             : dirtyNavigation;
       } else {
-        logger.debug(`Touching node – ${item._id.replace(baseUrl, '') || '/'}`);
+        reporter.info(
+          `Touching node – ${item._id.replace(baseUrl, '') || '/'}`
+        );
         touchNode({ nodeId: item._id });
         for (const id of getNode(item._id).children || []) {
-          logger.debug(`Touching node – ${id.replace(baseUrl, '') || '/'}`);
+          reporter.info(`Touching node – ${id.replace(baseUrl, '') || '/'}`);
           touchNode({ nodeId: id });
         }
         if (!item._id.startsWith(dirtyBreadcrumbs)) {
-          logger.debug(
+          reporter.info(
             `Touching node – ${item._id.replace(baseUrl, '') ||
               '/'}/@breadcrumbs`
           );
           touchNode({ nodeId: `${item._id}/@breadcrumbs` });
         } else {
-          logger.debug(
+          reporter.info(
             `Creating node – ${item._id.replace(baseUrl, '') ||
               '/'}/@breadcrumbs`
           );
           createNode(await fetchPloneBreadcrumbsNode(item._id, token, baseUrl));
         }
         if (!item._id.startsWith(dirtyNavigation)) {
-          logger.debug(
+          reporter.info(
             `Touching node – ${item._id.replace(baseUrl, '') ||
               '/'}/@navigation`
           );
           touchNode({ nodeId: `${item._id}/@navigation` });
         } else {
-          logger.info(
+          reporter.info(
             `Creating node – ${item._id.replace(baseUrl, '') ||
               '/'}/@navigation`
           );
@@ -367,8 +380,8 @@ exports.sourceNodes = async (
       }
     }
   }
-  logger.info('Setting plugin status');
-  logger.debug(JSON.stringify(newState));
+  reporter.info('Setting plugin status');
+  reporter.info(JSON.stringify(newState));
 
   if (websocketUpdates) {
     let ws = new WebSocket(baseUrl.replace(/(http)(s)?\:\/\//, 'ws$2://'));
@@ -376,14 +389,15 @@ exports.sourceNodes = async (
     ws.onmessage = async msg => {
       let data = JSON.parse(msg.data);
       if (data['created']) {
-        console.log('we are in created state');
+        reporter.info('we are in created state');
         await createWebsocketEvent(
           data,
           token,
           baseUrl,
           expansions,
           backlinks,
-          createNode
+          createNode,
+          reporter
         );
         if (timerId) {
           clearTimeout(timerId);
@@ -396,11 +410,12 @@ exports.sourceNodes = async (
           baseUrl,
           expansions,
           backlinks,
-          createNode
+          createNode,
+          reporter
         );
       }
       if (data['modified']) {
-        console.log('we are in modified state');
+        reporter.info('we are in modified state');
         await modifiedWebSocketEvent(
           data,
           createNode,
@@ -410,7 +425,8 @@ exports.sourceNodes = async (
           baseUrl,
           expansions,
           backlinks,
-          searchParams
+          searchParams,
+          reporter
         );
         if (timerId) {
           clearTimeout(timerId);
@@ -423,11 +439,12 @@ exports.sourceNodes = async (
           baseUrl,
           expansions,
           backlinks,
-          createNode
+          createNode,
+          reporter
         );
       }
       if (data['removed']) {
-        console.log('we are removed state');
+        reporter.info('we are in removed state');
         await deleteWebSocketEvent(
           data,
           getNode,
@@ -436,7 +453,8 @@ exports.sourceNodes = async (
           token,
           baseUrl,
           expansions,
-          backlinks
+          backlinks,
+          reporter
         );
         if (timerId) {
           clearTimeout(timerId);
@@ -449,22 +467,22 @@ exports.sourceNodes = async (
           baseUrl,
           expansions,
           backlinks,
-          createNode
+          createNode,
+          reporter
         );
       }
     };
   }
   setPluginStatus(newState);
-  logger.info('Done');
+  reporter.info('Done');
 };
 
 // GatsbyJS transform plugin for Plone content nodes with binary attributes
 // Expand file and image attributes into linked remote file nodes
 exports.onCreateNode = async (
-  { node, actions, cache, store },
+  { node, actions, cache, store, reporter },
   { baseUrl, token, imageScale, logLevel }
 ) => {
-  const logger = logging.getLogger(logging[logLevel] || 100);
   if (
     node.internal.type.match(/Plone/) &&
     !ComponentNodeTypes.has(node.internal.type)
@@ -504,7 +522,7 @@ exports.onCreateNode = async (
     };
 
     if (node.image) {
-      logger.info(`Fetching image – ${node.id.replace(baseUrl, '') || '/'}`);
+      reporter.info(`Fetching image – ${node.id.replace(baseUrl, '') || '/'}`);
       try {
         const imageNode = await createRemoteFileNode({
           url: imageScale
@@ -519,12 +537,12 @@ exports.onCreateNode = async (
         node.image___NODE = imageNode.id;
         createParentChildLink({ parent: node, child: imageNode });
       } catch (e) {
-        logger.warn(`Error creating image node for ${node.id}: `, e);
+        reporter.warn(`Error creating image node for ${node.id}: `, e);
       }
     }
 
     if (node.file) {
-      logger.info(`Fetching file – ${node.id.replace(baseUrl, '') || '/'}`);
+      reporter.info(`Fetching file – ${node.id.replace(baseUrl, '') || '/'}`);
       try {
         const fileNode = await createRemoteFileNode({
           url: node.file.download,
@@ -537,7 +555,7 @@ exports.onCreateNode = async (
         node.file___NODE = fileNode.id;
         createParentChildLink({ parent: node, child: fileNode });
       } catch (e) {
-        logger.warn(`Error creating file node for ${node.id}: `, e);
+        reporter.warn(`Error creating file node for ${node.id}: `, e);
       }
     }
   }

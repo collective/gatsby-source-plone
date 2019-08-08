@@ -115,7 +115,14 @@ const modifiedWebSocketEvent = async function(
       }
     }
   }
-  await childItemsForAUrl(urlChild, token, baseUrl, createNode, searchParams, reporter);
+  await childItemsForAUrl(
+    urlChild,
+    token,
+    baseUrl,
+    createNode,
+    searchParams,
+    reporter
+  );
 };
 
 const childItemsForAUrl = async function(

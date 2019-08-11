@@ -66,7 +66,7 @@ or
 
 Checkout sources from github:
 
-```bash:
+```bash
 git clone git@github.com:collective/gatsby-source-plone.git
 ```
 

@@ -1,3 +1,10 @@
+import { createContentDigest } from './helper'
+import { normalizeType } from './normalizeType'
+import { parseHTMLtoReact } from './parseHTMLtoReact'
+
+// TODO: Make DownloadableContentTypes configurable
+const DownloadableContentTypes = new Set(['Image', 'File']);
+
 export const makeContentNode = (id, data, baseUrl, backlinks) => {
   // mediaType is always set as 'text/html' as a common case, because
   // content objects may have html, images, files or combinations of them

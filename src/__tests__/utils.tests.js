@@ -1,16 +1,14 @@
-import {
-  normalizeType,
-  createContentDigest,
-  fetchPlone,
-  fetchUrl,
-  headersWithToken,
-  normalizeData,
-  normalizePath,
-  parentId,
-  parseHTMLtoReact,
-  urlWithoutParameters,
-  serializeParams,
-} from '../utils';
+import { normalizePath } from '../util/normalizePath';
+import { normalizeType } from '../util/normalizeType';
+import { createContentDigest } from '../util/helper';
+import { fetchPlone } from '../util/fetchPlone';
+import { fetchUrl } from '../util/fetchUrl';
+import { headersWithToken } from '../util/fetchUrl';
+import { urlWithoutParameters } from '../util/helper';
+import { normalizeData } from '../util/normalizeData';
+import { parentId } from '../util/helper';
+import { parseHTMLtoReact } from '../util/parseHTMLtoReact';
+import { serializeParams } from '../util/serializeParams';
 
 test('normalizeType normalizes and normalizeTypes content types', () => {
   expect(normalizeType('Folder')).toBe('PloneFolder');

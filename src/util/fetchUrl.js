@@ -1,3 +1,12 @@
+import axiosRetry from 'axios-retry';
+
+axiosRetry(axios, {
+  retries: 3,
+  retryDelay: retryCount => {
+    return retryCount * 1000 + retryCount * 1000 * Math.random();
+  },
+});
+
 // Add token to header when given
 export const headersWithToken = (headers, token) =>
   token ? { ...headers, Authorization: `Bearer ${token}` } : headers;

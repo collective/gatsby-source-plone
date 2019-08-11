@@ -1,3 +1,5 @@
+import { fetchUrl } from './fetchUrl'
+
 // Fetch Plone JSON REST API data with batching expanded
 export const fetchPlone = async (url, token, params, http = axios) => {
   let batch, data;

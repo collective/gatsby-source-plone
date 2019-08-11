@@ -4,7 +4,6 @@ import {
   fetchPlone,
   fetchUrl,
   headersWithToken,
-  logging,
   normalizeData,
   normalizePath,
   parentId,
@@ -94,106 +93,6 @@ test('fetchUrl sets Authorization header from given token', async () => {
 test('fetchPlone fetches all available pages', async () => {
   const data = await fetchPlone('url', 'token', {}, mock);
   expect(data.items).toEqual([1, 2]);
-});
-
-test('logging.getLogger returns DEBUG level logger', async () => {
-  const buffer = [];
-  let logger = logging.getLogger(logging.DEBUG, {
-    debug: msg => buffer.push(msg),
-    info: msg => buffer.push(msg),
-    warn: msg => buffer.push(msg),
-    error: msg => buffer.push(msg),
-    critical: msg => buffer.push(msg),
-  });
-  logger.debug('debug');
-  logger.info('info');
-  logger.warn('warn');
-  logger.error('error');
-  logger.critical('critical');
-  expect(buffer).toEqual([
-    'Plone – debug',
-    'Plone – info',
-    'Plone – warn',
-    'Plone – error',
-    'Plone – critical',
-  ]);
-});
-
-test('logging.getLogger returns INFO level logger', async () => {
-  const buffer = [];
-  let logger = logging.getLogger(logging.INFO, {
-    debug: msg => buffer.push(msg),
-    info: msg => buffer.push(msg),
-    warn: msg => buffer.push(msg),
-    error: msg => buffer.push(msg),
-    critical: msg => buffer.push(msg),
-  });
-  logger.debug('debug');
-  logger.info('info');
-  logger.warn('warn');
-  logger.error('error');
-  logger.critical('critical');
-  expect(buffer).toEqual([
-    'Plone – info',
-    'Plone – warn',
-    'Plone – error',
-    'Plone – critical',
-  ]);
-});
-
-test('logging.getLogger returns WARNING level logger', async () => {
-  const buffer = [];
-  let logger = logging.getLogger(logging.WARNING, {
-    debug: msg => buffer.push(msg),
-    info: msg => buffer.push(msg),
-    warn: msg => buffer.push(msg),
-    error: msg => buffer.push(msg),
-    critical: msg => buffer.push(msg),
-  });
-  logger.debug('debug');
-  logger.info('info');
-  logger.warn('warning');
-  logger.error('error');
-  logger.critical('critical');
-  expect(buffer).toEqual([
-    'Plone – warning',
-    'Plone – error',
-    'Plone – critical',
-  ]);
-});
-
-test('logging.getLogger returns ERROR level logger', async () => {
-  const buffer = [];
-  let logger = logging.getLogger(logging.ERROR, {
-    debug: msg => buffer.push(msg),
-    info: msg => buffer.push(msg),
-    warn: msg => buffer.push(msg),
-    error: msg => buffer.push(msg),
-    critical: msg => buffer.push(msg),
-  });
-  logger.debug('debug');
-  logger.info('info');
-  logger.warn('warning');
-  logger.error('error');
-  logger.critical('critical');
-  expect(buffer).toEqual(['Plone – error', 'Plone – critical']);
-});
-
-test('logging.getLogger returns CRITICAL level logger', async () => {
-  const buffer = [];
-  let logger = logging.getLogger(logging.CRITICAL, {
-    debug: msg => buffer.push(msg),
-    info: msg => buffer.push(msg),
-    warn: msg => buffer.push(msg),
-    error: msg => buffer.push(msg),
-    critical: msg => buffer.push(msg),
-  });
-  logger.debug('debug');
-  logger.info('info');
-  logger.warn('warning');
-  logger.error('error');
-  logger.critical('critical');
-  expect(buffer).toEqual(['Plone – critical']);
 });
 
 test('normalizeData returns empty object as such', async () => {

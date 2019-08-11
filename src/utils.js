@@ -14,29 +14,6 @@ axiosRetry(axios, {
 // TODO: Make DownloadableContentTypes configurable
 const DownloadableContentTypes = new Set(['Image', 'File']);
 
-// Minimal logging module mimicking Python logging module
-export const logging = {
-  CRITICAL: 50,
-  ERROR: 40,
-  WARNING: 30,
-  INFO: 20,
-  DEBUG: 10,
-  getLogger: (logLevel, out = console) => {
-    return {
-      critical: msg =>
-        logging.CRITICAL >= logLevel ? out.error(`Plone – ${msg}`) : null,
-      error: msg =>
-        logging.ERROR >= logLevel ? out.error(`Plone – ${msg}`) : null,
-      warn: msg =>
-        logging.WARNING >= logLevel ? out.warn(`Plone – ${msg}`) : null,
-      info: msg =>
-        logging.INFO >= logLevel ? out.info(`Plone – ${msg}`) : null,
-      debug: msg =>
-        logging.DEBUG >= logLevel ? out.debug(`Plone – ${msg}`) : null,
-    };
-  },
-};
-
 // Create content digest (hash)
 export const createContentDigest = data =>
   crypto

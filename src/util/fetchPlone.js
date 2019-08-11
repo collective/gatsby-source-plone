@@ -1,4 +1,5 @@
-import { fetchUrl } from './fetchUrl'
+import { fetchUrl } from './fetchUrl';
+import axios from 'axios/index';
 
 // Fetch Plone JSON REST API data with batching expanded
 export const fetchPlone = async (url, token, params, http = axios) => {

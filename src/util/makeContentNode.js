@@ -1,6 +1,6 @@
-import { createContentDigest } from './helper'
-import { normalizeType } from './normalizeType'
-import { parseHTMLtoReact } from './parseHTMLtoReact'
+import { createContentDigest } from './helper';
+import { normalizeType } from './normalizeType';
+import { parseHTMLtoReact } from './parseHTMLtoReact';
 
 // TODO: Make DownloadableContentTypes configurable
 const DownloadableContentTypes = new Set(['Image', 'File']);

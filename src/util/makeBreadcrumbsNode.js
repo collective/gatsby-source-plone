@@ -1,3 +1,5 @@
+import { createContentDigest } from './helper';
+
 export const makeBreadcrumbsNode = (id, data, path) => {
   return {
     ...data,

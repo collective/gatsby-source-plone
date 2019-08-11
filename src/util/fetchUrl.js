@@ -1,4 +1,6 @@
 import axiosRetry from 'axios-retry';
+import axios from 'axios/index';
+import { serializeParams } from './serializeParams';
 
 axiosRetry(axios, {
   retries: 3,

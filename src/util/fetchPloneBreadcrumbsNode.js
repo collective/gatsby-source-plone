@@ -1,6 +1,6 @@
-import { fetchPlone } from './fetchPlone'
-import { makeBreadcrumbsNode } from './makeBreadcrumbsNode'
-import {normalizeData } from './normalizeData'
+import { fetchPlone } from './fetchPlone';
+import { makeBreadcrumbsNode } from './makeBreadcrumbsNode';
+import { normalizeData } from './normalizeData';
 
 // Fetch only breadcrumbs component node
 export const fetchPloneBreadcrumbsNode = async (id, token, baseUrl, mock) => {

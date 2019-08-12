@@ -1,3 +1,7 @@
+import { normalizePath } from './normalizePath';
+import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser';
+import { serialize } from 'react-serialize';
+
 export const parseHTMLtoReact = (html, baseUrl, path, backlinks) => {
   const transform = (node, index) => {
     // Replace hyperlinks with relative links

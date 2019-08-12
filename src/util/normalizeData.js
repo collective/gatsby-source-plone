@@ -1,3 +1,6 @@
+import { urlWithoutParameters } from './helper';
+import { normalizePath } from './normalizePath';
+
 // Normalize Plone JSON to be usable as such in GatsbyJS
 export const normalizeData = function(data, baseUrl) {
   // - Adds '@id' for plone.restapi < 1.0b1 results from 'url'

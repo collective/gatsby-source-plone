@@ -1,3 +1,7 @@
+import { fetchPlone } from './fetchPlone';
+import { normalizeData } from './normalizeData';
+import { makeNavigationNode } from './makeNavigationNode';
+
 // Fetch only navigation component node
 export const fetchPloneNavigationNode = async (id, token, baseUrl, mock) => {
   // Fetch from Plone REST API and normalize it to be GraphQL compatible

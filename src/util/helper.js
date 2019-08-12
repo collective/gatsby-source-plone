@@ -1,9 +1,5 @@
-axiosRetry(axios, {
-  retries: 3,
-  retryDelay: retryCount => {
-    return retryCount * 1000 + retryCount * 1000 * Math.random();
-  },
-});
+import crypto from 'crypto';
+
 // Create content digest (hash)
 export const createContentDigest = data =>
   crypto

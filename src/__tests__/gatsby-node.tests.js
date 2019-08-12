@@ -1,12 +1,10 @@
-import {
-  makeContentNode,
-  createContentDigest,
-  makeNavigationNode,
-  makeBreadcrumbsNode,
-  ploneNodeGenerator,
-  fetchPloneNavigationNode,
-  fetchPloneBreadcrumbsNode,
-} from '../utils';
+import { makeContentNode } from '../util/makeContentNode';
+import { createContentDigest } from '../util/helper';
+import { makeBreadcrumbsNode } from '../util/makeBreadcrumbsNode';
+import { makeNavigationNode } from '../util/makeNavigationNode';
+import { ploneNodeGenerator } from '../util/ploneNodeGenerator';
+import { fetchPloneBreadcrumbsNode } from '../util/fetchPloneBreadcrumbsNode';
+import { fetchPloneNavigationNode } from '../util/fetchPloneNavigationNode';
 
 // This import is here to make gatsby-node to appear in overall coverage
 import { sourceNodes } from '../gatsby-node';

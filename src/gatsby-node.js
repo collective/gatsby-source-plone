@@ -214,11 +214,8 @@ exports.sourceNodes = async (
   reporter.info(JSON.stringify(newState));
 
   const webSocketStart = function() {
-    let ws = new WebSocket('ws://localhost:8080/Plone/');
+    let ws = new WebSocket(baseUrl.replace(/(http)(s)?\:\/\//, 'ws$2://'));
     let timerId = null;
-    ws.onopen = function() {
-      console.log('connected!');
-    };
     ws.onmessage = async msg => {
       let data = JSON.parse(msg.data);
       if (data['created']) {
@@ -307,11 +304,9 @@ exports.sourceNodes = async (
     };
     ws.onclose = function() {
       const previousDelay = 1;
-      reporter.info('websocket is closed due to server reboot');
       reconnectingWebSocket(ws, previousDelay);
     };
     ws.onerror = function(err) {
-      console.log('we got an error');
       console.log(err.stack);
     };
   };
@@ -324,7 +319,6 @@ exports.sourceNodes = async (
           console.log('we are retrying to connect');
           webSocketStart();
         } else {
-          console.log('we are clearing the intervalId');
           clearInterval(intervalId);
         }
       },

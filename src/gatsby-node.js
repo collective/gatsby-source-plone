@@ -216,6 +216,8 @@ exports.sourceNodes = async (
   const webSocketStart = function() {
     let ws = new WebSocket(baseUrl.replace(/(http)(s)?\:\/\//, 'ws$2://'));
     let timerId = null;
+    let count = 0;
+    const previousDelay = 1;
     ws.onmessage = async msg => {
       let data = JSON.parse(msg.data);
       if (data['created']) {
@@ -303,12 +305,23 @@ exports.sourceNodes = async (
       }
     };
     ws.onclose = function() {
-      const previousDelay = 1;
       reconnectingWebSocket(ws, previousDelay);
     };
     ws.onerror = function(err) {
       console.log(err.stack);
     };
+
+    ws.on('pong', () => {
+      count--;
+    });
+
+    const intervalId = setInterval(() => {
+      ws.ping('heartBeat');
+      if (count == 2) {
+        reconnectingWebSocket(ws, previousDelay);
+      }
+      count++;
+    }, 60000);
   };
 
   const reconnectingWebSocket = function(ws, previousDelay) {

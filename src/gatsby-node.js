@@ -213,9 +213,12 @@ exports.sourceNodes = async (
   reporter.info('Setting plugin status');
   reporter.info(JSON.stringify(newState));
 
-  if (websocketUpdates) {
-    let ws = new WebSocket(baseUrl.replace(/(http)(s)?\:\/\//, 'ws$2://'));
+  const webSocketStart = function() {
+    let ws = new WebSocket('ws://localhost:8080/Plone/');
     let timerId = null;
+    ws.onopen = function() {
+      console.log('connected!');
+    };
     ws.onmessage = async msg => {
       let data = JSON.parse(msg.data);
       if (data['created']) {
@@ -302,6 +305,36 @@ exports.sourceNodes = async (
         );
       }
     };
+    ws.onclose = function() {
+      const previousDelay = 1;
+      reporter.info('websocket is closed due to server reboot');
+      reconnectingWebSocket(ws, previousDelay);
+    };
+    ws.onerror = function(err) {
+      console.log('we got an error');
+      console.log(err.stack);
+    };
+  };
+
+  const reconnectingWebSocket = function(ws, previousDelay) {
+    previousDelay = Math.min(60, previousDelay * (2 - Math.random()));
+    const intervalId = setInterval(
+      () => {
+        if (!ws || ws.readyState == 3) {
+          console.log('we are retrying to connect');
+          webSocketStart();
+        } else {
+          console.log('we are clearing the intervalId');
+          clearInterval(intervalId);
+        }
+      },
+      previousDelay,
+      ws
+    );
+  };
+
+  if (websocketUpdates) {
+    webSocketStart();
   }
   setPluginStatus(newState);
   reporter.info('Done');

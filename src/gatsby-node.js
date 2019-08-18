@@ -218,7 +218,6 @@ exports.sourceNodes = async (
     let timerId = null;
     let count = 0;
     let previousDelay = 1;
-    let timeoutId = null;
 
     ws.onmessage = async msg => {
       let data = JSON.parse(msg.data);
@@ -307,7 +306,7 @@ exports.sourceNodes = async (
       }
     };
     ws.onclose = function() {
-      reconnectingWebSocket(ws, previousDelay, timeoutId);
+      reconnectingWebSocket(ws, previousDelay);
     };
     ws.onerror = function(err) {
       reporter.error(err.stack);
@@ -324,16 +323,13 @@ exports.sourceNodes = async (
       }
       if (count == 2) {
         count = 0;
-        reconnectingWebSocket(ws, previousDelay, timeoutId);
+        reconnectingWebSocket(ws, previousDelay);
       }
     }, 60000);
   };
 
-  const reconnectingWebSocket = function(ws, previousDelay, timeoutId) {
+  const reconnectingWebSocket = function(ws, previousDelay) {
     previousDelay = Math.min(60, previousDelay * (2 - Math.random()));
-    if (timeoutId) {
-      clearTimeout(timeoutId);
-    }
     timeoutId = setTimeout(() => {
       if (ws.readyState == 3) {
         webSocketStart();

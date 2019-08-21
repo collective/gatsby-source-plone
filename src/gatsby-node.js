@@ -213,11 +213,19 @@ exports.sourceNodes = async (
   reporter.info('Setting plugin status');
   reporter.info(JSON.stringify(newState));
 
-  const webSocketStart = function() {
+  const webSocketStart = function(reconnectionDelay = 1) {
     let ws = new WebSocket(baseUrl.replace(/(http)(s)?\:\/\//, 'ws$2://'));
     let timerId = null;
     let count = 0;
-    let previousDelay = 1;
+
+    const intervalId = setInterval(() => {
+      ws.ping('heartBeat');
+      if (count == 2) {
+        reconnectingWebSocket(ws, reconnectionDelay);
+        clearInterval(intervalId);
+      }
+      count++;
+    }, 60000);
 
     ws.onmessage = async msg => {
       let data = JSON.parse(msg.data);
@@ -306,35 +314,25 @@ exports.sourceNodes = async (
       }
     };
     ws.onclose = function() {
-      reconnectingWebSocket(ws, previousDelay);
+      reconnectingWebSocket(ws, reconnectionDelay);
+      clearInterval(intervalId);
     };
     ws.onerror = function(err) {
-      reporter.error(err.stack);
+      reporter.error(err.message);
+      clearInterval(intervalId);
     };
-
     ws.on('pong', () => {
       count--;
     });
-
-    const intervalId = setInterval(() => {
-      if (ws.readyState == 1) {
-        ws.ping('heartBeat');
-        count++;
-      }
-      if (count == 2) {
-        count = 0;
-        reconnectingWebSocket(ws, previousDelay);
-      }
-    }, 60000);
   };
 
-  const reconnectingWebSocket = function(ws, previousDelay) {
-    previousDelay = Math.min(60, previousDelay * (2 - Math.random()));
-    timeoutId = setTimeout(() => {
+  const reconnectingWebSocket = function(ws, reconnectionDelay) {
+    reconnectionDelay = Math.min(60, reconnectionDelay * (2 - Math.random()));
+    setTimeout(() => {
       if (ws.readyState == 3) {
-        webSocketStart();
+        webSocketStart(reconnectionDelay);
       }
-    }, previousDelay * 1000);
+    }, reconnectionDelay * 1000);
   };
 
   if (websocketUpdates) {

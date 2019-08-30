@@ -119,13 +119,13 @@ exports.sourceNodes = async (
         updateParents.add(parentId(node.id));
       }
       reporter.info(`Deleting node – ${node.id.replace(baseUrl, '') || '/'}`);
-      touchNode({ nodeId: node.id });  // deleting fails without plugin ownrship touch
+      touchNode({ nodeId: node.id }); // deleting fails without plugin ownrship touch
       deleteNode({ node: node });
       for (const id of node.children || []) {
         const child = getNode(id);
         if (child) {
           reporter.info(`Deleting node – ${id.replace(baseUrl, '') || '/'}`);
-          touchNode({ nodeId: node.id });  // deleting fails without touch
+          touchNode({ nodeId: node.id }); // deleting fails without touch
           deleteNode({ node: child });
         }
       }

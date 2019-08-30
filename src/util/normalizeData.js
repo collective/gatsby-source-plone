@@ -30,12 +30,16 @@ export const normalizeData = function(data, baseUrl) {
     } else if (key === 'items') {
       data[key] = (value || []).map(item => normalizeData(item, baseUrl));
       data.nodes___NODE = data[key]
-        .filter(item => item['_id'].startsWith(baseUrl) && !item['_id'].match('@'))
+        .filter(
+          item => item['_id'].startsWith(baseUrl) && !item['_id'].match('@')
+        )
         .map(item => item['_id']);
     } else if (key === 'relatedItems') {
       data[key] = (value || []).map(item => normalizeData(item, baseUrl));
       data.relatedNodes___NODE = data[key]
-        .filter(item => item['_id'].startsWith(baseUrl) && !item['_id'].match('@'))
+        .filter(
+          item => item['_id'].startsWith(baseUrl) && !item['_id'].match('@')
+        )
         .map(item => item['_id']);
     } else if (key === '@id') {
       if (value.match(/\/view$/)) {

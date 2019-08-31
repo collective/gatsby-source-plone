@@ -58,30 +58,30 @@
   "dependencies": {
     "axios": "^0.19.0",
     "axios-retry": "^3.1.2",
-    "gatsby": "^2.13.39",
-    "gatsby-source-filesystem": "^2.1.6",
-    "react": "^16.8.6",
+    "gatsby": "^2.15.1",
+    "gatsby-source-filesystem": "^2.1.18",
+    "react": "^16.9.0",
     "react-html-parser": "^2.0.2",
     "react-serialize": "^0.2.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.5.0",
-    "@babel/core": "^7.5.0",
-    "@babel/plugin-proposal-class-properties": "^7.5.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.5.1",
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.5.0",
-    "@babel/preset-env": "^7.5.0",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "@babel/preset-react": "^7.0.0",
-    "@babel/runtime": "^7.0.0",
+    "@babel/runtime": "^7.5.5",
     "babel-core": "7.0.0-bridge.0",
-    "coveralls": "^3.0.4",
+    "coveralls": "^3.0.6",
     "cross-env": "^5.2.0",
-    "jest": "^24.8.0",
+    "jest": "^24.9.0",
     "marked": "^0.7.0",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
-    "yalc": "^1.0.0-pre.32"
+    "yalc": "^1.0.0-pre.34"
   },
   "resolutions": {
     "babel-core": "7.0.0-bridge.0"

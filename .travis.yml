@@ -1,7 +1,7 @@
 language: node_js
 node_js:
-- 8.11.1
-- 10.1.0
+- 8.16.0
+- 10.13.0
 cache:
   pip: true
   yarn: true

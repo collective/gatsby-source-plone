@@ -9,16 +9,19 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/level-three/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/level-three/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/level-three/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/level-three",
   "@type": "Folder",
-  "UID": "4ae7c98d3e36490d99b63c81af3644c3",
+  "UID": "fb804bca07a94d1bac1e7f3a5da2b9dd",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-08-04T19:28:09+00:00",
+  "created": "2019-10-20T20:37:47+00:00",
   "creators": [
     "admin"
   ],
@@ -38,9 +41,12 @@
     }
   ],
   "items_total": 1,
-  "language": "en",
+  "language": {
+    "title": "English",
+    "token": "en"
+  },
   "layout": "listing_view",
-  "modified": "2018-08-04T19:44:14+00:00",
+  "modified": "2019-10-20T20:37:49+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone/examples/subfolder-level-two",

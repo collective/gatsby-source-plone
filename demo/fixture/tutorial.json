@@ -9,16 +9,19 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/tutorial/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/tutorial/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/tutorial/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/tutorial",
   "@type": "Folder",
-  "UID": "a016c40b4475473299bb6367f4b2aedc",
+  "UID": "d567ef1ba5a04383912d52b18709e5af",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-08-04T19:37:10+00:00",
+  "created": "2019-10-20T20:38:07+00:00",
   "creators": [
     "admin"
   ],
@@ -82,13 +85,13 @@
   "items_total": 7,
   "language": "",
   "layout": "listing_view",
-  "modified": "2018-08-09T08:10:21+00:00",
+  "modified": "2019-10-20T20:38:19+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",
     "@type": "Plone Site",
     "description": "",
-    "title": "Gatsby source plugin for Plone"
+    "title": "Plone site"
   },
   "relatedItems": [],
   "review_state": "published",

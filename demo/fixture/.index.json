@@ -12,6 +12,7 @@
   },
   "@id": "http://localhost:8080/Plone",
   "@type": "Plone Site",
+  "description": "",
   "id": "Plone",
   "is_folderish": true,
   "items": [
@@ -53,5 +54,7 @@
   ],
   "items_total": 5,
   "parent": {},
-  "title": "Gatsby source plugin for Plone"
+  "tiles": {},
+  "tiles_layout": {},
+  "title": "Plone site"
 }

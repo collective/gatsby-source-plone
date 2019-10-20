@@ -1,0 +1,58 @@
+{
+  "@components": {
+    "actions": {
+      "@id": "http://localhost:8080/Plone/reference/configuration/@actions"
+    },
+    "breadcrumbs": {
+      "@id": "http://localhost:8080/Plone/reference/configuration/@breadcrumbs"
+    },
+    "navigation": {
+      "@id": "http://localhost:8080/Plone/reference/configuration/@navigation"
+    },
+    "types": {
+      "@id": "http://localhost:8080/Plone/reference/configuration/@types"
+    },
+    "workflow": {
+      "@id": "http://localhost:8080/Plone/reference/configuration/@workflow"
+    }
+  },
+  "@id": "http://localhost:8080/Plone/reference/configuration",
+  "@type": "Document",
+  "UID": "e4ec37c115fd4b6dbf358d5538a2a31e",
+  "allow_discussion": false,
+  "changeNote": "",
+  "contributors": [],
+  "created": "2019-10-20T20:40:15+00:00",
+  "creators": [
+    "admin"
+  ],
+  "description": "",
+  "effective": "2019-10-20T20:40:16",
+  "exclude_from_nav": false,
+  "expires": null,
+  "id": "configuration",
+  "is_folderish": false,
+  "language": "",
+  "layout": "document_view",
+  "modified": "2019-10-20T20:40:16+00:00",
+  "parent": {
+    "@id": "http://localhost:8080/Plone/reference",
+    "@type": "Folder",
+    "description": "Reference documentation",
+    "review_state": "published",
+    "title": "Docs"
+  },
+  "relatedItems": [],
+  "review_state": "published",
+  "rights": "",
+  "subjects": [],
+  "table_of_contents": null,
+  "text": {
+    "content-type": "text/html",
+    "data": "<p>This Plugin provide some options so that you can add more feature to your website.</p>\n<h1 id=\"plugin-options\">Plugin options</h1>\n<table>\n<thead>\n<tr>\n<th>Key</th>\n<th>Description</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>baseURl</td>\n<td>Points to your Plone CMS Url.</td>\n</tr>\n<tr>\n<td>token</td>\n<td>Your Plone CMS authentication token. Helps you to get private scope data.</td>\n</tr>\n<tr>\n<td>logLevel</td>\n<td>It will provide you additional logging from the plugin. which helps you in debugging your source code.</td>\n</tr>\n<tr>\n<td>websocketUpdates</td>\n<td>You can set websocketUpdates as true and false. If you pass true then it will provide you instant updates to your website when you make any change in data set on Plone CMS.</td>\n</tr>\n</tbody></table>\n<h1 id=\"how-to-use\">How to use</h1>\n<pre><code class=\"language-Javascript\">  plugins: [\n    {\n      resolve: 'gatsby-source-plone',\n      options: {\n        baseUrl: 'http://localhost:8080/Plone/',\n        token: process.env.TOKEN,\n        logLevel: 'DEBUG',\n        websocketUpdates: true || false,\n      },\n    },\n  ]</code></pre>",
+    "encoding": "utf-8"
+  },
+  "title": "Configuration of gatsby-source-plone",
+  "version": "current",
+  "versioning_enabled": true
+}

@@ -9,29 +9,32 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/reference/plugin_options/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/reference/plugin_options/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/reference/plugin_options/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/reference/plugin_options",
   "@type": "Document",
-  "UID": "b13dace696f64ea88e46a07a70c7eae4",
+  "UID": "d6a75edf9fd847e0b27a30c713f078e9",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-08-04T19:37:28+00:00",
+  "created": "2019-10-20T20:40:21+00:00",
   "creators": [
     "admin"
   ],
   "description": "",
-  "effective": "2018-08-04T00:00:00",
+  "effective": "2019-10-20T20:40:21",
   "exclude_from_nav": false,
   "expires": null,
   "id": "plugin_options",
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2018-08-05T06:16:00+00:00",
+  "modified": "2019-10-20T21:13:44+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/reference",
     "@type": "Folder",
@@ -46,9 +49,10 @@
   "table_of_contents": null,
   "text": {
     "content-type": "text/html",
-    "data": "<p>A sample configuration in <code>gatsby-config.js</code> in your Gatsby project, could look like:</p>\n<pre><code class=\"lang-javascript\">module.exports = {\n  plugins: [\n    {\n      resolve: 'gatsby-source-plone',\n      options: {\n        // The base URL of the Plone site you're using as source\n        baseUrl: 'http:///localhost:8080/Plone',\n\n        // Provide authorization token (not required by default)\n        // process.env.TOKEN is set by .env\n        // Read more about setup in authentication docs\n        token: process.env.TOKEN,\n\n        // Pass search parameters as an object\n        // By default passes no parameters\n        searchParams: {\n          review_state: 'published',\n        },\n\n        // Show logs of progress as plugin is run\n        // Defaults to no logging by plugin at all \n        logLevel: 'INFO',\n      },\n    },\n  ]\n};\n</code></pre>",
+    "data": "<p>A sample configuration in <code>gatsby-config.js</code> in your Gatsby project, could look like:</p>\n<pre><code class=\"language-javascript\">module.exports = {\n  plugins: [\n    {\n      resolve: 'gatsby-source-plone',\n      options: {\n        // The base URL of the Plone site you're using as source\n        baseUrl: 'http:///localhost:8080/Plone',\n\n        // Provide authorization token (not required by default)\n        // process.env.TOKEN is set by .env\n        // Read more about setup in authentication docs\n        token: process.env.TOKEN,\n\n        // Additional Plone REST API expansions components to include with\n        // each Plone content node (in addition to navigation and breadcrumbs)\n        expansions: [],\n\n        // Pass search parameters as an object\n        // By default passes no parameters\n        searchParams: {\n          review_state: 'published',\n        },\n      },\n    },\n  ]\n};</code></pre>",
     "encoding": "utf-8"
   },
   "title": "Plugin Options",
-  "version": "current"
+  "version": "current",
+  "versioning_enabled": true
 }

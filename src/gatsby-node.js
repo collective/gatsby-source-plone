@@ -16,7 +16,7 @@ const ComponentNodeTypes = new Set(['PloneBreadcrumbs', 'PloneNavigation']);
 // GatsbyJS source plugin for Plone
 exports.sourceNodes = async (
   { actions, cache, getNode, getNodes, store, reporter },
-  { baseUrl, token, searchParams, expansions, logLevel, websocketUpdates }
+  { baseUrl, token, searchParams, expansions, websocketUpdates }
 ) => {
   const { createNode, deleteNode, setPluginStatus, touchNode } = actions;
   let state = {},
@@ -232,7 +232,6 @@ exports.sourceNodes = async (
     ws.onmessage = async msg => {
       let data = JSON.parse(msg.data);
       if (data['created']) {
-        reporter.info('we are in created state');
         await createWebsocketEvent(
           data,
           token,
@@ -258,7 +257,6 @@ exports.sourceNodes = async (
         );
       }
       if (data['modified']) {
-        reporter.info('we are in modified state');
         await modifiedWebSocketEvent(
           data,
           createNode,
@@ -287,7 +285,6 @@ exports.sourceNodes = async (
         );
       }
       if (data['removed']) {
-        reporter.info('we are in removed state');
         await deleteWebSocketEvent(
           data,
           getNode,
@@ -348,7 +345,7 @@ exports.sourceNodes = async (
 // Expand file and image attributes into linked remote file nodes
 exports.onCreateNode = async (
   { node, actions, cache, store, reporter },
-  { baseUrl, token, imageScale, logLevel }
+  { baseUrl, token, imageScale }
 ) => {
   if (
     node.internal.type.match(/Plone/) &&

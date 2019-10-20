@@ -9,17 +9,20 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/tutorial/4_handling_data_types/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/tutorial/4_handling_data_types/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/tutorial/4_handling_data_types/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/tutorial/4_handling_data_types",
   "@type": "Document",
-  "UID": "677fddb95c4a44b2b4f8b1de2d8088fe",
+  "UID": "ffa6c3faed3f473aa8c6af299b3e2caa",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-08-04T19:37:15+00:00",
+  "created": "2019-10-20T20:38:14+00:00",
   "creators": [
     "admin"
   ],
@@ -31,7 +34,7 @@
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2018-08-05T06:27:00+00:00",
+  "modified": "2019-10-20T20:39:40+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/tutorial",
     "@type": "Folder",
@@ -46,9 +49,10 @@
   "table_of_contents": null,
   "text": {
     "content-type": "text/html",
-    "data": "<p>Plone has a couple of native content object types and even custom ones. For these, we need to create separate components for each, and configure <code>gatsby-node.js</code> to create individual pages and display the content in a gatsby site.</p>\n<p>Firstly step would be creating pages for each of these objects:</p>\n<pre><code class=\"lang-javascript\">// gatsby-node.js\nexports.createPages = async ({ graphql, actions }) =&gt; {\n  const { createPage } = actions;\n  const result = await graphql(`\n    {\n      allPloneCollection {\n        edges {\n          node {\n            _path\n          }\n        }\n      }\n      allPloneDocument {\n        edges {\n          node {\n            _path\n          }\n        }\n      }\n      allPloneEvent {\n        edges {\n          node {\n            _path\n          }\n        }\n      }\n      allPloneFolder {\n        edges {\n          node {\n            _path\n          }\n        }\n      }\n      allPloneNewsItem {\n        edges {\n          node {\n            _path\n          }\n        }\n      }\n    }\n  `);\n  []\n    .concat(\n      result.data.allPloneCollection.edges,\n      result.data.allPloneDocument.edges,\n      result.data.allPloneEvent.edges,\n      result.data.allPloneFolder.edges,\n      result.data.allPloneNewsItem.edges\n    )\n    .forEach(({ node }) =&gt; {\n      createPage({\n        path: node._path,\n        component: path.resolve('./src/templates/default.js'),\n      });\n    });\n};\n</code></pre>\n<p>Before we just handled folders, now we query for each of the content object types and create pages for them. The next step would be to configure the default template to handle the data depending on type since we're using it commonly for all of the types.</p>\n<pre><code class=\"lang-javascript\">// src/templates/default.js\n\n\n// Function to return relevant component as per content object type\nconst componentFor = data =&gt; {\n  if (data) {\n    if (data.ploneCollection) {\n      return (\n        &lt;Folder\n          data={data.ploneCollection}\n        /&gt;\n      );\n    } else if (data.ploneDocument) {\n      return (\n        &lt;Document\n          data={data.ploneDocument}\n        /&gt;\n      );\n    } else if (data.ploneEvent) {\n      return (\n        &lt;Event\n          data={data.ploneEvent}\n        /&gt;\n      );\n    } else if (data.ploneFolder) {\n      return (\n        &lt;Folder\n          data={data.ploneFolder}\n        /&gt;\n      );\n    } else if (data.ploneNewsItem) {\n      return (\n        &lt;NewsItem\n          data={data.ploneNewsItem}\n        /&gt;\n      );\n    } else {\n      return null;\n    }\n  } else {\n    return null;\n  }\n};\n\nconst DefaultLayout = ({ data }) =&gt; &lt;Layout&gt;{componentFor(data)}&lt;/Layout&gt;;\n\n// Query for all the different types from GraphQL\n// Fragments for each type are defined in their relevant components\nexport const query = graphql`\n  query DefaultTemplateQuery($path: String!) {\n    ploneCollection(_path: { eq: $path }) {\n      ...Collection\n    }\n    ploneDocument(_path: { eq: $path }) {\n      ...Document\n    }\n    ploneEvent(_path: { eq: $path }) {\n      ...Event\n    }\n    ploneFolder(_path: { eq: $path }) {\n      ...Folder\n    }\n    ploneNewsItem(_path: { eq: $path }) {\n      ...NewsItem\n    }\n  }\n</code></pre>\n<p>Now all you need to do is design each component. Similar to the Folder component we already have, different components can be built depending on the data passed in and to be displayed.</p>\n<p>Next: <a href=\"http://localhost:8080/Plone/tutorial/5_images_and_files\">Image and File Handling</a></p>",
+    "data": "<p>Plone has a couple of native content object types and even custom ones. For these, we need to create separate components for each, and configure <code>gatsby-node.js</code> to create individual pages and display the content in a gatsby site.</p>\n<p>Firstly step would be creating pages for each of these objects:</p>\n<pre><code class=\"language-javascript\">// gatsby-node.js\nexports.createPages = async ({ graphql, actions }) =&gt; {\n  const { createPage } = actions;\n  const result = await graphql(`\n    {\n      allPloneCollection {\n        edges {\n          node {\n            _path\n          }\n        }\n      }\n      allPloneDocument {\n        edges {\n          node {\n            _path\n          }\n        }\n      }\n      allPloneEvent {\n        edges {\n          node {\n            _path\n          }\n        }\n      }\n      allPloneFolder {\n        edges {\n          node {\n            _path\n          }\n        }\n      }\n      allPloneNewsItem {\n        edges {\n          node {\n            _path\n          }\n        }\n      }\n    }\n  `);\n  []\n    .concat(\n      result.data.allPloneCollection.edges,\n      result.data.allPloneDocument.edges,\n      result.data.allPloneEvent.edges,\n      result.data.allPloneFolder.edges,\n      result.data.allPloneNewsItem.edges\n    )\n    .forEach(({ node }) =&gt; {\n      createPage({\n        path: node._path,\n        component: path.resolve('./src/templates/default.js'),\n      });\n    });\n};</code></pre>\n<p>Before we just handled folders, now we query for each of the content object types and create pages for them. The next step would be to configure the default template to handle the data depending on type since we're using it commonly for all of the types.</p>\n<pre><code class=\"language-javascript\">// src/templates/default.js\n\n\n// Function to return relevant component as per content object type\nconst componentFor = data =&gt; {\n  if (data) {\n    if (data.ploneCollection) {\n      return (\n        &lt;Folder\n          data={data.ploneCollection}\n        /&gt;\n      );\n    } else if (data.ploneDocument) {\n      return (\n        &lt;Document\n          data={data.ploneDocument}\n        /&gt;\n      );\n    } else if (data.ploneEvent) {\n      return (\n        &lt;Event\n          data={data.ploneEvent}\n        /&gt;\n      );\n    } else if (data.ploneFolder) {\n      return (\n        &lt;Folder\n          data={data.ploneFolder}\n        /&gt;\n      );\n    } else if (data.ploneNewsItem) {\n      return (\n        &lt;NewsItem\n          data={data.ploneNewsItem}\n        /&gt;\n      );\n    } else {\n      return null;\n    }\n  } else {\n    return null;\n  }\n};\n\nconst DefaultLayout = ({ data }) =&gt; &lt;Layout&gt;{componentFor(data)}&lt;/Layout&gt;;\n\n// Query for all the different types from GraphQL\n// Fragments for each type are defined in their relevant components\nexport const query = graphql`\n  query DefaultTemplateQuery($path: String!) {\n    ploneCollection(_path: { eq: $path }) {\n      ...Collection\n    }\n    ploneDocument(_path: { eq: $path }) {\n      ...Document\n    }\n    ploneEvent(_path: { eq: $path }) {\n      ...Event\n    }\n    ploneFolder(_path: { eq: $path }) {\n      ...Folder\n    }\n    ploneNewsItem(_path: { eq: $path }) {\n      ...NewsItem\n    }\n  }</code></pre>\n<p>Now all you need to do is design each component. Similar to the Folder component we already have, different components can be built depending on the data passed in and to be displayed.</p>\n<p>Next: <a href=\"http://localhost:8080/Plone/tutorial/5_images_and_files\">Image and File Handling</a></p>",
     "encoding": "utf-8"
   },
   "title": "Handling different data types",
-  "version": "current"
+  "version": "current",
+  "versioning_enabled": true
 }

@@ -9,16 +9,19 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/news/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/news/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/news/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/news",
   "@type": "Folder",
-  "UID": "72dc357b964547cc9b9dd25bffd3273a",
+  "UID": "f4bfa82de3f3494cbe0bdab4dbb1f6a4",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-08-04T19:27:57+00:00",
+  "created": "2019-10-20T20:37:41+00:00",
   "creators": [
     "admin"
   ],
@@ -45,15 +48,18 @@
     }
   ],
   "items_total": 2,
-  "language": "en",
+  "language": {
+    "title": "English",
+    "token": "en"
+  },
   "layout": "listing_view",
-  "modified": "2018-08-04T19:44:14+00:00",
+  "modified": "2019-10-20T20:37:44+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",
     "@type": "Plone Site",
     "description": "",
-    "title": "Gatsby source plugin for Plone"
+    "title": "Plone site"
   },
   "relatedItems": [],
   "review_state": "published",

@@ -9,29 +9,32 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/reference/search_parameters/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/reference/search_parameters/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/reference/search_parameters/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/reference/search_parameters",
   "@type": "Document",
-  "UID": "11a42779cab1464a85a2b8820c6b59ed",
+  "UID": "5265ed6b4b214999bcb487e19503aa5f",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-08-04T19:37:30+00:00",
+  "created": "2019-10-20T20:40:22+00:00",
   "creators": [
     "admin"
   ],
   "description": "",
-  "effective": "2018-08-04T00:00:00",
+  "effective": "2019-10-20T20:40:23",
   "exclude_from_nav": false,
   "expires": null,
   "id": "search_parameters",
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2018-08-05T06:16:01+00:00",
+  "modified": "2019-10-20T20:40:23+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/reference",
     "@type": "Folder",
@@ -46,9 +49,10 @@
   "table_of_contents": null,
   "text": {
     "content-type": "text/html",
-    "data": "<p>Plone REST API @search endpoint allows you to pass query string parameters that filters the returned response based on the parameters rather than giving the whole listing of content objects.</p>\n<p>For example</p>\n<pre><code class=\"lang-javascript\">module.exports = {\n  plugins: [\n    {\n      resolve: 'gatsby-source-plone',\n      options: {\n        SearchableText: 'example',\n      },\n    }\n  ]\n}\n</code></pre>\n<p>searches for 'example' in the Plone site and returns only the relevant objects as response.</p>",
+    "data": "<p>Plone REST API @search endpoint allows you to pass query string parameters that filters the returned response based on the parameters rather than giving the whole listing of content objects.</p>\n<p>For example</p>\n<pre><code class=\"language-javascript\">module.exports = {\n  plugins: [\n    {\n      resolve: 'gatsby-source-plone',\n      options: {\n        SearchableText: 'example',\n      },\n    }\n  ]\n}</code></pre>\n<p>searches for 'example' in the Plone site and returns only the relevant objects as response.</p>",
     "encoding": "utf-8"
   },
   "title": "Customizing search Parameters",
-  "version": "current"
+  "version": "current",
+  "versioning_enabled": true
 }

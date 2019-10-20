@@ -9,16 +9,19 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/reference/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/reference/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/reference/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/reference",
   "@type": "Folder",
-  "UID": "21c9a68466df415c990bb33934d07255",
+  "UID": "068e886095ab4a3e92b107fc53007326",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-08-04T19:37:19+00:00",
+  "created": "2019-10-20T20:38:21+00:00",
   "creators": [
     "admin"
   ],
@@ -30,18 +33,25 @@
   "is_folderish": true,
   "items": [
     {
-      "@id": "http://localhost:8080/Plone/reference/plugin_options",
-      "@type": "Document",
-      "description": "",
-      "review_state": "published",
-      "title": "Plugin Options"
-    },
-    {
       "@id": "http://localhost:8080/Plone/reference/authentication",
       "@type": "Document",
       "description": "",
       "review_state": "published",
       "title": "Authenticating REST API calls"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/reference/configuration",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Configuration of gatsby-source-plone"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/reference/expansions",
+      "@type": "Document",
+      "description": "",
+      "review_state": "published",
+      "title": "Supported REST API expansions"
     },
     {
       "@id": "http://localhost:8080/Plone/reference/file_handling",
@@ -58,11 +68,11 @@
       "title": "RichText field support"
     },
     {
-      "@id": "http://localhost:8080/Plone/reference/expansions",
+      "@id": "http://localhost:8080/Plone/reference/plugin_options",
       "@type": "Document",
       "description": "",
       "review_state": "published",
-      "title": "Supported REST API expansions"
+      "title": "Plugin Options"
     },
     {
       "@id": "http://localhost:8080/Plone/reference/search_parameters",
@@ -83,19 +93,22 @@
       "@type": "Document",
       "description": "",
       "review_state": "published",
-      "title": "How content hierarchy is mapped"
+      "title": "How content hierarchy is mapped Yeah!"
     }
   ],
-  "items_total": 8,
-  "language": "en",
+  "items_total": 9,
+  "language": {
+    "title": "English",
+    "token": "en"
+  },
   "layout": "listing_view",
-  "modified": "2018-08-04T21:41:10+00:00",
+  "modified": "2019-10-20T20:40:25+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",
     "@type": "Plone Site",
     "description": "",
-    "title": "Gatsby source plugin for Plone"
+    "title": "Plone site"
   },
   "relatedItems": [],
   "review_state": "published",

@@ -1,7 +1,7 @@
 language: node_js
 node_js:
 - 8.16.0
-- 10.13.0
+- 10.15.3
 cache:
   pip: true
   yarn: true
@@ -17,7 +17,7 @@ script:
 after_success:
 - make coveralls
 - test $TRAVIS_BRANCH = "master" &&
-  test $(node --version) = "v10.13.0" &&
+  test $(node --version) = "v10.15.3" &&
   GATSBY_BUILD_FLAGS=--prefix-paths make clean coveralls init-docs-backend build
 deploy:
   provider: pages
@@ -28,7 +28,7 @@ deploy:
   skip-cleanup: true
   on:
     branch: master
-    node_js: 10.13.0
+    node_js: 10.15.3
 notifications:
   email:
   - stollenwerk@kitconcept.com

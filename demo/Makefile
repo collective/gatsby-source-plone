@@ -42,6 +42,11 @@ init-backend: start-backend
 	fixture/purge.sh
 	fixture/import.sh
 
+.PHONY: init-docs-backend
+init-docs-backend: init-backend
+	curl -X DELETE --user admin:admin http://localhost:8080/Plone/news
+	curl -X DELETE --user admin:admin http://localhost:8080/Plone/examples
+
 .PHONY: purge
 purge: clean stop-backend
 	docker-compose rm -fv

@@ -8,10 +8,10 @@ GATSBY_BUILD_FLAGS ?=
 
 UNAME_S := $(shell uname -s)
 ifeq ($(UNAME_S),Linux)
-	GECKODRIVER = https://github.com/mozilla/geckodriver/releases/download/v0.20.1/geckodriver-v0.20.1-linux64.tar.gz
+	GECKODRIVER = https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz
 endif
 ifeq ($(UNAME_S),Darwin)
-	GECKODRIVER = https://github.com/mozilla/geckodriver/releases/download/v0.20.1/geckodriver-v0.20.1-macos.tar.gz
+	GECKODRIVER = https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-macos.tar.gz
 endif
 
 .PHONY: all

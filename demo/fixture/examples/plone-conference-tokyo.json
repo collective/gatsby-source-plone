@@ -9,13 +9,16 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/examples/plone-conference-tokyo/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/examples/plone-conference-tokyo/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/examples/plone-conference-tokyo/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/examples/plone-conference-tokyo",
   "@type": "Event",
-  "UID": "6ca80a9b44b44dbc8b5b1583d260f576",
+  "UID": "98b23e3dc3004574bd863b003413e2d6",
   "allow_discussion": false,
   "attendees": [
     "everybody"
@@ -25,7 +28,7 @@
   "contact_name": "Tokyo Plone preparation team",
   "contact_phone": null,
   "contributors": [],
-  "created": "2018-08-04T19:28:19+00:00",
+  "created": "2019-10-20T20:37:59+00:00",
   "creators": [
     "admin"
   ],
@@ -37,10 +40,13 @@
   "expires": null,
   "id": "plone-conference-tokyo",
   "is_folderish": false,
-  "language": "en",
+  "language": {
+    "title": "English",
+    "token": "en"
+  },
   "layout": "event_view",
   "location": "Tokyo",
-  "modified": "2018-08-04T21:40:35+00:00",
+  "modified": "2019-10-20T20:37:59+00:00",
   "open_end": false,
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",
@@ -60,10 +66,11 @@
   "sync_uid": null,
   "text": {
     "content-type": "text/html",
-    "data": "<p><span>Tokyo, the world’s largest city famed for its hospitality, would like to formally invite you to Plone Conference 2018!</span></p>&#13;\n<h2><span>Venue</span></h2>&#13;\n<p><span>Ota City Industrial Plaza (PiO)<br/><a href=\"https://goo.gl/maps/dGZk7Lid1cv\">1-20-20 MinamiKamata Ota-ku, Tokyo, Japan</a><br/>Train: 3 min walk from Keikyu-Kamata Station or 13 min walk from JR Kamata Station.</span></p>",
+    "data": "<p><span>Tokyo, the world’s largest city famed for its hospitality, would like to formally invite you to Plone Conference 2018!</span></p>\n<h2><span>Venue</span></h2>\n<p><span>Ota City Industrial Plaza (PiO)<br/><a href=\"https://goo.gl/maps/dGZk7Lid1cv\">1-20-20 MinamiKamata Ota-ku, Tokyo, Japan</a><br/>Train: 3 min walk from Keikyu-Kamata Station or 13 min walk from JR Kamata Station.</span></p>",
     "encoding": "utf-8"
   },
   "title": "Plone conference Tokyo",
   "version": "current",
+  "versioning_enabled": true,
   "whole_day": false
 }

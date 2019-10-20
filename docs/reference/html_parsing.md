@@ -16,7 +16,7 @@ It deserializes the React nodes field which was processed by the plugin to be us
 
 Backlinks provide an optimized way to get the relevant images and files for a certain component. It's basically an object with stores a list of nodes to which a certain file/image is relevant to. This eliminates the need for iterating every single image and file to replace the `a` or `img` tag with.
 
-Taking the case of the `tests/gatsby-starter-default`:
+Taking the case of the `./demo`:
 
 - In default layout, we find node for matching path and render it with a proper component, and also pass the component all related images and files
 - in RichText component (called from Document or NewsItem) we use that data to replace links to files and images with optimized gatsby-images

@@ -9,16 +9,19 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/examples/plone-logo.pdf/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/examples/plone-logo.pdf/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/examples/plone-logo.pdf/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/examples/plone-logo.pdf",
   "@type": "File",
-  "UID": "a2b24aa112024cc6b37afdeb1d1cdb86",
+  "UID": "360186cd3970453694a35f8c39c1d95d",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-08-04T19:28:28+00:00",
+  "created": "2019-10-20T20:38:04+00:00",
   "creators": [
     "admin"
   ],
@@ -34,9 +37,12 @@
   },
   "id": "plone-logo.pdf",
   "is_folderish": false,
-  "language": "en",
+  "language": {
+    "title": "English",
+    "token": "en"
+  },
   "layout": "file_view",
-  "modified": "2018-08-04T21:40:50+00:00",
+  "modified": "2019-10-20T20:38:05+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",

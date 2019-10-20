@@ -9,17 +9,20 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/tutorial/1_getting_started/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/tutorial/1_getting_started/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/tutorial/1_getting_started/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/tutorial/1_getting_started",
   "@type": "Document",
-  "UID": "223c18f83c9247c3a2a6dfc8ca290258",
+  "UID": "14148dab33024546ade2bd70eb4781b0",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-08-04T19:37:12+00:00",
+  "created": "2019-10-20T20:38:09+00:00",
   "creators": [
     "admin"
   ],
@@ -31,7 +34,7 @@
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2018-08-05T06:26:54+00:00",
+  "modified": "2019-10-20T21:13:49+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/tutorial",
     "@type": "Folder",
@@ -46,9 +49,10 @@
   "table_of_contents": null,
   "text": {
     "content-type": "text/html",
-    "data": "<h2 id=\"introduction\">Introduction</h2>\n<p>We hope you've gone through the <a href=\"https://www.gatsbyjs.org/docs/\">Gatsby documention</a> and know what it's all about. Also, our docs cover what's the real purpose of this plugin and its use case.</p>\n<p><a href=\"https://github.com/collective/gatsby-starter-plone\">gatsby-starter-plone</a> is a starter for Gatsby sites with Plone already setup with all the features, and so this tutorial guides you how to work your way from <a href=\"https://github.com/gatsbyjs/gatsby-starter-default/\">gatsby-starter-default</a>, adding <em>gatsby-source-plone</em> and implementing features one by one to get <em>gatsby-starter-plone</em> as the end product.\nThis way the tutorial covers how to <strong>generate a static site from a Plone site using gatsby-source-plone</strong>.</p>\n<h2 id=\"setting-up\">Setting up</h2>\n<p>Make sure you have <a href=\"https://www.gatsbyjs.org/packages/gatsby-cli/\">Gatsby CLI</a> installed globally, get started with <em>gatsby-starter-default</em> and add <em>gatsby-source-plone</em> with basic configuration:</p>\n<pre><code class=\"lang-sh\">gatsby new gatsby-starter-plone\nyarn add gatsby-source-plone\n</code></pre>\n<p>In <code>gatsby-starter-plone/gatsby-config.js</code> add:</p>\n<pre><code class=\"lang-js\"> plugins: [\n    {\n      resolve: 'gatsby-source-plone',\n      options: {\n        // Url of Plone site to use as source\n        baseUrl: '&lt;site-url-here&gt;',\n        // Show logs while processing nodes\n        showLogs: true,\n      },\n    },\n  ],\n</code></pre>\n<p>Configuring <code>gatsby-config.js</code> is covered in detail in the <a href=\"https://collective.github.io/gatsby-source-plone/reference/plugin_options/\">plugin options docs</a>. Furthermore if your site is protected, go through the <a href=\"https://collective.github.io/gatsby-source-plone/reference/authentication/\">authentication docs</a> to learn how to setup access with JWT.</p>\n<p>Next: <a href=\"http://localhost:8080/Plone/tutorial/2_querying_and_auth\">Querying Data with GraphQL</a></p>",
+    "data": "<h2 id=\"introduction\">Introduction</h2>\n<p>We hope you've gone through the <a href=\"https://www.gatsbyjs.org/docs/\">Gatsby documention</a> and know what it's all about. Also, our docs cover what's the real purpose of this plugin and its use case.</p>\n<p><a href=\"https://github.com/collective/gatsby-starter-plone\">gatsby-starter-plone</a> is a starter for Gatsby sites with Plone already setup with all the features, and so this tutorial guides you how to work your way from <a href=\"https://github.com/gatsbyjs/gatsby-starter-default/\">gatsby-starter-default</a>, adding <em>gatsby-source-plone</em> and implementing features one by one to get <em>gatsby-starter-plone</em> as the end product.\nThis way the tutorial covers how to <strong>generate a static site from a Plone site using gatsby-source-plone</strong>.</p>\n<h2 id=\"setting-up\">Setting up</h2>\n<p>Make sure you have <a href=\"https://www.gatsbyjs.org/packages/gatsby-cli/\">Gatsby CLI</a> installed globally, get started with <em>gatsby-starter-default</em> and add <em>gatsby-source-plone</em> with basic configuration:</p>\n<pre><code class=\"language-sh\">gatsby new gatsby-starter-plone\nyarn add gatsby-source-plone</code></pre>\n<p>In <code>gatsby-starter-plone/gatsby-config.js</code> add:</p>\n<pre><code class=\"language-js\"> plugins: [\n    {\n      resolve: 'gatsby-source-plone',\n      options: {\n        // Url of Plone site to use as source\n        baseUrl: '&lt;site-url-here&gt;',\n      },\n    },\n  ],</code></pre>\n<p>Configuring <code>gatsby-config.js</code> is covered in detail in the <a href=\"https://collective.github.io/gatsby-source-plone/reference/plugin_options/\">plugin options docs</a>. Furthermore if your site is protected, go through the <a href=\"https://collective.github.io/gatsby-source-plone/reference/authentication/\">authentication docs</a> to learn how to setup access with JWT.</p>\n<p>Next: <a href=\"http://localhost:8080/Plone/tutorial/2_querying_and_auth\">Querying Data with GraphQL</a></p>",
     "encoding": "utf-8"
   },
   "title": "Getting Started",
-  "version": "current"
+  "version": "current",
+  "versioning_enabled": true
 }

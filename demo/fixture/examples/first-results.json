@@ -9,17 +9,20 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/examples/first-results/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/examples/first-results/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/examples/first-results/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/examples/first-results",
   "@type": "News Item",
-  "UID": "b36bcbb727af4376bc0a1f76d71f5485",
+  "UID": "ad157637e4b44394a257778c6910d3ee",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-08-04T19:28:05+00:00",
+  "created": "2019-10-20T20:37:57+00:00",
   "creators": [
     "admin"
   ],
@@ -30,42 +33,42 @@
   "id": "first-results",
   "image": {
     "content-type": "image/png",
-    "download": "http://localhost:8080/Plone/examples/first-results/@@images/image",
+    "download": "http://localhost:8080/Plone/examples/first-results/@@images/744dbd7f-8d17-4b8a-9a24-6b8a3b7348e8.png",
     "filename": "plone-logo-192.png",
     "height": 192,
     "scales": {
       "icon": {
-        "download": "http://localhost:8080/Plone/examples/first-results/@@images/image/icon",
+        "download": "http://localhost:8080/Plone/examples/first-results/@@images/7302c470-4ea3-4109-a313-281216367a0e.png",
         "height": 8,
         "width": 32
       },
       "large": {
-        "download": "http://localhost:8080/Plone/examples/first-results/@@images/image/large",
+        "download": "http://localhost:8080/Plone/examples/first-results/@@images/17dff14f-a0e7-4516-b7f1-3d739e05518b.png",
         "height": 192,
         "width": 736
       },
       "listing": {
-        "download": "http://localhost:8080/Plone/examples/first-results/@@images/image/listing",
+        "download": "http://localhost:8080/Plone/examples/first-results/@@images/42e51fb5-9415-4a10-970d-3f39d8c03ee9.png",
         "height": 4,
         "width": 16
       },
       "mini": {
-        "download": "http://localhost:8080/Plone/examples/first-results/@@images/image/mini",
+        "download": "http://localhost:8080/Plone/examples/first-results/@@images/399048fe-2b9c-4813-9d0a-483c27c5a10e.png",
         "height": 52,
         "width": 200
       },
       "preview": {
-        "download": "http://localhost:8080/Plone/examples/first-results/@@images/image/preview",
+        "download": "http://localhost:8080/Plone/examples/first-results/@@images/86e76e27-1496-44fc-8a49-d9f94890c7df.png",
         "height": 104,
         "width": 400
       },
       "thumb": {
-        "download": "http://localhost:8080/Plone/examples/first-results/@@images/image/thumb",
+        "download": "http://localhost:8080/Plone/examples/first-results/@@images/fd43c63b-3547-4204-80e0-f4e275c7052e.png",
         "height": 33,
         "width": 128
       },
       "tile": {
-        "download": "http://localhost:8080/Plone/examples/first-results/@@images/image/tile",
+        "download": "http://localhost:8080/Plone/examples/first-results/@@images/de756413-7bec-41bf-af0d-2ac778c0a061.png",
         "height": 16,
         "width": 64
       }
@@ -75,9 +78,12 @@
   },
   "image_caption": null,
   "is_folderish": false,
-  "language": "en",
+  "language": {
+    "title": "English",
+    "token": "en"
+  },
   "layout": "newsitem_view",
-  "modified": "2018-08-04T21:40:32+00:00",
+  "modified": "2019-10-20T20:37:58+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",
@@ -91,9 +97,10 @@
   "subjects": [],
   "text": {
     "content-type": "text/html",
-    "data": "<p>First results, which also serve as 'minimal testcase' and initial documentation, can be found at </p>&#13;\n<p>https://collective.github.io/gatsby-source-plone<a href=\"https://collective.github.io/gatsby-source-plone/\" target=\"_blank\" rel=\"noopener noreferrer\"/></p>&#13;\n<p/>&#13;\n<p/>",
+    "data": "<p>First results, which also serve as 'minimal testcase' and initial documentation, can be found at </p>\n<p>https://collective.github.io/gatsby-source-plone<a href=\"https://collective.github.io/gatsby-source-plone/\" rel=\"noopener noreferrer\" target=\"_blank\"/></p>\n<p/>\n<p/>",
     "encoding": "utf-8"
   },
   "title": "First results",
-  "version": "current"
+  "version": "current",
+  "versioning_enabled": true
 }

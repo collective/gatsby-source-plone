@@ -9,17 +9,20 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/index/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/index/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/index/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/index",
   "@type": "Document",
-  "UID": "ebb2ab19c5204c818a38d572c559e8c2",
+  "UID": "38ef962e41f942eba838796d31ba6497",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-08-04T19:37:19+00:00",
+  "created": "2019-10-20T20:37:40+00:00",
   "creators": [
     "admin"
   ],
@@ -31,12 +34,12 @@
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2018-08-04T21:39:52+00:00",
+  "modified": "2019-10-20T20:37:40+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone",
     "@type": "Plone Site",
     "description": "",
-    "title": "Gatsby source plugin for Plone"
+    "title": "Plone site"
   },
   "relatedItems": [],
   "review_state": "published",
@@ -49,5 +52,6 @@
     "encoding": "utf-8"
   },
   "title": "gatsby-source-plone",
-  "version": "current"
+  "version": "current",
+  "versioning_enabled": true
 }

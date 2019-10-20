@@ -16,15 +16,15 @@ module.exports = {
         // Read more about setup in authentication docs
         token: process.env.TOKEN,
 
+        // Additional Plone REST API expansions components to include with
+        // each Plone content node (in addition to navigation and breadcrumbs)
+        expansions: [],
+
         // Pass search parameters as an object
         // By default passes no parameters
         searchParams: {
           review_state: 'published',
         },
-
-        // Show logs of progress as plugin is run
-        // Defaults to no logging by plugin at all 
-        logLevel: 'INFO',
       },
     },
   ]

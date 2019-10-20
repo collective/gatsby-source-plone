@@ -9,17 +9,20 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/examples/a-page-with-internal-linking/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/examples/a-page-with-internal-linking/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/examples/a-page-with-internal-linking/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/examples/a-page-with-internal-linking",
   "@type": "Document",
-  "UID": "374310fbc3ab40b4910f02c3c3b76c7a",
+  "UID": "e209e124d3e2493190ec240fa2a2abf4",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-08-04T19:28:15+00:00",
+  "created": "2019-10-20T20:37:53+00:00",
   "creators": [
     "admin"
   ],
@@ -29,9 +32,12 @@
   "expires": null,
   "id": "a-page-with-internal-linking",
   "is_folderish": false,
-  "language": "en",
+  "language": {
+    "title": "English",
+    "token": "en"
+  },
   "layout": "document_view",
-  "modified": "2018-08-04T21:40:22+00:00",
+  "modified": "2019-10-20T20:37:53+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",
@@ -46,9 +52,10 @@
   "table_of_contents": false,
   "text": {
     "content-type": "text/html",
-    "data": "<p><a href=\"http://localhost:8080/Plone/examples/first-results\">Link to first-results</a></p>&#13;\n<p><img src=\"http://localhost:8080/Plone/examples/midsummer.jpg/@@images/f78443d7-d2ab-4a53-8756-7ec07c4caa47.jpeg\" title=\"Inline image\" alt=\"midsummer.jpg\" class=\"image-inline\"/></p>&#13;\n<p><a href=\"http://localhost:8080/Plone/examples/plone-logo.pdf\" title=\"Link to a file\">Link to a file</a></p>",
+    "data": "<p><a href=\"http://localhost:8080/Plone/examples/first-results\">Link to first-results</a></p>\n<p><img alt=\"midsummer.jpg\" class=\"image-inline\" src=\"http://localhost:8080/Plone/examples/midsummer.jpg/@@images/f78443d7-d2ab-4a53-8756-7ec07c4caa47.jpeg\" title=\"Inline image\"/></p>\n<p><a href=\"http://localhost:8080/Plone/examples/plone-logo.pdf\" title=\"Link to a file\">Link to a file</a></p>",
     "encoding": "utf-8"
   },
   "title": "A page with internal linking",
-  "version": "current"
+  "version": "current",
+  "versioning_enabled": true
 }

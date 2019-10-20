@@ -25,8 +25,6 @@ In `gatsby-starter-plone/gatsby-config.js` add:
       options: {
         // Url of Plone site to use as source
         baseUrl: '<site-url-here>',
-        // Show logs while processing nodes
-        showLogs: true,
       },
     },
   ],

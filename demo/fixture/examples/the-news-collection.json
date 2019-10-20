@@ -9,25 +9,43 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/examples/the-news-collection/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/examples/the-news-collection/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/examples/the-news-collection/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/examples/the-news-collection",
   "@type": "Collection",
-  "UID": "cb607b4becab42b1ba0ecd9d65483b74",
+  "UID": "ae453bf682a64f1d89a4cff603d49f16",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2018-08-04T19:28:13+00:00",
+  "created": "2019-10-20T20:37:51+00:00",
   "creators": [
     "admin"
   ],
   "customViewFields": [
-    "Title",
-    "Creator",
-    "Type",
-    "ModificationDate",
-    "Subject"
+    {
+      "title": "Title",
+      "token": "Title"
+    },
+    {
+      "title": "Creator",
+      "token": "Creator"
+    },
+    {
+      "title": "Type",
+      "token": "Type"
+    },
+    {
+      "title": "ModificationDate",
+      "token": "ModificationDate"
+    },
+    {
+      "title": "Subject",
+      "token": "Subject"
+    }
   ],
   "description": "Collection that shows all the news",
   "effective": "2018-08-04T00:00:00",
@@ -45,25 +63,28 @@
       "title": "First results"
     },
     {
-      "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone",
-      "@type": "News Item",
-      "description": "Gatsby is a blazing fast static site generator for React.",
-      "review_state": "published",
-      "title": "Let's do a GatsbyJS plugin for Plone!"
-    },
-    {
       "@id": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone",
       "@type": "News Item",
       "description": "Ajay NS was selected for Google Summer of Code to work on Plone Foundation project on GatsbyJS integration with Plone",
       "review_state": "published",
       "title": "GSOC for Gatsby source for Plone started"
+    },
+    {
+      "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone",
+      "@type": "News Item",
+      "description": "Gatsby is a blazing fast static site generator for React.",
+      "review_state": "published",
+      "title": "Let's do a GatsbyJS plugin for Plone!"
     }
   ],
   "items_total": 3,
-  "language": "en",
+  "language": {
+    "title": "English",
+    "token": "en"
+  },
   "layout": "listing_view",
   "limit": 1000,
-  "modified": "2018-08-04T21:40:19+00:00",
+  "modified": "2019-10-20T20:37:52+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",
@@ -91,7 +112,7 @@
   ],
   "text": {
     "content-type": "text/html",
-    "data": "<p>Collections are 'virtual folders' that contain content objects based on criteria. Those criteria can be</p>&#13;\n<ul>&#13;\n<li>type of content</li>&#13;\n<li>subject, or tag</li>&#13;\n<li>a variety of time-based criteria</li>&#13;\n<li>based on certain text</li>&#13;\n<li>based on who created them</li>&#13;\n<li>and a whole range of other metadata</li>&#13;\n</ul>&#13;\n<p>And, of course, you can combine all of them to narrow down your selection.</p>&#13;\n<p>Richtext</p>&#13;\n<p>They also come with a richtext introduction, meaning the introduction can contain formatting, <a href=\"https://docs.plone.org/working-with-content/using-collections/newstyle/creating_collections.html\" target=\"_blank\" rel=\"noopener noreferrer\" title=\"Link to the Plone docs on creating collections\">links</a> and images</p>&#13;\n<p><img src=\"http://localhost:8080/Plone/examples/midsummer.jpg/@@images/fd5b4cc3-a2d9-43f1-9b55-f214691041ed.jpeg\" title=\"How to lure people to Finland\" alt=\"A meme enticing people to come to Finland to sprint on Plone\" class=\"image-inline\"/></p>",
+    "data": "<p>Collections are 'virtual folders' that contain content objects based on criteria. Those criteria can be</p>\n<ul>\n<li>type of content</li>\n<li>subject, or tag</li>\n<li>a variety of time-based criteria</li>\n<li>based on certain text</li>\n<li>based on who created them</li>\n<li>and a whole range of other metadata</li>\n</ul>\n<p>And, of course, you can combine all of them to narrow down your selection.</p>\n<p>Richtext</p>\n<p>They also come with a richtext introduction, meaning the introduction can contain formatting, <a href=\"https://docs.plone.org/working-with-content/using-collections/newstyle/creating_collections.html\" rel=\"noopener noreferrer\" target=\"_blank\" title=\"Link to the Plone docs on creating collections\">links</a> and images</p>\n<p><img alt=\"A meme enticing people to come to Finland to sprint on Plone\" class=\"image-inline\" src=\"http://localhost:8080/Plone/examples/midsummer.jpg/@@images/fd5b4cc3-a2d9-43f1-9b55-f214691041ed.jpeg\" title=\"How to lure people to Finland\"/></p>",
     "encoding": "utf-8"
   },
   "title": "The news collection",

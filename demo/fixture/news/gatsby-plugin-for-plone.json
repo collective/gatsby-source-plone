@@ -9,17 +9,20 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone",
   "@type": "News Item",
-  "UID": "497bc0b219df43109e608e882ae85962",
+  "UID": "e49d8cb769374fbeb23fa3589bc962b7",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-08-04T19:28:01+00:00",
+  "created": "2019-10-20T20:37:44+00:00",
   "creators": [
     "admin"
   ],
@@ -30,42 +33,42 @@
   "id": "gatsby-plugin-for-plone",
   "image": {
     "content-type": "image/png",
-    "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image",
+    "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/8be3b21a-ca99-4b72-9edb-21f3278ff8b4.png",
     "filename": "gatsby-horizontal.png",
     "height": 106,
     "scales": {
       "icon": {
-        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image/icon",
+        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/968cd274-5f89-4975-896c-c58a744573d3.png",
         "height": 8,
         "width": 32
       },
       "large": {
-        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image/large",
+        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/0bed7091-9d3d-4921-8202-d6c76b0af13e.png",
         "height": 106,
         "width": 402
       },
       "listing": {
-        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image/listing",
+        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/bc809f0f-0b7b-47b0-a913-f84deb8d85b0.png",
         "height": 4,
         "width": 16
       },
       "mini": {
-        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image/mini",
+        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/811bd41e-195b-4b52-a1a9-d649841c0113.png",
         "height": 52,
         "width": 200
       },
       "preview": {
-        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image/preview",
+        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/51a89621-a220-46f6-81f3-fbb4e780bf05.png",
         "height": 105,
         "width": 400
       },
       "thumb": {
-        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image/thumb",
+        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/f19847de-65e7-4be5-8385-6a6e0c871468.png",
         "height": 33,
         "width": 128
       },
       "tile": {
-        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/image/tile",
+        "download": "http://localhost:8080/Plone/news/gatsby-plugin-for-plone/@@images/ac6f3147-dd2e-402d-b8dc-8b8847329ced.png",
         "height": 16,
         "width": 64
       }
@@ -75,9 +78,12 @@
   },
   "image_caption": null,
   "is_folderish": false,
-  "language": "en",
+  "language": {
+    "title": "English",
+    "token": "en"
+  },
   "layout": "newsitem_view",
-  "modified": "2018-08-04T21:40:03+00:00",
+  "modified": "2019-10-20T20:37:45+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/news",
     "@type": "Folder",
@@ -91,9 +97,10 @@
   "subjects": [],
   "text": {
     "content-type": "text/html",
-    "data": "<p>By using Plone REST API as its JSON source, GatsbyJS can be used to generate a blazing fast static site with PWA features.</p>&#13;\n<p>Work on GatsbyJS plugin for Plone has now been started at <a href=\"https://github.com/collective/gatsby-source-plone\">https://github.com/collective/gatsby-source-plone</a>.</p>",
+    "data": "<p>By using Plone REST API as its JSON source, GatsbyJS can be used to generate a blazing fast static site with PWA features.</p>\n<p>Work on GatsbyJS plugin for Plone has now been started at <a href=\"https://github.com/collective/gatsby-source-plone\">https://github.com/collective/gatsby-source-plone</a>.</p>",
     "encoding": "utf-8"
   },
   "title": "Let's do a GatsbyJS plugin for Plone!",
-  "version": "current"
+  "version": "current",
+  "versioning_enabled": true
 }

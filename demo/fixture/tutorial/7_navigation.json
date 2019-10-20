@@ -9,29 +9,32 @@
     "navigation": {
       "@id": "http://localhost:8080/Plone/tutorial/7_navigation/@navigation"
     },
+    "types": {
+      "@id": "http://localhost:8080/Plone/tutorial/7_navigation/@types"
+    },
     "workflow": {
       "@id": "http://localhost:8080/Plone/tutorial/7_navigation/@workflow"
     }
   },
   "@id": "http://localhost:8080/Plone/tutorial/7_navigation",
   "@type": "Document",
-  "UID": "d61fe2fc0a714b4ba442d8a0e3ee6940",
+  "UID": "774ac995db6249de840fc3c33abd31a5",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2018-08-09T08:09:32+00:00",
+  "created": "2019-10-20T20:38:19+00:00",
   "creators": [
     "admin"
   ],
   "description": "",
-  "effective": null,
+  "effective": "2019-10-20T20:38:20",
   "exclude_from_nav": false,
   "expires": null,
   "id": "7_navigation",
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2018-08-09T08:09:33+00:00",
+  "modified": "2019-10-20T20:39:42+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/tutorial",
     "@type": "Folder",
@@ -46,9 +49,10 @@
   "table_of_contents": null,
   "text": {
     "content-type": "text/html",
-    "data": "<p>To navigate and traverse through the site easily, Navbar and Breadcrumbs are vital. The plugin processes and provides this data directly from the Plone site so that we don't have to worry about it can directly query using GraphQL.</p>\n<h2 id=\"breadcrumbs\">Breadcrumbs</h2>\n<p>Since breadcrumbs depend on the page you are in, it needs to be dynamically created for each page. And so the approach is to query it in each page and pass it on to the <code>Layout</code> component.</p>\n<pre><code class=\"lang-graphql\">  ploneBreadcrumbs(_path: { eq: $path }) {\n    items {\n      _id\n      _path\n      title\n    }\n  }\n</code></pre>\n<p>This retrives breadcrumb data for a particular page during creation and can be passed into <code>Layout</code>, where it is used in a <code>Breadcrumbs</code> component, which could be as simple as this:</p>\n<pre><code class=\"lang-javascript\">// src/components/Breadcrumbs.js\n\nconst Breadcrumbs = ({ data }) =&gt; (\n  &lt;nav className=\"breadcrumb-container\"&gt;\n    &lt;ol className=\"breadcrumb\"&gt;\n      &lt;li className=\"breadcrumb-item\"&gt;\n        &lt;Link to=\"/\"&gt;Home&lt;/Link&gt;\n      &lt;/li&gt;\n      {data.items.map(item =&gt; (\n        &lt;li key={item._id} className=\"breadcrumb-item\"&gt;\n          &lt;Link to={item._path}&gt;{item.title}&lt;/Link&gt;\n        &lt;/li&gt;\n      ))}\n    &lt;/ol&gt;\n  &lt;/nav&gt;\n);\n</code></pre>\n<h2 id=\"navbar\">NavBar</h2>\n<p>This is the common topbar in all the views of the site, that allows quick jumping between root folders or so (depending on customization). So unlike breadcrumbs, we can use a static query (which queries data initially and then just uses existing data):</p>\n<pre><code class=\"lang-javascript\">// src/components/Navbar.js\n\n// Major difference would be the Static Query\nconst NavBar = ({ active }) =&gt; (\n  &lt;StaticQuery\n    query={graphql`\n      query NavbarQuery {\n        ploneNavigation(_path: { eq: \"/\" }) {\n          items {\n            _id\n            _path\n            title\n          }\n        }\n      }\n    `}\n    render={data =&gt; (\n      &lt;nav className=\"navbar\"&gt;\n        &lt;div className=\"navbar-container\"&gt;\n          &lt;Link to=\"/\" className=\"navbar-brand\"&gt;\n            Gatsby Starter Plone\n          &lt;/Link&gt;\n          &lt;ol className=\"navbar-menu\"&gt;\n            &lt;li className=\"navbar-item\"&gt;\n              &lt;Link to=\"/\"&gt;Home&lt;/Link&gt;\n            &lt;/li&gt;\n            {data.ploneNavigation.items\n              .filter(node =&gt; node._path !== '/')\n              .map(item =&gt; (\n                &lt;li\n                  key={item._id}\n                  className={\n                    item._path === active ||\n                    (active || '').startsWith(item._path)\n                      ? 'navbar-item active'\n                      : 'navbar-item'\n                  }\n                &gt;\n                  &lt;Link to={item._path}&gt;{item.title}&lt;/Link&gt;\n                &lt;/li&gt;\n              ))}\n          &lt;/ol&gt;\n        &lt;/div&gt;\n      &lt;/nav&gt;\n    )}\n  /&gt;\n);\n</code></pre>\n<p>Then all you need to do is add this to the top of your <code>Header</code> in <code>Layout</code>, and pass the active path.</p>\n<pre><code class=\"lang-javascript\">// src/components/Layout.js\n\n    // Render function of the Layout component\n    // node gets the current child being displayed\n    // active uses node to determine which is the active path\n    render={data =&gt; {\n      const node = children.length\n        ? children[0].props.data\n        : children.props.data;\n      const active = node\n        ? node._path === '/frontpage/'\n          ? '/'\n          : node._path\n        : null;\n      return (\n        &lt;&gt;\n          &lt;NavBar active={active} /&gt;\n          ...\n</code></pre>",
+    "data": "<p>To navigate and traverse through the site easily, Navbar and Breadcrumbs are vital. The plugin processes and provides this data directly from the Plone site so that we don't have to worry about it can directly query using GraphQL.</p>\n<h2 id=\"breadcrumbs\">Breadcrumbs</h2>\n<p>Since breadcrumbs depend on the page you are in, it needs to be dynamically created for each page. And so the approach is to query it in each page and pass it on to the <code>Layout</code> component.</p>\n<pre><code class=\"language-graphql\">  ploneBreadcrumbs(_path: { eq: $path }) {\n    items {\n      _id\n      _path\n      title\n    }\n  }</code></pre>\n<p>This retrives breadcrumb data for a particular page during creation and can be passed into <code>Layout</code>, where it is used in a <code>Breadcrumbs</code> component, which could be as simple as this:</p>\n<pre><code class=\"language-javascript\">// src/components/Breadcrumbs.js\n\nconst Breadcrumbs = ({ data }) =&gt; (\n  &lt;nav className=\"breadcrumb-container\"&gt;\n    &lt;ol className=\"breadcrumb\"&gt;\n      &lt;li className=\"breadcrumb-item\"&gt;\n        &lt;Link to=\"/\"&gt;Home&lt;/Link&gt;\n      &lt;/li&gt;\n      {data.items.map(item =&gt; (\n        &lt;li key={item._id} className=\"breadcrumb-item\"&gt;\n          &lt;Link to={item._path}&gt;{item.title}&lt;/Link&gt;\n        &lt;/li&gt;\n      ))}\n    &lt;/ol&gt;\n  &lt;/nav&gt;\n);</code></pre>\n<h2 id=\"navbar\">NavBar</h2>\n<p>This is the common topbar in all the views of the site, that allows quick jumping between root folders or so (depending on customization). So unlike breadcrumbs, we can use a static query (which queries data initially and then just uses existing data):</p>\n<pre><code class=\"language-javascript\">// src/components/Navbar.js\n\n// Major difference would be the Static Query\nconst NavBar = ({ active }) =&gt; (\n  &lt;StaticQuery\n    query={graphql`\n      query NavbarQuery {\n        ploneNavigation(_path: { eq: \"/\" }) {\n          items {\n            _id\n            _path\n            title\n          }\n        }\n      }\n    `}\n    render={data =&gt; (\n      &lt;nav className=\"navbar\"&gt;\n        &lt;div className=\"navbar-container\"&gt;\n          &lt;Link to=\"/\" className=\"navbar-brand\"&gt;\n            Gatsby Starter Plone\n          &lt;/Link&gt;\n          &lt;ol className=\"navbar-menu\"&gt;\n            &lt;li className=\"navbar-item\"&gt;\n              &lt;Link to=\"/\"&gt;Home&lt;/Link&gt;\n            &lt;/li&gt;\n            {data.ploneNavigation.items\n              .filter(node =&gt; node._path !== '/')\n              .map(item =&gt; (\n                &lt;li\n                  key={item._id}\n                  className={\n                    item._path === active ||\n                    (active || '').startsWith(item._path)\n                      ? 'navbar-item active'\n                      : 'navbar-item'\n                  }\n                &gt;\n                  &lt;Link to={item._path}&gt;{item.title}&lt;/Link&gt;\n                &lt;/li&gt;\n              ))}\n          &lt;/ol&gt;\n        &lt;/div&gt;\n      &lt;/nav&gt;\n    )}\n  /&gt;\n);</code></pre>\n<p>Then all you need to do is add this to the top of your <code>Header</code> in <code>Layout</code>, and pass the active path.</p>\n<pre><code class=\"language-javascript\">// src/components/Layout.js\n\n    // Render function of the Layout component\n    // node gets the current child being displayed\n    // active uses node to determine which is the active path\n    render={data =&gt; {\n      const node = children.length\n        ? children[0].props.data\n        : children.props.data;\n      const active = node\n        ? node._path === '/frontpage/'\n          ? '/'\n          : node._path\n        : null;\n      return (\n        &lt;&gt;\n          &lt;NavBar active={active} /&gt;\n          ...</code></pre>",
     "encoding": "utf-8"
   },
   "title": "Navigation",
-  "version": "current"
+  "version": "current",
+  "versioning_enabled": true
 }

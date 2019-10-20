@@ -17,7 +17,7 @@ script:
 after_success:
 - make coveralls
 - test $TRAVIS_BRANCH = "master" &&
-  test $(node --version) = "v10.1.0" &&
+  test $(node --version) = "v10.13.0" &&
   GATSBY_BUILD_FLAGS=--prefix-paths make clean coveralls init-docs-backend build
 deploy:
   provider: pages

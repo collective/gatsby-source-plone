@@ -28,7 +28,7 @@ deploy:
   skip-cleanup: true
   on:
     branch: master
-    node_js: 10.1.0
+    node_js: 10.13.0
 notifications:
   email:
   - stollenwerk@kitconcept.com

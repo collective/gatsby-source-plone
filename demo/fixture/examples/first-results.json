@@ -18,11 +18,11 @@
   },
   "@id": "http://localhost:8080/Plone/examples/first-results",
   "@type": "News Item",
-  "UID": "ad157637e4b44394a257778c6910d3ee",
+  "UID": "69927bdc996e43f88e58b3573a74229a",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2019-10-20T20:37:57+00:00",
+  "created": "2019-10-20T21:35:14+00:00",
   "creators": [
     "admin"
   ],
@@ -33,47 +33,47 @@
   "id": "first-results",
   "image": {
     "content-type": "image/png",
-    "download": "http://localhost:8080/Plone/examples/first-results/@@images/744dbd7f-8d17-4b8a-9a24-6b8a3b7348e8.png",
+    "download": "http://localhost:8080/Plone/examples/first-results/@@images/2e4bc72a-37b6-4fc5-a70c-8c467114c10b.png",
     "filename": "plone-logo-192.png",
     "height": 192,
     "scales": {
       "icon": {
-        "download": "http://localhost:8080/Plone/examples/first-results/@@images/7302c470-4ea3-4109-a313-281216367a0e.png",
+        "download": "http://localhost:8080/Plone/examples/first-results/@@images/41ac6ac2-9b2f-47db-b641-e53ed11de510.png",
         "height": 8,
         "width": 32
       },
       "large": {
-        "download": "http://localhost:8080/Plone/examples/first-results/@@images/17dff14f-a0e7-4516-b7f1-3d739e05518b.png",
+        "download": "http://localhost:8080/Plone/examples/first-results/@@images/a448d131-9b21-4cf6-ba9e-b68f28eaa437.png",
         "height": 192,
         "width": 736
       },
       "listing": {
-        "download": "http://localhost:8080/Plone/examples/first-results/@@images/42e51fb5-9415-4a10-970d-3f39d8c03ee9.png",
+        "download": "http://localhost:8080/Plone/examples/first-results/@@images/2de110b6-de19-4af9-b864-41adb621e4ac.png",
         "height": 4,
         "width": 16
       },
       "mini": {
-        "download": "http://localhost:8080/Plone/examples/first-results/@@images/399048fe-2b9c-4813-9d0a-483c27c5a10e.png",
+        "download": "http://localhost:8080/Plone/examples/first-results/@@images/a486f78f-43dc-41c8-bc93-3d815e475497.png",
         "height": 52,
         "width": 200
       },
       "preview": {
-        "download": "http://localhost:8080/Plone/examples/first-results/@@images/86e76e27-1496-44fc-8a49-d9f94890c7df.png",
+        "download": "http://localhost:8080/Plone/examples/first-results/@@images/6cc2d948-b445-46a4-a9f6-272470a0613e.png",
         "height": 104,
         "width": 400
       },
       "thumb": {
-        "download": "http://localhost:8080/Plone/examples/first-results/@@images/fd43c63b-3547-4204-80e0-f4e275c7052e.png",
+        "download": "http://localhost:8080/Plone/examples/first-results/@@images/909e48f8-4af9-4e40-93de-619c551f4ba0.png",
         "height": 33,
         "width": 128
       },
       "tile": {
-        "download": "http://localhost:8080/Plone/examples/first-results/@@images/de756413-7bec-41bf-af0d-2ac778c0a061.png",
+        "download": "http://localhost:8080/Plone/examples/first-results/@@images/631821c1-317f-43cd-9679-7f585e12946e.png",
         "height": 16,
         "width": 64
       }
     },
-    "size": 5367,
+    "size": 5528,
     "width": 736
   },
   "image_caption": null,
@@ -83,7 +83,7 @@
     "token": "en"
   },
   "layout": "newsitem_view",
-  "modified": "2019-10-20T20:37:58+00:00",
+  "modified": "2019-10-20T21:35:14+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",

@@ -18,10 +18,10 @@
   },
   "@id": "http://localhost:8080/Plone/examples/event-collection",
   "@type": "Collection",
-  "UID": "39a0caed706943879c3c0f04aa5bff12",
+  "UID": "9df92416721148fa951b9cf7f52fea09",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2019-10-20T20:37:50+00:00",
+  "created": "2019-10-20T21:35:10+00:00",
   "creators": [
     "admin"
   ],
@@ -66,7 +66,7 @@
   },
   "layout": "listing_view",
   "limit": 1000,
-  "modified": "2019-10-20T20:37:51+00:00",
+  "modified": "2019-10-20T21:35:10+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",

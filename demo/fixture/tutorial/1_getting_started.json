@@ -18,11 +18,11 @@
   },
   "@id": "http://localhost:8080/Plone/tutorial/1_getting_started",
   "@type": "Document",
-  "UID": "14148dab33024546ade2bd70eb4781b0",
+  "UID": "fd8c70b153ef4c4aad24528b9bcfa0c3",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2019-10-20T20:38:09+00:00",
+  "created": "2019-10-20T21:35:20+00:00",
   "creators": [
     "admin"
   ],
@@ -34,7 +34,7 @@
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2019-10-20T21:13:49+00:00",
+  "modified": "2019-10-20T21:35:49+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/tutorial",
     "@type": "Folder",

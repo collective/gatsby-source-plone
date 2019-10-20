@@ -18,10 +18,10 @@
   },
   "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/level-three/level-four",
   "@type": "Folder",
-  "UID": "58f7084a42aa4b4e928f80a6330c0319",
+  "UID": "0b5ed35ccd464476a8ae95f1c98053ab",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2019-10-20T20:37:49+00:00",
+  "created": "2019-10-20T21:35:09+00:00",
   "creators": [
     "admin"
   ],
@@ -38,7 +38,7 @@
     "token": "en"
   },
   "layout": "listing_view",
-  "modified": "2019-10-20T20:37:49+00:00",
+  "modified": "2019-10-20T21:35:09+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone/examples/subfolder-level-two/level-three",

@@ -18,10 +18,10 @@
   },
   "@id": "http://localhost:8080/Plone/tutorial",
   "@type": "Folder",
-  "UID": "d567ef1ba5a04383912d52b18709e5af",
+  "UID": "ff9a68259f254b3c99406a8429f4aa6c",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2019-10-20T20:38:07+00:00",
+  "created": "2019-10-20T21:35:19+00:00",
   "creators": [
     "admin"
   ],
@@ -85,7 +85,7 @@
   "items_total": 7,
   "language": "",
   "layout": "listing_view",
-  "modified": "2019-10-20T20:38:19+00:00",
+  "modified": "2019-10-20T21:35:25+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",

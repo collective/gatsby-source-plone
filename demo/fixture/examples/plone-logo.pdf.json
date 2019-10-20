@@ -18,10 +18,10 @@
   },
   "@id": "http://localhost:8080/Plone/examples/plone-logo.pdf",
   "@type": "File",
-  "UID": "360186cd3970453694a35f8c39c1d95d",
+  "UID": "836fece1cfe64083a5de7dad56564966",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2019-10-20T20:38:04+00:00",
+  "created": "2019-10-20T21:35:18+00:00",
   "creators": [
     "admin"
   ],
@@ -42,7 +42,7 @@
     "token": "en"
   },
   "layout": "file_view",
-  "modified": "2019-10-20T20:38:05+00:00",
+  "modified": "2019-10-20T21:35:18+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",

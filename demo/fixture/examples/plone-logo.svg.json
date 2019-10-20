@@ -18,10 +18,10 @@
   },
   "@id": "http://localhost:8080/Plone/examples/plone-logo.svg",
   "@type": "Image",
-  "UID": "18eeccd786864777bcb20021d9120610",
+  "UID": "772a6ad92c1946c9b15170dff6b6a277",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2019-10-20T20:38:01+00:00",
+  "created": "2019-10-20T21:35:16+00:00",
   "creators": [
     "admin"
   ],
@@ -32,47 +32,47 @@
   "id": "plone-logo.svg",
   "image": {
     "content-type": "image/svg+xml",
-    "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/71cad7d8-182a-4fb2-a0ee-fb04f6eebce3.svg",
+    "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/d1241994-13f8-47d2-bfc5-a47459c3011e.svg",
     "filename": "plone-logo.svg",
     "height": -1,
     "scales": {
       "icon": {
-        "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/0eb707b4-a986-4a19-af80-413ea51a5c4e.svg",
+        "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/24027250-3898-4296-bd52-83bcec90ba49.svg",
         "height": 32,
         "width": 32
       },
       "large": {
-        "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/6bd2718f-d6c9-4603-a455-370696f4808a.svg",
+        "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/b3ee69c0-8304-402b-9ba3-6e21f48842fe.svg",
         "height": 768,
         "width": 768
       },
       "listing": {
-        "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/9ced1590-ecf4-48c6-a51d-599d1a02ba17.svg",
+        "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/af0228fa-6ba3-4527-ae7e-ed2c9dc37fff.svg",
         "height": 16,
         "width": 16
       },
       "mini": {
-        "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/e9467b31-620e-4142-a770-1b7c4e49ca66.svg",
+        "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/2d5f48c1-a421-45d6-a3ab-f0063984454d.svg",
         "height": 200,
         "width": 200
       },
       "preview": {
-        "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/4fe793cd-f36b-40d4-91ab-86ed29546d69.svg",
+        "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/694a860e-124b-43d2-9ff0-606002e8cc67.svg",
         "height": 400,
         "width": 400
       },
       "thumb": {
-        "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/b31c3b8b-328e-4ee3-8ce5-efbc3d5efb0a.svg",
+        "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/2321fd1d-918d-4891-b939-6dca557b760a.svg",
         "height": 128,
         "width": 128
       },
       "tile": {
-        "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/c66a9d82-8fb7-45bd-b87a-d87b88d0ac26.svg",
+        "download": "http://localhost:8080/Plone/examples/plone-logo.svg/@@images/be63736c-85e5-43c4-95ba-ddaa27a4aba9.svg",
         "height": 64,
         "width": 64
       }
     },
-    "size": 3775,
+    "size": 3757,
     "width": -1
   },
   "is_folderish": false,
@@ -81,7 +81,7 @@
     "token": "en"
   },
   "layout": "image_view",
-  "modified": "2019-10-20T20:38:02+00:00",
+  "modified": "2019-10-20T21:35:17+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",

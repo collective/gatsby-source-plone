@@ -18,7 +18,7 @@
   },
   "@id": "http://localhost:8080/Plone/examples/plone-conference-tokyo",
   "@type": "Event",
-  "UID": "98b23e3dc3004574bd863b003413e2d6",
+  "UID": "a0a54f50ed3e4e03ab6694c2d82880ed",
   "allow_discussion": false,
   "attendees": [
     "everybody"
@@ -28,7 +28,7 @@
   "contact_name": "Tokyo Plone preparation team",
   "contact_phone": null,
   "contributors": [],
-  "created": "2019-10-20T20:37:59+00:00",
+  "created": "2019-10-20T21:35:15+00:00",
   "creators": [
     "admin"
   ],
@@ -46,7 +46,7 @@
   },
   "layout": "event_view",
   "location": "Tokyo",
-  "modified": "2019-10-20T20:37:59+00:00",
+  "modified": "2019-10-20T21:35:15+00:00",
   "open_end": false,
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",

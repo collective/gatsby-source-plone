@@ -18,11 +18,11 @@
   },
   "@id": "http://localhost:8080/Plone/examples/a-link-to-the-documentation-of-plone",
   "@type": "Link",
-  "UID": "227348651dc14abcbc2e1a1b4da42a96",
+  "UID": "f3ebe1398e9b41adb75a5e31bd1002ce",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2019-10-20T20:37:56+00:00",
+  "created": "2019-10-20T21:35:13+00:00",
   "creators": [
     "admin"
   ],
@@ -37,7 +37,7 @@
     "token": "en"
   },
   "layout": "link_redirect_view",
-  "modified": "2019-10-20T20:37:56+00:00",
+  "modified": "2019-10-20T21:35:13+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",

@@ -18,11 +18,11 @@
   },
   "@id": "http://localhost:8080/Plone/tutorial/4_handling_data_types",
   "@type": "Document",
-  "UID": "ffa6c3faed3f473aa8c6af299b3e2caa",
+  "UID": "d4e0028a235e42b399465d59a2bf5e67",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2019-10-20T20:38:14+00:00",
+  "created": "2019-10-20T21:35:22+00:00",
   "creators": [
     "admin"
   ],
@@ -34,7 +34,7 @@
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2019-10-20T20:39:40+00:00",
+  "modified": "2019-10-20T21:35:47+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/tutorial",
     "@type": "Folder",

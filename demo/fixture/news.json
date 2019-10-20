@@ -18,10 +18,10 @@
   },
   "@id": "http://localhost:8080/Plone/news",
   "@type": "Folder",
-  "UID": "f4bfa82de3f3494cbe0bdab4dbb1f6a4",
+  "UID": "c179895f7c014afa9b0064805a83d440",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2019-10-20T20:37:41+00:00",
+  "created": "2019-10-20T21:35:05+00:00",
   "creators": [
     "admin"
   ],
@@ -53,7 +53,7 @@
     "token": "en"
   },
   "layout": "listing_view",
-  "modified": "2019-10-20T20:37:44+00:00",
+  "modified": "2019-10-20T21:35:06+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",

@@ -18,11 +18,11 @@
   },
   "@id": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone",
   "@type": "News Item",
-  "UID": "94192f2165574e2bb54f73c94cb22429",
+  "UID": "0e80228d34f1434bbd59736be165c6ca",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2019-10-20T20:37:42+00:00",
+  "created": "2019-10-20T21:35:05+00:00",
   "creators": [
     "admin"
   ],
@@ -33,47 +33,47 @@
   "id": "gsoc-gatsby-source-plone",
   "image": {
     "content-type": "image/png",
-    "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/b76fc56e-a684-40c6-ba30-b5101a54ad1f.png",
+    "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/02b9520e-4663-45d5-8dfd-536c08e9e97b.png",
     "filename": "GSoC-icon-192.png",
     "height": 192,
     "scales": {
       "icon": {
-        "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/8f22d31f-610b-484f-8c09-95ec8890eec3.png",
+        "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/8852e4d6-013c-4e16-932c-a06f6a091944.png",
         "height": 32,
         "width": 32
       },
       "large": {
-        "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/bd12d585-5538-4f61-814e-6e6ce31f9287.png",
+        "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/d8221a58-7a24-40ca-aa48-f947fa8856a9.png",
         "height": 192,
         "width": 192
       },
       "listing": {
-        "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/7c3b5e3a-2cde-4e41-9081-961a027410c8.png",
+        "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/d2be5a9b-c226-4dc3-bcdf-0f789d018272.png",
         "height": 16,
         "width": 16
       },
       "mini": {
-        "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/e8bfbf7b-0c24-46a3-a0ce-a213ce90ccf4.png",
+        "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/5633e20e-2755-499d-af2f-ace279399a60.png",
         "height": 192,
         "width": 192
       },
       "preview": {
-        "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/052b0260-52af-41d8-84c0-b0d553fd4aa9.png",
+        "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/7511faa4-5c9d-43f5-860f-808a38d915f7.png",
         "height": 192,
         "width": 192
       },
       "thumb": {
-        "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/3090cb85-a7cc-4b4e-82ea-89abc8593ee7.png",
+        "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/cb9027ec-a0b9-4d0d-9acc-ba12d8b546ac.png",
         "height": 128,
         "width": 128
       },
       "tile": {
-        "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/40213b6f-7ca2-4465-961b-2ceda65c8510.png",
+        "download": "http://localhost:8080/Plone/news/gsoc-gatsby-source-plone/@@images/d7f4afc9-01a6-41fd-94c9-ea43a3e2133f.png",
         "height": 64,
         "width": 64
       }
     },
-    "size": 5636,
+    "size": 3249,
     "width": 192
   },
   "image_caption": null,
@@ -83,7 +83,7 @@
     "token": "en"
   },
   "layout": "newsitem_view",
-  "modified": "2019-10-20T20:37:43+00:00",
+  "modified": "2019-10-20T21:35:06+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/news",
     "@type": "Folder",

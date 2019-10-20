@@ -18,10 +18,10 @@
   },
   "@id": "http://localhost:8080/Plone/reference",
   "@type": "Folder",
-  "UID": "068e886095ab4a3e92b107fc53007326",
+  "UID": "afb72e944ad2413d85c92511a2ba3391",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2019-10-20T20:38:21+00:00",
+  "created": "2019-10-20T21:35:25+00:00",
   "creators": [
     "admin"
   ],
@@ -93,7 +93,7 @@
       "@type": "Document",
       "description": "",
       "review_state": "published",
-      "title": "How content hierarchy is mapped Yeah!"
+      "title": "How content hierarchy is mapped"
     }
   ],
   "items_total": 9,
@@ -102,7 +102,7 @@
     "token": "en"
   },
   "layout": "listing_view",
-  "modified": "2019-10-20T20:40:25+00:00",
+  "modified": "2019-10-20T21:35:33+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",

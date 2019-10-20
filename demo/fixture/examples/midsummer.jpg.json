@@ -18,10 +18,10 @@
   },
   "@id": "http://localhost:8080/Plone/examples/midsummer.jpg",
   "@type": "Image",
-  "UID": "0fe8bc9644e4486fb3ebae63ee8870e2",
+  "UID": "47ccf1d569aa42ab8ab6f6c812cc7fdc",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2019-10-20T20:38:03+00:00",
+  "created": "2019-10-20T21:35:17+00:00",
   "creators": [
     "admin"
   ],
@@ -32,47 +32,47 @@
   "id": "midsummer.jpg",
   "image": {
     "content-type": "image/jpeg",
-    "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/23480e6c-7467-42a6-bff9-304b63a0078d.jpeg",
+    "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/621e9337-8ffe-40d7-9d2f-2bec1d81624f.jpeg",
     "filename": "midsummer.jpg",
     "height": 507,
     "scales": {
       "icon": {
-        "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/ddfb394d-accb-4b06-afec-dd4b44502170.jpeg",
+        "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/c05e55ab-da12-49f6-b383-c887e8deac5f.jpeg",
         "height": 32,
         "width": 32
       },
       "large": {
-        "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/e16cd8c0-e406-4f83-bfb9-d92ad3d68278.jpeg",
+        "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/e1ae93a9-8a5d-48d2-b6e7-0684050cf0c3.jpeg",
         "height": 507,
         "width": 500
       },
       "listing": {
-        "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/1ee2d86e-77b1-46e6-a04d-e720083496fb.jpeg",
+        "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/e92d04a4-99b5-4f01-9dbd-1e771ccd5d2c.jpeg",
         "height": 16,
         "width": 16
       },
       "mini": {
-        "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/43e51b6e-3f6d-4a12-a720-fb635811283b.jpeg",
+        "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/74b18fbc-2bd9-458a-8c09-c85211675777.jpeg",
         "height": 200,
         "width": 198
       },
       "preview": {
-        "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/29ec687c-265a-4714-8645-c86b845d7e69.jpeg",
+        "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/423801ef-7993-4d73-9052-4ce81ce44cac.jpeg",
         "height": 400,
         "width": 395
       },
       "thumb": {
-        "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/6776810d-227e-4de5-8d91-fe7e11e6384f.jpeg",
+        "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/aefbce38-c506-4afb-895e-fed0801a47d8.jpeg",
         "height": 128,
         "width": 127
       },
       "tile": {
-        "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/c4e05243-813d-469f-a532-f6525c7a32b3.jpeg",
+        "download": "http://localhost:8080/Plone/examples/midsummer.jpg/@@images/c1483ed1-61ab-4230-bd04-1b2a0197fb88.jpeg",
         "height": 64,
         "width": 64
       }
     },
-    "size": 76435,
+    "size": 80307,
     "width": 500
   },
   "is_folderish": false,
@@ -81,7 +81,7 @@
     "token": "en"
   },
   "layout": "image_view",
-  "modified": "2019-10-20T20:38:04+00:00",
+  "modified": "2019-10-20T21:35:17+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/examples",
     "@type": "Folder",

@@ -18,11 +18,11 @@
   },
   "@id": "http://localhost:8080/Plone/index",
   "@type": "Document",
-  "UID": "38ef962e41f942eba838796d31ba6497",
+  "UID": "7fd265594eb44c11bd17722bd00d2739",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2019-10-20T20:37:40+00:00",
+  "created": "2019-10-20T21:35:04+00:00",
   "creators": [
     "admin"
   ],
@@ -34,7 +34,7 @@
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2019-10-20T20:37:40+00:00",
+  "modified": "2019-10-20T21:35:04+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone",
     "@type": "Plone Site",

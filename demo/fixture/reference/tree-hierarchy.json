@@ -18,23 +18,23 @@
   },
   "@id": "http://localhost:8080/Plone/reference/tree-hierarchy",
   "@type": "Document",
-  "UID": "df7f5a00fc59490a9b286312245e662b",
+  "UID": "e199588750c74053a7d622d23381c8da",
   "allow_discussion": false,
   "changeNote": "",
   "contributors": [],
-  "created": "2019-10-20T20:40:25+00:00",
+  "created": "2019-10-20T21:35:32+00:00",
   "creators": [
     "admin"
   ],
   "description": "",
-  "effective": "2019-10-20T20:40:25",
+  "effective": "2019-10-20T20:40:00",
   "exclude_from_nav": false,
   "expires": null,
   "id": "tree-hierarchy",
   "is_folderish": false,
   "language": "",
   "layout": "document_view",
-  "modified": "2019-10-20T21:13:45+00:00",
+  "modified": "2019-10-20T21:35:45+00:00",
   "parent": {
     "@id": "http://localhost:8080/Plone/reference",
     "@type": "Folder",
@@ -52,7 +52,7 @@
     "data": "<p>This plugin does expose Plone content hierarchy in Gatsby GraphQL queries directly. Each folderish content node will contain a special <code>nodes</code> attribute, which links to children for that node (GraphQLUnionType). In addition, each node will also  contain a special attribute <code>_path</code> describing the position of node in content hierarchy. Container nodes will contain <code>_path</code> attribute also for each item in its <code>items</code> attribute returned by Plone REST API.</p>\n<p>In <code>./demo</code>, use of <code>_path</code> is illustrated for instance, in the <a href=\"https://github.com/collective/gatsby-source-plone/blob/master/demo/src/components/Folder.js\">Folder component</a>, where details of it's children are retrieved:</p>\n<pre><code class=\"language-graphql\">fragment Folder on PloneFolder {\n  id\n  title\n  description\n  items {\n    _id\n    _path\n    _type\n    description\n    title\n  }\n  _path\n}</code></pre>",
     "encoding": "utf-8"
   },
-  "title": "How content hierarchy is mapped Yeah!",
+  "title": "How content hierarchy is mapped",
   "version": "current",
   "versioning_enabled": true
 }

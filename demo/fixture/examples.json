@@ -18,10 +18,10 @@
   },
   "@id": "http://localhost:8080/Plone/examples",
   "@type": "Folder",
-  "UID": "dddac1685fdb445bba9bffb1d7801681",
+  "UID": "b6d9fe92b8694dc19995b4d628830c4a",
   "allow_discussion": false,
   "contributors": [],
-  "created": "2019-10-20T20:37:46+00:00",
+  "created": "2019-10-20T21:35:07+00:00",
   "creators": [
     "admin"
   ],
@@ -130,7 +130,7 @@
     "token": "en"
   },
   "layout": "listing_view",
-  "modified": "2019-10-20T20:38:06+00:00",
+  "modified": "2019-10-20T21:35:18+00:00",
   "nextPreviousEnabled": false,
   "parent": {
     "@id": "http://localhost:8080/Plone",

@@ -1,4 +1,4 @@
-# How content hierarchy is mapped Yeah!
+# How content hierarchy is mapped
 
 This plugin does expose Plone content hierarchy in Gatsby GraphQL queries directly. Each folderish content node will contain a special `nodes` attribute, which links to children for that node (GraphQLUnionType). In addition, each node will also  contain a special attribute `_path` describing the position of node in content hierarchy. Container nodes will contain `_path` attribute also for each item in its `items` attribute returned by Plone REST API.
 

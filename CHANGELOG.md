@@ -1,16 +1,17 @@
-## 0.2.0 - 2019-08-31
+## 0.2.0 - 2019-10-26
 
 ### Added
 
-* Support for private images and files @iFlameing
+* Support for private images and files when authorization token has been configured. @iFlameing
 
-* Support for nested queris through new `nodes` attribute on containers @datakurre
+* Support for nested queries through nodes`attribute (of GraphQLUnionType) on containers nodes. @datakurre
 
-* Support for experimental WebSocket events from Plone @iFlameing
+* Support for real-time update notifications from Plone with WebSocket support enabled. @iFlameing
 
-* Countless small bug fixes @datakurre
+* Countless small bug fixes. @datakurre
 
-* Code restructuring and larger test coverage @iFlameing
+* Code restructuring and larger test coverage. @iFlameing
+
 
 ## 0.1.0 - 2018-09-29
 

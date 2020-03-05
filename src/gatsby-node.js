@@ -22,8 +22,10 @@ exports.sourceNodes = async (
   let state = {},
     newState = {
       lastFetched: new Date(),
-    },
-    transientTypes = transientTypes || ['Collection'];
+    };
+  if (!(transientTypes && transientTypes.length)) {
+    transientTypes = ['Collection'];
+  }
 
   reporter.info('Reading plugin status');
   if (

@@ -16,13 +16,14 @@ const ComponentNodeTypes = new Set(['PloneBreadcrumbs', 'PloneNavigation']);
 // GatsbyJS source plugin for Plone
 exports.sourceNodes = async (
   { actions, cache, getNode, getNodes, store, reporter },
-  { baseUrl, token, searchParams, expansions, websocketUpdates }
+  { baseUrl, token, searchParams, expansions, websocketUpdates, transientTypes }
 ) => {
   const { createNode, deleteNode, setPluginStatus, touchNode } = actions;
   let state = {},
     newState = {
       lastFetched: new Date(),
-    };
+    },
+    transientTypes = transientTypes || ['Collection'];
 
   reporter.info('Reading plugin status');
   if (
@@ -103,8 +104,8 @@ exports.sourceNodes = async (
       } else if (item._id === baseUrl) {
         // Update "PloneSite" (at baseUrl)
         updateNodes.add(item._id);
-      } else if (item._type === 'Collection') {
-        // Update Collections
+      } else if (transientTypes.indexOf(item._type) > -1) {
+        // Update Collections and other uncacheable portal types
         updateNodes.add(item._id);
       }
       // Remove seen nodes from the map

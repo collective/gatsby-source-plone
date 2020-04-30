@@ -292,7 +292,10 @@ test('parseHTMLtoReact transforms relative links', async () => {
     },
   ]);
   expect(backlinks).toEqual(
-    new Map([['/foobar/', ['/index/']], ['/foo/bar.png/', ['/index/']]])
+    new Map([
+      ['/foobar/', ['/index/']],
+      ['/foo/bar.png/', ['/index/']],
+    ])
   );
 });
 

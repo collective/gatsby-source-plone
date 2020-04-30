@@ -1,6 +1,6 @@
 import { ploneNodeGenerator } from './ploneNodeGenerator';
 
-export const createWebsocketEvent = async function(
+export const createWebsocketEvent = async function (
   data,
   token,
   baseUrl,

@@ -1,4 +1,4 @@
-export const serializeParams = params => {
+export const serializeParams = (params) => {
   let parts = [];
 
   Object.entries(params).forEach(([key, val]) => {
@@ -15,7 +15,7 @@ export const serializeParams = params => {
       val = [val];
     }
 
-    val.forEach(v => {
+    val.forEach((v) => {
       if (typeof v.getMonth === 'function') {
         v = v.toISOString();
       } else if (typeof v === 'object') {

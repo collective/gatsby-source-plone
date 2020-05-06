@@ -4,7 +4,7 @@ import { makeContentNode } from './makeContentNode';
 import { makeNavigationNode } from './makeNavigationNode';
 import { fetchPlone } from './fetchPlone';
 
-export const ploneNodeGenerator = async function*(
+export const ploneNodeGenerator = async function* (
   id,
   token,
   baseUrl,

@@ -4,7 +4,7 @@ import { fetchPloneBreadcrumbsNode } from './fetchPloneBreadcrumbsNode';
 import { fetchPloneNavigationNode } from './fetchPloneNavigationNode';
 import { normalizeData } from './normalizeData';
 
-export const modifiedWebSocketEvent = async function(
+export const modifiedWebSocketEvent = async function (
   data,
   createNode,
   getNode,
@@ -58,7 +58,7 @@ export const modifiedWebSocketEvent = async function(
   );
 };
 
-const childItemsForUrl = async function(
+const childItemsForUrl = async function (
   urlChild,
   token,
   baseUrl,

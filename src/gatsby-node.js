@@ -87,7 +87,7 @@ exports.sourceNodes = async (
   } else {
     // Iterating all nodes seem to be common way to list cached nodes
     const nodesById = getNodes()
-      .filter(n => n.internal.owner === `gatsby-source-plone`)
+      .filter((n) => n.internal.owner === `gatsby-source-plone`)
       .reduce((map, node) => map.set(node.id, node), new Map());
 
     const updateNodes = new Set();
@@ -188,27 +188,31 @@ exports.sourceNodes = async (
         }
         if (!item._id.startsWith(dirtyBreadcrumbs)) {
           reporter.info(
-            `Touching node – ${item._id.replace(baseUrl, '') ||
-              '/'}/@breadcrumbs`
+            `Touching node – ${
+              item._id.replace(baseUrl, '') || '/'
+            }/@breadcrumbs`
           );
           touchNode({ nodeId: `${item._id}/@breadcrumbs` });
         } else {
           reporter.info(
-            `Creating node – ${item._id.replace(baseUrl, '') ||
-              '/'}/@breadcrumbs`
+            `Creating node – ${
+              item._id.replace(baseUrl, '') || '/'
+            }/@breadcrumbs`
           );
           createNode(await fetchPloneBreadcrumbsNode(item._id, token, baseUrl));
         }
         if (!item._id.startsWith(dirtyNavigation)) {
           reporter.info(
-            `Touching node – ${item._id.replace(baseUrl, '') ||
-              '/'}/@navigation`
+            `Touching node – ${
+              item._id.replace(baseUrl, '') || '/'
+            }/@navigation`
           );
           touchNode({ nodeId: `${item._id}/@navigation` });
         } else {
           reporter.info(
-            `Creating node – ${item._id.replace(baseUrl, '') ||
-              '/'}/@navigation`
+            `Creating node – ${
+              item._id.replace(baseUrl, '') || '/'
+            }/@navigation`
           );
           createNode(await fetchPloneNavigationNode(item._id, token, baseUrl));
         }
@@ -218,7 +222,7 @@ exports.sourceNodes = async (
   reporter.info('Setting plugin status');
   reporter.info(JSON.stringify(newState));
 
-  const webSocketStart = function(reconnectionDelay = 1) {
+  const webSocketStart = function (reconnectionDelay = 1) {
     let ws = new WebSocket(baseUrl.replace(/(http)(s)?\:\/\//, 'ws$2://'));
     let timerId = null;
     let count = 0;
@@ -232,7 +236,7 @@ exports.sourceNodes = async (
       count++;
     }, 60000);
 
-    ws.onmessage = async msg => {
+    ws.onmessage = async (msg) => {
       let data = JSON.parse(msg.data);
       if (data['created']) {
         await createWebsocketEvent(
@@ -315,11 +319,11 @@ exports.sourceNodes = async (
         );
       }
     };
-    ws.onclose = function() {
+    ws.onclose = function () {
       reconnectingWebSocket(ws, reconnectionDelay);
       clearInterval(intervalId);
     };
-    ws.onerror = function(err) {
+    ws.onerror = function (err) {
       reporter.error(err.message);
       clearInterval(intervalId);
     };
@@ -328,7 +332,7 @@ exports.sourceNodes = async (
     });
   };
 
-  const reconnectingWebSocket = function(ws, reconnectionDelay) {
+  const reconnectingWebSocket = function (ws, reconnectionDelay) {
     reconnectionDelay = Math.min(60, reconnectionDelay * (2 - Math.random()));
     setTimeout(() => {
       if (ws.readyState == 3) {

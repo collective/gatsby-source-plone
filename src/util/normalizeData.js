@@ -2,7 +2,7 @@ import { urlWithoutParameters } from './helper';
 import { normalizePath } from './normalizePath';
 
 // Normalize Plone JSON to be usable as such in GatsbyJS
-export const normalizeData = function(data, baseUrl) {
+export const normalizeData = function (data, baseUrl) {
   // - Adds '@id' for plone.restapi < 1.0b1 results from 'url'
   if (!data['@id'] && data.url) {
     data['@id'] = data.url;
@@ -28,19 +28,19 @@ export const normalizeData = function(data, baseUrl) {
       }
       delete data[key];
     } else if (key === 'items') {
-      data[key] = (value || []).map(item => normalizeData(item, baseUrl));
+      data[key] = (value || []).map((item) => normalizeData(item, baseUrl));
       data.nodes___NODE = data[key]
         .filter(
-          item => item['_id'].startsWith(baseUrl) && !item['_id'].match('@')
+          (item) => item['_id'].startsWith(baseUrl) && !item['_id'].match('@')
         )
-        .map(item => item['_id']);
+        .map((item) => item['_id']);
     } else if (key === 'relatedItems') {
-      data[key] = (value || []).map(item => normalizeData(item, baseUrl));
+      data[key] = (value || []).map((item) => normalizeData(item, baseUrl));
       data.relatedNodes___NODE = data[key]
         .filter(
-          item => item['_id'].startsWith(baseUrl) && !item['_id'].match('@')
+          (item) => item['_id'].startsWith(baseUrl) && !item['_id'].match('@')
         )
-        .map(item => item['_id']);
+        .map((item) => item['_id']);
     } else if (key === '@id') {
       if (value.match(/\/view$/)) {
         // @navigation may contain @id values with reserved /view suffix

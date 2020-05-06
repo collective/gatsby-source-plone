@@ -1,6 +1,6 @@
 import { ploneNodeGenerator } from './ploneNodeGenerator';
 
-export const deleteWebSocketEvent = async function(
+export const deleteWebSocketEvent = async function (
   data,
   getNode,
   deleteNode,

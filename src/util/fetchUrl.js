@@ -4,7 +4,7 @@ import { serializeParams } from './serializeParams';
 
 axiosRetry(axios, {
   retries: 3,
-  retryDelay: retryCount => {
+  retryDelay: (retryCount) => {
     return retryCount * 1000 + retryCount * 1000 * Math.random();
   },
 });

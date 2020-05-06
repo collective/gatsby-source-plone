@@ -1,6 +1,6 @@
 import { ploneNodeGenerator } from './ploneNodeGenerator';
 
-export const updatePloneCollection = async function(
+export const updatePloneCollection = async function (
   getNodes,
   token,
   baseUrl,
@@ -11,7 +11,7 @@ export const updatePloneCollection = async function(
 ) {
   reporter.info('we are updating the Plone Collection');
   const nodes = getNodes().filter(
-    n => n.internal.owner === `gatsby-source-plone`
+    (n) => n.internal.owner === `gatsby-source-plone`
   );
   const updateNodes = new Set();
   for (let item of nodes) {

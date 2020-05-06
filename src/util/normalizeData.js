@@ -19,6 +19,7 @@ export const normalizeData = function (data, baseUrl) {
   // - Prefixes reserved keys with '_'
   //   to allow them to be queried with GraphQL
   // - Replaces '@' to '_' in properties starting with '@'
+  // - Handle Volto blocks (from 'blocks' key)
   for (const [key, value] of Object.entries(data)) {
     if (new Set(['id', 'parent', 'children']).has(key)) {
       if (key === 'parent') {
@@ -27,6 +28,26 @@ export const normalizeData = function (data, baseUrl) {
         data[`_${key}`] = value;
       }
       delete data[key];
+    } else if (
+      key === 'blocks' &&
+      typeof data['blocks'] === 'object' &&
+      !Array.isArray(data['blocks'])
+    ) {
+      data[key] = Object.entries(data['blocks']).map(([key_, value_]) => {
+        const block = {
+          _id: key_,
+        };
+        const config = {};
+        for (const [key__, value__] of Object.entries(value_)) {
+          if (key__.match(/^@.*/) !== null) {
+            block[key__] = value__;
+          } else {
+            config[key__] = value__;
+          }
+        }
+        block.config = JSON.stringify(config);
+        return block;
+      });
     } else if (key === 'items') {
       data[key] = (value || []).map((item) => normalizeData(item, baseUrl));
       data.nodes___NODE = data[key]

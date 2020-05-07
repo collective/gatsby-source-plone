@@ -92,6 +92,7 @@ exports.sourceNodes = async (
 
     const updateNodes = new Set();
     const updateParents = new Set();
+    const lastFetched = new Date(state.lastFetched);
 
     reporter.info('Resolving new and changed nodes');
     for (const item of plone.items) {
@@ -99,7 +100,7 @@ exports.sourceNodes = async (
         // Fetch new node
         updateNodes.add(item._id);
         updateParents.add(parentId(item._id));
-      } else if (state.lastFetched < item.modified) {
+      } else if (lastFetched < new Date(item.modified)) {
         // Update changed node
         updateNodes.add(item._id);
         updateParents.add(parentId(item._id));

@@ -63,6 +63,22 @@ export const makeContentNode = (id, data, baseUrl, backlinks) => {
     delete node.query;
   }
 
+  // Collect backlinks for Volto blocks content
+  for (const block of node.blocks || []) {
+    const regexp = RegExp(`${baseUrl}[^"]*`, 'g');
+    let match;
+    while ((match = regexp.exec(block.config || '')) !== null) {
+      let link = `/${match[0]
+        .substring(baseUrl.length)
+        .replace(/^\/*|\/.*$/, '')}/`;
+      if (!backlinks.has(link)) {
+        backlinks.set(link, [node._path]);
+      } else {
+        backlinks.get(link).push(node._path);
+      }
+    }
+  }
+
   // TODO: Recognize query fields from any content type
 
   return node;

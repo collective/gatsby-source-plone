@@ -2,7 +2,7 @@ import { urlWithoutParameters } from './helper';
 import { normalizePath } from './normalizePath';
 
 // Normalize Plone JSON to be usable as such in GatsbyJS
-export const normalizeData = function (data, baseUrl) {
+export const normalizeData = function (data, baseUrl, ids = new Set()) {
   // - Adds '@id' for plone.restapi < 1.0b1 results from 'url'
   if (!data['@id'] && data.url) {
     data['@id'] = data.url;
@@ -23,7 +23,7 @@ export const normalizeData = function (data, baseUrl) {
   for (const [key, value] of Object.entries(data)) {
     if (new Set(['id', 'parent', 'children']).has(key)) {
       if (key === 'parent') {
-        data[`_${key}`] = normalizeData(value, baseUrl);
+        data[`_${key}`] = normalizeData(value, baseUrl, ids);
       } else {
         data[`_${key}`] = value;
       }
@@ -49,18 +49,18 @@ export const normalizeData = function (data, baseUrl) {
         return block;
       });
     } else if (key === 'items') {
-      data[key] = (value || []).map((item) => normalizeData(item, baseUrl));
+      data[key] = (value || []).map((item) =>
+        normalizeData(item, baseUrl, ids)
+      );
       data.nodes___NODE = data[key]
-        .filter(
-          (item) => item['_id'].startsWith(baseUrl) && !item['_id'].match('@')
-        )
+        .filter((item) => ids.has(item['_id']))
         .map((item) => item['_id']);
     } else if (key === 'relatedItems') {
-      data[key] = (value || []).map((item) => normalizeData(item, baseUrl));
+      data[key] = (value || []).map((item) =>
+        normalizeData(item, baseUrl, ids)
+      );
       data.relatedNodes___NODE = data[key]
-        .filter(
-          (item) => item['_id'].startsWith(baseUrl) && !item['_id'].match('@')
-        )
+        .filter((item) => ids.has(item['_id']))
         .map((item) => item['_id']);
     } else if (key === '@id') {
       if (value.match(/\/view$/)) {
@@ -75,7 +75,7 @@ export const normalizeData = function (data, baseUrl) {
       data._components = {};
       for (const [key_, value_] of Object.entries(value)) {
         if (value_ !== null) {
-          data._components[key_] = normalizeData(value_, baseUrl);
+          data._components[key_] = normalizeData(value_, baseUrl, ids);
           data._components[key_]._path = data._path;
         }
       }

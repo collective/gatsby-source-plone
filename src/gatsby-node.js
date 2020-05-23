@@ -59,6 +59,12 @@ exports.sourceNodes = async (
     plone.items.unshift({ _id: baseUrl });
   }
 
+  // Define set of all available ids to support connecting existing nodes
+  const ids = new Set(plone.items.map((item) => item._id));
+  if (!ids.has(baseUrl)) {
+    ids.add(baseUrl);
+  }
+
   // Define shared backlinks container to collect links between nodes
   const backlinks = new Map();
 
@@ -71,7 +77,8 @@ exports.sourceNodes = async (
           token,
           baseUrl,
           expansions,
-          backlinks
+          backlinks,
+          ids
         )) {
           reporter.info(
             `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
@@ -123,7 +130,7 @@ exports.sourceNodes = async (
         updateParents.add(parentId(node.id));
       }
       reporter.info(`Deleting node – ${node.id.replace(baseUrl, '') || '/'}`);
-      touchNode({ nodeId: node.id }); // deleting fails without plugin ownrship touch
+      touchNode({ nodeId: node.id }); // deleting fails without plugin ownership touch
       deleteNode({ node: node });
       for (const id of node.children || []) {
         const child = getNode(id);
@@ -145,7 +152,8 @@ exports.sourceNodes = async (
           token,
           baseUrl,
           expansions,
-          backlinks
+          backlinks,
+          ids
         )) {
           reporter.info(
             `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
@@ -166,7 +174,8 @@ exports.sourceNodes = async (
           token,
           baseUrl,
           expansions,
-          backlinks
+          backlinks,
+          ids
         )) {
           reporter.info(
             `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
@@ -272,6 +281,7 @@ exports.sourceNodes = async (
           deleteNode,
           token,
           baseUrl,
+          ids,
           expansions,
           backlinks,
           searchParams,
@@ -288,6 +298,7 @@ exports.sourceNodes = async (
           baseUrl,
           expansions,
           backlinks,
+          ids,
           createNode,
           reporter
         );
@@ -300,6 +311,7 @@ exports.sourceNodes = async (
           createNode,
           token,
           baseUrl,
+          ids,
           expansions,
           backlinks,
           reporter
@@ -313,6 +325,7 @@ exports.sourceNodes = async (
           getNodes,
           token,
           baseUrl,
+          ids,
           expansions,
           backlinks,
           createNode,
@@ -407,6 +420,7 @@ exports.onCreateNode = async (
           httpHeaders: token ? { Authorization: `Bearer ${token}` } : {},
         });
         node.image___NODE = imageNode.id;
+        delete node.image;
         createParentChildLink({ parent: node, child: imageNode });
       } catch (e) {
         reporter.warn(`Error creating image node for ${node.id}: `, e);
@@ -425,6 +439,7 @@ exports.onCreateNode = async (
           httpHeaders: token ? { Authorization: `Bearer ${token}` } : {},
         });
         node.file___NODE = fileNode.id;
+        delete node.file;
         createParentChildLink({ parent: node, child: fileNode });
       } catch (e) {
         reporter.warn(`Error creating file node for ${node.id}: `, e);

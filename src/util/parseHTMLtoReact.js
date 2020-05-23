@@ -2,7 +2,9 @@ import { normalizePath } from './normalizePath';
 import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser';
 import { serialize } from 'react-serialize';
 
-export const parseHTMLtoReact = (html, baseUrl, path, backlinks) => {
+export const parseHTMLtoReact = (html, baseUrl) => {
+  const references = [];
+
   const transform = (node, index) => {
     // Replace hyperlinks with relative links
     if (node.type === 'tag' && node.name === 'a') {
@@ -10,11 +12,7 @@ export const parseHTMLtoReact = (html, baseUrl, path, backlinks) => {
         node.attribs.to = normalizePath(node.attribs.href.split(baseUrl)[1]);
         node.attribs.href = null;
         node.name = 'Link';
-        if (!backlinks.has(node.attribs.to)) {
-          backlinks.set(node.attribs.to, [path]);
-        } else {
-          backlinks.get(node.attribs.to).push(path);
-        }
+        references.push(node.attribs.to);
         return convertNodeToElement(node, index, transform);
       }
     }
@@ -27,11 +25,7 @@ export const parseHTMLtoReact = (html, baseUrl, path, backlinks) => {
           node.attribs.src.split(baseUrl)[1].split('/@@images')[0]
         );
         node.name = 'Img';
-        if (!backlinks.has(node.attribs.src)) {
-          backlinks.set(node.attribs.src, [path]);
-        } else {
-          backlinks.get(node.attribs.src).push(path);
-        }
+        references.push(node.attribs.src);
         return convertNodeToElement(node, index, transform);
       }
     }
@@ -42,5 +36,8 @@ export const parseHTMLtoReact = (html, baseUrl, path, backlinks) => {
     transform,
   };
 
-  return serialize(ReactHtmlParser(html, options));
+  return {
+    react: serialize(ReactHtmlParser(html, options)),
+    references,
+  };
 };

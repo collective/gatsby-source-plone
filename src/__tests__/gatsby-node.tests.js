@@ -187,6 +187,7 @@ const expectednode = {
   _id: 'Plone',
   _type: 'Plone Site',
   _parent: {},
+  blocks_nodes___NODE: [],
   id: 'http://localhost:8080/Plone',
   internal: {
     contentDigest: createContentDigest(mockdata),
@@ -489,9 +490,9 @@ const mockfetchPloneBreadcrumbsget = {
 };
 
 test('makeContentNode returns Gatsby Node', () => {
-  expect(makeContentNode(mockid, mockdata, mockbaseUrl, mockbacklinks)).toEqual(
-    expectednode
-  );
+  expect(
+    makeContentNode(mockid, mockdata, mockbaseUrl, mockbacklinks, generatorids)
+  ).toEqual(expectednode);
 });
 
 test('makeNavigationNode returns Gatsby Node for Navigation', () => {
@@ -511,6 +512,7 @@ test('fetchPloneNavigation returns Gatsby Node for Navigation', async () => {
     idFetchPloneNavigation,
     '',
     baseUrlNavigation,
+    generatorids,
     mockfetchPloneget
   );
   expect(data).toEqual(fetchPloneNode);
@@ -521,6 +523,7 @@ test('fetchPloneBreadcrumbs returns Gatsby Node for Breadcrumbs', async () => {
     idFetchPloneBreadcrumbs,
     '',
     baseUrlBreadcrumbs,
+    generatorids,
     mockfetchPloneBreadcrumbsget
   );
   expect(data).toEqual(fetchBreadcrumbsNode);
@@ -756,6 +759,7 @@ const ContentNodeGenerator = {
   _id: 'Plone',
   _type: 'Plone Site',
   _parent: {},
+  blocks_nodes___NODE: [],
   id: 'http://localhost:8080/Plone',
   internal: {
     contentDigest: '31c5a07f4148c70143631b1267d1d418',
@@ -764,6 +768,8 @@ const ContentNodeGenerator = {
   },
   _backlinks: [''],
 };
+const generatorids = new Set(fetchPloneNode.items.map((item) => item._id));
+generatorids.add('http://localhost:8080/Plone');
 
 const BreadcrumbsNodeGenerator = {
   items: [],
@@ -836,7 +842,7 @@ const NavigationNodeGenerator = {
   },
 };
 
-const mockPloneNodeGeneratorget = {
+const mockPloneNodeGeneratorGet = {
   get: async (url, headers, params) => {
     return {
       data: mockDataPloneNodeGenerator,
@@ -852,7 +858,8 @@ test('fetchPloneNodeGenerator return all created node after fetching data form P
     generatorbaseUrl,
     [],
     generatorbacklinks,
-    mockPloneNodeGeneratorget
+    generatorids,
+    mockPloneNodeGeneratorGet
   )) {
     if (count === 0) {
       expect(node).toEqual(ContentNodeGenerator);

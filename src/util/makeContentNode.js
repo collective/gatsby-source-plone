@@ -5,7 +5,7 @@ import { parseHTMLtoReact } from './parseHTMLtoReact';
 // TODO: Make DownloadableContentTypes configurable
 const DownloadableContentTypes = new Set(['Image', 'File']);
 
-export const makeContentNode = (id, data, baseUrl, backlinks) => {
+export const makeContentNode = (id, data, baseUrl, backlinks, ids) => {
   // mediaType is always set as 'text/html' as a common case, because
   // content objects may have html, images, files or combinations of them
   let node = {
@@ -15,6 +15,8 @@ export const makeContentNode = (id, data, baseUrl, backlinks) => {
       contentDigest: createContentDigest(data),
       mediaType: 'text/html',
     },
+    // placeholder for nodes linked from Volto blocks
+    blocks_nodes___NODE: [],
   };
 
   if (id === baseUrl) {
@@ -40,7 +42,7 @@ export const makeContentNode = (id, data, baseUrl, backlinks) => {
     if (DownloadableContentTypes.has(item._type)) {
       if (!backlinks.has(item._path)) {
         backlinks.set(item._path, [node._path]);
-      } else {
+      } else if (backlinks.get(item._path).indexOf(node._path) === -1) {
         backlinks.get(item._path).push(node._path);
       }
     }
@@ -49,12 +51,22 @@ export const makeContentNode = (id, data, baseUrl, backlinks) => {
   // Transform HTML string into serialized React tree
   if (node.text) {
     if (node.text['content-type'] === 'text/html') {
-      node.text.react = parseHTMLtoReact(
-        node.text.data,
-        baseUrl,
-        node._path,
-        backlinks
-      );
+      const { react, references } = parseHTMLtoReact(node.text.data, baseUrl);
+      node.text.react = react;
+      node.text.nodes___NODES = [];
+      for (const reference of references) {
+        if (!backlinks.has(reference)) {
+          backlinks.set(reference, [node._path]);
+        } else if (backlinks.get(reference).indexOf(node._path) === -1) {
+          backlinks.get(reference).push(node._path);
+        }
+        if (
+          ids.has(`${baseUrl}${reference}`) &&
+          node.text.nodes___NODE.indexOf(`${baseUrl}${reference}`) === -1
+        ) {
+          node.text.nodes___NODE.push(`${baseUrl}${reference}`);
+        }
+      }
     }
   }
 
@@ -73,8 +85,14 @@ export const makeContentNode = (id, data, baseUrl, backlinks) => {
         .replace(/^\/*|\/.*$/, '')}/`;
       if (!backlinks.has(link)) {
         backlinks.set(link, [node._path]);
-      } else {
+      } else if (backlinks.get(link).indexOf(node._path) === -1) {
         backlinks.get(link).push(node._path);
+      }
+      if (
+        ids.has(match[0]) &&
+        node.blocks_nodes___NODE.indexOf(match[0]) === -1
+      ) {
+        node.blocks_nodes___NODE.push(match[0]);
       }
     }
   }

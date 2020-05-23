@@ -76,7 +76,8 @@ export const makeContentNode = (id, data, baseUrl, backlinks, ids) => {
   }
 
   // Collect backlinks for Volto blocks content
-  for (const block of node.blocks || []) {
+  for (const block of (node.blocks && node.blocks.length && node.blocks) ||
+    []) {
     const regexp = RegExp(`${baseUrl}[^"]*`, 'g');
     let match;
     while ((match = regexp.exec(block.config || '')) !== null) {

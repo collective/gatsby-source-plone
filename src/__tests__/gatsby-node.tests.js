@@ -74,8 +74,8 @@ const mockdata = {
     },
   ],
   items_total: 7,
-  tiles: {},
-  tiles_layout: {},
+  blocks: {},
+  blocks_layout: [],
   title: 'Plone site',
   _path: '/',
   _components: {
@@ -167,8 +167,8 @@ const expectednode = {
     },
   ],
   items_total: 7,
-  tiles: {},
-  tiles_layout: {},
+  blocks: {},
+  blocks_layout: [],
   title: 'Plone site',
   _path: '/',
   _components: {
@@ -630,8 +630,40 @@ const mockDataPloneNodeGenerator = {
   ],
   items_total: 5,
   parent: {},
-  tiles: {},
-  tiles_layout: {},
+  blocks: {
+    'c514e9ec-8ea4-47dd-88e2-176675fcb84a': {
+      '@type': 'text',
+      text: {
+        blocks: [
+          {
+            data: {},
+            depth: 0,
+            entityRanges: [
+              {
+                key: 0,
+                length: 29,
+                offset: 0,
+              },
+            ],
+            inlineStyleRanges: [],
+            key: '8pde8',
+            text: 'And this is an internal link.',
+            type: 'unstyled',
+          },
+        ],
+        entityMap: {
+          '0': {
+            data: {
+              url: 'http://localhost:8080/Plone/tutorial',
+            },
+            mutability: 'MUTABLE',
+            type: 'LINK',
+          },
+        },
+      },
+    },
+  },
+  blocks_layout: ['c514e9ec-8ea4-47dd-88e2-176675fcb84a'],
   title: 'Plone site',
 };
 
@@ -689,8 +721,16 @@ const ContentNodeGenerator = {
     'http://localhost:8080/Plone/reference',
   ],
   items_total: 5,
-  tiles: {},
-  tiles_layout: {},
+  blocks: [
+    {
+      '@type': 'text',
+      _id: 'c514e9ec-8ea4-47dd-88e2-176675fcb84a',
+      config:
+        '{"text":{"blocks":[{"data":{},"depth":0,"entityRanges":[{"key":0,"length":29,"offset":0}],"inlineStyleRanges":[],"key":"8pde8","text":"And this is an internal link.","type":"unstyled"}],"entityMap":{"0":{"data":{"url":"http://localhost:8080/Plone/tutorial"},"mutability":"MUTABLE","type":"LINK"}}}}',
+    },
+  ],
+  blocks_layout: ['c514e9ec-8ea4-47dd-88e2-176675fcb84a'],
+  blocks_nodes___NODE: ['http://localhost:8080/Plone/tutorial'],
   title: 'Plone site',
   _path: '/',
   _components: {
@@ -759,10 +799,9 @@ const ContentNodeGenerator = {
   _id: 'Plone',
   _type: 'Plone Site',
   _parent: {},
-  blocks_nodes___NODE: [],
   id: 'http://localhost:8080/Plone',
   internal: {
-    contentDigest: '31c5a07f4148c70143631b1267d1d418',
+    contentDigest: 'c48af00a3dfb154bb4a65e297b76e60e',
     mediaType: 'text/html',
     type: 'PloneSite',
   },

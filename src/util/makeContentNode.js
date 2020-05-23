@@ -1,4 +1,5 @@
 import { createContentDigest } from './helper';
+import { normalizePath } from './normalizePath';
 import { normalizeType } from './normalizeType';
 import { parseHTMLtoReact } from './parseHTMLtoReact';
 
@@ -53,18 +54,19 @@ export const makeContentNode = (id, data, baseUrl, backlinks, ids) => {
     if (node.text['content-type'] === 'text/html') {
       const { react, references } = parseHTMLtoReact(node.text.data, baseUrl);
       node.text.react = react;
-      node.text.nodes___NODES = [];
+      node.text.nodes___NODE = [];
       for (const reference of references) {
-        if (!backlinks.has(reference)) {
-          backlinks.set(reference, [node._path]);
-        } else if (backlinks.get(reference).indexOf(node._path) === -1) {
-          backlinks.get(reference).push(node._path);
+        const link = normalizePath(reference.split(baseUrl)[1]);
+        if (!backlinks.has(link)) {
+          backlinks.set(link, [node._path]);
+        } else if (backlinks.get(link).indexOf(node._path) === -1) {
+          backlinks.get(link).push(node._path);
         }
         if (
-          ids.has(`${baseUrl}${reference}`) &&
-          node.text.nodes___NODE.indexOf(`${baseUrl}${reference}`) === -1
+          ids.has(reference) &&
+          node.text.nodes___NODE.indexOf(reference) === -1
         ) {
-          node.text.nodes___NODE.push(`${baseUrl}${reference}`);
+          node.text.nodes___NODE.push(reference);
         }
       }
     }

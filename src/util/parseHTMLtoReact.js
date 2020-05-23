@@ -9,10 +9,10 @@ export const parseHTMLtoReact = (html, baseUrl) => {
     // Replace hyperlinks with relative links
     if (node.type === 'tag' && node.name === 'a') {
       if (node.attribs.href && node.attribs.href.startsWith(baseUrl)) {
+        references.push(node.attribs.href);
         node.attribs.to = normalizePath(node.attribs.href.split(baseUrl)[1]);
         node.attribs.href = null;
         node.name = 'Link';
-        references.push(node.attribs.to);
         return convertNodeToElement(node, index, transform);
       }
     }
@@ -20,12 +20,12 @@ export const parseHTMLtoReact = (html, baseUrl) => {
     // Replace image src with relative paths
     if (node.type === 'tag' && node.name === 'img') {
       if (node.attribs.src && node.attribs.src.startsWith(baseUrl)) {
+        references.push(node.attribs.src.split('/@@images')[0]);
         node.attribs['data-download'] = node.attribs.src;
         node.attribs.src = normalizePath(
           node.attribs.src.split(baseUrl)[1].split('/@@images')[0]
         );
         node.name = 'Img';
-        references.push(node.attribs.src);
         return convertNodeToElement(node, index, transform);
       }
     }

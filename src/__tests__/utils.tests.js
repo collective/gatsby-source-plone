@@ -360,7 +360,10 @@ test('parseHTMLtoReact transforms relative links', async () => {
       type: 'p',
     },
   ]);
-  expect(references).toEqual(['/foobar/', '/foo/bar.png/']);
+  expect(references).toEqual([
+    'http://localhost:8080/Plone/foobar',
+    'http://localhost:8080/Plone/foo/bar.png',
+  ]);
 });
 
 test('serialiseParams serialize paramas into ZPublisher format', () => {

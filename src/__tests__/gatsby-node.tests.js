@@ -630,6 +630,10 @@ const mockDataPloneNodeGenerator = {
   ],
   items_total: 5,
   parent: {},
+  text: {
+    'content-type': 'text/html',
+    data: '<p><a href="http://localhost:8080/Plone/tutorial">Tutorial</a></p>',
+  },
   blocks: {
     'c514e9ec-8ea4-47dd-88e2-176675fcb84a': {
       '@type': 'text',
@@ -721,6 +725,13 @@ const ContentNodeGenerator = {
     'http://localhost:8080/Plone/reference',
   ],
   items_total: 5,
+  text: {
+    'content-type': 'text/html',
+    data: '<p><a href="http://localhost:8080/Plone/tutorial">Tutorial</a></p>',
+    nodes___NODE: ['http://localhost:8080/Plone/tutorial'],
+    react:
+      '[{"type":"p","props":{"children":[{"type":"Link","props":{"href":null,"to":"/tutorial/","children":["Tutorial"]}}]}}]',
+  },
   blocks: [
     {
       '@type': 'text',
@@ -801,7 +812,7 @@ const ContentNodeGenerator = {
   _parent: {},
   id: 'http://localhost:8080/Plone',
   internal: {
-    contentDigest: 'c48af00a3dfb154bb4a65e297b76e60e',
+    contentDigest: 'a2ba7025e62747db5bc311954d0649ea',
     mediaType: 'text/html',
     type: 'PloneSite',
   },

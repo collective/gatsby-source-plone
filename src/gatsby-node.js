@@ -272,6 +272,7 @@ exports.sourceNodes = async (
           baseUrl,
           expansions,
           backlinks,
+          ids,
           createNode,
           reporter
         );
@@ -284,9 +285,9 @@ exports.sourceNodes = async (
           deleteNode,
           token,
           baseUrl,
-          ids,
           expansions,
           backlinks,
+          ids,
           searchParams,
           reporter
         );
@@ -314,9 +315,9 @@ exports.sourceNodes = async (
           createNode,
           token,
           baseUrl,
-          ids,
           expansions,
           backlinks,
+          ids,
           reporter
         );
         if (timerId) {
@@ -328,9 +329,9 @@ exports.sourceNodes = async (
           getNodes,
           token,
           baseUrl,
-          ids,
           expansions,
           backlinks,
+          ids,
           createNode,
           reporter
         );

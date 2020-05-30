@@ -233,7 +233,10 @@ exports.sourceNodes = async (
   reporter.info(JSON.stringify(newState));
 
   const webSocketStart = function (reconnectionDelay = 1) {
-    let ws = new WebSocket(baseUrl.replace(/(http)(s)?\:\/\//, 'ws$2://'));
+    let ws = new WebSocket(
+      baseUrl.replace(/(http)(s)?\:\/\//, 'ws$2://'),
+      token ? { headers: { Authorization: `Bearer ${token}` } } : {}
+    );
     let timerId = null;
     let count = 0;
 

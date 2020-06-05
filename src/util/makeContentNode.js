@@ -80,22 +80,29 @@ export const makeContentNode = (id, data, baseUrl, backlinks, ids) => {
   // Collect backlinks for Volto blocks content
   for (const block of (node.blocks && node.blocks.length && node.blocks) ||
     []) {
-    const regexp = RegExp(`${baseUrl}[^"]*`, 'g');
-    let match;
-    while ((match = regexp.exec(block.config || '')) !== null) {
-      let link = `/${match[0]
-        .substring(baseUrl.length)
-        .replace(/^\/*|\/.*$/, '')}/`;
-      if (!backlinks.has(link)) {
-        backlinks.set(link, [node._path]);
-      } else if (backlinks.get(link).indexOf(node._path) === -1) {
-        backlinks.get(link).push(node._path);
-      }
-      if (
-        ids.has(match[0]) &&
-        node.blocks_nodes___NODE.indexOf(match[0]) === -1
-      ) {
-        node.blocks_nodes___NODE.push(match[0]);
+    // Also match URLs for baseUrl without /api/ part, because of common Volto
+    // backend deployment contention
+    const baseUrls = new RegExp(/\/api\//).exec(baseUrl)
+      ? [baseUrl, baseUrl.replace('/api/', '/')]
+      : [baseUrl];
+    for (const url of baseUrls) {
+      const regexp = RegExp(`${url}[^"]*`, 'g');
+      let match;
+      while ((match = regexp.exec(block.config || '')) !== null) {
+        let link = `/${match[0]
+          .substring(url.length)
+          .replace(/^\/*|\/.*$/, '')}/`;
+        if (!backlinks.has(link)) {
+          backlinks.set(link, [node._path]);
+        } else if (backlinks.get(link).indexOf(node._path) === -1) {
+          backlinks.get(link).push(node._path);
+        }
+        if (
+          ids.has(match[0]) &&
+          node.blocks_nodes___NODE.indexOf(match[0]) === -1
+        ) {
+          node.blocks_nodes___NODE.push(match[0]);
+        }
       }
     }
   }

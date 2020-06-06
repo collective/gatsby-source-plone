@@ -89,8 +89,9 @@ export const makeContentNode = (id, data, baseUrl, backlinks, ids) => {
       const regexp = RegExp(`${url}[^"]*`, 'g');
       let match;
       while ((match = regexp.exec(block.config || '')) !== null) {
-        let link = `/${match[0]
-          .substring(url.length)
+        let match_ = `${baseUrl}${match[0].substring(url.length)}`;
+        let link = `/${match_
+          .substring(baseUrl.length)
           .replace(/^\/*|\/.*$/, '')}/`;
         if (!backlinks.has(link)) {
           backlinks.set(link, [node._path]);
@@ -98,10 +99,13 @@ export const makeContentNode = (id, data, baseUrl, backlinks, ids) => {
           backlinks.get(link).push(node._path);
         }
         if (
-          ids.has(match[0]) &&
-          node.blocks_nodes___NODE.indexOf(match[0]) === -1
+          ids.has(match_) &&
+          node.blocks_nodes___NODE.indexOf(match_) === -1
         ) {
-          node.blocks_nodes___NODE.push(match[0]);
+          node.blocks_nodes___NODE.push(match_);
+        }
+        if (ids.has(match_)) {
+          block.config = block.config.replace(match[0], match_);
         }
       }
     }

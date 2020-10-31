@@ -13,7 +13,7 @@
     "gatsby-source-filesystem": "^2.1.33",
     "gatsby-source-plone": "https://github.com/collective/gatsby-source-plone.git#master",
     "gatsby-transformer-sharp": "^2.2.23",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
     "react-helmet": "^5.2.1",

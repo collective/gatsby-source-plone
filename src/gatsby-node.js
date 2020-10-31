@@ -59,6 +59,12 @@ exports.sourceNodes = async (
     plone.items.unshift({ _id: baseUrl });
   }
 
+  // Define set of all available ids to support connecting existing nodes
+  const ids = new Set(plone.items.map((item) => item._id));
+  if (!ids.has(baseUrl)) {
+    ids.add(baseUrl);
+  }
+
   // Define shared backlinks container to collect links between nodes
   const backlinks = new Map();
 
@@ -71,7 +77,8 @@ exports.sourceNodes = async (
           token,
           baseUrl,
           expansions,
-          backlinks
+          backlinks,
+          ids
         )) {
           reporter.info(
             `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
@@ -123,7 +130,7 @@ exports.sourceNodes = async (
         updateParents.add(parentId(node.id));
       }
       reporter.info(`Deleting node – ${node.id.replace(baseUrl, '') || '/'}`);
-      touchNode({ nodeId: node.id }); // deleting fails without plugin ownrship touch
+      touchNode({ nodeId: node.id }); // deleting fails without plugin ownership touch
       deleteNode({ node: node });
       for (const id of node.children || []) {
         const child = getNode(id);
@@ -145,7 +152,8 @@ exports.sourceNodes = async (
           token,
           baseUrl,
           expansions,
-          backlinks
+          backlinks,
+          ids
         )) {
           reporter.info(
             `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
@@ -166,7 +174,8 @@ exports.sourceNodes = async (
           token,
           baseUrl,
           expansions,
-          backlinks
+          backlinks,
+          ids
         )) {
           reporter.info(
             `Creating node – ${node.id.replace(baseUrl, '') || '/'}`
@@ -224,7 +233,10 @@ exports.sourceNodes = async (
   reporter.info(JSON.stringify(newState));
 
   const webSocketStart = function (reconnectionDelay = 1) {
-    let ws = new WebSocket(baseUrl.replace(/(http)(s)?\:\/\//, 'ws$2://'));
+    let ws = new WebSocket(
+      baseUrl.replace(/(http)(s)?\:\/\//, 'ws$2://'),
+      token ? { headers: { Authorization: `Bearer ${token}` } } : {}
+    );
     let timerId = null;
     let count = 0;
 
@@ -260,6 +272,7 @@ exports.sourceNodes = async (
           baseUrl,
           expansions,
           backlinks,
+          ids,
           createNode,
           reporter
         );
@@ -274,6 +287,7 @@ exports.sourceNodes = async (
           baseUrl,
           expansions,
           backlinks,
+          ids,
           searchParams,
           reporter
         );
@@ -288,6 +302,7 @@ exports.sourceNodes = async (
           baseUrl,
           expansions,
           backlinks,
+          ids,
           createNode,
           reporter
         );
@@ -302,6 +317,7 @@ exports.sourceNodes = async (
           baseUrl,
           expansions,
           backlinks,
+          ids,
           reporter
         );
         if (timerId) {
@@ -315,6 +331,7 @@ exports.sourceNodes = async (
           baseUrl,
           expansions,
           backlinks,
+          ids,
           createNode,
           reporter
         );
@@ -407,6 +424,7 @@ exports.onCreateNode = async (
           httpHeaders: token ? { Authorization: `Bearer ${token}` } : {},
         });
         node.image___NODE = imageNode.id;
+        delete node.image;
         createParentChildLink({ parent: node, child: imageNode });
       } catch (e) {
         reporter.warn(`Error creating image node for ${node.id}: `, e);
@@ -425,6 +443,7 @@ exports.onCreateNode = async (
           httpHeaders: token ? { Authorization: `Bearer ${token}` } : {},
         });
         node.file___NODE = fileNode.id;
+        delete node.file;
         createParentChildLink({ parent: node, child: fileNode });
       } catch (e) {
         reporter.warn(`Error creating file node for ${node.id}: `, e);

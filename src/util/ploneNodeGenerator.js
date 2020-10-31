@@ -10,6 +10,7 @@ export const ploneNodeGenerator = async function* (
   baseUrl,
   expansions,
   backlinks,
+  ids,
   mock
 ) {
   // Fetch from Plone REST API and normalize it to be GraphQL compatible
@@ -26,10 +27,11 @@ export const ploneNodeGenerator = async function* (
       },
       mock
     ),
-    baseUrl
+    baseUrl,
+    ids
   );
   // Yield content node
-  yield makeContentNode(id, data, baseUrl, backlinks);
+  yield makeContentNode(id, data, baseUrl, backlinks, ids);
 
   // Yield breadcrumbs node
   if (data._components && data._components.breadcrumbs) {

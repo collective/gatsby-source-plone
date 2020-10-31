@@ -130,7 +130,41 @@ test('normalizeData prefixes id, parent and children with _', async () => {
   });
 });
 
-test('normalizeData excludes node___NODE when @id outside baseUrl', async () => {
+test('normalizeData excludes node___NODE when @id not in ids', async () => {
+  expect(
+    normalizeData(
+      {
+        items: [
+          { '@id': 'http://localhost:8080/Plone' },
+          {
+            '@id': 'http://localhost:8080/Plone',
+            items: [{ '@id': 'http://localhost:8080/Plone' }],
+          },
+        ],
+      },
+      'http://localhost:8080',
+      new Set()
+    )
+  ).toEqual({
+    items: [
+      {
+        _id: 'http://localhost:8080/Plone',
+        _path: '/Plone/',
+      },
+      {
+        _id: 'http://localhost:8080/Plone',
+        _path: '/Plone/',
+        items: [
+          {
+            _id: 'http://localhost:8080/Plone',
+            _path: '/Plone/',
+          },
+        ],
+        nodes___NODE: [],
+      },
+    ],
+    nodes___NODE: [],
+  });
   expect(
     normalizeData(
       {
@@ -140,7 +174,8 @@ test('normalizeData excludes node___NODE when @id outside baseUrl', async () => 
         },
         children: [],
       },
-      'http://localhost:8080/Plone'
+      'http://localhost:8080/Plone',
+      new Set(['http://localhost:8080/Plone'])
     )
   ).toEqual({
     _id: '',
@@ -149,6 +184,41 @@ test('normalizeData excludes node___NODE when @id outside baseUrl', async () => 
       _path: '/',
     },
     _children: [],
+  });
+});
+
+test('normalizeData transforms Volto blocksh', async () => {
+  expect(
+    normalizeData({
+      blocks: {
+        '022e1d94-c51c-4fc9-8e86-14a7e5eab00d': {
+          '@type': 'text',
+          text: {
+            blocks: [
+              {
+                data: {},
+                depth: 0,
+                entityRanges: [],
+                inlineStyleRanges: [],
+                key: 'dhi5a',
+                text: 'of a dummy graph.',
+                type: 'unstyled',
+              },
+            ],
+            entityMap: {},
+          },
+        },
+      },
+    })
+  ).toEqual({
+    blocks: [
+      {
+        '@type': 'text',
+        _id: '022e1d94-c51c-4fc9-8e86-14a7e5eab00d',
+        config:
+          '{"text":{"blocks":[{"data":{},"depth":0,"entityRanges":[],"inlineStyleRanges":[],"key":"dhi5a","text":"of a dummy graph.","type":"unstyled"}],"entityMap":{}}}',
+      },
+    ],
   });
 });
 
@@ -186,7 +256,8 @@ test('normalizeData process items recursively', async () => {
           },
         ],
       },
-      'http://localhost:8080'
+      'http://localhost:8080',
+      new Set(['http://localhost:8080/Plone'])
     )
   ).toEqual({
     items: [
@@ -226,7 +297,8 @@ test('normalizeData process @components recursively', async () => {
           },
         },
       },
-      'http://localhost:8080'
+      'http://localhost:8080',
+      new Set(['http://localhost:8080/Plone'])
     )
   ).toEqual({
     _components: {
@@ -251,8 +323,7 @@ test('normalizeData process @components recursively', async () => {
 });
 
 test('parseHTMLtoReact transforms relative links', async () => {
-  const backlinks = new Map();
-  const react = parseHTMLtoReact(
+  const { react, references } = parseHTMLtoReact(
     `
 <p>
 <a href="http://localhost:8080/Plone/foobar">
@@ -260,9 +331,7 @@ test('parseHTMLtoReact transforms relative links', async () => {
 </a>
 </p>
 `,
-    'http://localhost:8080/Plone',
-    '/index/',
-    backlinks
+    'http://localhost:8080/Plone'
   );
   expect(JSON.parse(react)).toEqual([
     {
@@ -291,12 +360,10 @@ test('parseHTMLtoReact transforms relative links', async () => {
       type: 'p',
     },
   ]);
-  expect(backlinks).toEqual(
-    new Map([
-      ['/foobar/', ['/index/']],
-      ['/foo/bar.png/', ['/index/']],
-    ])
-  );
+  expect(references).toEqual([
+    'http://localhost:8080/Plone/foobar',
+    'http://localhost:8080/Plone/foo/bar.png',
+  ]);
 });
 
 test('serialiseParams serialize paramas into ZPublisher format', () => {

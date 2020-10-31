@@ -6,6 +6,7 @@ export const createWebsocketEvent = async function (
   baseUrl,
   expansions,
   backlinks,
+  ids,
   createNode,
   reporter
 ) {
@@ -18,10 +19,14 @@ export const createWebsocketEvent = async function (
       token,
       baseUrl,
       expansions,
-      backlinks
+      backlinks,
+      ids
     )) {
       reporter.info(`Creating node – ${node.id.replace(baseUrl, '') || '/'}`);
       createNode(node);
+      if (!ids.has(node.id)) {
+        ids.add(node.id);
+      }
     }
   }
 };

@@ -74,8 +74,8 @@ const mockdata = {
     },
   ],
   items_total: 7,
-  tiles: {},
-  tiles_layout: {},
+  blocks: {},
+  blocks_layout: [],
   title: 'Plone site',
   _path: '/',
   _components: {
@@ -167,8 +167,8 @@ const expectednode = {
     },
   ],
   items_total: 7,
-  tiles: {},
-  tiles_layout: {},
+  blocks: {},
+  blocks_layout: [],
   title: 'Plone site',
   _path: '/',
   _components: {
@@ -187,6 +187,7 @@ const expectednode = {
   _id: 'Plone',
   _type: 'Plone Site',
   _parent: {},
+  blocks_nodes___NODE: [],
   id: 'http://localhost:8080/Plone',
   internal: {
     contentDigest: createContentDigest(mockdata),
@@ -489,9 +490,9 @@ const mockfetchPloneBreadcrumbsget = {
 };
 
 test('makeContentNode returns Gatsby Node', () => {
-  expect(makeContentNode(mockid, mockdata, mockbaseUrl, mockbacklinks)).toEqual(
-    expectednode
-  );
+  expect(
+    makeContentNode(mockid, mockdata, mockbaseUrl, mockbacklinks, generatorids)
+  ).toEqual(expectednode);
 });
 
 test('makeNavigationNode returns Gatsby Node for Navigation', () => {
@@ -511,6 +512,7 @@ test('fetchPloneNavigation returns Gatsby Node for Navigation', async () => {
     idFetchPloneNavigation,
     '',
     baseUrlNavigation,
+    generatorids,
     mockfetchPloneget
   );
   expect(data).toEqual(fetchPloneNode);
@@ -521,6 +523,7 @@ test('fetchPloneBreadcrumbs returns Gatsby Node for Breadcrumbs', async () => {
     idFetchPloneBreadcrumbs,
     '',
     baseUrlBreadcrumbs,
+    generatorids,
     mockfetchPloneBreadcrumbsget
   );
   expect(data).toEqual(fetchBreadcrumbsNode);
@@ -627,8 +630,44 @@ const mockDataPloneNodeGenerator = {
   ],
   items_total: 5,
   parent: {},
-  tiles: {},
-  tiles_layout: {},
+  text: {
+    'content-type': 'text/html',
+    data: '<p><a href="http://localhost:8080/Plone/tutorial">Tutorial</a></p>',
+  },
+  blocks: {
+    'c514e9ec-8ea4-47dd-88e2-176675fcb84a': {
+      '@type': 'text',
+      text: {
+        blocks: [
+          {
+            data: {},
+            depth: 0,
+            entityRanges: [
+              {
+                key: 0,
+                length: 29,
+                offset: 0,
+              },
+            ],
+            inlineStyleRanges: [],
+            key: '8pde8',
+            text: 'And this is an internal link.',
+            type: 'unstyled',
+          },
+        ],
+        entityMap: {
+          '0': {
+            data: {
+              url: 'http://localhost:8080/Plone/tutorial',
+            },
+            mutability: 'MUTABLE',
+            type: 'LINK',
+          },
+        },
+      },
+    },
+  },
+  blocks_layout: ['c514e9ec-8ea4-47dd-88e2-176675fcb84a'],
   title: 'Plone site',
 };
 
@@ -686,8 +725,23 @@ const ContentNodeGenerator = {
     'http://localhost:8080/Plone/reference',
   ],
   items_total: 5,
-  tiles: {},
-  tiles_layout: {},
+  text: {
+    'content-type': 'text/html',
+    data: '<p><a href="http://localhost:8080/Plone/tutorial">Tutorial</a></p>',
+    nodes___NODE: ['http://localhost:8080/Plone/tutorial'],
+    react:
+      '[{"type":"p","props":{"children":[{"type":"Link","props":{"href":null,"to":"/tutorial/","children":["Tutorial"]}}]}}]',
+  },
+  blocks: [
+    {
+      '@type': 'text',
+      _id: 'c514e9ec-8ea4-47dd-88e2-176675fcb84a',
+      config:
+        '{"text":{"blocks":[{"data":{},"depth":0,"entityRanges":[{"key":0,"length":29,"offset":0}],"inlineStyleRanges":[],"key":"8pde8","text":"And this is an internal link.","type":"unstyled"}],"entityMap":{"0":{"data":{"url":"http://localhost:8080/Plone/tutorial"},"mutability":"MUTABLE","type":"LINK"}}}}',
+    },
+  ],
+  blocks_layout: ['c514e9ec-8ea4-47dd-88e2-176675fcb84a'],
+  blocks_nodes___NODE: ['http://localhost:8080/Plone/tutorial'],
   title: 'Plone site',
   _path: '/',
   _components: {
@@ -758,12 +812,14 @@ const ContentNodeGenerator = {
   _parent: {},
   id: 'http://localhost:8080/Plone',
   internal: {
-    contentDigest: '31c5a07f4148c70143631b1267d1d418',
+    contentDigest: 'a2ba7025e62747db5bc311954d0649ea',
     mediaType: 'text/html',
     type: 'PloneSite',
   },
   _backlinks: [''],
 };
+const generatorids = new Set(fetchPloneNode.items.map((item) => item._id));
+generatorids.add('http://localhost:8080/Plone');
 
 const BreadcrumbsNodeGenerator = {
   items: [],
@@ -836,7 +892,7 @@ const NavigationNodeGenerator = {
   },
 };
 
-const mockPloneNodeGeneratorget = {
+const mockPloneNodeGeneratorGet = {
   get: async (url, headers, params) => {
     return {
       data: mockDataPloneNodeGenerator,
@@ -852,7 +908,8 @@ test('fetchPloneNodeGenerator return all created node after fetching data form P
     generatorbaseUrl,
     [],
     generatorbacklinks,
-    mockPloneNodeGeneratorget
+    generatorids,
+    mockPloneNodeGeneratorGet
   )) {
     if (count === 0) {
       expect(node).toEqual(ContentNodeGenerator);

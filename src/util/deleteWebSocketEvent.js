@@ -9,6 +9,7 @@ export const deleteWebSocketEvent = async function (
   baseUrl,
   expansions,
   backlinks,
+  ids,
   reporter
 ) {
   let url = data['removed'][0]['@id'];
@@ -16,6 +17,9 @@ export const deleteWebSocketEvent = async function (
   let node = getNode(url);
   let breadcrumbsNode = getNode(`${url}/@breadcrumbs`);
   let navigationNode = getNode(`${url}/@navigation`);
+  if (ids.has(node.id)) {
+    ids.delete(node.id);
+  }
   if (node) {
     reporter.info(`node deleted at ${url}`);
     deleteNode({ node: node });

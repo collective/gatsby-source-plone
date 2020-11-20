@@ -3,18 +3,22 @@
 pkgs.stdenv.mkDerivation rec {
   name = "gatsby-env";
   buildInputs = with pkgs; [
+    autoconf
+    automake
     firefox
     geckodriver
     jq
     lcms2
     libpng
-    nodejs-10_x
+    libtool
+    nasm
+    nodejs-12_x
     pkgconfig
     python3
     travis
     zlib
     (yarn.override {
-      nodejs = nodejs-10_x;
+      nodejs = nodejs-12_x;
     })
   ];
   shellHook = ''

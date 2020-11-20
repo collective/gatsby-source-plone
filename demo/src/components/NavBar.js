@@ -20,7 +20,7 @@ const NavBar = ({ active, toggleNavigation, navigationExpanded }) => (
         }
       }
     `}
-    render={data => (
+    render={(data) => (
       <nav className="navbar navbar-expand-md navbar-light bg-light col-12">
         <span className="navbar-brand">
           <Link className="nav-link" to="/">
@@ -48,8 +48,8 @@ const NavBar = ({ active, toggleNavigation, navigationExpanded }) => (
         >
           <ul className="navbar-nav mr-auto">
             {data.ploneNavigation.items
-              .filter(node => !new Set(['/', '/index/']).has(node._path))
-              .map(node => (
+              .filter((node) => !new Set(['/', '/index/']).has(node._path))
+              .map((node) => (
                 <li className="nav-item" key={node._id}>
                   <Link
                     className={
@@ -82,18 +82,15 @@ const mapStateToProps = ({ navigationExpanded }) => {
   return { navigationExpanded };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    toggleNavigation: expanded =>
+    toggleNavigation: (expanded) =>
       expanded
         ? dispatch({ type: COLLAPSE_NAVIGATION })
         : dispatch({ type: EXPAND_NAVIGATION }),
   };
 };
 
-const ConnectedNavBar = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(NavBar);
+const ConnectedNavBar = connect(mapStateToProps, mapDispatchToProps)(NavBar);
 
 export default ConnectedNavBar;

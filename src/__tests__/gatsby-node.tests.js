@@ -656,7 +656,7 @@ const mockDataPloneNodeGenerator = {
           },
         ],
         entityMap: {
-          '0': {
+          0: {
             data: {
               url: 'http://localhost:8080/Plone/tutorial',
             },

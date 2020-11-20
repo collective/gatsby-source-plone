@@ -11,7 +11,7 @@ const Folder = ({ data, title, images = [], files = [] }) => {
     'Collection',
     'File',
   ]);
-  let byPath = files.reduce(function(result, file) {
+  let byPath = files.reduce(function (result, file) {
     result[file._path] = file;
     return result;
   }, {});
@@ -27,9 +27,9 @@ const Folder = ({ data, title, images = [], files = [] }) => {
       <ul className="list-group">
         {data.items
           .filter(
-            item => listedTypes.has(item._type) && item._path !== '/index/'
+            (item) => listedTypes.has(item._type) && item._path !== '/index/'
           )
-          .map(item => (
+          .map((item) => (
             <li key={item._path} className="list-group-item">
               <p>
                 {byPath[item._path] ? (

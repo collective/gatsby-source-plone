@@ -4,5 +4,5 @@ export const normalizePath = (path) => {
   if (path.match(/\/view\/$/)) {
     path = path.substr(0, path.length - 'view/'.length);
   }
-  return path;
+  return path.split('/@@')[0];
 };

@@ -8,8 +8,8 @@ import Layout from '../components/Layout';
 import NewsItem from '../components/NewsItem';
 import Collection from '../components/Collection';
 
-const componentFor = data => {
-  const nodes = query => (query ? query.edges : []).map(edge => edge.node);
+const componentFor = (data) => {
+  const nodes = (query) => (query ? query.edges : []).map((edge) => edge.node);
   if (data) {
     if (data.ploneCollection) {
       return (

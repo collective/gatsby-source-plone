@@ -3,7 +3,7 @@ import { graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import { deserialize } from 'react-serialize';
 
-const ResolveImage = images => data => {
+const ResolveImage = (images) => (data) => {
   let byPath = images.reduce(
     (map, image) => map.set(image._path, image),
     new Map()
@@ -20,7 +20,7 @@ const ResolveImage = images => data => {
   }
 };
 
-const ResolveLink = files => data => {
+const ResolveLink = (files) => (data) => {
   let byPath = files.reduce(
     (map, file) => map.set(file._path, file),
     new Map()

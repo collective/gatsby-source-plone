@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-plone",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Source plugin for pulling data into Gatsby from Plone sites",
   "main": "index.js",
   "babel": {

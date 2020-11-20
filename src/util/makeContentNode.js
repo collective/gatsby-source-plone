@@ -89,7 +89,9 @@ export const makeContentNode = (id, data, baseUrl, backlinks, ids) => {
       const regexp = RegExp(`${url}[^"]*`, 'g');
       let match;
       while ((match = regexp.exec(block.config || '')) !== null) {
-        let match_ = `${baseUrl}${match[0].substring(url.length)}`.split('/@@')[0];
+        let match_ = `${baseUrl}${match[0].substring(url.length)}`.split(
+          '/@@'
+        )[0];
         let link = `/${match_
           .substring(baseUrl.length)
           .replace(/^\/*|\/.*$/, '')}/`;

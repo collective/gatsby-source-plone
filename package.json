@@ -56,7 +56,6 @@
   "author": "Ajay NS, Asko Soukka, Andrea Cecchi, Timo Stollenwerk, Victor Fernandez de Alba",
   "license": "MIT",
   "dependencies": {
-    "core-js": "2",
     "axios": "^0.21.0",
     "axios-retry": "^3.1.9",
     "gatsby": "^2.27.0",
@@ -85,6 +84,8 @@
     "yalc": "^1.0.0-pre.47"
   },
   "resolutions": {
-    "babel-core": "7.0.0-bridge.0"
+    "babel-core": "7.0.0-bridge.0",
+    "core-js": "2",
+    "node-sass": ">=4.13.1"
   }
 }

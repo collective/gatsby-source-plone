@@ -40,7 +40,7 @@ coverage: node_modules
 
 .PHONY: coveralls
 coveralls: coverage
-	cat ./coverage/lcov.info | coveralls
+	cat ./coverage/lcov.info | coveralls || true
 
 .PHONY: show
 show: node_modules

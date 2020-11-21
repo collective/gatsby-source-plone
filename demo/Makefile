@@ -99,6 +99,7 @@ watch: develop
 
 public: start-backend node_modules $(SOURCES)
 public: src/styles/_typography.scss
+	yalc link gatsby-source-plone
 	gatsby build ${GATSBY_BUILD_FLAGS}
 
 pyvenv: requirements.txt

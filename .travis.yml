@@ -16,9 +16,8 @@ script:
 - make purge init-backend test-all
 after_success:
 - make coveralls
-- test $TRAVIS_BRANCH = "master" &&
-  test $(node --version) = "v10.15.3" &&
-  GATSBY_BUILD_FLAGS=--prefix-paths make clean coveralls init-docs-backend build
+- test $TRAVIS_BRANCH = "master" && GATSBY_BUILD_FLAGS=--prefix-paths
+  make clean coveralls init-docs-backend build
 deploy:
   provider: pages
   github-token: "$GITHUB_TOKEN"
@@ -34,4 +33,5 @@ notifications:
   - stollenwerk@kitconcept.com
   - fernandezdealba@kitconcept.com
 env:
-  secure: K60zXQWiqhkC+pfVnDWYK/Pzzxz8lua6ApIVFZyyPkh/5iqop9SfsxVin2LGo4GxwpBowMcMtxIhOOoysiBTG/XtLnr67QmoVipWLAbM5VsFUb+CtRLFbUSYPZG/jvjTW2L9eGjwgpX6PEXJ5M6XDIcHVKBI7Oxqs08+V8HGKRkX3CoEc5Hq9ZH/ZWbZPySsv0wnemBFoP0XKFUNyr9BrIQ07mNb5L8+RU9RrQ+BLSAV7mEjVgcZRpy1zxTDjpG+dphED9tbvCoOXY/RF2BQdrt9/4y2ZUGHjVlXErvUJ7JVXXhGJKzQBp5gTH2G0sEbkforFv/p01riaajhK9astig5tTiQ9ihpWUsIUHoOG5FSrWssmZHTbiFoQYqLMbcGqmgZYR37UEHUC0ECbxlaqEmrrxbqx6B2MRS796xVqOxR/PwGLpNBGcAfw9AgdsQo24VmnJzPXm85StLGi6rHw00wZihFn7qVFiF6DRCE+T5krtaznKH7tMx8JPN3l5YNKcddd3++lqfHYWpov96v1KlQKfCdcNvGPgu/ohMjs+OxgO08X1dJYa7suVP3CktHZF+/5AxjOUcssDRCKcQvbxz+tnyOPv/yXF2yu2VBRMqh2H2mGNS153e3O+4qi4lEJWeEfEYD7ptKShAszRp/PdSilOxDnl45ywkzT+JBT4c=
+  global:
+    secure: YZfvMiiOXmg1M2YsTEcghFXtveGtExJZpyjOb1sZ4SYcblH6EuA1YZxsTX4WQQ0Cw7vTvMuGbuW9LKoky1SMYdUcUb3nv3s+gHICqUfbsiX1H4mol/61go8l/PoC+/2ItUBR4tlgN4IPTlqGtQM0C2sZmx88HRqec/gKHklozd+lcO+T+T/S8G0/Ybt8Ak8tz86ZMyakuJgNjjOXk6Gy4Suwc+zEhbgzzjX5gQuF2KmLcZxUBXtC1VNTe2wvumqJfCDEI8qOVqoUK8VJgnaXR9QXLDinRfltbVZY7PxhyOzYLJXB+bjl5H3I1r5Oh8xa0BVMoKWio033JK6TLUlyHcNb5JP3ueRIs/rEFQ+WslaWXKDR5NxA8lzwLI/to88JKDHRHaPuRCKHhbJfuXBRwvYtXK/El9ZNua+Tf2fGbcvSP+YFVXDEqOVEGXM+u5RPnO9etHjUcQRYtAAy/boS0GRtUlX308AJRKxcuM5nlHc54pRPFi1Ut3QdtzrJDzsLEpB/DUnqaLL4X2Ij/MKlxjtjuidOMExN3w8MQ1BcYKmzJBVnZCHIXhH7IdVj0eO6c9ew96Cz9k61B+mbzs8MV8bpfTEvJJWe0osa4n1Ux3EqXDSCY0SLpPhntLiTSyYY/ubdWkdA4QY87pF0iBpKBDy494xUFzgWKbq8to14Lpk=

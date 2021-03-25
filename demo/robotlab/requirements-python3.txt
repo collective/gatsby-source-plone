@@ -1,6 +1,6 @@
 GenSON==1.0.2
 MarkupSafe==1.1.1
-PyYAML==5.1.1
+PyYAML==5.4
 RESTinstance==1.0.0
 Send2Trash==1.5.0
 attrs==19.1.0

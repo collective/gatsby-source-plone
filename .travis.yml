@@ -28,10 +28,6 @@ deploy:
   on:
     branch: master
     node_js: 10
-notifications:
-  email:
-  - stollenwerk@kitconcept.com
-  - fernandezdealba@kitconcept.com
 env:
   global:
     secure: YZfvMiiOXmg1M2YsTEcghFXtveGtExJZpyjOb1sZ4SYcblH6EuA1YZxsTX4WQQ0Cw7vTvMuGbuW9LKoky1SMYdUcUb3nv3s+gHICqUfbsiX1H4mol/61go8l/PoC+/2ItUBR4tlgN4IPTlqGtQM0C2sZmx88HRqec/gKHklozd+lcO+T+T/S8G0/Ybt8Ak8tz86ZMyakuJgNjjOXk6Gy4Suwc+zEhbgzzjX5gQuF2KmLcZxUBXtC1VNTe2wvumqJfCDEI8qOVqoUK8VJgnaXR9QXLDinRfltbVZY7PxhyOzYLJXB+bjl5H3I1r5Oh8xa0BVMoKWio033JK6TLUlyHcNb5JP3ueRIs/rEFQ+WslaWXKDR5NxA8lzwLI/to88JKDHRHaPuRCKHhbJfuXBRwvYtXK/El9ZNua+Tf2fGbcvSP+YFVXDEqOVEGXM+u5RPnO9etHjUcQRYtAAy/boS0GRtUlX308AJRKxcuM5nlHc54pRPFi1Ut3QdtzrJDzsLEpB/DUnqaLL4X2Ij/MKlxjtjuidOMExN3w8MQ1BcYKmzJBVnZCHIXhH7IdVj0eO6c9ew96Cz9k61B+mbzs8MV8bpfTEvJJWe0osa4n1Ux3EqXDSCY0SLpPhntLiTSyYY/ubdWkdA4QY87pF0iBpKBDy494xUFzgWKbq8to14Lpk=

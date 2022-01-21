@@ -5,7 +5,7 @@ robotframework
 robotframework-seleniumlibrary
 robotkernel
 
-ipython==7.2.0
+ipython==7.16.3
 
 setuptools-scm
 pytest-runner

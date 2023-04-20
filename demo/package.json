@@ -10,7 +10,7 @@
     "gatsby-image": "^2.6.0",
     "gatsby-plugin-react-helmet": "^3.5.0",
     "gatsby-plugin-sass": "^2.6.0",
-    "gatsby-plugin-sharp": "^2.9.0",
+    "gatsby-plugin-sharp": "^4.25.1",
     "gatsby-source-filesystem": "^2.6.0",
     "gatsby-source-plone": "https://github.com/collective/gatsby-source-plone.git#master",
     "gatsby-transformer-sharp": "^2.7.0",

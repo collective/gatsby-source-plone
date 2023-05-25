@@ -64,7 +64,7 @@ six==1.12.0
 strict-rfc3339==0.7
 terminado==0.8.2
 testpath==0.4.2
-tornado==6.0.3
+tornado==6.3.2
 traitlets==4.3.2
 tzlocal==1.5.1
 urllib3==1.24.3
